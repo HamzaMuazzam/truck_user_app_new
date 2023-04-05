@@ -24,8 +24,11 @@ class SearchingWidget extends StatefulWidget {
   @override
   _SearchingWidgetState createState() => _SearchingWidgetState();
 }
+
 GoogleMapController? mapController;
-class _SearchingWidgetState extends State<SearchingWidget> with SingleTickerProviderStateMixin {
+
+class _SearchingWidgetState extends State<SearchingWidget>
+    with SingleTickerProviderStateMixin {
   late AnimationController aniController;
   late AppFlowProvider appFlowProvider;
   late TaxiBookingProvider taxiBookingProvider;
@@ -45,10 +48,10 @@ class _SearchingWidgetState extends State<SearchingWidget> with SingleTickerProv
       duration: Duration(seconds: 3),
     )..repeat();
     appFlowProvider = Provider.of<AppFlowProvider>(context, listen: false);
-    taxiBookingProvider = Provider.of<TaxiBookingProvider>(context, listen: false);
+    taxiBookingProvider =
+        Provider.of<TaxiBookingProvider>(context, listen: false);
 
-    // bookOrder();
-
+    bookOrder();
   }
 
   @override
@@ -61,81 +64,83 @@ class _SearchingWidgetState extends State<SearchingWidget> with SingleTickerProv
   Widget build(BuildContext context) {
     return Consumer<LocationAndMapProvider>(
       builder: (BuildContext context, value, Widget? child) {
-
         return Scaffold(
           body: Stack(
             children: [
               !appProvider.isMap
                   ? Container(
-                color: Colors.white,
-              )
-                  : GoogleMap(
-                mapType: MapType.normal,
-                compassEnabled: true,
-                myLocationButtonEnabled: false,
-                myLocationEnabled: false,
-                buildingsEnabled: false,
-                markers:
-                (appProvider.destinationType == DestinationType.Multiple)
-                    ? appProvider.markerSet
-                    : {
-                  if (appProvider.currentLoc != null)
-                    Marker(
-                      markerId: MarkerId(PickupLabel),
-                      icon: BitmapDescriptor.defaultMarkerWithHue(
-                        BitmapDescriptor.hueRed,
-                      ),
-                      infoWindow: InfoWindow(title: "Loadup Point"),
-                      position: LatLng(
-                        appProvider.currentLoc!.latitude,
-                        appProvider.currentLoc!.longitude,
-                      ),
-                    ),
-                  if (appProvider.destLoc != null)
-                    Marker(
-                      markerId: MarkerId(DestinationLabel),
-                      icon: BitmapDescriptor.defaultMarkerWithHue(
-                        BitmapDescriptor.hueBlue,
-                      ),
-                      infoWindow:
-                      InfoWindow(title: DestinationPointLabel),
-                      position: LatLng(
-                        appProvider.destLoc!.latitude,
-                        appProvider.destLoc!.longitude,
-                      ),
-                    ),
-                },
-                polylines: appProvider.destinationType ==
-                    DestinationType.Multiple
-                    ? appProvider.polylineSet
-                    : {
-                  if (appProvider.directions != null)
-                    Polyline(
-                      polylineId: PolylineId('route'),
-                      color: Colors.black,
-                      width: 3,
-                      points:
-                      appProvider.directions!.polylinePoints!.map(
-                            (e) {
-                          return LatLng(e!.latitude, e.longitude);
-                        },
-                      ).toList(),
+                      color: Colors.white,
                     )
-                },
-                initialCameraPosition: value.newCameraPosition == null
-                    ? value.initCameraPosition
-                    : value.newCameraPosition!,
-                onMapCreated: (GoogleMapController controller) async {
-                  value.setCurrentLocMarker();
-                  _controller.complete(controller);
-                  mapController = controller;
-                  await mapController!.animateCamera(
-                    CameraUpdate.newCameraPosition(value.newCameraPosition!),
-                  );
-                },
-              ),
+                  : GoogleMap(
+                      mapType: MapType.normal,
+                      compassEnabled: true,
+                      myLocationButtonEnabled: false,
+                      myLocationEnabled: false,
+                      buildingsEnabled: false,
+                      markers: (appProvider.destinationType ==
+                              DestinationType.Multiple)
+                          ? appProvider.markerSet
+                          : {
+                              if (appProvider.currentLoc != null)
+                                Marker(
+                                  markerId: MarkerId(PickupLabel),
+                                  icon: BitmapDescriptor.defaultMarkerWithHue(
+                                    BitmapDescriptor.hueRed,
+                                  ),
+                                  infoWindow: InfoWindow(title: "Loadup Point"),
+                                  position: LatLng(
+                                    appProvider.currentLoc!.latitude,
+                                    appProvider.currentLoc!.longitude,
+                                  ),
+                                ),
+                              if (appProvider.destLoc != null)
+                                Marker(
+                                  markerId: MarkerId(DestinationLabel),
+                                  icon: BitmapDescriptor.defaultMarkerWithHue(
+                                    BitmapDescriptor.hueBlue,
+                                  ),
+                                  infoWindow:
+                                      InfoWindow(title: DestinationPointLabel),
+                                  position: LatLng(
+                                    appProvider.destLoc!.latitude,
+                                    appProvider.destLoc!.longitude,
+                                  ),
+                                ),
+                            },
+                      polylines: appProvider.destinationType ==
+                              DestinationType.Multiple
+                          ? appProvider.polylineSet
+                          : {
+                              if (appProvider.directions != null)
+                                Polyline(
+                                  polylineId: PolylineId('route'),
+                                  color: Colors.black,
+                                  width: 3,
+                                  points: appProvider
+                                      .directions!.polylinePoints!
+                                      .map(
+                                    (e) {
+                                      return LatLng(e!.latitude, e.longitude);
+                                    },
+                                  ).toList(),
+                                )
+                            },
+                      initialCameraPosition: value.newCameraPosition == null
+                          ? value.initCameraPosition
+                          : value.newCameraPosition!,
+                      onMapCreated: (GoogleMapController controller) async {
+                        value.setCurrentLocMarker();
+                        _controller.complete(controller);
+                        mapController = controller;
+                        await mapController!.animateCamera(
+                          CameraUpdate.newCameraPosition(
+                              value.newCameraPosition!),
+                        );
+                      },
+                    ),
               AnimatedBuilder(
-                  animation: CurvedAnimation(parent: aniController, curve: Curves.easeInCirc),
+                  animation: CurvedAnimation(
+                      parent: aniController, curve: Curves.easeInCirc),
                   builder: (context, child) {
                     return Stack(alignment: Alignment.center, children: [
                       _buildContainer(150 * aniController.value),
@@ -149,10 +154,9 @@ class _SearchingWidgetState extends State<SearchingWidget> with SingleTickerProv
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: AppButton(
-                    label: "Cancel Ride",
+                    label: "Cancel Booking",
                     onPressed: () async {
                       appFlowProvider.stage = BookingStage.PickUp;
-
 
                       Fluttertoast.showToast(
                           msg: "Order has been Cancelled.",
@@ -161,12 +165,9 @@ class _SearchingWidgetState extends State<SearchingWidget> with SingleTickerProv
                           timeInSecForIosWeb: 1,
                           backgroundColor: Colors.red,
                           textColor: Colors.white,
-                          fontSize: 16.0
-                      );
+                          fontSize: 16.0);
                       gotoPage(NavigationScreen(), isClosePrevious: true);
-
-
-                      },
+                    },
                   ),
                 ),
               ),
@@ -207,7 +208,8 @@ class _SearchingWidgetState extends State<SearchingWidget> with SingleTickerProv
                 children: List.generate(
                   taxiBookingProvider.getCancelReasonModel?.data?.length ?? 0,
                   (index) {
-                    final data = taxiBookingProvider.getCancelReasonModel?.data?[index];
+                    final data =
+                        taxiBookingProvider.getCancelReasonModel?.data?[index];
 
                     return Card(
                       elevation: 5,
@@ -233,5 +235,39 @@ class _SearchingWidgetState extends State<SearchingWidget> with SingleTickerProv
           ),
         ),
         isScrollControlled: true);
+  }
+
+  void bookOrder() async {
+    bool result = await fairTruckProvider.submitOrder();
+    if (result) {
+      await 3.delay();
+
+      fairTruckProvider.totalFair();
+
+      await appFlowProvider.removeDestinationLoc();
+      locProv.polyLines = {};
+      await appProvider.removeDirections();
+      await appProvider.removePickUpLoc();
+      locProv.locMarkers = {};
+      locProv.polylineCoordinates = [];
+      fairTruckProvider.loadCity = '';
+      fairTruckProvider.unloadCity = '';
+
+      await Provider.of<AppFlowProvider>(context, listen: false)
+          .changeBookingStage(BookingStage.SearchingVehicle);
+
+      appFlowProvider.stage = BookingStage.PickUp;
+
+      Fluttertoast.showToast(
+          msg: "Order has been booked.",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
+
+      gotoPage(NavigationScreen(), isClosePrevious: true);
+    }
   }
 }

@@ -157,23 +157,8 @@ class _BookingTimeState extends State<BookingTime> {
             child: AppButton(
               label: "Submit",
               onPressed: () async {
-                bool result = await fairTruckProvider.submitOrder();
-                if (result) {
-                  // appFlowProvider.currentAdd = '';
-                  // appFlowProvider.destLoc={};
-                  await appFlowProvider.removeDestinationLoc();
-                  locProv.polyLines = {};
-                  await appProvider.removeDirections();
-                  await appProvider.removePickUpLoc();
-                  locProv.locMarkers = {};
-                  locProv.polylineCoordinates = [];
-                  fairTruckProvider.loadCity = '';
-                  fairTruckProvider.unloadCity = '';
-                  Get.to(SearchingWidget());
 
-                  await Provider.of<AppFlowProvider>(context, listen: false)
-                      .changeBookingStage(BookingStage.SearchingVehicle);
-                }
+                  Get.to(SearchingWidget());
               },
             ),
           ),

@@ -258,6 +258,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                               Expanded(flex: 2, child: Container()),
                           ],
                         ),
+                        SizedBox(height: 50,)
                       ],
                     ),
                   ),

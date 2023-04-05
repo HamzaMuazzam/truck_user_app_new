@@ -28,11 +28,10 @@ class NotificationRoutes {
       FlutterLocalNotificationsPlugin? fltrNotification,
       InitializationSettings? initilizationsSettings,
       NotificationDetails? generalNotificationDetails}) async {
-
-   ///TODO: this check will insure that if app is open and in foreground and
-   ///we need to show notification or not
-   ///TODO: like if chat screen is open and message come for the same chat user so here we will prevent to not to show notification
-   ///TODO: if(!isDataFromBackground && chatNextUserId==event.data['nextUserIs']) { return don't  show notification here.}. ==> {HAMZA MUAZZAM 01-07-2022}
+    ///TODO: this check will insure that if app is open and in foreground and
+    ///we need to show notification or not
+    ///TODO: like if chat screen is open and message come for the same chat user so here we will prevent to not to show notification
+    ///TODO: if(!isDataFromBackground && chatNextUserId==event.data['nextUserIs']) { return don't  show notification here.}. ==> {HAMZA MUAZZAM 01-07-2022}
 
     if (!isDataFromBackground!) {
       fltrNotification!.initialize(initilizationsSettings!,
@@ -61,14 +60,17 @@ class NotificationRoutes {
     ///  maryam do work here if payload has specific value then go to that screen accordingly
     ///  like payload['screenName']=="Order Details Screen" or   payload['orderId']!=null then go to order details screen with id
 
-    if (payload['Route'] == "ORDER_ACCEPTED_SCREEN" &&
+    if (payload['Route'] == "order_screen" &&
         (payload['orderId'] != null || payload['OrderId'] != null)) {
       String? orderID = payload['OrderId'] ?? "";
-      String response = await ApiServices.getMethod(feedUrl: "/Order/get-order-by-Id?id=$orderID");
+      String response = await ApiServices.getMethod(
+          feedUrl: "/Order/get-order-by-Id?id=$orderID");
 
       if (response.isNotEmpty) {
-        Get.to(OrderDetailById(
-            GetAllOrdersResponse.fromJson(json.decode(response))));
+        if (Get.currentRoute.contains("OrderDetailById")) {
+          Get.back();
+        }
+        Get.to(OrderDetailById(GetAllOrdersResponse.fromJson(json.decode(response))));
       }
     }
   }
