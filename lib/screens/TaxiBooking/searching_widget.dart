@@ -1,0 +1,237 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:sultan_cab/providers/TaxiBookingProvider/taxi_booking_provider.dart';
+import 'package:sultan_cab/providers/taxi/app_flow_provider.dart';
+import 'package:sultan_cab/screens/TaxiBooking/navigation_screen.dart';
+import 'package:sultan_cab/utils/sizeConfig.dart';
+import 'package:sultan_cab/widgets/app_button.dart';
+
+import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
+import '../../providers/Truck _provider/fair_provider.dart';
+import '../../utils/commons.dart';
+import '../../utils/strings.dart';
+import 'home_page.dart';
+import 'navigation_screen.dart';
+
+class SearchingWidget extends StatefulWidget {
+  const SearchingWidget({Key? key}) : super(key: key);
+
+  @override
+  _SearchingWidgetState createState() => _SearchingWidgetState();
+}
+GoogleMapController? mapController;
+class _SearchingWidgetState extends State<SearchingWidget> with SingleTickerProviderStateMixin {
+  late AnimationController aniController;
+  late AppFlowProvider appFlowProvider;
+  late TaxiBookingProvider taxiBookingProvider;
+  late LocationAndMapProvider gMapProv;
+  Completer<GoogleMapController> _controller = Completer();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  String location = "";
+
+  @override
+  void initState() {
+    gMapProv = Provider.of<LocationAndMapProvider>(context, listen: false);
+    gMapProv.setCurrentLocMarker();
+    super.initState();
+    aniController = AnimationController(
+      vsync: this,
+      lowerBound: 0,
+      duration: Duration(seconds: 3),
+    )..repeat();
+    appFlowProvider = Provider.of<AppFlowProvider>(context, listen: false);
+    taxiBookingProvider = Provider.of<TaxiBookingProvider>(context, listen: false);
+
+    // bookOrder();
+
+  }
+
+  @override
+  void dispose() {
+    aniController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<LocationAndMapProvider>(
+      builder: (BuildContext context, value, Widget? child) {
+
+        return Scaffold(
+          body: Stack(
+            children: [
+              !appProvider.isMap
+                  ? Container(
+                color: Colors.white,
+              )
+                  : GoogleMap(
+                mapType: MapType.normal,
+                compassEnabled: true,
+                myLocationButtonEnabled: false,
+                myLocationEnabled: false,
+                buildingsEnabled: false,
+                markers:
+                (appProvider.destinationType == DestinationType.Multiple)
+                    ? appProvider.markerSet
+                    : {
+                  if (appProvider.currentLoc != null)
+                    Marker(
+                      markerId: MarkerId(PickupLabel),
+                      icon: BitmapDescriptor.defaultMarkerWithHue(
+                        BitmapDescriptor.hueRed,
+                      ),
+                      infoWindow: InfoWindow(title: "Loadup Point"),
+                      position: LatLng(
+                        appProvider.currentLoc!.latitude,
+                        appProvider.currentLoc!.longitude,
+                      ),
+                    ),
+                  if (appProvider.destLoc != null)
+                    Marker(
+                      markerId: MarkerId(DestinationLabel),
+                      icon: BitmapDescriptor.defaultMarkerWithHue(
+                        BitmapDescriptor.hueBlue,
+                      ),
+                      infoWindow:
+                      InfoWindow(title: DestinationPointLabel),
+                      position: LatLng(
+                        appProvider.destLoc!.latitude,
+                        appProvider.destLoc!.longitude,
+                      ),
+                    ),
+                },
+                polylines: appProvider.destinationType ==
+                    DestinationType.Multiple
+                    ? appProvider.polylineSet
+                    : {
+                  if (appProvider.directions != null)
+                    Polyline(
+                      polylineId: PolylineId('route'),
+                      color: Colors.black,
+                      width: 3,
+                      points:
+                      appProvider.directions!.polylinePoints!.map(
+                            (e) {
+                          return LatLng(e!.latitude, e.longitude);
+                        },
+                      ).toList(),
+                    )
+                },
+                initialCameraPosition: value.newCameraPosition == null
+                    ? value.initCameraPosition
+                    : value.newCameraPosition!,
+                onMapCreated: (GoogleMapController controller) async {
+                  value.setCurrentLocMarker();
+                  _controller.complete(controller);
+                  mapController = controller;
+                  await mapController!.animateCamera(
+                    CameraUpdate.newCameraPosition(value.newCameraPosition!),
+                  );
+                },
+              ),
+              AnimatedBuilder(
+                  animation: CurvedAnimation(parent: aniController, curve: Curves.easeInCirc),
+                  builder: (context, child) {
+                    return Stack(alignment: Alignment.center, children: [
+                      _buildContainer(150 * aniController.value),
+                      _buildContainer(250 * aniController.value),
+                      _buildContainer(350 * aniController.value),
+                      Align(child: sh(0))
+                    ]);
+                  }),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AppButton(
+                    label: "Cancel Ride",
+                    onPressed: () async {
+                      appFlowProvider.stage = BookingStage.PickUp;
+
+
+                      Fluttertoast.showToast(
+                          msg: "Order has been Cancelled.",
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
+                      gotoPage(NavigationScreen(), isClosePrevious: true);
+
+
+                      },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildContainer(double radius) {
+    return Container(
+      width: radius,
+      height: radius,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.black26.withOpacity(1 - (aniController.value)),
+      ),
+    );
+  }
+
+  Future<int?> cancelReason() async {
+    return Get.bottomSheet(
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 20, bottom: 5),
+              child: Text(
+                "Why do you want cancel ?",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+            Container(height: 1, color: Colors.grey.withOpacity(.5)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Column(
+                children: List.generate(
+                  taxiBookingProvider.getCancelReasonModel?.data?.length ?? 0,
+                  (index) {
+                    final data = taxiBookingProvider.getCancelReasonModel?.data?[index];
+
+                    return Card(
+                      elevation: 5,
+                      child: ListTile(
+                        dense: true,
+                        title: Text(data?.reasonText ?? ""),
+                        onTap: () {
+                          Get.back(result: data?.id);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        isScrollControlled: true);
+  }
+}

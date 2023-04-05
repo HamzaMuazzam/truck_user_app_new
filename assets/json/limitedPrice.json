@@ -1,0 +1,20 @@
+{
+    "success": 1,
+    "message": "Data fetched",
+    "data": {
+        "per_day_charge": 2400,
+        "additional_hrs": 0,
+        "per_hour_rate": 0,
+        "package": "₹ 2400 /24 hrs upto 120 kms after 120 kms ₹ 12/kms",
+        "security_fee": 1000,
+        "fare": 52800,
+        "km_charge": 0,
+        "subtotal": 52800,
+        "total": 52800,
+        "discount": 0,
+        "discount_id": null,
+        "total_days": 22,
+        "pickup_charge": 0,
+        "dropoff_charge": 0
+    }
+}

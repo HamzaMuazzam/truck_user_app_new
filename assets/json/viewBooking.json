@@ -1,0 +1,84 @@
+{
+    "success": "1",
+    "message": "Date fetched.",
+    "data": [
+        {
+            "id": 330,
+            "order_id": "THRIFTYCAB321",
+            "is_reported": 0,
+            "is_rated": 0,
+            "customer": "John Doe",
+            "customer_contact": "9898989898",
+            "current_address": null,
+            "nationality": "Indian",
+            "vehicle": "Toyota Fortuner - (XY 01 C 9889)",
+            "pickup_city": "Hyderabad",
+            "dropoff_city": "Hyderabad",
+            "document_type": "Domestic",
+            "international_license": [],
+            "driving_permit": [],
+            "passport": [],
+            "domestic_license": [
+                "https://res.cloudinary.com/djisilfwk/image/upload/v1639061050/thriftycab/Docs/dl-1_e0wuxj.png",
+                "https://res.cloudinary.com/djisilfwk/image/upload/v1639061050/thriftycab/Docs/dl-2_xmrezp.png"
+            ],
+            "aadhar_card": [
+                "https://res.cloudinary.com/djisilfwk/image/upload/v1639061046/thriftycab/Docs/6041675_tb66mp.jpg"
+            ],
+            "pickup_datetime": "2021-10-05 16:00:34",
+            "dropoff_datetime": "2021-10-06 16:00:34",
+            "pickup_addr": "870-IO, Kormangla Road, Hyderabad, India",
+            "dest_addr": "870-OI, Manglore road, Hyderabad, India",
+            "billing_type": "Limited",
+            "booking_status": "Ongoing",
+            "co_passanger_contact": "65486577",
+            "note": null,
+            "payment_status": "Paid",
+            "amount": "₹9000",
+            "customer_id": 81,
+            "vehicle_id": 2,
+            "is_paid": 1,
+            "interface": "Manual",
+            "type_id": 2,
+            "model_id": 15,
+            "total_kms": 0,
+            "payment_option": "Cash",
+            "rental_days": 1,
+            "security_fee": 6000,
+            "amount_paid": 9000,
+            "extra_charges": null,
+            "driver_note": null,
+            "cancelled_by": null,
+            "cancellation_reason": null,
+            "vehicle_details": {
+                "vehicle_id": 2,
+                "brand": "Toyota",
+                "model": "Fortuner",
+                "type": "SUV",
+                "color": "White",
+                "license_plate": "XY 01 C 9889",
+                "model_number": "7697-C",
+                "year": "2021",
+                "engine_number": "345",
+                "chassis_number": "992",
+                "registration_number": "815",
+                "seating_capacity": "7",
+                "air_bags": "Yes",
+                "transmission_type": "Automatic",
+                "fuel_type": "Diesel",
+                "images": [
+                    "https://res.cloudinary.com/djisilfwk/image/upload/v1639067951/thriftycab/Cars/2015_Toyota_Fortuner__New_Zealand_evwawc.jpg"
+                ]
+            },
+            "pickup_uploads": [
+               
+            ],
+            "dropoff_uploads": [
+               
+            ],
+            "bank_bill_images": [
+            
+            ]
+        }
+    ]
+}

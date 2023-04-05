@@ -1,0 +1,96 @@
+{
+    "success": "1",
+    "message": "Data fetched.",
+    "data": [
+        {
+            "hub_id": 1,
+            "name": "Bandra Avenue",
+            "address": "67/78 Bandra, Mumbai",
+            "city_id": 32,
+            "city": "Mumbai",
+            "lat": "31.6528339",
+            "long": "74.875196"
+        },
+        {
+            "hub_id": 2,
+            "name": "Thane Vehicle Hub",
+            "address": "672-E8 Thane, Mumbai",
+            "city_id": 32,
+            "city": "Mumbai",
+            "lat": "31.6528339",
+            "long": "74.875196"
+        },
+        {
+            "hub_id": 3,
+            "name": "Anna Malai Complex",
+            "address": "Rajni Anna Complex, Chennai",
+            "city_id": 33,
+            "city": "Chennai",
+            "lat": "30.3252283",
+            "long": "78.04303999999999"
+        },
+        {
+            "hub_id": 4,
+            "name": "Thalaiva Garage",
+            "address": "PeterCode Road, west Chennai",
+            "city_id": 33,
+            "city": "Chennai",
+            "lat": "30.3252283",
+            "long": "78.04303999999999"
+        },
+        {
+            "hub_id": 5,
+            "name": "Southex City Hub",
+            "address": "44/46 City West - Banglore",
+            "city_id": 29,
+            "city": "Banglore",
+            "lat": "28.5403145",
+            "long": "77.1174363"
+        },
+        {
+            "hub_id": 6,
+            "name": "Doon Vehicle stand",
+            "address": "Thriftycab Garage - North Dehradoon",
+            "city_id": 30,
+            "city": "Dehradun",
+            "lat": "30.7238236",
+            "long": "76.76896839999999"
+        },
+        {
+            "hub_id": 7,
+            "name": "Doon -2 Vehicle stand",
+            "address": "Thriftycab Garage - South Dehradoon",
+            "city_id": 30,
+            "city": "Dehradun",
+            "lat": "30.7238236",
+            "long": "76.76896839999999"
+        },
+        {
+            "hub_id": 8,
+            "name": "Vasant Vihar Polytecnic",
+            "address": "98/78 Vasant Vihar, New Delhi",
+            "city_id": 31,
+            "city": "Delhi",
+            "lat": "30.7238236",
+            "long": "76.76896839999999"
+        },
+        {
+            "hub_id": 9,
+            "name": "Koormangla Road Hub",
+            "address": "870-IO, Kormangla Road, Hyderabad",
+            "city_id": 34,
+            "city": "Hyderabad",
+            "lat": "30.7238236",
+            "long": "76.76896839999999"
+        },
+        {
+            "hub_id": 10,
+            "name": "Zuckerberg Vehicle Point",
+            "address": "870-OI, Manglore road, Hyderabad",
+            "city_id": 34,
+            "city": "Hyderabad",
+            "lat": "30.7238236",
+            "long": "76.76896839999999"
+        }
+    ]
+}

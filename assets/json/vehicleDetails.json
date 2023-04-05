@@ -1,0 +1,25 @@
+{
+    "success": "1",
+    "message": "Data fetched!",
+    "data": {
+        "vehicle_id": 15,
+        "brand": "TATA",
+        "model": "TATA Tiago",
+        "type": "Hatchback",
+        "color": "Red",
+        "license_plate": "XY 01 C 9889",
+        "model_number": "Tiago2019",
+        "year": "2019",
+        "engine_number": "DHGJ65879",
+        "chassis_number": "DHGTHRIFY765",
+        "registration_number": "XY 01 C 9889",
+        "seating_capacity": "5",
+        "air_bags": "Yes",
+        "transmission_type": "Manual",
+        "fuel_type": "Diesel",
+        "images": [
+            "https://res.cloudinary.com/djisilfwk/image/upload/v1639059275/thriftycab/Cars/tata-tiago-2_n4kt1i.jpg",
+            "https://res.cloudinary.com/djisilfwk/image/upload/v1639059275/thriftycab/Cars/tata-tiago_ubqypx.jpg"
+        ]
+    }
+}

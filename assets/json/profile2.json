@@ -1,0 +1,26 @@
+{
+    "success": "1",
+    "message": "Data fetched!",
+    "data": {
+        "customer_id": 333,
+        "name": "John Doe",
+        "phone_code": "+91",
+        "phone": "9898989898",
+        "email": "admin@thriftysoft.tech",
+        "nationality": "Argentinean",
+        "address": "Standard Lane, near Part SYT, Alpha Town, India",
+        "doc_type": "0",
+        "domestic_license": null,
+        "driving_permit": [
+            "https://res.cloudinary.com/djisilfwk/image/upload/v1639061050/thriftycab/Docs/dl-1_e0wuxj.png",
+            "https://res.cloudinary.com/djisilfwk/image/upload/v1639061050/thriftycab/Docs/dl-2_xmrezp.png"
+        ],
+        "international_license": [
+            "https://res.cloudinary.com/djisilfwk/image/upload/v1639061047/thriftycab/Docs/27956_dobwk6.jpg"
+        ],
+        "passport": [
+            "https://res.cloudinary.com/djisilfwk/image/upload/v1639061046/thriftycab/Docs/6041675_tb66mp.jpg"
+        ],
+        "aadhar_card": null
+    }
+}

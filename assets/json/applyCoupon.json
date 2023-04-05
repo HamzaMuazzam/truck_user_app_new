@@ -1,0 +1,15 @@
+{
+    "success": "1",
+    "message": "Coupon Applied successfully!",
+    "data": {
+        "coupon_id": 20,
+        "amount": "12000",
+        "discount_type": "Flat",
+        "max_value": 20,
+        "coupon_code": "THRIFTY NEW",
+        "discount_amount": 20,
+        "discount": "₹20",
+        "total_amount": 11980,
+        "total": 15980 
+    }
+}

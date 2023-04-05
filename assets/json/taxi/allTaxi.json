@@ -1,0 +1,78 @@
+{
+    "statuscode": 200,
+    "body": [
+        {
+            "id": "61e29bd1ffc238f6418edeee",
+            "brandName": "Toyota",
+            "vehicleType": "Sedan",
+            "vehicleTypeId": "61e29bd1ffc238f6418ede",
+            "modelName": "Toyota Fortuner 360",
+            "modelNumber": "GA-24T",
+            "seatingCapacity": 4,
+            "transmissionType": "Automatic",
+            "airBag": true,
+            "fuelType": "Diesel",
+            "vehiclePhotos": [
+                {
+                    "id": "61e29bd1ffc238f6418edeee",
+                    "imageUrl": "https://res.cloudinary.com/djisilfwk/image/upload/v1639059275/thriftycab/Cars/tata-tiago-2_n4kt1i.jpg",
+                    "caption": "Hello!",
+                    "mimeType": "JPEG",
+                    "dateCreated": "2021-04-12T09:24:39.059756Z"
+                }
+            ],
+            "status": "Active",
+            "createdAt": "2021-04-12T09:24:39.059756Z",
+            "updatedAt": "2021-04-12T09:24:39.059756Z"
+        },
+        {
+            "id": "61e29bd1ffc238f6418edeee",
+            "brandName": "Tata",
+            "vehicleType": "Sedan",
+            "vehicleTypeId": "61e29bd1ffc238f6418ede",
+            "modelName": "TATA Tiago - Red",
+            "modelNumber": "GA-24T",
+            "seatingCapacity": 4,
+            "transmissionType": "Manual",
+            "airBag": true,
+            "fuelType": "Petrol",
+            "vehiclePhotos": [
+                {
+                    "id": "61e29bd1ffc238f6418edeee",
+                    "imageUrl": "https://res.cloudinary.com/djisilfwk/image/upload/v1639059274/thriftycab/Cars/tata-nexon-1_kxzrff.jpg",
+                    "caption": "Hello!",
+                    "mimeType": "JPEG",
+                    "dateCreated": "2021-04-12T09:24:39.059756Z"
+                }
+            ],
+            "status": "Active",
+            "createdAt": "2021-04-12T09:24:39.059756Z",
+            "updatedAt": "2021-04-12T09:24:39.059756Z"
+        },
+        {
+            "id": "61e29bd1ffc238f6418edeee",
+            "brandName": "Honda",
+            "vehicleType": "Sedan",
+            "vehicleTypeId": "61e29bd1ffc238f6418ede",
+            "modelName": "Honda City - Silver",
+            "modelNumber": "GA-24T",
+            "seatingCapacity": 6,
+            "transmissionType": "Automatic",
+            "airBag": true,
+            "fuelType": "Petrol",
+            "vehiclePhotos": [
+                {
+                    "id": "61e29bd1ffc238f6418edeee",
+                    "imageUrl": "https://res.cloudinary.com/djisilfwk/image/upload/v1639059275/thriftycab/Cars/honda-city_hjf0bx.jpg",
+                    "caption": "Hello!",
+                    "mimeType": "JPEG",
+                    "dateCreated": "2021-04-12T09:24:39.059756Z"
+                }
+            ],
+            "status": "Active",
+            "createdAt": "2021-04-12T09:24:39.059756Z",
+            "updatedAt": "2021-04-12T09:24:39.059756Z"
+        }
+    ],
+    "message": "Taxi Fetched Successfully"
+}

@@ -1,0 +1,31 @@
+{
+    "success": "1",
+    "message": "Data fetched!",
+    "data": {
+        "booking_id": 476,
+        "ticket_id": 12,
+        "title": "Bumper is broken 😂",
+        "description": "The Bumber of the Cab is broken, before the pickup of the cab",
+        "images": [
+            "https://res.cloudinary.com/djisilfwk/image/upload/v1639067086/thriftycab/damange-car/bumper-repair_tfwbea.jpg"
+        ],
+        "ticket_status": "pending",
+        "replies": [
+            {
+                "user_name": "Admin",
+                "reply": "Hello John Doe! We Regret For This inconvinient service. Please accept our Applogy",
+                "timestamp": "2021-11-15 11:41:11"
+            },
+            {
+                "user_name": "Admin",
+                "reply": "Hey, You can use THRIFTYCAB700 coupon code to avail discount in next booking",
+                "timestamp": "2021-11-15 11:43:16"
+            },
+            {
+                "user_name": "Admin",
+                "reply": "Thankyou",
+                "timestamp": "2021-11-15 12:10:09"
+            }
+        ]
+    }
+}

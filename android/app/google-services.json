@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "236880847063",
+    "project_id": "tucking-app-c9418",
+    "storage_bucket": "tucking-app-c9418.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236880847063:android:95fe652d2293b1cef15092",
+        "android_client_info": {
+          "package_name": "com.futurevision.trucking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236880847063-14tg7s2ib0o571evtfocnu1rc3rke5lj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrE9nXUcr0QSd18fiv4-juxqXD9Ch6Ad0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236880847063-14tg7s2ib0o571evtfocnu1rc3rke5lj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

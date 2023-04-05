@@ -1,0 +1,22 @@
+{
+    "success": "1",
+    "message": "You have Signed in Successfully!",
+    "data": {
+        "userinfo": {
+            "user_id": 333,
+            "api_token": "AXjRXmszjWLXXbdKXahKWrdOugTOEwvREKxHgG8kLKAfYqnkIwsPUBVMwrkT",
+            "fcm_id": "fQmRxITbSK2Si0f6ZLvzyc:APA91bHKrgc1b5lAuoU9eLT_5iKhH6c21zWcIfzqs-h9mKkT6ll5uLGu06hS1qkrtv9J0S_rBrxEEeTv21VNC9itoOGCdJij-bqJmHHrDn7WF_7Fxk03QYgaknLRq_X0h3SBpET7wvR4",
+            "device_token": null,
+            "socialmedia_uid": null,
+            "user_name": "John Doe",
+            "phone": "9898989898",
+            "phone_code": "+91",
+            "emailid": "admin@thriftysoft.tech",
+            "password": "$2y$10$aIygl8KVJrjkyvSNju\/wNupCo6o9O4Uq0qeOH2QKffzE4mbi7diWS",
+            "profile_pic": null,
+            "status": 1,
+            "phone_verified": 1,
+            "timestamp": "2021-11-21 03:41:51"
+        }
+    }
+}

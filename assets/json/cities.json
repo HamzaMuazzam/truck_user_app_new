@@ -1,0 +1,36 @@
+{
+    "success": "1",
+    "message": "Data fetched!",
+    "data": [
+        {
+            "id": 32,
+            "name": "Mumbai",
+            "state": "MH"
+        },
+        {
+            "id": 33,
+            "name": "Chennai",
+            "state": "TN"
+        },
+        {
+            "id": 29,
+            "name": "Banglore",
+            "state": "KA"
+        },
+        {
+            "id": 30,
+            "name": "Dehradun",
+            "state": "UK"
+        },
+        {
+            "id": 31,
+            "name": "Delhi",
+            "state": "DL"
+        },
+        {
+            "id": 34,
+            "name": "Hyderabad",
+            "state": "TS"
+        }
+    ]
+}

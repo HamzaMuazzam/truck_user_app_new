@@ -1,0 +1,9 @@
+{
+    "success": "1",
+    "message": "Payment order added successfully!",
+    "data": {
+        "booking_id": 294,
+        "receipt_no": "4815197294",
+        "order_id": "order_I2Okp1ujqQG0WX"
+    }
+}

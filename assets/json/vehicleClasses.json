@@ -1,0 +1,36 @@
+{
+    "success": "1",
+    "message": "Data fetched.",
+    "data": [
+        {
+            "class_id": 1,
+            "name": "Hatchback",
+            "seats": 4,
+            "icon": "https://res.cloudinary.com/djisilfwk/image/upload/v1639060224/thriftycab/Car%20Category/car-of-hatchback-model_rqtyak.png"
+        },
+        {
+            "class_id": 2,
+            "name": "Sedan",
+            "seats": 4,
+            "icon": "https://res.cloudinary.com/djisilfwk/image/upload/v1639059693/thriftycab/Car%20Category/sedan.png"
+        },
+        {
+            "class_id": 3,
+            "name": "Mini van",
+            "seats": 7,
+            "icon": "https://res.cloudinary.com/djisilfwk/image/upload/v1639059693/thriftycab/Car%20Category/mini%20van.png"
+        },
+        {
+            "class_id": 5,
+            "name": "SUV",
+            "seats": 4,
+            "icon": "https://res.cloudinary.com/djisilfwk/image/upload/v1639059693/thriftycab/Car%20Category/SUV.png"
+        },
+        {
+            "class_id": 6,
+            "name": "Bus",
+            "seats": 40,
+            "icon": "https://res.cloudinary.com/djisilfwk/image/upload/v1639059693/thriftycab/Car%20Category/Bus.png"
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "success": "1",
+    "message": "Data fetched.",
+    "data": [
+        {
+            "coupon_id": 14,
+            "discount_type": "Flat",
+            "max_value": 1000,
+            "coupon_code": "THRIFTY NEW",
+            "discount_value": 10,
+            "discount": "₹1000",
+            "coupon_type": "Coupon"
+        },
+        {
+            "coupon_id": 19,
+            "discount_type": "Percentage",
+            "max_value": 100,
+            "coupon_code": "CAB",
+            "discount_value": 10,
+            "discount": "10%",
+            "coupon_type": "Coupon"
+        },
+        {
+            "coupon_id": 20,
+            "discount_type": "Flat",
+            "max_value": 20,
+            "coupon_code": "FLAT THRIFTY",
+            "discount_value": 20,
+            "discount": "₹20",
+            "coupon_type": "Coupon"
+        }
+    ]
+}

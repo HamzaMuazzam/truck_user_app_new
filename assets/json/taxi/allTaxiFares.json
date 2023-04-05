@@ -1,0 +1,42 @@
+{
+    "statuscode": 200,
+    "body": {
+        "id": "61e29bd1ffc238f6418ede",
+        "vehicleTypeId": "61e29bd1ffc238f6418ede",
+        "city": [
+            {
+                "id": "61e29bd1ffc238f6418edeee",
+                "cityName": "Londom",
+                "state": "New York",
+                "status": "Active",
+                "createdAt": "2021-04-12T09:24:39.059756Z",
+                "updatedAt": "2021-04-12T09:24:39.059756Z"
+            }
+        ],
+        "vehicleType": "Sedan",
+        "fare": {
+            "baseFare": 60,
+            "baseKm": 15.5,
+            "standardFarePerKm": 10
+        },
+        "weekendFare": {
+            "weekendBaseFare": 60,
+            "weekendBaseKm": 15.5,
+            "weekendStandardFarePerKm": 10
+        },
+        "nightFare": {
+            "nightBaseFare": 60,
+            "nightBaseKm": 15.9,
+            "nightStandardFarePerKm": 10
+        },
+        "cancellationCharges": {
+            "baseCancellationCharges": 10,
+            "weekendCancellationCharges": 15,
+            "nightCancellationCharges": 15
+        },
+        "status": "Active",
+        "createdAt": "2021-04-12T09:24:39.059756Z",
+        "updatedAt": "2021-04-12T09:24:39.059756Z"
+    },
+    "message": "Local Taxi Fare  Fetched Successfully"
+}

@@ -1,0 +1,22 @@
+{
+    "statuscode": 200,
+    "body": {
+        "vehicleTypeId": "61e29bd1ffc238f6418ede",
+        "vehicleType": "Sedan",
+        "totalKmJourney": 55.5,
+        "fareApplied": "normal",
+        "excessKm": 15,
+        "standardFarePerKm": 10,
+        "baseFare": 60,
+        "additonalFare": 353.09,
+        "subTotalFare": 445.5,
+        "discountApplicable": "Thrifty New Discount 10%",
+        "typeOfOffer": "Discount / Promocode",
+        "discountType": "Percentage",
+        "discountValue": 255,
+        "maximumDiscount": 500.02,
+        "totalDiscount": 45.5,
+        "totalFare": 401.1
+    },
+    "message": "Taxi Fare - Calculated Successfully"
+}
