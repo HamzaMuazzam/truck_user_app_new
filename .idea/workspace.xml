@@ -9,77 +9,25 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7bb4871-93e7-452d-a663-7d3c3c63fa7d" name="Changes" comment="code optimization">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mode_selector.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/AddToFav/get_fav_drivers.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/CancelReasons/get_cancel_reason.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/Disputes/all_disputes.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/RideCancel/ride_cancel _model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/RideEnd/ride_end_model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/RideHistory/last_ride_model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/RideHistory/ride_history_model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/SubscriptionModel/subscription_plan.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/SubscriptionPlan/get_all_plans.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/SubscriptionPlan/my_active_plan.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/booking_complete.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/fair_by_car_id/fair_by_car_id.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/get_reviews/get_reviews.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxi/allRides.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxi/allTaxi.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxi/allTaxiFares.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxi/bookingDetailById.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxi/localTaxiFare.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxiBookingModels/bid_accept_model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxiBookingModels/bidding_model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxiBookingModels/book_ride_response_model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxiBookingModels/driver_arrival_model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxiBookingModels/ride_end_model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/taxiBookingModels/start_ride_model.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/AddToFav/add_to_fav_controller.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/ChatProvider/chat_provider.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/Dispute/dispute_provider.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/GoogleMapProvider/location_and_map_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/GoogleMapProvider/location_and_map_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/Reoccurring/reoccurring.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/RideHistory/ride_history.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/SubscriptionModel/subscription_plan.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/TaxiBookingProvider/in_progress_ride_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/TaxiBookingProvider/in_progress_ride_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/TaxiBookingProvider/truck_booking_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/TaxiBookingProvider/truck_booking_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/booking_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/booking_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/multiple_destination_provider/multiple_destination_provider.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/Dispute/create_dispute.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/Dispute/dispute_chat_room.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/Dispute/dispute_messages_response.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/Dispute/view_all_disputes.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/Favorite/favorite_ride_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/MultipleDestination/multiple_destination.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/Reoccurring/reoccurring_detail.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/Reoccurring/reoccurring_list.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/Reoccurring/reoccurring_ride.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/bidding_view.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/choose_ride_type.dart" beforeDir="false" />
+    <list default="true" id="d7bb4871-93e7-452d-a663-7d3c3c63fa7d" name="Changes" comment="ghair zarori files removed">
       <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/choose_vehicle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/choose_vehicle.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/home_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/ride_history.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/searching_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/searching_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/start_booking.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/start_booking.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/chat_room.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/commonPages/SubscriptionPlan/subscription_plans.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/google_map_view/DriverArrival.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/google_map_view/finish_ride_and_review.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/google_map_view/google_map_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/google_map_view/google_map_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/google_map_view/ride_started.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/google_map_view/ride_status_screen.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/sockets/sockets.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/taxiSerivces.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/commons.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/commons.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgetsTaxi/addressCard.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgetsTaxi/driverCard.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgetsTaxi/fareDetails.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgetsTaxi/myTripCard.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgetsTaxi/paymentSection.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgetsTaxi/vehicleCardTaxi.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/auth_button.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/cachedImage.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/change_lang_dialog.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/dialogBoxDate.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/doc_dialog.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/gallery.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/googlebutton.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/multi_selection_chip.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/otp_verification_dialog.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/ride_booked_dialog.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/single_selection_chip.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/swipeCarContainer.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/vehcileCardShimmerHis.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/vehicleCardHistory.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/vehicleShimmer.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/vehicle_card.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/vehicle_tags.dart" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682957867716</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="ghair zarori files removed">
+      <created>1682958969476</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1682958969476</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -298,7 +253,8 @@
     <MESSAGE value="order booking changes" />
     <MESSAGE value="file changes" />
     <MESSAGE value="code optimization" />
-    <option name="LAST_COMMIT_MESSAGE" value="code optimization" />
+    <MESSAGE value="ghair zarori files removed" />
+    <option name="LAST_COMMIT_MESSAGE" value="ghair zarori files removed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

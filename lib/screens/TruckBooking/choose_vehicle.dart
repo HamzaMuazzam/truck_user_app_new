@@ -18,7 +18,6 @@ import 'package:sultan_cab/widgets/app_button.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../services/ApiServices/StorageServices/get_storage.dart';
-import '../../widgets/ride_booked_dialog.dart';
 import 'booking_summary.dart';
 import 'navigation_screen.dart';
 
