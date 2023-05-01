@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
+import 'screens/TruckBooking/navigation_screen.dart';
 import 'screens/commonPages/phone_verify.dart';
-import 'screens/TaxiBooking/navigation_screen.dart';
 
 class AuthWidget extends StatefulWidget {
   AuthWidget({Key? key}) : super(key: key);

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sultan_cab/mode_selector.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
-import 'package:sultan_cab/providers/TaxiBookingProvider/taxi_booking_provider.dart';
-import 'package:sultan_cab/providers/taxi/app_flow_provider.dart';
-import 'package:sultan_cab/screens/TaxiBooking/dialogBoxRating.dart';
+import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/utils/const.dart';
 import 'package:sultan_cab/widgets/single_selection_chip.dart';
+
+import '../../providers/truck_provider/app_flow_provider.dart';
+import '../TruckBooking/dialogBoxRating.dart';
 
 class FinishRideAndReviews extends StatefulWidget {
   const FinishRideAndReviews({Key? key}) : super(key: key);

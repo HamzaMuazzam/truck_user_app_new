@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sultan_cab/providers/AddToFav/add_to_fav_controller.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
-import 'package:sultan_cab/providers/TaxiBookingProvider/taxi_booking_provider.dart';
+import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:url_launcher/url_launcher.dart';
 

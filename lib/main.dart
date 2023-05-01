@@ -21,9 +21,9 @@ import 'providers/Reoccurring/reoccurring.dart';
 import 'providers/RideHistory/ride_history.dart';
 import 'providers/SubscriptionModel/subscription_plan.dart';
 import 'providers/TaxiBookingProvider/in_progress_ride_provider.dart';
-import 'providers/TaxiBookingProvider/taxi_booking_provider.dart';
+import 'providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'providers/Truck _provider/fair_provider.dart';
-import 'providers/taxi/app_flow_provider.dart';
+import 'providers/truck_provider/app_flow_provider.dart';
 
 
 class MyHttpOverrides extends HttpOverrides {
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => BookingProvider()),
         ChangeNotifierProvider(create: (_) => TrackProvider()),
-        ChangeNotifierProvider(create: (_) => TaxiBookingProvider()),
+        ChangeNotifierProvider(create: (_) => TruckBookingProvider()),
         ChangeNotifierProvider(create: (_) => AppFlowProvider()),
         ChangeNotifierProvider(create: (_) => ChatProvider()),
         ChangeNotifierProvider(create: (_) => LocationAndMapProvider()),
@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => PaymentProvider()),
       ],
       child: GetMaterialApp(
-        title: 'Truck King',
+        title: 'Truc-king',
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
         theme: ThemeData.dark(),

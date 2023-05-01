@@ -3,11 +3,12 @@ import 'package:get/get.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/phone_verify.dart';
 import 'package:sultan_cab/screens/commonPages/register_with_phone.dart';
-import 'package:sultan_cab/screens/TaxiBooking/navigation_screen.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/utils/const.dart';
+
+import '../TruckBooking/navigation_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final bool? fromRoot;

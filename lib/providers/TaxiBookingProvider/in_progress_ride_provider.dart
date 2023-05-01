@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/taxiBookingModels/bid_accept_model.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
-import 'package:sultan_cab/providers/TaxiBookingProvider/taxi_booking_provider.dart';
-import 'package:sultan_cab/providers/taxi/app_flow_provider.dart';
+import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/screens/google_map_view/google_map_view.dart';
 import 'package:sultan_cab/services/apiServices/api_services.dart';
 import 'package:sultan_cab/utils/commons.dart';
+import '../truck_provider/app_flow_provider.dart';
 import '/services/apiServices/api_urls.dart';
 
 enum RideProgressStatus {

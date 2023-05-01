@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
-import 'package:sultan_cab/providers/TaxiBookingProvider/taxi_booking_provider.dart';
+import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/screens/google_map_view/DriverArrival.dart';
 import 'package:sultan_cab/screens/google_map_view/finish_ride_and_review.dart';
 import 'ride_started.dart';
@@ -19,8 +19,8 @@ class GoogleMapView extends StatefulWidget {
 class _GoogleMapViewState extends State<GoogleMapView> {
   final LocationAndMapProvider locProv =
       Provider.of<LocationAndMapProvider>(Get.context!, listen: false);
-  final TaxiBookingProvider bookingProv =
-      Provider.of<TaxiBookingProvider>(Get.context!, listen: false);
+  final TruckBookingProvider bookingProv =
+      Provider.of<TruckBookingProvider>(Get.context!, listen: false);
 
   bool isArrived = false;
   bool coming = false;
@@ -47,7 +47,7 @@ class _GoogleMapViewState extends State<GoogleMapView> {
       body: Consumer<LocationAndMapProvider>(
         builder: (BuildContext context, value, Widget? child) {
           return locProv.currentPosition != null
-              ? Consumer<TaxiBookingProvider>(
+              ? Consumer<TruckBookingProvider>(
                   builder: (BuildContext context, value, Widget? child) {
                     return Stack(
                       children: [
@@ -83,7 +83,7 @@ class _GoogleMapViewState extends State<GoogleMapView> {
     );
   }
 
-  Future<int?> cancelReason(TaxiBookingProvider taxiBookingProvider) async {
+  Future<int?> cancelReason(TruckBookingProvider taxiBookingProvider) async {
     return Get.bottomSheet(
         Column(
           mainAxisSize: MainAxisSize.min,

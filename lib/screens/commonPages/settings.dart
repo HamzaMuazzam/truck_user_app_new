@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/phone_verify.dart';
 import 'package:sultan_cab/screens/commonPages/profile.dart';
-import 'package:sultan_cab/screens/TaxiBooking/navigation_screen.dart';
 import 'package:sultan_cab/utils/app_texts.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
@@ -12,8 +11,8 @@ import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/logoutDialog.dart';
 import 'package:provider/provider.dart';
 
-import '../TaxiBooking/booking_time.dart';
-import '../TaxiBooking/paymentEvidence.dart';
+import '../TruckBooking/navigation_screen.dart';
+
 
 
 class Settings extends StatefulWidget {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/login.dart';
-import 'package:sultan_cab/screens/TaxiBooking/navigation_screen.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
@@ -11,6 +10,8 @@ import 'package:sultan_cab/widgets/app_text_field.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/widgets/app_widgets.dart';
 import 'package:sultan_cab/utils/const.dart';
+
+import '../TruckBooking/navigation_screen.dart';
 
 class RegisterWithPhoneScreen extends StatefulWidget {
   const RegisterWithPhoneScreen({Key? key}) : super(key: key);

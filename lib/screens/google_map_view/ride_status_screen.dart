@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
-import 'package:sultan_cab/providers/TaxiBookingProvider/taxi_booking_provider.dart';
-import 'package:sultan_cab/providers/taxi/app_flow_provider.dart';
+import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/screens/chat_room.dart';
-import 'package:sultan_cab/screens/TaxiBooking/navigation_screen.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
+import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../services/ApiServices/api_urls.dart';
+import '../TruckBooking/navigation_screen.dart';
 
 class RideStatusScreen extends StatefulWidget {
   const RideStatusScreen({Key? key}) : super(key: key);
@@ -134,8 +134,8 @@ class _RideStatusScreenState extends State<RideStatusScreen> {
                   AppButton(
                     label: "Cancel",
                     onPressed: () async {
-                      TaxiBookingProvider taxiBookingProvider =
-                          Provider.of<TaxiBookingProvider>(context, listen: false);
+                      TruckBookingProvider taxiBookingProvider =
+                          Provider.of<TruckBookingProvider>(context, listen: false);
 
                       bool result = await taxiBookingProvider.getCancelReasons();
                       if (result) {
@@ -159,7 +159,7 @@ class _RideStatusScreenState extends State<RideStatusScreen> {
     );
   }
 
-  Future<int?> getCancelReason(TaxiBookingProvider taxiBookingProvider) async {
+  Future<int?> getCancelReason(TruckBookingProvider taxiBookingProvider) async {
     return Get.bottomSheet(
         Column(
           mainAxisSize: MainAxisSize.min,

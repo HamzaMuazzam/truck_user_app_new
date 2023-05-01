@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart';
-import 'package:sultan_cab/providers/TaxiBookingProvider/taxi_booking_provider.dart';
+import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/services/apiServices/StorageServices/get_storage.dart';
 import 'package:sultan_cab/utils/commons.dart';
 
@@ -45,8 +45,8 @@ class AppSockets {
   }
 
   static void onReceivingBids() async {
-    TaxiBookingProvider taxiBookingProvider =
-        Provider.of<TaxiBookingProvider>(Get.context!, listen: false);
+    TruckBookingProvider taxiBookingProvider =
+        Provider.of<TruckBookingProvider>(Get.context!, listen: false);
     AppSockets.socket!.on(
       "ON_NEW_BID_RECEIVED/${StorageCRUD.getUser()!.id}",
       (data) async {
@@ -69,8 +69,8 @@ class AppSockets {
   }
 
   static void onDriverArrival() async {
-    TaxiBookingProvider taxiBookingProvider =
-        Provider.of<TaxiBookingProvider>(Get.context!, listen: false);
+    TruckBookingProvider taxiBookingProvider =
+        Provider.of<TruckBookingProvider>(Get.context!, listen: false);
     AppSockets.socket!.on(
       "DRIVER_ARRIVED/${StorageCRUD.getUser()!.id}",
       (data) async {
@@ -81,8 +81,8 @@ class AppSockets {
   }
 
   static void onRideCancel() async {
-    TaxiBookingProvider taxiBookingProvider =
-        Provider.of<TaxiBookingProvider>(Get.context!, listen: false);
+    TruckBookingProvider taxiBookingProvider =
+        Provider.of<TruckBookingProvider>(Get.context!, listen: false);
     AppSockets.socket!.on(
       "RIDE_CANCELLED/${StorageCRUD.getUser()!.id}",
       (data) async {
@@ -93,8 +93,8 @@ class AppSockets {
   }
 
   static void onRideEnd() async {
-    TaxiBookingProvider taxiBookingProvider =
-        Provider.of<TaxiBookingProvider>(Get.context!, listen: false);
+    TruckBookingProvider taxiBookingProvider =
+        Provider.of<TruckBookingProvider>(Get.context!, listen: false);
     AppSockets.socket!.on(
       "RIDE_ENDED/${StorageCRUD.getUser()!.id}",
       (data) async {

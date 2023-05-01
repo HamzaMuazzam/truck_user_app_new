@@ -7,8 +7,8 @@ import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 
 import '../providers/GoogleMapProvider/location_and_map_provider.dart';
-import '../providers/taxi/app_flow_provider.dart';
-import '../screens/TaxiBooking/navigation_screen.dart';
+import '../providers/truck_provider/app_flow_provider.dart';
+import '../screens/TruckBooking/navigation_screen.dart';
 
 class BookRideDialog extends StatelessWidget {
   final Function()? onConfirm;

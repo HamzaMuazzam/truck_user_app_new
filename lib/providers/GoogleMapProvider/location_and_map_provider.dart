@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart' as loc;
 import 'package:provider/provider.dart';
-import 'package:sultan_cab/providers/TaxiBookingProvider/taxi_booking_provider.dart';
-import 'package:sultan_cab/providers/taxi/app_flow_provider.dart';
+import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/widgets/app_widgets.dart';
 
 import '../../utils/commons.dart';
+import '../truck_provider/app_flow_provider.dart';
 
 AppFlowProvider appFlowProvider = Provider.of<AppFlowProvider>(Get.context!, listen: false);
 LocationAndMapProvider locProv =

@@ -2,12 +2,12 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
-import 'package:sultan_cab/providers/TaxiBookingProvider/taxi_booking_provider.dart';
-import 'package:sultan_cab/providers/taxi/app_flow_provider.dart';
+import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'providers/NotificationProvider/notification_provider.dart';
-import 'screens/TaxiBooking/start_booking.dart';
+import 'providers/truck_provider/app_flow_provider.dart';
+import 'screens/TruckBooking/start_booking.dart';
 
 class ModeSelectorScreen extends StatefulWidget {
   const ModeSelectorScreen({Key? key}) : super(key: key);
@@ -128,7 +128,7 @@ class _ModeSelectorScreenState extends State<ModeSelectorScreen> {
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   onTap: () async {
-                    TaxiBookingProvider taxiProvider = Provider.of(context, listen: false);
+                    TruckBookingProvider taxiProvider = Provider.of(context, listen: false);
                     bool result = await taxiProvider.getVehicleTypes();
                     if (!result) return;
 
