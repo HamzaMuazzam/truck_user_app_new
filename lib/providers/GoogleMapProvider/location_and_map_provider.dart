@@ -51,15 +51,6 @@ class LocationAndMapProvider extends ChangeNotifier {
           double.parse(taxiBookingProvider.onDriverLocationChange!.lng)),
     );
     addMarkers();
-    addPolyPoints();
-  }
-
-  void setDesMarker() {
-    desLocMarker = Marker(
-      markerId: MarkerId("desLocMarker"),
-      position: LatLng(taxiBookingProvider.bidAcceptModel?.data?.requestData?.endLat ?? 0.0,
-          taxiBookingProvider.bidAcceptModel?.data?.requestData?.endLng ?? 0.0),
-    );
   }
 
   CameraPosition initCameraPosition = CameraPosition(
@@ -122,42 +113,6 @@ class LocationAndMapProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addPolyPoints() async {
-    if (currentPosition == null) return;
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      googleMapApiKey,
-      PointLatLng(currentPosition!.latitude!, currentPosition!.longitude!),
-      PointLatLng(taxiBookingProvider.bidAcceptModel?.data?.requestData?.startLat ?? 0.0,
-          taxiBookingProvider.bidAcceptModel?.data?.requestData?.startLng ?? 0.0),
-    );
-    if (result.points.isNotEmpty) {
-      polylineCoordinates.clear();
-      result.points.forEach(
-        (PointLatLng point) => polylineCoordinates.add(
-          LatLng(point.latitude, point.longitude),
-        ),
-      );
-
-      result.points.removeLast();
-      polyLines.clear();
-      Polyline polyline = Polyline(
-        width: 3,
-        polylineId: PolylineId("poly"),
-        color: Colors.black,
-        points: polylineCoordinates,
-      );
-      polyLines.add(polyline);
-      notifyListeners();
-    }
-  }
-  void removePolyPoints() async {
 
 
-    // if (currentPosition == null) return;
-
-      polylineCoordinates.clear();
-      polyLines.clear();
-      notifyListeners();
-
-  }
 }

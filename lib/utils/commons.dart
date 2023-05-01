@@ -3,10 +3,8 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/ChatProvider/chat_provider.dart';
 
 Logger logger = Logger();
-var chatProvider = Provider.of<ChatProvider>(Get.context!, listen: false);
 
 
 gotoPage(Widget widget,

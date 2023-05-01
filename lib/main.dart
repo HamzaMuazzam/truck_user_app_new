@@ -12,14 +12,8 @@ import 'package:sultan_cab/providers/home_provider.dart';
 import 'package:sultan_cab/providers/track_provider.dart';
 import 'package:sultan_cab/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-import 'providers/AddToFav/add_to_fav_controller.dart';
-import 'providers/ChatProvider/chat_provider.dart';
-import 'providers/Dispute/dispute_provider.dart';
 import 'providers/GoogleMapProvider/location_and_map_provider.dart';
 import 'providers/NotificationProvider/notification_provider.dart';
-import 'providers/Reoccurring/reoccurring.dart';
-import 'providers/RideHistory/ride_history.dart';
-import 'providers/SubscriptionModel/subscription_plan.dart';
 import 'providers/TaxiBookingProvider/in_progress_ride_provider.dart';
 import 'providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'providers/Truck _provider/fair_provider.dart';
@@ -70,13 +64,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TrackProvider()),
         ChangeNotifierProvider(create: (_) => TruckBookingProvider()),
         ChangeNotifierProvider(create: (_) => AppFlowProvider()),
-        ChangeNotifierProvider(create: (_) => ChatProvider()),
         ChangeNotifierProvider(create: (_) => LocationAndMapProvider()),
-        ChangeNotifierProvider(create: (_) => RideHistoryProvider()),
-        ChangeNotifierProvider(create: (_) => ReoccurringProvider()),
-        ChangeNotifierProvider(create: (_) => AddToFavourite()),
-        ChangeNotifierProvider(create: (_) => SubscriptionProvider()),
-        ChangeNotifierProvider(create: (_) => DisputeProvider()),
         ChangeNotifierProvider(create: (_) => FirebasePhoneAuthController()),
         ChangeNotifierProvider(create: (_) => InProgressRideProvider()),
         ChangeNotifierProvider(create: (_) => FairTruckProvider()),

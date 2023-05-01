@@ -188,53 +188,6 @@ class _SearchingWidgetState extends State<SearchingWidget>
     );
   }
 
-  Future<int?> cancelReason() async {
-    return Get.bottomSheet(
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 20, bottom: 5),
-              child: Text(
-                "Why do you want cancel ?",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-            ),
-            Container(height: 1, color: Colors.grey.withOpacity(.5)),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Column(
-                children: List.generate(
-                  taxiBookingProvider.getCancelReasonModel?.data?.length ?? 0,
-                  (index) {
-                    final data =
-                        taxiBookingProvider.getCancelReasonModel?.data?[index];
-
-                    return Card(
-                      elevation: 5,
-                      child: ListTile(
-                        dense: true,
-                        title: Text(data?.reasonText ?? ""),
-                        onTap: () {
-                          Get.back(result: data?.id);
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-        ),
-        isScrollControlled: true);
-  }
 
   void bookOrder() async {
     bool result = await fairTruckProvider.submitOrder();

@@ -4,10 +4,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
 import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
-import 'package:sultan_cab/screens/google_map_view/DriverArrival.dart';
-import 'package:sultan_cab/screens/google_map_view/finish_ride_and_review.dart';
-import 'ride_started.dart';
-import 'ride_status_screen.dart';
 
 class GoogleMapView extends StatefulWidget {
   GoogleMapView({Key? key}) : super(key: key);
@@ -27,7 +23,6 @@ class _GoogleMapViewState extends State<GoogleMapView> {
   @override
   void initState() {
     locProv.getCurrentPosition(addMarker: true);
-    locProv.addPolyPoints();
     locProv.addMarkers();
 
     super.initState();
@@ -67,12 +62,9 @@ class _GoogleMapViewState extends State<GoogleMapView> {
                               locProv.mapController.complete(controller);
                           },
                         ),
-                        if (taxiBookingProvider.stage == RideStage.DriverToRider)
-                          RideStatusScreen(),
-                        if (taxiBookingProvider.stage == RideStage.Arrived) DriverArrival(),
-                        if (taxiBookingProvider.stage == RideStage.RideStarted) RideStarted(),
-                        if (taxiBookingProvider.stage == RideStage.FinishRide)
-                          FinishRideAndReviews(),
+
+                        // if (taxiBookingProvider.stage == RideStage.FinishRide)
+                        //   FinishRideAndReviews(),
                       ],
                     );
                   },
@@ -96,28 +88,6 @@ class _GoogleMapViewState extends State<GoogleMapView> {
               ),
             ),
             Container(height: 1, color: Colors.grey.withOpacity(.5)),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Column(
-                children: List.generate(
-                  taxiBookingProvider.getCancelReasonModel?.data?.length ?? 0,
-                  (index) {
-                    final data = taxiBookingProvider.getCancelReasonModel?.data?[index];
-
-                    return Card(
-                      elevation: 5,
-                      child: ListTile(
-                        dense: true,
-                        title: Text(data?.reasonText ?? ""),
-                        onTap: () {
-                          Get.back(result: data?.id);
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
           ],
         ),
         backgroundColor: Colors.white,

@@ -8,10 +8,8 @@ import '../../providers/truck_provider/app_flow_provider.dart';
 import '/providers/GoogleMapProvider/location_and_map_provider.dart';
 import '/utils/colors.dart';
 import '/utils/sizeConfig.dart';
-import 'MultipleDestination/multiple_destination.dart';
-import 'bidding_view.dart';
+
 import 'chooseCities.dart';
-import 'choose_ride_type.dart';
 import 'choose_vehicle.dart';
 import 'destination_location.dart';
 import 'drop_off_location.dart';
@@ -150,15 +148,13 @@ class _StartBookingState extends State<StartBooking> {
                           },
                         ),
                       ),
-                      if (appProvider.destinationType == DestinationType.SelectRideType)
-                        ChooseRideType(),
+
                       if (appProvider.stage == BookingStage.PickUp && appProvider.destinationType == DestinationType.Single)
                         PickupLocation(),
                       if (appProvider.stage == BookingStage.DropOffLocation && appProvider
                           .destinationType == DestinationType.Single)
                         DropOffLocation(),
-                      if (appProvider.destinationType == DestinationType.Multiple)
-                        MultipleDestination(),
+
                     ],
                   ),
 
@@ -170,8 +166,7 @@ class _StartBookingState extends State<StartBooking> {
                     ChooseCities(),
                   if (appProvider.stage == BookingStage.SearchingVehicle)
                     SearchingWidget(),
-                  if (appProvider.stage == BookingStage.BiddingFound)
-                    ReceivedBiddingView(),
+
                 ],
               )
                   : SizedBox();

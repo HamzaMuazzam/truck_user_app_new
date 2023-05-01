@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:sultan_cab/models/booking_complete.dart';
 import 'package:sultan_cab/models/booking_history_model.dart';
 import 'package:sultan_cab/models/booking_model.dart';
 import 'package:sultan_cab/models/report_model.dart';
@@ -183,16 +182,6 @@ class BookingProvider extends ChangeNotifier {
     }
   }
 
-  Future<BookingComplete> getBookingByID(int id) async {
-    try {
-      var res = await BookingServices.getBookingByID();
-      BookingComplete bookingComplete = BookingComplete.fromJson(res['data'][0]);
-      return bookingComplete;
-    } catch (e) {
-      print(e);
-      throw e;
-    }
-  }
 
   Future<void> updateBooking(
       {required String bookingID,
