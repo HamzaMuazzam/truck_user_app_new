@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
+import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../utils/const.dart';
 import '/models/directions_model.dart';
@@ -41,16 +42,17 @@ class _PickupLocationState extends State<PickupLocation> {
 
                 if(result!=null)
                   {
+
                     appProvider.currentAdd = result.formattedAddress;
-                    await appProvider.setPickUpLoc(
-                        result.latLng!, result.formattedAddress ?? "");
+                    await appProvider.setPickUpLoc(result.latLng!, result.formattedAddress ?? "");
+
+
                     if (appProvider.currentAdd == null) {
                       await AppConst.infoSnackBar(ChooseStartingMsg);
                       return;
                     } else {
-
-                      await Provider.of<AppFlowProvider>(context, listen: false)
-                          .changeBookingStage(BookingStage.DropOffLocation);
+                      fairTruckProvider.loadCity=result.city!.name!;
+                      await Provider.of<AppFlowProvider>(context, listen: false).changeBookingStage(BookingStage.DropOffLocation);
 
                     }
                   }

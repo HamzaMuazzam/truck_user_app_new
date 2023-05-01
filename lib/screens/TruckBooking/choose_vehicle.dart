@@ -1,25 +1,13 @@
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
-import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/fair_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
-import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/const.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
-
-import '../../providers/auth_provider.dart';
-import '../../providers/truck_provider/app_flow_provider.dart';
-import '../../services/ApiServices/StorageServices/get_storage.dart';
 import 'booking_summary.dart';
-import 'navigation_screen.dart';
 
 enum SingingCharacter { lafayette, jefferson }
 
@@ -245,9 +233,9 @@ class _ChooseCarState extends State<ChooseCar> {
                 bool where = fairTruckProvider.getTruckFareResponse!.where((element) => element.quantity>0).isNotEmpty;
                 if(where){
                   await fairTruckProvider.getAllCities();
-                  appFlowProvider.changeBookingStage(BookingStage.City);
+                  // appFlowProvider.changeBookingStage(BookingStage.City);
 
-                  // Get.to(BookingSummary());
+                  Get.to(BookingSummary());
                 }else{
                   AppConst.errorSnackBar("Please select one trailer at least");
                   return;

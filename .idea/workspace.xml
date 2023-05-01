@@ -10,24 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7bb4871-93e7-452d-a663-7d3c3c63fa7d" name="Changes" comment="ghair zarori files removed">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/truck_provider/app_flow_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/truck_provider/app_flow_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/booking_summary.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/booking_summary.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/chooseCities.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/chooseCities.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/choose_vehicle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/choose_vehicle.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/auth_button.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/cachedImage.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/change_lang_dialog.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/dialogBoxDate.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/doc_dialog.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/gallery.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/googlebutton.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/multi_selection_chip.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/otp_verification_dialog.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/ride_booked_dialog.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/single_selection_chip.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/swipeCarContainer.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/vehcileCardShimmerHis.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/vehicleCardHistory.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/vehicleShimmer.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/vehicle_card.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/vehicle_tags.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/pickup_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/pickup_location.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/start_booking.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/start_booking.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682958969476</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="ghair zarori files removed">
+      <created>1682959146577</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1682959146577</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

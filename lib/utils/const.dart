@@ -8,6 +8,9 @@ class AppConst {
 
   static Future startProgress({bool barrierDismissible=false}) async {
     if (!Get.isDialogOpen!)
+      await 0.delay();
+      await 0.delay();
+      await 0.delay();
       await Get.generalDialog(barrierDismissible: barrierDismissible ,barrierLabel: "barrierLabel",pageBuilder: (BuildContext context, Animation<double> animation,
           Animation<double> secondaryAnimation) {
         return Center(

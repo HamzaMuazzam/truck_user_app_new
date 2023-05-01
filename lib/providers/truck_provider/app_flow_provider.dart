@@ -19,7 +19,7 @@ enum BookingStage {
   DropOffLocation,
   Destination,
   Vehicle,
-  City,
+  // City,
   SearchingVehicle,
   Booked,
   BiddingFound,
@@ -226,9 +226,6 @@ class AppFlowProvider extends ChangeNotifier {
   Future removeDestinationLoc() async {
     _destLoc = LatLng(0.0, 0.0);
     _destAdd = null;
-    // var value=await locProv.getCurrentPosition();
-    // await mapController!
-    //     .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: value, zoom: 15)));
     notifyListeners();
   }
 

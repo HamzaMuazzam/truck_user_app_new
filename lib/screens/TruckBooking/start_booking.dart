@@ -9,7 +9,7 @@ import '/providers/GoogleMapProvider/location_and_map_provider.dart';
 import '/utils/colors.dart';
 import '/utils/sizeConfig.dart';
 
-import 'chooseCities.dart';
+
 import 'choose_vehicle.dart';
 import 'destination_location.dart';
 import 'drop_off_location.dart';
@@ -162,8 +162,8 @@ class _StartBookingState extends State<StartBooking> {
                     DestinationScreen(),
                   if (appProvider.stage == BookingStage.Vehicle)
                     ChooseCar(),
-                  if (appProvider.stage == BookingStage.City)
-                    ChooseCities(),
+                  // if (appProvider.stage == BookingStage.City)
+                  //   ChooseCities(),
                   if (appProvider.stage == BookingStage.SearchingVehicle)
                     SearchingWidget(),
 

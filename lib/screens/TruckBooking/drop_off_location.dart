@@ -77,6 +77,9 @@ class _DropOffLocationState extends State<DropOffLocation> {
                       LocationResult? result = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => PlacePicker(GoogleMapApiKey),));
 
                       if (result != null) {
+                        fairTruckProvider.unloadCity=result.city!.name!;
+
+
                         await appProvider.setDestinationLoc(result.latLng!, result.formattedAddress ?? "");
                         Directions? dir = await DirectionServices()
                             .getDirections(
