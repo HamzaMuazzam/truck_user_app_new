@@ -12,7 +12,7 @@ class AppSockets {
     if (socket != null) {
       socket!.disconnect();
     }
-    print(StorageCRUD.getUser()!.id.toString() + "USER ID");
+    print(StorageCRUD.getUser().id.toString() + "USER ID");
     socket = io('http://taxicab.techhivedemo.xyz:8009',
         OptionBuilder().setTransports(['websocket']).enableAutoConnect().build());
 
@@ -37,7 +37,7 @@ class AppSockets {
   }
 
   static void onReceivingMsg() async {
-    AppSockets.socket!.on('ON_NEW_MESSAGE/${StorageCRUD.getUser()!.id}', (data) async {
+    AppSockets.socket!.on('ON_NEW_MESSAGE/${StorageCRUD.getUser().id}', (data) async {
       logger.wtf(data);
 
       await chatProvider.getAllMessages(data['requestId']);
@@ -48,7 +48,7 @@ class AppSockets {
     TruckBookingProvider taxiBookingProvider =
         Provider.of<TruckBookingProvider>(Get.context!, listen: false);
     AppSockets.socket!.on(
-      "ON_NEW_BID_RECEIVED/${StorageCRUD.getUser()!.id}",
+      "ON_NEW_BID_RECEIVED/${StorageCRUD.getUser().id}",
       (data) async {
         logger.wtf(data);
         taxiBookingProvider.receiveBiddingData(data);
@@ -58,7 +58,7 @@ class AppSockets {
 
   static void onRideStart() async {
     AppSockets.socket!.on(
-      "RIDE_STARTED/${StorageCRUD.getUser()!.id}",
+      "RIDE_STARTED/${StorageCRUD.getUser().id}",
       (data) async {
         taxiBookingProvider.getStartRideData(data);
         taxiBookingProvider.biddingList = [];
@@ -72,7 +72,7 @@ class AppSockets {
     TruckBookingProvider taxiBookingProvider =
         Provider.of<TruckBookingProvider>(Get.context!, listen: false);
     AppSockets.socket!.on(
-      "DRIVER_ARRIVED/${StorageCRUD.getUser()!.id}",
+      "DRIVER_ARRIVED/${StorageCRUD.getUser().id}",
       (data) async {
         logger.wtf(data);
         taxiBookingProvider.onDriverArrival(data);
@@ -84,7 +84,7 @@ class AppSockets {
     TruckBookingProvider taxiBookingProvider =
         Provider.of<TruckBookingProvider>(Get.context!, listen: false);
     AppSockets.socket!.on(
-      "RIDE_CANCELLED/${StorageCRUD.getUser()!.id}",
+      "RIDE_CANCELLED/${StorageCRUD.getUser().id}",
       (data) async {
         logger.wtf(data);
         taxiBookingProvider.onRideCancel(data);
@@ -96,7 +96,7 @@ class AppSockets {
     TruckBookingProvider taxiBookingProvider =
         Provider.of<TruckBookingProvider>(Get.context!, listen: false);
     AppSockets.socket!.on(
-      "RIDE_ENDED/${StorageCRUD.getUser()!.id}",
+      "RIDE_ENDED/${StorageCRUD.getUser().id}",
       (data) async {
         logger.wtf(data);
 

@@ -53,7 +53,7 @@ class NotificationRoutes {
   static onNotificationClick(Map<String, dynamic> payload) async {
     logger.e(payload);
 
-    String? screen = payload['Screen'];
+    // String? screen = payload['Screen'];
     //TODO: if app is not open so we have to wait here to let the app open... if context is null we will not go further. wait instead .
     while (Get.context == null) {}
 

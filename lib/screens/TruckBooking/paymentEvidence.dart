@@ -131,7 +131,7 @@ class _PaymentEvidenceState extends State<PaymentEvidence> {
                                 Expanded(
                                   child:  InkWell(
                                     onTap: () {
-                                      authProvider!.getDpImage();
+                                      authProvider.getDpImage();
                                       // AppWidgets.dpImageFile(  xFile: authProvider!.xFile,
                                       //   onTap: () async {
                                       //     authProvider!.getDpImage();

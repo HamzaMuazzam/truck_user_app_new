@@ -163,8 +163,8 @@ class AuthProvider extends ChangeNotifier {
     Map<String, String>? fields;
     if (nameController.text.isNotEmpty)
       fields = {
-        'userId': StorageCRUD.getUser()!.id.toString(),
-        'loginId': StorageCRUD.getUser()!.userLogins.toString(),
+        'userId': StorageCRUD.getUser().id.toString(),
+        'loginId': StorageCRUD.getUser().userLogins.toString(),
         "name": nameController.text,
       };
 

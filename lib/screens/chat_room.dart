@@ -119,7 +119,7 @@ class _ChatRoomState extends State<ChatRoom> {
   Widget messages(Size size, Message message) {
     return Container(
       width: size.width,
-      alignment: message.messageSentBy == StorageCRUD.getUser()!.id
+      alignment: message.messageSentBy == StorageCRUD.getUser().id
           ? Alignment.centerRight
           : Alignment.centerLeft,
       child: Container(
@@ -127,15 +127,15 @@ class _ChatRoomState extends State<ChatRoom> {
         margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-              topRight: message.messageSentBy == StorageCRUD.getUser()!.id
+              topRight: message.messageSentBy == StorageCRUD.getUser().id
                   ? Radius.circular(0)
                   : Radius.circular(10),
-              topLeft: message.messageSentBy == StorageCRUD.getUser()!.id
+              topLeft: message.messageSentBy == StorageCRUD.getUser().id
                   ? Radius.circular(10)
                   : Radius.circular(0),
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)),
-          color: message.messageSentBy == StorageCRUD.getUser()!.id
+          color: message.messageSentBy == StorageCRUD.getUser().id
               ? Colors.blue
               : Colors.redAccent,
         ),

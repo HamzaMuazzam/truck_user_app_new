@@ -50,7 +50,7 @@ class ChatProvider extends ChangeNotifier {
         "messageText": text,
         "createdAt": DateTime.now().toIso8601String(),
         "updatedAt": DateTime.now().toIso8601String(),
-        "messageSentBy": StorageCRUD.getUser()!.id.toString(),
+        "messageSentBy": StorageCRUD.getUser().id.toString(),
         "messageSentTo": nextUserId,
         "requestId": rideId,
       }));
@@ -61,7 +61,7 @@ class ChatProvider extends ChangeNotifier {
       Map<String, String> fields = {
         'messageText': text,
         'messageSentTo': nextUserId.toString(),
-        'messageSentBy': StorageCRUD.getUser()!.id.toString(),
+        'messageSentBy': StorageCRUD.getUser().id.toString(),
         'requestId': rideId.toString()
       };
       String response = await ApiServices.postMethod(feedUrl: ApiUrls.SEND_MESSAGE, fields: fields);

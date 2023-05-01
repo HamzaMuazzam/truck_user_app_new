@@ -9,123 +9,25 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7bb4871-93e7-452d-a663-7d3c3c63fa7d" name="Changes" comment="order booking changes">
+    <list default="true" id="d7bb4871-93e7-452d-a663-7d3c3c63fa7d" name="Changes" comment="file changes">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_04_2023_11_48_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_04_2023_11_48__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/analysis_options.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/android_android.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/debug/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/kotlin/com/example/android/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/res/drawable-v21/launch_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/res/drawable/launch_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/res/values-night/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/app/src/profile/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/android/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Flutter/Debug.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Flutter/Release.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/AppDelegate.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Base.lproj/LaunchScreen.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Base.lproj/Main.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/ios/Runner/Runner-Bridging-Header.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/lib/main.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/pubspec.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/pubspec.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/web/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/web/icons/Icon-192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/web/icons/Icon-512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/web/icons/Icon-maskable-192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/web/icons/Icon-maskable-512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/web/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/web/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/FCM.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/FCM.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/mode_selector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/mode_selector.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/UserModel/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/UserModel/user_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/notification_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/notification_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/GoogleMapProvider/location_and_map_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/GoogleMapProvider/location_and_map_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/TaxiBookingProvider/in_progress_ride_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/TaxiBookingProvider/in_progress_ride_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/TaxiBookingProvider/taxi_booking_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/TaxiBookingProvider/truck_booking_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/ChatProvider/chat_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/ChatProvider/chat_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/providers/auth_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/auth_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/taxi/app_flow_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/truck_provider/app_flow_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/Favorite/favorite_ride_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/Favorite/favorite_ride_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/MultipleDestination/multiple_destination.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/MultipleDestination/multiple_destination.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/Reoccurring/reoccurring_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/Reoccurring/reoccurring_detail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/Reoccurring/reoccurring_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/Reoccurring/reoccurring_list.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/Reoccurring/reoccurring_ride.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/Reoccurring/reoccurring_ride.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/bidding_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/bidding_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/booking_summary.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/booking_summary.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/booking_time.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/booking_time.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/chooseCities.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/chooseCities.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/choose_ride_type.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/choose_ride_type.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/choose_vehicle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/choose_vehicle.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/destination_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/destination_location.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/dialogBoxRating.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/dialogBoxRating.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/drop_off_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/getOrderDetailsById.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/getOrderDetailsById.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/get_all_orders.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/get_all_orders.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/home_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/navigation_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/navigation_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/paymentEvidence.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/paymentEvidence.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/pickup_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/pickup_location.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/ride_history.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/ride_history.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/searching_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/searching_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TaxiBooking/start_booking.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/start_booking.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/commonPages/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/commonPages/login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/commonPages/register_with_phone.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/commonPages/register_with_phone.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/commonPages/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/commonPages/settings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/google_map_view/DriverArrival.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/google_map_view/DriverArrival.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/google_map_view/finish_ride_and_review.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/google_map_view/finish_ride_and_review.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/google_map_view/google_map_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/google_map_view/google_map_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/google_map_view/ride_started.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/google_map_view/ride_started.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/google_map_view/ride_status_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/google_map_view/ride_status_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/truck_provider/app_flow_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/truck_provider/app_flow_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/Dispute/dispute_chat_room.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/Dispute/dispute_chat_room.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/get_all_orders.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/get_all_orders.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/paymentEvidence.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/paymentEvidence.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/pickup_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/pickup_location.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/start_booking.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/start_booking.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/chat_room.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/chat_room.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/services/sockets/sockets.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/sockets/sockets.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/ride_booked_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/ride_booked_dialog.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,21 +65,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/apple/AndroidStudioProjects/truck_user_app/assets/images",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/apple/AndroidStudioProjects/truck_user_app/assets/images&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/images" />
@@ -289,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680716912550</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="file changes">
+      <created>1682928890678</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682928890678</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -328,7 +237,8 @@
     <MESSAGE value="payment evidence" />
     <MESSAGE value="payment evidence complete" />
     <MESSAGE value="order booking changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="order booking changes" />
+    <MESSAGE value="file changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="file changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

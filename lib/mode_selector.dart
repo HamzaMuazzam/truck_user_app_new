@@ -5,7 +5,6 @@ import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider
 import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
-import 'providers/NotificationProvider/notification_provider.dart';
 import 'providers/truck_provider/app_flow_provider.dart';
 import 'screens/TruckBooking/start_booking.dart';
 

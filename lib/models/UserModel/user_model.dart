@@ -27,7 +27,7 @@ class UserAuthModel {
   Map<String, dynamic> toJson() => {
         "message": message,
         "error": error,
-        "data": data!.toJson()==null?'':data!.toJson(),
+        "data": data==null?'':data!.toJson(),
       };
 }
 

@@ -133,7 +133,7 @@ bool allOrders=true;
         return false;
       }
 
-    getAllOrdersResponse = getAllOrdersResponseFromJson(response)??[];
+    getAllOrdersResponse = getAllOrdersResponseFromJson(response);
     if(getAllOrdersResponse!=[])
       {
         logger.i(getAllOrdersResponse);

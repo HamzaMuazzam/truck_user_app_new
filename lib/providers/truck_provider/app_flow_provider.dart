@@ -11,6 +11,7 @@ import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/strings.dart';
 
 import '../../screens/TruckBooking/home_page.dart';
+import '../../screens/TruckBooking/start_booking.dart';
 import '../GoogleMapProvider/location_and_map_provider.dart';
 
 enum BookingStage {
@@ -197,8 +198,7 @@ class AppFlowProvider extends ChangeNotifier {
   Future setPickUpLoc(LatLng loc, String add) async {
     currentLoc = loc;
     currentAdd = add;
-    await mapController!
-        .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
+    await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
     addMarker(loc);
     notifyListeners();
   }
@@ -210,14 +210,12 @@ class AppFlowProvider extends ChangeNotifier {
   Future setDestinationLoc(LatLng loc, String add) async {
     _destLoc = loc;
     _destAdd = add;
-    await mapController!
-        .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
+    await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
     notifyListeners();
   }
   Future setDirections(Directions dir) async {
     _directions = dir;
-    await mapController!.animateCamera(
-      CameraUpdate.newLatLngBounds(directions!.bounds!, 100),
+    await mapController!.animateCamera(CameraUpdate.newLatLngBounds(directions!.bounds!, 100),
     );
     notifyListeners();
   }

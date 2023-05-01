@@ -33,7 +33,7 @@ class FCM {
         FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
         await _messaging!.subscribeToTopic("AllUsers").then((value) => null);
-        if (StorageCRUD.getUser() != null && StorageCRUD.getUser().id!=null) {
+        if (StorageCRUD.getUser().id!=null) {
           await _messaging!.subscribeToTopic("${StorageCRUD.getUser().id}")
               .then((value) => null);
         }

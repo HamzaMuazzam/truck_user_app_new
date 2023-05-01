@@ -115,7 +115,7 @@ class _DisputeDetailState extends State<DisputeDetail> {
   Widget messages(Size size, AllMessages message) {
     return Container(
       width: size.width,
-      alignment: message.sentById == StorageCRUD.getUser()!.id
+      alignment: message.sentById == StorageCRUD.getUser().id
           ? Alignment.centerRight
           : Alignment.centerLeft,
       child: Container(
@@ -123,16 +123,16 @@ class _DisputeDetailState extends State<DisputeDetail> {
         margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-              topRight: message.sentById == StorageCRUD.getUser()!.id
+              topRight: message.sentById == StorageCRUD.getUser().id
                   ? Radius.circular(0)
                   : Radius.circular(10),
-              topLeft: message.sentById == StorageCRUD.getUser()!.id
+              topLeft: message.sentById == StorageCRUD.getUser().id
                   ? Radius.circular(10)
                   : Radius.circular(0),
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)),
           color:
-              message.sentById == StorageCRUD.getUser()!.id ? Colors.black : Colors.redAccent,
+              message.sentById == StorageCRUD.getUser().id ? Colors.black : Colors.redAccent,
         ),
         child: Column(
           children: [

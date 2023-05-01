@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-GoogleMapController? mapController;
+// GoogleMapController? mapController;
 
 class _HomePageState extends State<HomePage> {
   late LocationAndMapProvider gMapProv;

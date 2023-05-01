@@ -37,15 +37,11 @@ class _PickupLocationState extends State<PickupLocation> {
               onTap: () async {
                 LocationResult? result = await Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
                     PlacePicker(GoogleMapApiKey),
-                // MapLocationPicker(apiKey: GoogleMapApiKey, onNext: (GeocodingResult ) async {
-                //   await Provider.of<AppFlowProvider>(context, listen: false)
-                //       .changeBookingStage(BookingStage.DropOffLocation);
-                // },)
                 ));
 
                 if(result!=null)
                   {
-                    appProvider.currentAdd = result!.formattedAddress;
+                    appProvider.currentAdd = result.formattedAddress;
                     await appProvider.setPickUpLoc(
                         result.latLng!, result.formattedAddress ?? "");
                     if (appProvider.currentAdd == null) {
@@ -72,16 +68,10 @@ class _PickupLocationState extends State<PickupLocation> {
                 }
               },
               child: Container(
-                margin: EdgeInsets.only(
-                  // top: widget.widgetHeight * 50,
-                  // left: widget.widgetWidth * 15,
-                  // right: widget.widgetWidth * 15,
-                ),
                 padding: EdgeInsets.symmetric(
                   horizontal: b * 20,
                   vertical: h * 20,
-                  // vertical: widget.widgetHeight * 15,
-                  // horizontal: widget.widgetWidth * 24,
+
                 ),
                 decoration: allBoxDecoration,
                 child: Column(
@@ -127,20 +117,6 @@ class _PickupLocationState extends State<PickupLocation> {
               ),
             ),
             sh(40),
-            // AppButton(
-            //   label: ProceedLabel,
-            //   onPressed: () async {
-            //     if (appProvider.currentAdd == null) {
-            //       await AppConst.infoSnackBar(ChooseStartingMsg);
-            //       return;
-            //     } else {
-            //
-            //         await Provider.of<AppFlowProvider>(context, listen: false)
-            //             .changeBookingStage(BookingStage.DropOffLocation);
-            //
-            //     }
-            //   },
-            // )
           ],
         );
       }

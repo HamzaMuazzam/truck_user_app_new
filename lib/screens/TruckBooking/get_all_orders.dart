@@ -116,13 +116,13 @@ class _GetAllOrdersState extends State<GetAllOrders> {
                                                     /// 1st Location
                                                     Text(
                                                       value
-                                                                  .getAllOrdersResponse![
+                                                                  .getAllOrdersResponse[
                                                                       index]
                                                                   .orderDetails!
                                                                   .pickUpAddress !=
                                                               null
                                                           ? value
-                                                              .getAllOrdersResponse![
+                                                              .getAllOrdersResponse[
                                                                   index]
                                                               .orderDetails!
                                                               .pickUpAddress
@@ -162,7 +162,7 @@ class _GetAllOrdersState extends State<GetAllOrders> {
                                                     /// Other Location
                                                     Text(
                                                       value
-                                                              .getAllOrdersResponse![
+                                                              .getAllOrdersResponse[
                                                                   index]
                                                               .orderDetails!
                                                               .dropOffAddress ??
@@ -197,7 +197,7 @@ class _GetAllOrdersState extends State<GetAllOrders> {
                                                   alignment: Alignment.topRight,
                                                   child: Text(
                                                     fairTruckProvider
-                                                            .getAllOrdersResponse![
+                                                            .getAllOrdersResponse[
                                                                 index]
                                                             .totalFare!
                                                             .toInt()
@@ -231,13 +231,13 @@ class _GetAllOrdersState extends State<GetAllOrders> {
                                                   alignment: Alignment.topRight,
                                                   child: Text(
                                                     value
-                                                                .getAllOrdersResponse![
+                                                                .getAllOrdersResponse[
                                                                     index]
                                                                 .truckDriver ==
                                                             null
                                                         ? '--'
                                                         : value
-                                                                .getAllOrdersResponse![
+                                                                .getAllOrdersResponse[
                                                                     index]
                                                                 .truckDriver!
                                                                 .name ??
