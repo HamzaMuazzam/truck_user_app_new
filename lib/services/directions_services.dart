@@ -11,6 +11,12 @@ class DirectionServices {
     required LatLng dest,
   }) async {
     try {
+      var headers = {
+        "Access-Control-Allow-Origin": "*",
+        'Content-Type': 'application/json',
+        'Accept': '*/*'
+      };
+
       Uri link = Uri(
           scheme: "https",
           host: 'maps.googleapis.com',
@@ -21,7 +27,7 @@ class DirectionServices {
             'key': GoogleMapApiKey,
           });
 
-      final res = await http.Client().get(link).timeout(Duration(seconds: 15));
+      final res = await http.Client().get(link,headers: headers).timeout(Duration(seconds: 15));
       if (res.statusCode == 200) {
         return Directions.fromMap(jsonDecode(res.body));
       }

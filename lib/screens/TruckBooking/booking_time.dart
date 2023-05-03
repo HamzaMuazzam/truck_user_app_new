@@ -158,7 +158,7 @@ class _BookingTimeState extends State<BookingTime> {
               label: "Submit",
               onPressed: () async {
 
-                  Get.to(SearchingWidget());
+                  Get.to(()=>SearchingWidget());
               },
             ),
           ),

@@ -435,7 +435,7 @@ class _BookingSummaryState extends State<BookingSummary> {
               label: "Submit",
               onPressed: () async {
 
-                  Get.to(SearchingWidget());
+                  Get.to(()=>SearchingWidget());
               },
             ),
           ),

@@ -38,6 +38,7 @@ class _SearchingWidgetState extends State<SearchingWidget>
 
   @override
   void initState() {
+    var context=Get.context!;
     gMapProv = Provider.of<LocationAndMapProvider>(context, listen: false);
     gMapProv.setCurrentLocMarker();
     super.initState();
@@ -158,7 +159,7 @@ class _SearchingWidgetState extends State<SearchingWidget>
                       appFlowProvider.stage = BookingStage.PickUp;
 
                       Fluttertoast.showToast(
-                          msg: "Order has been Cancelled.",
+                          msg: "The order has been Cancelled.",
                           toastLength: Toast.LENGTH_LONG,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 1,
@@ -194,7 +195,7 @@ class _SearchingWidgetState extends State<SearchingWidget>
     if (result) {
       await 3.delay();
 
-      fairTruckProvider.totalFair();
+      // fairTruckProvider.totalFair();
 
       await appFlowProvider.removeDestinationLoc();
       locProv.polyLines = {};
@@ -205,19 +206,19 @@ class _SearchingWidgetState extends State<SearchingWidget>
       fairTruckProvider.loadCity = '';
       fairTruckProvider.unloadCity = '';
 
-      await Provider.of<AppFlowProvider>(context, listen: false)
-          .changeBookingStage(BookingStage.SearchingVehicle);
+      await Provider.of<AppFlowProvider>(context, listen: false).changeBookingStage(BookingStage.SearchingVehicle);
 
       appFlowProvider.stage = BookingStage.PickUp;
 
-      Fluttertoast.showToast(
-          msg: "Order has been booked.",
+      await Fluttertoast.showToast(
+          msg: "The order has been booked.",
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.green,
           textColor: Colors.white,
           fontSize: 16.0);
+      await 0.delay();
 
       gotoPage(NavigationScreen(), isClosePrevious: true);
     }

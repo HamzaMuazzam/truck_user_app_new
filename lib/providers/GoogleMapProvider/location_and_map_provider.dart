@@ -13,8 +13,7 @@ import '../../utils/commons.dart';
 import '../truck_provider/app_flow_provider.dart';
 
 AppFlowProvider appFlowProvider = Provider.of<AppFlowProvider>(Get.context!, listen: false);
-LocationAndMapProvider locProv =
-Provider.of<LocationAndMapProvider>(Get.context!, listen: false);
+LocationAndMapProvider locProv = Provider.of<LocationAndMapProvider>(Get.context!, listen: false);
 class LocationAndMapProvider extends ChangeNotifier {
   String googleMapApiKey = "AIzaSyCqcZ7xj1BPJeC3Uyo2coGi9qaGNpyU_EA";
 
