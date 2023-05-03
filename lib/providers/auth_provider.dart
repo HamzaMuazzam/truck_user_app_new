@@ -27,8 +27,8 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController phoneController = TextEditingController();
   TextEditingController pinPutController = TextEditingController();
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(text: "hamzamuazzam1011@gmail.com");
+  TextEditingController passwordController = TextEditingController(text: 'Power\$321');
   TextEditingController password2Controller = TextEditingController();
   UserCredential? userCredential;
   UserAuthModel? userAuthModel;

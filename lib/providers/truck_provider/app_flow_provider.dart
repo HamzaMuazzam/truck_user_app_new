@@ -210,13 +210,17 @@ class AppFlowProvider extends ChangeNotifier {
   Future setDestinationLoc(LatLng loc, String add) async {
     _destLoc = loc;
     _destAdd = add;
+    if(!GetPlatform.isWeb){
     await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
+    }
     notifyListeners();
   }
   Future setDirections(Directions dir) async {
     _directions = dir;
-    await mapController!.animateCamera(CameraUpdate.newLatLngBounds(directions!.bounds!, 100),
-    );
+
+    if(!GetPlatform.isWeb){
+      await mapController!.animateCamera(CameraUpdate.newLatLngBounds(directions!.bounds!, 100),);
+    }
     notifyListeners();
   }
   Future removeDirections() async {

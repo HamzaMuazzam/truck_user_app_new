@@ -9,15 +9,23 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7bb4871-93e7-452d-a663-7d3c3c63fa7d" name="Changes" comment="ghair zarori files removed">
+    <list default="true" id="d7bb4871-93e7-452d-a663-7d3c3c63fa7d" name="Changes" comment="pick up cities removed">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/taxi_user_app_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/taxi_user_app_android.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/Truck _provider/payment_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/Truck _provider/payment_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/auth_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/auth_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/providers/truck_provider/app_flow_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/truck_provider/app_flow_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/booking_summary.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/booking_summary.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/chooseCities.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/chooseCities.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/choose_vehicle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/choose_vehicle.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/destination_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/destination_location.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/get_all_orders.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/get_all_orders.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/home_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/pickup_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/pickup_location.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/start_booking.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/start_booking.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/services/directions_services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/directions_services.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682959146577</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="pick up cities removed">
+      <created>1682960062046</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1682960062046</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -251,7 +266,8 @@
     <MESSAGE value="file changes" />
     <MESSAGE value="code optimization" />
     <MESSAGE value="ghair zarori files removed" />
-    <option name="LAST_COMMIT_MESSAGE" value="ghair zarori files removed" />
+    <MESSAGE value="pick up cities removed" />
+    <option name="LAST_COMMIT_MESSAGE" value="pick up cities removed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -260,6 +276,221 @@
           <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/booking_time.dart</url>
           <line>160</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>140</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>143</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>144</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>146</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>147</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>149</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>151</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>150</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>152</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>154</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>156</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>155</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>159</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>160</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/services/directions_services.dart</url>
+          <line>17</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/services/directions_services.dart</url>
+          <line>18</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/services/directions_services.dart</url>
+          <line>19</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/services/directions_services.dart</url>
+          <line>20</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>161</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/drop_off_location.dart</url>
+          <line>162</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>74</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>75</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>76</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/screens/TruckBooking/searching_widget.dart</url>
+          <line>193</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>53</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>54</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>55</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>56</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>57</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>58</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>59</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>60</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>61</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>62</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>63</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>64</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>65</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>66</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>67</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>68</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>69</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>70</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart</url>
+          <line>71</line>
+          <option name="timeStamp" value="101" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

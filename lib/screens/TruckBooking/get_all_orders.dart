@@ -7,6 +7,7 @@ import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
+import '../../services/ApiServices/StorageServices/get_storage.dart';
 import '../../utils/commons.dart';
 import '../../utils/strings.dart';
 import 'getOrderDetailsById.dart';
@@ -30,33 +31,14 @@ class _GetAllOrdersState extends State<GetAllOrders> {
     SizeConfig().init(context);
     h = SizeConfig.screenHeight / 812;
     b = SizeConfig.screenWidth / 375;
+    print(StorageCRUD.getUser().id.toString() + " this is user id");
+
     final appProvider = Provider.of<AppFlowProvider>(context);
 
     return Consumer<FairTruckProvider>(
         builder: (BuildContext context, value, Widget? child) {
       return Scaffold(
         backgroundColor: greybackColor,
-        // appBar: AppBar(
-        //   backgroundColor: textYellowColor,
-        //   centerTitle: true,
-        //   elevation: 0,
-        //   title: Text(
-        //     "Orders",
-        //     style: TextStyle(
-        //         fontSize: 18,
-        //         fontWeight: FontWeight.bold,
-        //         color: scaffoldColor),
-        //   ),
-        //   leading: IconButton(
-        //     onPressed: () {
-        //       Get.back();
-        //     },
-        //     icon: Icon(
-        //       Icons.arrow_back,
-        //       color: Colors.black,
-        //     ),
-        //   ),
-        // ),
         body: Container(
             height: Get.height,
             child: !value.allOrders

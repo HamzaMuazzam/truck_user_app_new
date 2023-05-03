@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:map_location_picker/map_location_picker.dart';
 import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/directions_model.dart';
@@ -16,6 +20,7 @@ import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../utils/commons.dart';
+import 'package:http/http.dart' as http;
 
 class DropOffLocation extends StatefulWidget {
   const DropOffLocation({Key? key}) : super(key: key);
@@ -37,6 +42,34 @@ class _DropOffLocationState extends State<DropOffLocation> {
 
     super.initState();
   }
+
+
+  Future<String> getCityName(double lat, double lng) async {
+    try{
+      final apiKey = GoogleMapApiKey; // Replace with your Google Maps API key
+      final url =
+          "https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$apiKey";
+      final response = await http.get(Uri.parse(url));
+      final data = json.decode(response.body);
+      final cityName = data["results"][0]["address_components"];
+      print(cityName.runtimeType);
+      for(var x in cityName){
+        if(x["types"].toString().contains("locality")){
+          return x["long_name"].toString();
+        }
+      }
+      return "";
+      //     .firstWhere((component) => component["types"].contains("locality"), orElse: () => null);
+      // return cityName != null ? cityName["long_name"] : null;
+
+    }catch(e){
+      print(e);
+      return "";
+    }
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -74,17 +107,45 @@ class _DropOffLocationState extends State<DropOffLocation> {
                 InkWell(
                   onTap: () async {
                     if (appProvider.currentAdd != null) {
-                      LocationResult? result = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => PlacePicker(GoogleMapApiKey),));
 
-                      if (result != null) {
-                        fairTruckProvider.unloadCity=result.city!.name!;
+                      String? address="";
+                      String? city="";
+                      LatLng? latlng;
+                      if (GetPlatform.isWeb) {
+                        await Get.to(MapLocationPicker(
+                          apiKey: GoogleMapApiKey,
+                          onNext: (GeocodingResult? result) async {
+                            if (result != null) {
+                              print(result.toJson());
+                              address = result.formattedAddress!;
+                              latlng = LatLng(result.geometry.location.lat,
+                                  result.geometry.location.lng);
+                              city = await getCityName(latlng!.latitude,latlng!.longitude);
+                              Get.back();
+                            }
+                          },
+                        ));
+                      }
+                      else {
+                        LocationResult? result =
+                        await Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => PlacePicker(GoogleMapApiKey),
+                        ));
+                        address = result?.formattedAddress!;
+                        latlng =result!.latLng;
+                        city=result.city!.name!;
+                      }
 
 
-                        await appProvider.setDestinationLoc(result.latLng!, result.formattedAddress ?? "");
+                      if (address != null && latlng!=null) {
+                        fairTruckProvider.unloadCity=city!;
+
+
+                        await appProvider.setDestinationLoc(latlng!, address!);
                         Directions? dir = await DirectionServices()
                             .getDirections(
                             origin: appProvider.currentLoc!,
-                            dest: result.latLng!);
+                            dest: latlng!);
 
                         if (dir != null) await appProvider.setDirections(dir);
                         if (appProvider.destAdd == null) {
@@ -96,22 +157,12 @@ class _DropOffLocationState extends State<DropOffLocation> {
                           return;
                         }
                         else {
-                          logger.i(result);
                           if (await fairTruckProvider.getAllTruckFairs())
-                            await Provider.of<AppFlowProvider>(context, listen: false)
-                                .changeBookingStage(BookingStage.Destination);
+                            await Provider.of<AppFlowProvider>(context, listen: false).changeBookingStage(BookingStage.Destination);
                           else
                             logger.e('Error in truck fairs');
                         }
-                        if (appProvider.destinationType ==
-                            DestinationType.Multiple) {
-                          appProvider.addMultiDestination(
-                            MultiDestinationsModel(
-                              locationResult: result,
-                              distance: dir!.totalDistance ?? "",
-                            ),
-                          );
-                        }
+
                       }
                     } else
                       appSnackBar(context: context, msg: ChooseStartingMsg, isError: true);

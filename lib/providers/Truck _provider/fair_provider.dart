@@ -13,7 +13,6 @@ import '../../services/ApiServices/StorageServices/get_storage.dart';
 import '../../services/ApiServices/api_urls.dart';
 import '../../utils/commons.dart';
 import '../GoogleMapProvider/location_and_map_provider.dart';
-import '../NotificationProvider/notification_provider.dart';
 
 FairTruckProvider fairTruckProvider = Provider.of<FairTruckProvider>(Get.context!, listen: false);
 

@@ -150,13 +150,14 @@ class _DestinationScreenState extends State<DestinationScreen> {
             Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
+                        if(!GetPlatform.isWeb)
                         Text(
-                            "Travel Time-${appProvider.directions!.totalDuration}"),
+                            "Travel Time-${appProvider.directions==null?"":appProvider.directions!.totalDuration}"),
                         Text("/"),
-                        if (appProvider.destinationType != DestinationType.Multiple)
-                          Text("Distance-${appProvider.directions!.totalDistance}"),
-                        if (appProvider.destinationType == DestinationType.Multiple)
-                          Text("Distance-${appProvider.totalDistance}"),
+                        // if (appProvider.destinationType != DestinationType.Multiple)
+                        //   Text("Distance-${appProvider.directions!.totalDistance}"),
+                        // if (appProvider.destinationType == DestinationType.Multiple)
+                        //   Text("Distance-${appProvider.totalDistance}"),
                       ],
             ),
                         ],
