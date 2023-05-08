@@ -9,15 +9,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7bb4871-93e7-452d-a663-7d3c3c63fa7d" name="Changes" comment="code changes">
+    <list default="true" id="d7bb4871-93e7-452d-a663-7d3c3c63fa7d" name="Changes" comment="null error handle for web">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/GoogleMapProvider/location_and_map_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/GoogleMapProvider/location_and_map_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/Truck _provider/fair_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/booking_summary.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/booking_summary.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/booking_time.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/booking_time.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/TruckBooking/searching_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/TruckBooking/searching_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/directions_services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/directions_services.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/FCM.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/FCM.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/notification_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/notification_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683132348514</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="null error handle for web">
+      <created>1683140860923</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683140860923</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -267,7 +271,8 @@
     <MESSAGE value="ghair zarori files removed" />
     <MESSAGE value="pick up cities removed" />
     <MESSAGE value="code changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="code changes" />
+    <MESSAGE value="null error handle for web" />
+    <option name="LAST_COMMIT_MESSAGE" value="null error handle for web" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
