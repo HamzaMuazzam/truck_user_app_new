@@ -38,7 +38,7 @@ class _SearchingWidgetState extends State<SearchingWidget>
 
   @override
   void initState() {
-    var context=Get.context!;
+    var context = Get.context!;
     gMapProv = Provider.of<LocationAndMapProvider>(context, listen: false);
     gMapProv.setCurrentLocMarker();
     super.initState();
@@ -188,28 +188,31 @@ class _SearchingWidgetState extends State<SearchingWidget>
       ),
     );
   }
+}
 
+void bookOrder() async {
+  bool result = await fairTruckProvider.submitOrder();
+  if (result) {
+    await 3.delay();
 
-  void bookOrder() async {
-    bool result = await fairTruckProvider.submitOrder();
-    if (result) {
-      await 3.delay();
+    // fairTruckProvider.totalFair();
 
-      // fairTruckProvider.totalFair();
-
-      await appFlowProvider.removeDestinationLoc();
-      locProv.polyLines = {};
-      await appProvider.removeDirections();
-      await appProvider.removePickUpLoc();
-      locProv.locMarkers = {};
-      locProv.polylineCoordinates = [];
-      fairTruckProvider.loadCity = '';
-      fairTruckProvider.unloadCity = '';
-
-      await Provider.of<AppFlowProvider>(context, listen: false).changeBookingStage(BookingStage.SearchingVehicle);
-
+    // await appFlowProvider.removeDestinationLoc();
+    // locProv.polyLines = {};
+    // await appProvider.removeDirections();
+    // await appProvider.removePickUpLoc();
+    // locProv.locMarkers = {};
+    // locProv.polylineCoordinates = [];
+    // fairTruckProvider.loadCity = '';
+    // fairTruckProvider.unloadCity = '';
+    if (!GetPlatform.isWeb) {
+      await Provider.of<AppFlowProvider>(Get.context!, listen: false)
+          .changeBookingStage(BookingStage.SearchingVehicle);
       appFlowProvider.stage = BookingStage.PickUp;
+    }
 
+
+    if(!GetPlatform.isWeb){
       await Fluttertoast.showToast(
           msg: "The order has been booked.",
           toastLength: Toast.LENGTH_LONG,
@@ -218,8 +221,14 @@ class _SearchingWidgetState extends State<SearchingWidget>
           backgroundColor: Colors.green,
           textColor: Colors.white,
           fontSize: 16.0);
-      await 0.delay();
+    }else{
+      Get.snackbar("Congratulations", "The order has been booked.");
+    }
+    await 0.delay();
 
+    if (GetPlatform.isWeb) {
+      appFlowProvider.changeWebWidget(BookingStage.WebHome);
+    } else {
       gotoPage(NavigationScreen(), isClosePrevious: true);
     }
   }

@@ -445,23 +445,23 @@ class _BookingSummaryState extends State<BookingSummary> {
     );
   }
 
-  String getSelectedTrucks() {
-    List<String> list = [];
-    fairTruckProvider.getTruckFareResponse!.forEach((element) {
-      String trucks = '';
-      String quantity = '';
-      if (element.quantity > 0) {
-        if (element.truckType != '') {
-          trucks = ' ( ' + element
-              .truckType! + ' )';
-        }
-        if(element.quantity>1)
-        {
-          quantity=' * ' + element.quantity.toString();
-        }
-        list.add(element.truckName! + trucks + quantity);
+}
+String getSelectedTrucks() {
+  List<String> list = [];
+  fairTruckProvider.getTruckFareResponse!.forEach((element) {
+    String trucks = '';
+    String quantity = '';
+    if (element.quantity > 0) {
+      if (element.truckType != '') {
+        trucks = ' ( ' + element
+            .truckType! + ' )';
       }
-    });
-    return list.isEmpty ? "" : list.join("\n");
-  }
+      if(element.quantity>1)
+      {
+        quantity=' * ' + element.quantity.toString();
+      }
+      list.add(element.truckName! + trucks + quantity);
+    }
+  });
+  return list.isEmpty ? "" : list.join("\n");
 }

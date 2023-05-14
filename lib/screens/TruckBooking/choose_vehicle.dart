@@ -232,7 +232,7 @@ class _ChooseCarState extends State<ChooseCar> {
               onPressed: () async {
                 bool where = fairTruckProvider.getTruckFareResponse!.where((element) => element.quantity>0).isNotEmpty;
                 if(where){
-                  await fairTruckProvider.getAllCities();
+                  // await fairTruckProvider.getAllCities();
                   // appFlowProvider.changeBookingStage(BookingStage.City);
 
                   Get.to(BookingSummary());

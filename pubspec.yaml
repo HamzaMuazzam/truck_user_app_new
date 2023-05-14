@@ -57,9 +57,9 @@ dependencies:
   fluttertoast:
   google_maps_flutter_web: ^0.4.0+7
   map_location_picker: ^1.2.0
-  enhance_stepper: ^0.1.1
-  # GetX for Utils
+
   get: ^4.6.5
+
   get_storage: ^2.0.3
 
   # Connections

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
+import 'package:sultan_cab/screens/TruckBooking/RequestDetailsScreenWeb.dart';
+import 'package:sultan_cab/screens/TruckBooking/VehicleChooseScreenWeb.dart';
 import 'package:sultan_cab/screens/commonPages/register.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
@@ -23,9 +25,9 @@ class _AuthWidgetState extends State<AuthWidget> {
   @override
   void initState() {
     super.initState();
-    if (GetPlatform.isWeb) {
-      _checkStates();
-    }
+    // if (GetPlatform.isWeb) {
+    //   _checkStates();
+    // }
   }
 
   _checkStates() async {
@@ -53,7 +55,9 @@ class _AuthWidgetState extends State<AuthWidget> {
 
     return Scaffold(
         body: GetPlatform.isWeb
-            ? GetStartedWeb()
+            ?
+        // RequestDetailsScreenWeb()
+        GetStartedWeb()
             : Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(

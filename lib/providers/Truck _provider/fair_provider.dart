@@ -33,7 +33,6 @@ class FairTruckProvider extends ChangeNotifier {
     if (body.isEmpty) return false;
 
     getTruckFareResponse = getTruckFareResponseFromJson(body);
-    logger.i(getTruckFareResponse![0].commission);
     notifyListeners();
     return true;
   }
@@ -119,6 +118,8 @@ class FairTruckProvider extends ChangeNotifier {
 
       if (appFlowProvider.directions != null) {
         map2["distance"] = appFlowProvider.directions?.totalDistance.toString();
+      }else{
+        map2["distance"]=0.toString();
       }
 
       List<Map<String, String>> list = [];
@@ -149,13 +150,10 @@ class FairTruckProvider extends ChangeNotifier {
       String response = await ApiServices.postMethodTruck(
           feedUrl: ApiUrls.BOOKING_REQUEST, body: json.encode(map2));
       AppConst.stopProgress();
-
       if (response.isEmpty) {
         return false;
       }
       logger.i('booking api done');
-      deliveryNote.text = '';
-
       return true;
     } catch (e) {
       print(e);

@@ -14,6 +14,9 @@ import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/strings.dart';
 
 import '../../screens/TruckBooking/OrderLocationPickScreenWeb.dart';
+import '../../screens/TruckBooking/RequestDetailsScreenWeb.dart';
+import '../../screens/TruckBooking/VehicleChooseScreenWeb.dart';
+import '../../screens/TruckBooking/booking_summary.dart';
 import '../../screens/TruckBooking/home_page.dart';
 import '../../screens/TruckBooking/navigation_screens_web.dart';
 import '../../screens/TruckBooking/start_booking.dart';
@@ -32,7 +35,7 @@ enum BookingStage {
   DriverAssign,
   RideStarted,
   WebHome,
-  OurServices, OurMessage, AboutUs
+  OurServices, OurMessage, AboutUs, Summary
 }
 
 enum DestinationType {
@@ -280,6 +283,13 @@ class AppFlowProvider extends ChangeNotifier {
     }
     else if(stage==BookingStage.PickUp){
       currentWidgetWeb= OrderLocationPickScreenWeb();
+    }
+    else if(stage==BookingStage.Vehicle){
+      currentWidgetWeb= VehicleChooseScreenWeb();
+    }
+
+    else if(stage==BookingStage.Summary){
+      currentWidgetWeb= RequestDetailsScreenWeb();
     }
     notifyListeners();
   }

@@ -47,7 +47,8 @@ class _WebHeaderState extends State<WebHeader> {
               width: Get.width,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color(0xFF35B66D), Color(0xFFF1E41B)],
+                  colors: [Color(0xFF35B66D),
+                    Color(0xFFF1E41B)],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),

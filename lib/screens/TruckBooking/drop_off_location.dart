@@ -8,6 +8,7 @@ import 'package:map_location_picker/map_location_picker.dart';
 import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/directions_model.dart';
+import 'package:sultan_cab/screens/TruckBooking/pickup_location.dart';
 import 'package:sultan_cab/services/directions_services.dart';
 import 'package:sultan_cab/utils/api_keys.dart';
 import 'package:sultan_cab/utils/colors.dart';
@@ -44,29 +45,6 @@ class _DropOffLocationState extends State<DropOffLocation> {
   }
 
 
-  Future<String> getCityName(double lat, double lng) async {
-    try{
-      final apiKey = GoogleMapApiKey; // Replace with your Google Maps API key
-      final url =
-          "https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$apiKey";
-      final response = await http.get(Uri.parse(url));
-      final data = json.decode(response.body);
-      final cityName = data["results"][0]["address_components"];
-      print(cityName.runtimeType);
-      for(var x in cityName){
-        if(x["types"].toString().contains("locality")){
-          return x["long_name"].toString();
-        }
-      }
-      return "";
-      //     .firstWhere((component) => component["types"].contains("locality"), orElse: () => null);
-      // return cityName != null ? cityName["long_name"] : null;
-
-    }catch(e){
-      print(e);
-      return "";
-    }
-  }
 
 
 

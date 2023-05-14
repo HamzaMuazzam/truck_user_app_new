@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:sultan_cab/models/directions_model.dart';
@@ -17,8 +16,10 @@ class DirectionServices {
         'Accept': '*/*'
       };
 
+
+
       Uri link = Uri(
-          scheme: "https",
+          // scheme: "https",
           host: 'maps.googleapis.com',
           path: 'maps/api/directions/json',
           queryParameters: {
@@ -31,6 +32,7 @@ class DirectionServices {
       if (res.statusCode == 200) {
         return Directions.fromMap(jsonDecode(res.body));
       }
+
       return null;
     } catch (e) {
       print(e);
