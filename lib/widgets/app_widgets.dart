@@ -109,3 +109,47 @@ class AppWidgets {
     return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
   }
 }
+
+
+
+
+class LinearGradientButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const LinearGradientButton({
+    required this.text,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF35B66D),
+              Color(0xFFF1E41B)],
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0,bottom: 8,left: 12,right: 12),
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:sultan_cab/providers/truck_provider/app_flow_provider.dart';
 
 import '../../FCM.dart';
+import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../utils/colors.dart';
 import '../../utils/sizeConfig.dart';
+import '../../widgets/web_header.dart';
 import '../commonPages/settings.dart';
 import 'get_all_orders.dart';
 import 'home_page.dart';
@@ -15,12 +20,12 @@ class NavigationScreen extends StatefulWidget {
   @override
   _NavigationScreenState createState() => _NavigationScreenState();
 }
+late List<Widget> _screens;
 
 class _NavigationScreenState extends State<NavigationScreen> {
   final PageStorageBucket bucket = PageStorageBucket();
 
   int _index = 0;
-  late List<Widget> _screens;
 
   @override
   void didChangeDependencies() async {
@@ -53,8 +58,17 @@ class _NavigationScreenState extends State<NavigationScreen> {
     SizeConfig().init(context);
     var h = SizeConfig.screenHeight / 812;
 
-    return Scaffold(
-      bottomNavigationBar: Container(
+    return
+
+
+      GetPlatform.isWeb
+          ?
+      GetStartedWeb()
+          :
+      Scaffold(
+      bottomNavigationBar:
+
+      Container(
         height: h * 55,
         child: BottomNavigationBar(
           backgroundColor: greybackColor,
@@ -85,7 +99,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
           },
         ),
       ),
-      body: PageStorage(
+      body:
+
+      PageStorage(
         child: _screens[_index],
         bucket: bucket,
       ),
@@ -96,4 +112,58 @@ class _NavigationScreenState extends State<NavigationScreen> {
 class NavigationModel {
   String icon;
   NavigationModel({required this.icon});
+}
+
+
+class GetStartedWeb extends StatefulWidget {
+  const GetStartedWeb({Key? key}) : super(key: key);
+
+
+  @override
+  State<GetStartedWeb> createState() => _GetStartedWebState();
+}
+
+class _GetStartedWebState extends State<GetStartedWeb> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    appFlowProvider.changeWebWidget(BookingStage.WebHome);
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Container(
+        color: greybackColor,
+        child: Stack(
+          children: [
+            Align(
+                alignment: Alignment.centerRight,
+                child: Image.asset("assets/images/truck_bg_web.png")),
+            Container(
+              height: Get.height,
+              child: Column(
+                children: [
+                  WebHeader(),
+                  Expanded(
+                    child: Consumer<AppFlowProvider>(
+                      builder: (_,data,__) {
+                        return Container(
+                            height: Get.height,
+                            width: Get.width,
+                            child: data.currentWidgetWeb);
+                      }
+                    ),
+
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }

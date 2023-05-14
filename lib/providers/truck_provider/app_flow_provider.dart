@@ -6,12 +6,19 @@ import 'package:place_picker/entities/location_result.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/directions_model.dart';
 import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
+import 'package:sultan_cab/screens/commonPages/settings.dart';
+import 'package:sultan_cab/screens/staticPages/aboutUs.dart';
 import 'package:sultan_cab/services/directions_services.dart';
+import 'package:sultan_cab/services/profile_services.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/strings.dart';
 
+import '../../screens/TruckBooking/OrderLocationPickScreenWeb.dart';
 import '../../screens/TruckBooking/home_page.dart';
+import '../../screens/TruckBooking/navigation_screens_web.dart';
 import '../../screens/TruckBooking/start_booking.dart';
+import '../../screens/staticPages/contactUs.dart';
+import '../../screens/staticPages/privacy_policy.dart';
 import '../GoogleMapProvider/location_and_map_provider.dart';
 
 enum BookingStage {
@@ -19,12 +26,13 @@ enum BookingStage {
   DropOffLocation,
   Destination,
   Vehicle,
-  // City,
   SearchingVehicle,
   Booked,
   BiddingFound,
   DriverAssign,
   RideStarted,
+  WebHome,
+  OurServices, OurMessage, AboutUs
 }
 
 enum DestinationType {
@@ -254,6 +262,30 @@ class AppFlowProvider extends ChangeNotifier {
     notifyListeners();
     return currentAdd;
   }
+
+
+  Widget currentWidgetWeb = Container();
+
+  void changeWebWidget(BookingStage stage) {
+    if(stage==BookingStage.WebHome){
+      currentWidgetWeb= WebHomeScreem();
+    } else if(stage==BookingStage.OurServices){
+      currentWidgetWeb= Container();
+    }
+    else if(stage==BookingStage.OurMessage){
+      currentWidgetWeb= Container();
+    }
+    else if(stage==BookingStage.AboutUs){
+      currentWidgetWeb= Container();
+    }
+    else if(stage==BookingStage.PickUp){
+      currentWidgetWeb= OrderLocationPickScreenWeb();
+    }
+    notifyListeners();
+  }
+
+
+
 }
 
 class MultiDestinationsModel {
