@@ -17,6 +17,7 @@ import '../../screens/TruckBooking/OrderLocationPickScreenWeb.dart';
 import '../../screens/TruckBooking/RequestDetailsScreenWeb.dart';
 import '../../screens/TruckBooking/VehicleChooseScreenWeb.dart';
 import '../../screens/TruckBooking/booking_summary.dart';
+import '../../screens/TruckBooking/get_all_orders.dart';
 import '../../screens/TruckBooking/home_page.dart';
 import '../../screens/TruckBooking/navigation_screens_web.dart';
 import '../../screens/TruckBooking/start_booking.dart';
@@ -35,7 +36,8 @@ enum BookingStage {
   DriverAssign,
   RideStarted,
   WebHome,
-  OurServices, OurMessage, AboutUs, Summary
+  Orders,
+  OurMessage, AboutUs, Summary
 }
 
 enum DestinationType {
@@ -272,8 +274,8 @@ class AppFlowProvider extends ChangeNotifier {
   void changeWebWidget(BookingStage stage) {
     if(stage==BookingStage.WebHome){
       currentWidgetWeb= WebHomeScreem();
-    } else if(stage==BookingStage.OurServices){
-      currentWidgetWeb= Container();
+    } else if(stage==BookingStage.Orders){
+      currentWidgetWeb= GetAllOrders();
     }
     else if(stage==BookingStage.OurMessage){
       currentWidgetWeb= Container();

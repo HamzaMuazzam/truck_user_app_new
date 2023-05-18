@@ -8,7 +8,6 @@ import 'package:sultan_cab/models/user_model.dart';
 import 'package:sultan_cab/services/booking_services.dart';
 import 'package:sultan_cab/services/payment_services.dart';
 import 'package:sultan_cab/utils/strings.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class BookingProvider extends ChangeNotifier {
   Booking _currentBooking = Booking(docType: 1);
@@ -148,14 +147,7 @@ class BookingProvider extends ChangeNotifier {
     }
   }
 
-  Future verifyPayment(PaymentSuccessResponse response, String bookingID) async {
-    try {
-      await PaymentServices.verifyPayment();
-    } catch (e) {
-      print(e);
-      throw e;
-    }
-  }
+
 
   Future<void> cancelBooking(int bookingID) async {
     try {

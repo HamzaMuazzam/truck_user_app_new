@@ -102,7 +102,8 @@ class _AuthWidgetState extends State<AuthWidget> {
                     )
                   ],
                 ),
-              ));
+              )
+    );
   }
 }
 
