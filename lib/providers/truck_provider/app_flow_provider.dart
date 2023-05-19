@@ -17,7 +17,7 @@ import '../../screens/TruckBooking/OrderLocationPickScreenWeb.dart';
 import '../../screens/TruckBooking/RequestDetailsScreenWeb.dart';
 import '../../screens/TruckBooking/VehicleChooseScreenWeb.dart';
 import '../../screens/TruckBooking/booking_summary.dart';
-import '../../screens/TruckBooking/get_all_orders.dart';
+import '../../screens/TruckBooking/GetAllOrdersScreen.dart';
 import '../../screens/TruckBooking/home_page.dart';
 import '../../screens/TruckBooking/navigation_screens_web.dart';
 import '../../screens/TruckBooking/start_booking.dart';
@@ -211,7 +211,10 @@ class AppFlowProvider extends ChangeNotifier {
   Future setPickUpLoc(LatLng loc, String add) async {
     currentLoc = loc;
     currentAdd = add;
-    await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
+    if(!GetPlatform.isWeb){
+      await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
+
+    }
     addMarker(loc);
     notifyListeners();
   }
@@ -275,7 +278,7 @@ class AppFlowProvider extends ChangeNotifier {
     if(stage==BookingStage.WebHome){
       currentWidgetWeb= WebHomeScreem();
     } else if(stage==BookingStage.Orders){
-      currentWidgetWeb= GetAllOrders();
+      currentWidgetWeb= GetAllOrdersScreen();
     }
     else if(stage==BookingStage.OurMessage){
       currentWidgetWeb= Container();

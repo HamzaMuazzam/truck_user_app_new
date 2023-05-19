@@ -88,7 +88,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
 
-                            stepper(order!.isInProcess==true?0 : order!.inProgress==true?0: order!.isAccepted==true?1:order!.isLoaded==true?2:order!.isDelievered==true?3:0),
+                            stepper(order),
                             sh(20),
                             Row(
                               children: [
@@ -1003,7 +1003,21 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
   }
 
 
-  Widget stepper(int index) {
+  Widget stepper(GetAllOrdersResponse? order) {
+    int index=0;
+
+    if(order!=null){
+      if(order.isAccepted==false && order.isDelievered==false && order.isLoaded==false){
+        index=0;
+      } else if(order.isAccepted==true && order.isDelievered==false && order.isLoaded==false){
+        index=1;
+      }
+      else if(order.isAccepted==true && order.isDelievered==false && order.isLoaded==true && order.isInProcess==true){
+        index=2;
+      }else if(order.isAccepted==true && order.isDelievered==true && order.isInProcess==false){
+        index=3;
+      }
+    }
 
     return Column(
       children: [

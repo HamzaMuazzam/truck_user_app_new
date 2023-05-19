@@ -12,12 +12,12 @@ import '../../utils/commons.dart';
 import '../../utils/strings.dart';
 import 'getOrderDetailsById.dart';
 
-class GetAllOrders extends StatefulWidget {
+class GetAllOrdersScreen extends StatefulWidget {
   @override
-  _GetAllOrdersState createState() => _GetAllOrdersState();
+  _GetAllOrdersScreenState createState() => _GetAllOrdersScreenState();
 }
 
-class _GetAllOrdersState extends State<GetAllOrders> {
+class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
   @override
   void initState() {
     fairTruckProvider.getAllOrdersDetails();
@@ -61,11 +61,7 @@ class _GetAllOrdersState extends State<GetAllOrders> {
                                       await paymentProvider.getPaymentEvidence(
                                           value.getAllOrdersResponse[index].id
                                               .toString());
-                                      // logger.i(value
-                                      //     .getAllOrdersResponse[index].id
-                                      //     .toString());
-                                      Get.to(OrderDetailById(
-                                          value.getAllOrdersResponse[index]));
+                                      Get.to(OrderDetailById(value.getAllOrdersResponse[index]));
                                     },
                                     child: Container(
                                       height: h * 250,

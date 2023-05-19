@@ -10,7 +10,7 @@ import '../../utils/colors.dart';
 import '../../utils/sizeConfig.dart';
 import '../../widgets/web_header.dart';
 import '../commonPages/settings.dart';
-import 'get_all_orders.dart';
+import 'GetAllOrdersScreen.dart';
 import 'home_page.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -37,7 +37,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     _index = widget.index;
     _screens = [
       HomePage(),
-      GetAllOrders(),
+      GetAllOrdersScreen(),
       Settings(),
     ];
 
