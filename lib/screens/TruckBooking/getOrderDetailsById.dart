@@ -880,7 +880,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                     alignment: Alignment.topRight,
                                     child: Text(
                                       paymentProvider
-                                          .getPaymentEvidenceResponse!=null?   paymentProvider
+                                          .getPaymentEvidenceResponse!=null  ?   paymentProvider
                                           .getPaymentEvidenceResponse!
                                           .paymentVerifiedBy.toString():'--',
                                       style: TextStyle(

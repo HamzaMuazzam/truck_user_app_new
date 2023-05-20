@@ -57,6 +57,8 @@ class ApiUrls {
  static String BOOKING_REQUEST="Order/book-order";
  ///getAllCities
  static String GET_ALL_CITIES="Cities/get-cities";
+
+ static String GET_DISTANCE="Cities/get-disctance";
  ///getAllOrders
 
  static String GET_ALL_ORDERS="Order/get-order-by-client";
