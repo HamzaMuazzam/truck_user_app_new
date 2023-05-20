@@ -188,9 +188,7 @@ class FairTruckProvider extends ChangeNotifier {
     }
 
     getAllOrdersResponse = getAllOrdersResponseFromJson(response);
-    if (getAllOrdersResponse != []) {
-      logger.i(getAllOrdersResponse);
-    }
+    getAllOrdersResponse= getAllOrdersResponse.reversed.toList();
     allOrders = true;
     notifyListeners();
 

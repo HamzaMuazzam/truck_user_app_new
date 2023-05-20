@@ -48,6 +48,10 @@ class NotificationRoutes {
             generalNotificationDetails,
             payload: event.data.toString());
         ++notificationNumber;
+
+        ///TODO: I added this line here to trigger the notification click auto and will open order detail screen automatically once any notification reached
+        onNotificationClick(event.data);
+
       }
     }
     catch(e){
