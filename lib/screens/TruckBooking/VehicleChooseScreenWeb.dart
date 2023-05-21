@@ -186,7 +186,7 @@ Widget stepper(int index) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Order Information",
+              "Order",
               style: TextStyle(
                   color: index == 0 || index > 0 ? Colors.green : Colors.white),
             ),

@@ -57,6 +57,7 @@ class ApiServices {
     if (response.statusCode == 200) {
       return result;
     } else {
+      logger.e(result);
       return "";
     }
   }

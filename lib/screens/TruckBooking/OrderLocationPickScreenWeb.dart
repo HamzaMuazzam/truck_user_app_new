@@ -30,8 +30,59 @@ class OrderLocationPickScreenWeb extends StatefulWidget {
 int _index = 0;
 String? pickaddress;
 String? dropAddress;
+
+
+
 class _OrderLocationPickScreenWebState
     extends State<OrderLocationPickScreenWeb> {
+
+
+  Future<Position?> getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Check if location services are enabled
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled
+      return null;
+    }
+
+    // Request location permission
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Location permissions are denied
+        return null;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return null;
+    }
+
+    // Get the current position
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+
+    // Access the latitude and longitude
+    double latitude = position.latitude;
+    double longitude = position.longitude;
+
+    print('Latitude: $latitude');
+    print('Longitude: $longitude');
+    return position;
+  }
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    gteLocationLatLng();
+
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -51,9 +102,11 @@ class _OrderLocationPickScreenWebState
               // String? address;
               String? city="";
               LatLng? latlng;
-              if (GetPlatform.isWeb) {
+              if (GetPlatform.isWeb&& position!=null) {
                 await Get.to(MapLocationPicker(
                   apiKey: GoogleMapApiKey,
+                  currentLatLng: LatLng(position!.latitude,position!.longitude),
+                  minMaxZoomPreference: MinMaxZoomPreference(3,20),
                   onNext: (GeocodingResult? result) async {
                     if (result != null) {
                       print(result.toJson());
@@ -128,9 +181,11 @@ class _OrderLocationPickScreenWebState
                 // String? address="";
                 String? city="";
                 LatLng? latlng;
-                if (GetPlatform.isWeb) {
+                if (GetPlatform.isWeb && position!=null) {
                   await Get.to(MapLocationPicker(
                     apiKey: GoogleMapApiKey,
+                    currentLatLng: LatLng(position!.latitude,position!.longitude),
+                    minMaxZoomPreference: MinMaxZoomPreference(3,20),
                     onNext: (GeocodingResult? result) async {
                       if (result != null) {
                         print(result.toJson());
@@ -230,6 +285,10 @@ class _OrderLocationPickScreenWebState
       ],
     );
   }
+  Position? position;
+  void gteLocationLatLng() async {
+     position = await  getCurrentLocation();
+  }
 }
 
 Widget stepper(int index) {
@@ -241,19 +300,19 @@ Widget stepper(int index) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Order Information",
+              "Order",
               style: TextStyle(
                   color: index == 0 || index > 0 ? Colors.green : Colors.white),
             ),
-            Text("Type of vehicle service",
+            Text("Load",
                 style: TextStyle(
                     color:
                         index == 1 || index > 1 ? Colors.green : Colors.white)),
-            Text("Request details",
+            Text("Road",
                 style: TextStyle(
                     color:
                         index == 2 || index > 2 ? Colors.green : Colors.white)),
-            Text("Delivered ",
+            Text("Deliver",
                 style: TextStyle(
                     color:
                         index == 3 || index > 3 ? Colors.green : Colors.white))

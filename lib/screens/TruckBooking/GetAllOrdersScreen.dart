@@ -58,9 +58,13 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                 children: [
                                   InkWell(
                                     onTap: () async {
-                                      await paymentProvider.getPaymentEvidence(
-                                          value.getAllOrdersResponse[index].id
-                                              .toString());
+                                      await paymentProvider.getPaymentEvidence(value.getAllOrdersResponse[index].orderId.toString());
+
+                                      print(value.getAllOrdersResponse[index].orderId.toString());
+
+
+
+
                                       Get.to(OrderDetailById(value.getAllOrdersResponse[index]));
                                     },
                                     child: Container(

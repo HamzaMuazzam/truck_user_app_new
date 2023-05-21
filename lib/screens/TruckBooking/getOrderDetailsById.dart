@@ -1027,19 +1027,19 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "info",
+                "Order",
                 style: TextStyle(
                     color: index == 0 || index > 0 ? Colors.green : Colors.white),
               ),
-              Text("Service",
+              Text("Load",
                   style: TextStyle(
                       color:
                       index == 1 || index > 1 ? Colors.green : Colors.white)),
-              Text("Details",
+              Text("Road",
                   style: TextStyle(
                       color:
                       index == 2 || index > 2 ? Colors.green : Colors.white)),
-              Text("Delivered",
+              Text("Deliver",
                   style: TextStyle(
                       color:
                       index == 3 || index > 3 ? Colors.green : Colors.white))

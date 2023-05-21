@@ -75,9 +75,9 @@ class NotificationRoutes {
 
       if (payload['Route'] == "order_screen" &&
           (payload['orderId'] != null || payload['OrderId'] != null)) {
-        String? orderID = payload['OrderId'] ?? "";
+        String? orderID = payload['OrderId'] ?? payload['orderId'];
         String response = await ApiServices.getMethod(
-            feedUrl: "/Order/get-order-by-Id?id=$orderID");
+            feedUrl: "Order/get-order-by-Id?id=$orderID");
 
         if (response.isNotEmpty) {
           if (Get.currentRoute.contains("OrderDetailById")) {
