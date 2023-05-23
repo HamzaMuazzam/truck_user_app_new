@@ -320,6 +320,7 @@ Widget stepper(int index) {
         ),
       ),
       Container(
+
         height: 40,
         width: Get.width * 0.75,
         child: Center(

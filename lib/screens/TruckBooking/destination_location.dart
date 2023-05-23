@@ -151,12 +151,14 @@ class _DestinationScreenState extends State<DestinationScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children:
                 [
+                  // 34 mins,35 sec
+                  // 34:35
 
                         Text(
                             "Travel Time-${appProvider.directions==null?"":appProvider.directions!.totalDuration}"),
                         Text("/"),
                         if (appProvider.destinationType != DestinationType.Multiple)
-                          Text("Distance-${appProvider.directions!.totalDistance}"),
+                          Text("Distance-${appProvider.directions?.totalDistance}"),
                         if (appProvider.destinationType == DestinationType.Multiple)
                           Text("Distance-${appProvider.totalDistance}"),
                       ],

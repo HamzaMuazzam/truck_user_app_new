@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,7 @@ class FairTruckProvider extends ChangeNotifier {
   TextEditingController deliveryNote = TextEditingController();
   List<GetTruckFareResponse>? getTruckFareResponse = [];
 
-// var totalFare;
+  // var totalFare;
   Future<bool> getAllTruckFairs() async {
     AppConst.startProgress();
     var body =
@@ -98,13 +99,9 @@ class FairTruckProvider extends ChangeNotifier {
         "title": "",
         "pickUpLat": appFlowProvider.currentLoc!.latitude.toString(),
         "pickUpLng": appFlowProvider.currentLoc!.longitude.toString(),
-        "pickUpLink":
-            "https://www.google.com/maps/search/?api=1&query=${appFlowProvider.currentLoc!.latitude.toString()},"
-                "${appFlowProvider.currentLoc!.longitude.toString()}",
+        "pickUpLink": "https://www.google.com/maps/search/?api=1&query=${appFlowProvider.currentLoc!.latitude.toString()},${appFlowProvider.currentLoc!.longitude.toString()}",
         "pickUpAddress": appFlowProvider.currentAdd.toString(),
-        "dropOffLLink":
-            "https://www.google.com/maps/search/?api=1&query=${appFlowProvider.destLoc!.latitude.toString()},"
-                "${appFlowProvider.destLoc!.longitude.toString()}",
+        "dropOffLLink": "https://www.google.com/maps/search/?api=1&query=${appFlowProvider.destLoc!.latitude.toString()},${appFlowProvider.destLoc!.longitude.toString()}",
         "dropOffAddress": appFlowProvider.destAdd.toString(),
         "dropOffLat": appFlowProvider.destLoc!.latitude.toString(),
         "dropOffLng": appFlowProvider.destLoc!.longitude.toString(),
@@ -114,6 +111,7 @@ class FairTruckProvider extends ChangeNotifier {
         "pickUpCity": loadCity,
         "dropOffCity": unloadCity,
         "delieveryNote": deliveryNote.text.toString(),
+        "time":"${convertTimeString(appProvider.directions!.totalDuration!)}"
       };
 
       if (appFlowProvider.directions != null) {
@@ -147,8 +145,7 @@ class FairTruckProvider extends ChangeNotifier {
       map2["totalFare"] = totalValue.toString();
       logger.i(map2);
       AppConst.startProgress(barrierDismissible: true);
-      String response = await ApiServices.postMethodTruck(
-          feedUrl: ApiUrls.BOOKING_REQUEST, body: json.encode(map2));
+      String response = await ApiServices.postMethodTruck(feedUrl: ApiUrls.BOOKING_REQUEST, body: json.encode(map2));
       AppConst.stopProgress();
       if (response.isEmpty) {
         return false;
@@ -161,6 +158,25 @@ class FairTruckProvider extends ChangeNotifier {
     }
   }
 
+
+  String convertTimeString(String time){
+    try{
+      if (time.contains("hours")) {
+        var split = time.split(" ");
+        var hours = split[0];
+        var mints = split[3];
+        return "$hours:$mints";
+      } else if (!time.contains("hours") && time.contains("mints")) {
+        var split = time.split(" ");
+        var mints = split[0];
+        return "00:$mints";
+      }
+    }catch(e){
+      return "55:00";
+    }
+
+    return "55:00";
+  }
   List<GetAllCitiesResponse>? getAllCitiesResponse = [];
 
   Future<bool> getAllCities() async {
