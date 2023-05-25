@@ -1007,16 +1007,31 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
     int index=0;
 
     if(order!=null){
-      if(order.isAccepted==false && order.isDelievered==false && order.isLoaded==false){
-        index=0;
-      } else if(order.isAccepted==true && order.isDelievered==false && order.isLoaded==false){
-        index=1;
-      }
-      else if(order.isAccepted==true && order.isDelievered==false && order.isLoaded==true && order.isInProcess==true){
-        index=2;
-      }else if(order.isAccepted==true && order.isDelievered==true && order.isInProcess==false){
+      if(order.isDelievered==true){
         index=3;
       }
+      else if(order.isLoaded==true){
+        index=2;
+      }
+      else if (order.inProgress==true){
+        index=1;
+      }  else if (order.isAccepted==true){
+        index=0;
+      }
+
+
+      // if(order.isAccepted==false && order.isDelievered==false && order.isLoaded==false){
+      //   index=0;
+      // }
+      // else if(order.isAccepted==true && order.isLoaded==true && order.isDelievered==false && order.isLoaded==false){
+      //   index=1;
+      // }
+      // else if(order.isAccepted==true && order.isDelievered==false && order.isLoaded==true && order.isInProcess==true){
+      //   index=2;
+      // }
+      // else if(order.isAccepted==true && order.isDelievered==true && order.isInProcess==false){
+      //   index=3;
+      // }
     }
 
     return Column(
@@ -1031,7 +1046,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                 style: TextStyle(
                     color: index == 0 || index > 0 ? Colors.green : Colors.white),
               ),
-              Text("Load",
+              Text("Reached",
                   style: TextStyle(
                       color:
                       index == 1 || index > 1 ? Colors.green : Colors.white)),

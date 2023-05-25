@@ -159,11 +159,10 @@ class _StartBookingState extends State<StartBooking> {
                   ),
 
                   if (appProvider.stage == BookingStage.Destination)
+
                     DestinationScreen(),
                   if (appProvider.stage == BookingStage.Vehicle)
                     ChooseCar(),
-                  // if (appProvider.stage == BookingStage.City)
-                  //   ChooseCities(),
                   if (appProvider.stage == BookingStage.SearchingVehicle)
                     SearchingWidget(),
 

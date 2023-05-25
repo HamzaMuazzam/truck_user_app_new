@@ -166,7 +166,7 @@ class FairTruckProvider extends ChangeNotifier {
         var hours = split[0];
         var mints = split[3];
         return "$hours:$mints";
-      } else if (!time.contains("hours") && time.contains("mints")) {
+      } else if (!time.contains("hours") && time.contains("mins")) {
         var split = time.split(" ");
         var mints = split[0];
         return "00:$mints";
@@ -175,7 +175,7 @@ class FairTruckProvider extends ChangeNotifier {
       return "55:00";
     }
 
-    return "55:00";
+    return "45:00";
   }
   List<GetAllCitiesResponse>? getAllCitiesResponse = [];
 

@@ -293,12 +293,13 @@ class AuthProvider extends ChangeNotifier {
       AppConst.errorSnackBar("password doesn't match..");
       return false;
     }
-    if (!password2Controller.text.isValidPassword()) {
+
+    if (!passwordController.text.isValidPassword()) {
       AppConst.errorSnackBar(
           "Password must contain at least 1 special character, 1 numeric value, 1 upper case and 1 lower case.");
       return false;
     }
-    if (password2Controller.text.length < 8) {
+    if (passwordController.text.length < 8) {
       AppConst.errorSnackBar("Password should not be less than 8 digits.");
       return false;
     }

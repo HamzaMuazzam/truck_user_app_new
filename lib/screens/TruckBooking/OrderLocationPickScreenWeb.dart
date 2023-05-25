@@ -304,7 +304,7 @@ Widget stepper(int index) {
               style: TextStyle(
                   color: index == 0 || index > 0 ? Colors.green : Colors.white),
             ),
-            Text("Load",
+            Text("Reached",
                 style: TextStyle(
                     color:
                         index == 1 || index > 1 ? Colors.green : Colors.white)),

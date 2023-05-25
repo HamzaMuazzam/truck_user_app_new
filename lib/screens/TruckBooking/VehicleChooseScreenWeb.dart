@@ -1,25 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:map_location_picker/map_location_picker.dart';
-import 'package:place_picker/entities/location_result.dart';
-import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:sultan_cab/screens/TruckBooking/pickup_location.dart';
-
-import '../../models/directions_model.dart';
 import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
-import '../../providers/auth_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
-import '../../services/directions_services.dart';
-import '../../utils/api_keys.dart';
-import '../../utils/commons.dart';
 import '../../utils/const.dart';
-import '../../utils/strings.dart';
-import '../../widgets/app_snackBar.dart';
-import '../../widgets/app_text_field.dart';
-import 'booking_summary.dart';
-import 'choose_vehicle.dart';
 
 class VehicleChooseScreenWeb extends StatefulWidget {
   const VehicleChooseScreenWeb({Key? key}) : super(key: key);
@@ -35,7 +20,6 @@ class _VehicleChooseScreenWebState extends State<VehicleChooseScreenWeb> {
     super.initState();
     getVehicles();
   }
-  int selectedTruck=-1;
 
   @override
   Widget build(BuildContext context) {
@@ -62,58 +46,83 @@ class _VehicleChooseScreenWebState extends State<VehicleChooseScreenWeb> {
 
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: (){
-                          selectedTruck=index;
-                          setState(() {
-                          });
-                          fairTruckProvider.getTruckFareResponse![index].quantity=1;
-                        },
-                        child: Container(
-                          height: 150,
-                          width: 250,
-                          child: Stack(
-                            children: [
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 150,
+                            width: 250,
+                            child: Stack(
+                              children: [
 
-                              Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Container(
-                                  height: 150,
-                                  width: 250,
-                                  decoration: BoxDecoration(
-                                      color:
-                                      selectedTruck==index?Colors.green:
-                                      Color(0xe8ffffff),
-                                      borderRadius: BorderRadius.circular(10),
-                                      // image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Container(
+                                    height: 150,
+                                    width: 250,
+                                    decoration: BoxDecoration(
+                                        color:
+                                        fairTruckProvider.getTruckFareResponse![index].quantity>0?Colors.green:
+                                        Color(0xe8ffffff),
+                                        borderRadius: BorderRadius.circular(10),
+                                        // image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)
 
+                                      ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                        Text(truck.truckName??"",style: TextStyle(color: Colors.black),),
+                                        Text("Friendly with all types of goods",style: TextStyle(color: Colors.blueGrey),),
+                                          SizedBox(height: 5,)
+                                      ],),
                                     ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                      Text(truck.truckName??"",style: TextStyle(color: Colors.black),),
-                                      Text("Friendly with all types of goods",style: TextStyle(color: Colors.blueGrey),),
-                                        SizedBox(height: 5,)
-                                    ],),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                height: 50,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)),
-                              ),
-                            ],
-                          ),
+                                Container(
+                                  height: 50,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)),
+                                ),
+                              ],
+                            ),
 
-                          // ChooseCar(),
-                        ),
+                            // ChooseCar(),
+                          ),
+                          Container(
+                            width: 250,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 30),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  InkWell(
+                                      onTap: (){
+                                        if(fairTruckProvider.getTruckFareResponse![index].quantity>0){
+                                          fairTruckProvider.getTruckFareResponse![index].quantity--;
+                                        }
+                                        setState(() {});
+                                      },
+                                      child: Text("-",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),)),
+
+                                  // Icon(Icons.minimize,color: Colors.white,size: 25,),
+                                Text("${fairTruckProvider.getTruckFareResponse![index].quantity}",),
+                                InkWell(
+                                    onTap: (){
+                                      fairTruckProvider.getTruckFareResponse![index].quantity++;
+                                      setState(() {
+
+                                      });
+                                    },
+                                    child: Icon(Icons.add,color: Colors.white,size: 25,)),
+                              ],),
+                            ),
+                          )
+                        ],
                       ),
                     );
                   }),

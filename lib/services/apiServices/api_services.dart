@@ -37,8 +37,8 @@ class ApiServices {
     } else {
       String result = await response.stream.bytesToString();
       dynamic parsed = jsonDecode(result);
-      await AppConst.errorSnackBar(
-          "${response.statusCode} ${parsed["message"]}");
+      // await AppConst.errorSnackBar("${response.statusCode} ${parsed["message"]}");
+      await AppConst.errorSnackBar("Something went wrong.");
 
       logger.e(parsed);
 

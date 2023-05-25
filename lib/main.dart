@@ -75,6 +75,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
         theme: ThemeData.dark(),
+        // home: VehicleChooseScreenWeb(),
         home: AuthWidget(),
       ),
 
