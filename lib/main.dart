@@ -4,7 +4,6 @@ import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:sultan_cab/auth_widget.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/providers/booking_provider.dart';
@@ -12,6 +11,8 @@ import 'package:sultan_cab/providers/home_provider.dart';
 import 'package:sultan_cab/providers/track_provider.dart';
 import 'package:sultan_cab/providers/user_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:sultan_cab/screens/commonPages/web_view_screen.dart';
+import 'auth_widget.dart';
 import 'providers/GoogleMapProvider/location_and_map_provider.dart';
 import 'providers/NotificationProvider/notification_provider.dart';
 import 'providers/TaxiBookingProvider/in_progress_ride_provider.dart';
@@ -75,7 +76,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
         theme: ThemeData.dark(),
-        // home: VehicleChooseScreenWeb(),
+        // home: PaymentWebView(initUrl: "google.com",),
         home: AuthWidget(),
       ),
 

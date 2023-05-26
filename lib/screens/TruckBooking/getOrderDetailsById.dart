@@ -6,11 +6,13 @@ import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 
 import 'package:sultan_cab/utils/colors.dart';
+import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import '../../models/Truck_models/getAllOrdersResponse.dart';
 import '../../providers/auth_provider.dart';
 import '../../services/ApiServices/api_urls.dart';
 import '../../utils/strings.dart';
+import '../commonPages/web_view_screen.dart';
 
 class OrderDetailById extends StatefulWidget {
   final GetAllOrdersResponse? getAllOrdersResponse;
@@ -453,7 +455,33 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                     child: Text(
                                       order!
                                           .orderDetails!.distance
-                                          .toString(),
+                                          .toString() +" KM",
+                                      style: TextStyle(
+                                        fontSize: h * 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            sh(20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                sw(7),
+                                Expanded(
+                                  child: Text(
+                                    'Amount',
+                                    style: TextStyle(
+                                        fontSize: h * 12,
+                                        color: textYellowColor),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Align(
+                                    alignment: Alignment.topRight,
+                                    child: Text(
+                                      order!.totalFare.toString() +" SAR",
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -812,21 +840,64 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                               height: 1,
                             ),
                             sh(20),
+                            if(order!.isPaid==false)
                             Consumer<PaymentProvider>(builder:
                                 (BuildContext context, value, Widget? child) {
-                              return docContainer(
+                              return
+                                docContainer(
                                 label: "Payment Evidence",
                                 imageUrl: value.paymentFile == null &&
                                         value.paymentEvidenceUrl == ''
                                     ? ''
                                     :
-                                // value.paymentEvidenceUrl != ''
-                                //         ?
                                 value.paymentEvidenceUrl.toString(),
-                                        // : value.paymentFile!.path.toString(),
                                 fileCode: 1,
                               );
                             }),
+                            if(order!.isPaid==false)
+                              Container(
+                                color: Colors.grey,
+                                height: 1,
+                              ),
+                              sh(20),
+                              InkWell(
+                                onTap: ()async {
+
+                                  bool? isPaid =await Get.to(PaymentWebView(initUrl: "https://cp.truck.deeps.info/Home/Payment?UserId=${order!.orderDetails!.user!.id}&amount=${order!.totalFare! * 100}&OrderId=${order!.orderId}",));
+                                  if(isPaid==true){
+                                    order!.isPaid=true;
+                                    setState(() {
+                                    });
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    sw(7),
+                                    Expanded(
+                                      child: Text(
+                                        'Pay By Card',
+                                        style: TextStyle(
+                                            fontSize: h * 12,
+                                            color: textYellowColor),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: Alignment.topRight,
+                                        child: Text(
+                                          "Click to Proceed",
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                            fontSize: h * 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
                             sh(20),
                             Container(
                               color: Colors.grey,

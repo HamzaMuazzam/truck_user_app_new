@@ -28,6 +28,7 @@ class GetAllOrdersResponse {
     this.isLoaded,
     this.loadedTime,
     this.cancelationReason,
+    this.isPaid,
   });
 
   dynamic id;
@@ -46,6 +47,7 @@ class GetAllOrdersResponse {
   bool? isDelievered;
   dynamic delieveredTime;
   bool? isLoaded;
+  bool? isPaid;
   dynamic loadedTime;
   dynamic cancelationReason;
 
@@ -60,6 +62,7 @@ class GetAllOrdersResponse {
     noOfTruck: json["noOfTruck"],
     totalFare: json["totalFare"],
     inProgress: json["inProgress"],
+    isPaid: json["isPaid"],
     isAccepted: json["isAccepted"],
     isCanceled: json["isCanceled"],
     isInProcess: json["isInProcess"],
@@ -79,6 +82,7 @@ class GetAllOrdersResponse {
     "truckDriverId": truckDriverId,
     "truckDriver": truckDriver?.toJson(),
     "noOfTruck": noOfTruck,
+    "isPaid": isPaid,
     "totalFare": totalFare,
     "inProgress": inProgress,
     "isAccepted": isAccepted,
