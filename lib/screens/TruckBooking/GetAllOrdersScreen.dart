@@ -13,6 +13,9 @@ import '../../utils/strings.dart';
 import 'getOrderDetailsById.dart';
 
 class GetAllOrdersScreen extends StatefulWidget {
+
+
+  GetAllOrdersScreen();
   @override
   _GetAllOrdersScreenState createState() => _GetAllOrdersScreenState();
 }
@@ -22,6 +25,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
   void initState() {
     fairTruckProvider.getAllOrdersDetails();
     super.initState();
+
   }
 
   late double h, b;
@@ -38,6 +42,13 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
     return Consumer<FairTruckProvider>(
         builder: (BuildContext context, value, Widget? child) {
       return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("All Orders"),
+
+          leading: IconButton(onPressed: (){
+          Get.back();
+        }, icon: Icon(Icons.arrow_back,color: Colors.white,)),),
         backgroundColor: greybackColor,
         body: Container(
             height: Get.height,
@@ -59,12 +70,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                   InkWell(
                                     onTap: () async {
                                       await paymentProvider.getPaymentEvidence(value.getAllOrdersResponse[index].orderId.toString());
-
                                       print(value.getAllOrdersResponse[index].orderId.toString());
-
-
-
-
                                       Get.to(OrderDetailById(value.getAllOrdersResponse[index]));
                                     },
                                     child: Container(

@@ -7,7 +7,7 @@ import 'package:sultan_cab/services/ApiServices/StorageServices/get_storage.dart
 import 'package:sultan_cab/services/ApiServices/api_urls.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/const.dart';
-
+import 'package:http/http.dart' as http;
 import '../../services/apiServices/api_services.dart';
 import '../../widgets/app_widgets.dart';
 
@@ -17,13 +17,40 @@ PaymentProvider paymentProvider =
 class PaymentProvider extends ChangeNotifier {
   XFile? paymentFile;
 
+  static Future<String> _multiPartPostMethodTruck(
+      {String? fileName,String? files, Map<String, String>? fields,required String
+      feed}
+      ) async {
+    AppConst.startProgress();
+    var request = http.MultipartRequest('POST',
+        Uri.parse('https://cp.truck.deeps.info/api/${feed}'));
+    if (fields != null) request.fields.addAll(fields);
+    if (files != null && fileName!=null)
+      request.files.add(await http.MultipartFile.fromPath(fileName, files));
+    request.headers.addAll({'content-type': 'multipart/form-data'});
+    http.StreamedResponse response = await request.send();
+    AppConst.stopProgress();
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      String result = await response.stream.bytesToString();
+      logger.i(result);
+      return result;
+    } else {
+      String result = await response.stream.bytesToString();
+      logger.i(result.toString());
+      AppConst.errorSnackBar('Something is wrong \n $result');
+
+      return "";
+    }
+  }
+
   Future<bool> uploadPaymentEvidence(String orderId) async {
     Map<String, String> fields = {
       'UserId': StorageCRUD.getUser().id.toString(),
       'OrderId': orderId,
     };
     logger.e(paymentFile!.path.toString());
-    String body = await ApiServices.multiPartPostMethodTruck(
+    String body = await _multiPartPostMethodTruck(
         feed: ApiUrls.UPLOAD_PAYMENT_EVIDENCE,
         fields: fields,
         files: paymentFile!.path.toString(),

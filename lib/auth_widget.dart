@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -25,9 +26,6 @@ class _AuthWidgetState extends State<AuthWidget> {
   @override
   void initState() {
     super.initState();
-    // if (GetPlatform.isWeb) {
-    //   _checkStates();
-    // }
   }
 
   _checkStates() async {
@@ -54,7 +52,7 @@ class _AuthWidgetState extends State<AuthWidget> {
     SizeConfig().init(context);
 
     return Scaffold(
-        body: GetPlatform.isWeb
+        body: kIsWeb
             ?
         // RequestDetailsScreenWeb()
         GetStartedWeb()

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -61,7 +62,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     return
 
 
-      GetPlatform.isWeb
+      kIsWeb
           ?
       GetStartedWeb()
           :

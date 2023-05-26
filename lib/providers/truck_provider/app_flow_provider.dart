@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
@@ -211,7 +212,7 @@ class AppFlowProvider extends ChangeNotifier {
   Future setPickUpLoc(LatLng loc, String add) async {
     currentLoc = loc;
     currentAdd = add;
-    if(!GetPlatform.isWeb){
+    if(!kIsWeb){
       await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
 
     }
@@ -226,7 +227,7 @@ class AppFlowProvider extends ChangeNotifier {
   Future setDestinationLoc(LatLng loc, String add) async {
     _destLoc = loc;
     _destAdd = add;
-    if(!GetPlatform.isWeb){
+    if(!kIsWeb){
     await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
     }
     notifyListeners();
@@ -234,7 +235,7 @@ class AppFlowProvider extends ChangeNotifier {
   Future setDirections(Directions dir) async {
     _directions = dir;
 
-    if(!GetPlatform.isWeb){
+    if(!kIsWeb){
       await mapController!.animateCamera(CameraUpdate.newLatLngBounds(directions!.bounds!, 100),);
     }
     notifyListeners();

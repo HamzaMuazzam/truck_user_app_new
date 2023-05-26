@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:map_location_picker/map_location_picker.dart';
@@ -74,7 +75,7 @@ class _PickupLocationState extends State<PickupLocation> {
               String? address;
               String? city="";
               LatLng? latlng;
-              if (GetPlatform.isWeb) {
+              if (kIsWeb) {
                 await Get.to(MapLocationPicker(
                   apiKey: GoogleMapApiKey,
                   onNext: (GeocodingResult? result) async {

@@ -59,7 +59,7 @@ class FairTruckProvider extends ChangeNotifier {
     return totalValue;
   }
 
-  Future<bool> submitOrder() async {
+  Future<List<dynamic>> submitOrder() async {
     try {
       AppFlowProvider appFlowProvider =
           Provider.of<AppFlowProvider>(Get.context!, listen: false);
@@ -148,13 +148,13 @@ class FairTruckProvider extends ChangeNotifier {
       String response = await ApiServices.postMethodTruck(feedUrl: ApiUrls.BOOKING_REQUEST, body: json.encode(map2));
       AppConst.stopProgress();
       if (response.isEmpty) {
-        return false;
+        return [false,0];
       }
       logger.i('booking api done');
-      return true;
+      return [true,response];
     } catch (e) {
       print(e);
-      return false;
+      return [false,0];
     }
   }
 

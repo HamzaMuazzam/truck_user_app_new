@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:map_location_picker/map_location_picker.dart';
@@ -9,7 +10,6 @@ import 'package:sultan_cab/screens/TruckBooking/pickup_location.dart';
 import '../../models/directions_model.dart';
 import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
-import '../../providers/auth_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../services/directions_services.dart';
 import '../../utils/api_keys.dart';
@@ -17,7 +17,6 @@ import '../../utils/commons.dart';
 import '../../utils/const.dart';
 import '../../utils/strings.dart';
 import '../../widgets/app_snackBar.dart';
-import '../../widgets/app_text_field.dart';
 
 class OrderLocationPickScreenWeb extends StatefulWidget {
   const OrderLocationPickScreenWeb({Key? key}) : super(key: key);
@@ -102,7 +101,7 @@ class _OrderLocationPickScreenWebState
               // String? address;
               String? city="";
               LatLng? latlng;
-              if (GetPlatform.isWeb&& position!=null) {
+              if (kIsWeb) {
                 await Get.to(MapLocationPicker(
                   apiKey: GoogleMapApiKey,
                   currentLatLng: LatLng(position!.latitude,position!.longitude),
@@ -181,7 +180,7 @@ class _OrderLocationPickScreenWebState
                 // String? address="";
                 String? city="";
                 LatLng? latlng;
-                if (GetPlatform.isWeb && position!=null) {
+                if (kIsWeb) {
                   await Get.to(MapLocationPicker(
                     apiKey: GoogleMapApiKey,
                     currentLatLng: LatLng(position!.latitude,position!.longitude),

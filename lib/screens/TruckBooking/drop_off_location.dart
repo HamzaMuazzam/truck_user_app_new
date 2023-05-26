@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -89,7 +90,7 @@ class _DropOffLocationState extends State<DropOffLocation> {
                       String? address="";
                       String? city="";
                       LatLng? latlng;
-                      if (GetPlatform.isWeb) {
+                      if (kIsWeb) {
                         await Get.to(MapLocationPicker(
                           apiKey: GoogleMapApiKey,
                           onNext: (GeocodingResult? result) async {

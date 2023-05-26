@@ -854,7 +854,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                 fileCode: 1,
                               );
                             }),
-                            if(order!.isPaid==false)
+                            if(order!.isPaid==false && paymentProvider.paymentFile != null && paymentProvider.paymentEvidenceUrl != '')
                               Container(
                                 color: Colors.grey,
                                 height: 1,
@@ -1025,48 +1025,40 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
         sh(10),
         Padding(
           padding: EdgeInsets.only(right: b * 6),
-          child: InkWell(
-            onTap: () {
-              // Get.to(  ImagePreview(
-              //   photoUrl: 'https://api.truck.deeps.info/api/' + imageUrl!,
-              //   name: label,
-              // ));
-            },
-            child: imageUrl == ''
-                ? Container(
-                    height: 120,
-                    width: Get.width,
+          child: imageUrl == ''
+              ? Container(
+                  height: 120,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    color: phoneBoxBackground,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: InkWell(
+                      onTap: () async {
+                        await paymentProvider.getPaymentImage
+                          (order!.id.toString());
+                        setState(() {});
+                      },
+                      child: Center(child: Text('Upload Evidence'))),
+                )
+              : CachedNetworkImage(
+                  imageUrl:
+                  'https://thumbs.dreamstime.com/z/red-stamp-paid-grunge-frame-big-thumbs-up-text-153975323.jpg',
+                  // ApiUrls.BASE_URL_TRUCK + imageUrl!,
+                  width: Get.width,
+                  height: Get.height * 0.25,
+                  fit: BoxFit.fitWidth,
+                  imageBuilder: (context, imageProvider) => Container(
                     decoration: BoxDecoration(
-                      color: phoneBoxBackground,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: InkWell(
-                        onTap: () async {
-                          await paymentProvider.getPaymentImage
-                            (order!.id.toString());
-                          setState(() {});
-                        },
-                        child: Center(child: Text('Upload Evidence'))),
-                  )
-                : CachedNetworkImage(
-                    imageUrl:
-                    'https://thumbs.dreamstime.com/z/red-stamp-paid-grunge-frame-big-thumbs-up-text-153975323.jpg',
-                    // ApiUrls.BASE_URL_TRUCK + imageUrl!,
-                    width: Get.width,
-                    height: Get.height * 0.25,
-                    fit: BoxFit.fitWidth,
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        color: secondaryColor,
-                        borderRadius: BorderRadius.circular(b * 4),
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
+                      color: secondaryColor,
+                      borderRadius: BorderRadius.circular(b * 4),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-          ),
+                ),
         ),
         sh(20),
       ],

@@ -393,6 +393,146 @@ class _BookingSummaryState extends State<BookingSummary> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Row(
+                              children: [
+                                Icon(Icons.social_distance,size: 35, color: yellowColor,),
+                                sw(7),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+
+                                      Text(
+                                        "Total Distance",
+                                        style: TextStyle(
+                                            fontSize: h * 12,
+                                            color: textYellowColor),
+                                      ),
+                                      sh(10),
+
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                sw(42),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+
+
+
+                                      sh(10),
+                                      Text(
+                                        appFlowProvider.directions!.totalDistance.toString(),
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            sh(10),
+
+                            Container(
+                              color: Colors.grey,
+                              height: 1,
+                            ),
+                            sh(10),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: b * 15,
+                          vertical: h * 0,
+                        ),
+                        padding:
+                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                        decoration: BoxDecoration(
+                          color: greybackColor,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.price_check,size: 35, color: yellowColor,),
+                                sw(7),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+
+                                      Text(
+                                        "Total Fairs",
+                                        style: TextStyle(
+                                            fontSize: h * 12,
+                                            color: textYellowColor),
+                                      ),
+                                      sh(10),
+
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                sw(42),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+
+                                      /// Selected Truck
+
+                                      sh(10),
+                                      Text(
+                                        getTotalFairs(),
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            sh(10),
+
+                            Container(
+                              color: Colors.grey,
+                              height: 1,
+                            ),
+                            sh(10),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: b * 15,
+                          vertical: h * 0,
+                        ),
+                        padding:
+                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                        decoration: BoxDecoration(
+                          color: greybackColor,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
 
                             Container(
                               height:120,
@@ -444,6 +584,27 @@ class _BookingSummaryState extends State<BookingSummary> {
       ),
     );
   }
+
+  String getTotalFairs() {
+var totalValue=0;
+    fairTruckProvider.getTruckFareResponse!.forEach((element) {
+      if (element.quantity > 0) {
+        String distance;
+        if (appFlowProvider.directions == null) {
+          distance = "50.0";
+        } else {
+          distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
+        }
+        var i = element.quantity *
+            element.farePerKm!.toInt() *
+            double.parse(distance).toInt();
+        totalValue = totalValue + i;
+      }
+    });
+
+    return totalValue.toString() +" SAR";
+  }
+
 
 }
 String getSelectedTrucks() {

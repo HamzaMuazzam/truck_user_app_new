@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -9,11 +11,15 @@ import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 
+import '../../models/Truck_models/getAllOrdersResponse.dart';
 import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
+import '../../services/ApiServices/api_services.dart';
 import '../../utils/commons.dart';
 import '../../utils/strings.dart';
+import 'GetAllOrdersScreen.dart';
+import 'getOrderDetailsById.dart';
 import 'home_page.dart';
 import 'navigation_screen.dart';
 
@@ -191,8 +197,8 @@ class _SearchingWidgetState extends State<SearchingWidget>
 }
 
 void bookOrder() async {
-  bool result = await fairTruckProvider.submitOrder();
-  if (result) {
+  List<dynamic> result = await fairTruckProvider.submitOrder();
+  if (result!=null) {
     await 3.delay();
 
     // fairTruckProvider.totalFair();
@@ -205,14 +211,14 @@ void bookOrder() async {
     // locProv.polylineCoordinates = [];
     // fairTruckProvider.loadCity = '';
     // fairTruckProvider.unloadCity = '';
-    if (!GetPlatform.isWeb) {
-      await Provider.of<AppFlowProvider>(Get.context!, listen: false)
-          .changeBookingStage(BookingStage.SearchingVehicle);
+    if (!kIsWeb) {
+      await Provider.of<AppFlowProvider>(Get.context!, listen: false).changeBookingStage(BookingStage.SearchingVehicle);
       appFlowProvider.stage = BookingStage.PickUp;
+
     }
 
 
-    if(!GetPlatform.isWeb){
+    if(!kIsWeb){
       await Fluttertoast.showToast(
           msg: "The order has been booked.",
           toastLength: Toast.LENGTH_LONG,
@@ -226,10 +232,22 @@ void bookOrder() async {
     }
     await 0.delay();
 
-    if (GetPlatform.isWeb) {
-      appFlowProvider.changeWebWidget(BookingStage.WebHome);
-    } else {
+    if (kIsWeb) {
+      appFlowProvider.changeWebWidget(BookingStage.Orders);
+
+    }
+    else {
       gotoPage(NavigationScreen(), isClosePrevious: true);
+    }
+
+    if(result[0]==true){
+      String response = await ApiServices.getMethod(feedUrl: "Order/get-order-by-Id?id=${result[1]}");
+      if (response.isNotEmpty) {
+        if (Get.currentRoute.contains("OrderDetailById")) {
+          Get.back();
+        }
+        Get.to(OrderDetailById(GetAllOrdersResponse.fromJson(json.decode(response))));
+      }
     }
   }
 }
