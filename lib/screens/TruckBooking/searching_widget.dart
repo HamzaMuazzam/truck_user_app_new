@@ -241,7 +241,7 @@ void bookOrder() async {
     }
 
     if(result[0]==true){
-    fairTruckProvider.gotoOrderBookingScreen(result[1]);
+    fairTruckProvider.gotoOrderBookingScreen(result[1].toString());
     }
   }
 }

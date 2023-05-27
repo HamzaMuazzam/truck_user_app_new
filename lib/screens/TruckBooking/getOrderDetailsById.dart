@@ -1083,18 +1083,6 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
       }
 
 
-      // if(order.isAccepted==false && order.isDelievered==false && order.isLoaded==false){
-      //   index=0;
-      // }
-      // else if(order.isAccepted==true && order.isLoaded==true && order.isDelievered==false && order.isLoaded==false){
-      //   index=1;
-      // }
-      // else if(order.isAccepted==true && order.isDelievered==false && order.isLoaded==true && order.isInProcess==true){
-      //   index=2;
-      // }
-      // else if(order.isAccepted==true && order.isDelievered==true && order.isInProcess==false){
-      //   index=3;
-      // }
     }
 
     return Column(

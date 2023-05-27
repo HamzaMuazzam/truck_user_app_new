@@ -47,8 +47,10 @@ class ApiServices {
   }
 
   static Future<String> getMethod({required String feedUrl}) async {
+    logger.e("${ApiUrls.BASE_URL_TRUCK}${feedUrl}");
     var request =
         http.Request('GET', Uri.parse("${ApiUrls.BASE_URL_TRUCK}${feedUrl}"));
+
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();

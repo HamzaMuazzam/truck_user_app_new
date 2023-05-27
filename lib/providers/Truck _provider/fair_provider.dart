@@ -212,8 +212,8 @@ class FairTruckProvider extends ChangeNotifier {
     return true;
   }
 
-  void gotoOrderBookingScreen(orderID) async{
-    String response = await ApiServices.getMethod(feedUrl: "Order/get-order-by-Id?id=$orderID}");
+  void gotoOrderBookingScreen(String orderID) async{
+    String response = await ApiServices.getMethod(feedUrl: "Order/get-order-by-Id?id=$orderID");
 
     if (response.isNotEmpty) {
       await 0.delay();
