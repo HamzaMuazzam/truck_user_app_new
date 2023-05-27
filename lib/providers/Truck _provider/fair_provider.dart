@@ -10,6 +10,7 @@ import 'package:sultan_cab/utils/const.dart';
 import '../../models/Truck_models/getAllCitiesResponse.dart';
 import '../../models/Truck_models/getAllOrdersResponse.dart';
 import '../../models/fair_by_car_id/fair_by_truck_id.dart';
+import '../../screens/TruckBooking/getOrderDetailsById.dart';
 import '../../services/ApiServices/StorageServices/get_storage.dart';
 import '../../services/ApiServices/api_urls.dart';
 import '../../utils/commons.dart';
@@ -147,11 +148,12 @@ class FairTruckProvider extends ChangeNotifier {
       AppConst.startProgress(barrierDismissible: true);
       String response = await ApiServices.postMethodTruck(feedUrl: ApiUrls.BOOKING_REQUEST, body: json.encode(map2));
       AppConst.stopProgress();
+      logger.e(response);
       if (response.isEmpty) {
         return [false,0];
       }
       logger.i('booking api done');
-      return [true,response];
+      return [true,json.decode(response)['orderId']];
     } catch (e) {
       print(e);
       return [false,0];
@@ -208,5 +210,17 @@ class FairTruckProvider extends ChangeNotifier {
     notifyListeners();
 
     return true;
+  }
+
+  void gotoOrderBookingScreen(orderID) async{
+    String response = await ApiServices.getMethod(feedUrl: "Order/get-order-by-Id?id=$orderID}");
+
+    if (response.isNotEmpty) {
+      await 0.delay();
+      Get.to(OrderDetailById(GetAllOrdersResponse.fromJson(json.decode(response))));
+    }
+    else{
+      Get.snackbar("Error", "Error on getting order");
+    }
   }
 }

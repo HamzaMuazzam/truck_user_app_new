@@ -53,7 +53,12 @@ class _PaymentWebViewState extends State<PaymentWebView> {
         return Stack(
           children: <Widget>[
             web.InAppWebView(
-              initialUrlRequest: web.URLRequest(url: Uri.parse(initUrl!)),
+              initialUrlRequest: web.URLRequest(url: Uri.parse(initUrl!),
+                headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
+                },
+              ),
+
             onLoadStop: (controller,uri) async {
 
                 logger.e(uri.toString());

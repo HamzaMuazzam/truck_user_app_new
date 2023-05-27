@@ -198,7 +198,7 @@ class _SearchingWidgetState extends State<SearchingWidget>
 
 void bookOrder() async {
   List<dynamic> result = await fairTruckProvider.submitOrder();
-  if (result!=null) {
+  if (result[0]==true) {
     await 3.delay();
 
     // fairTruckProvider.totalFair();
@@ -241,13 +241,7 @@ void bookOrder() async {
     }
 
     if(result[0]==true){
-      String response = await ApiServices.getMethod(feedUrl: "Order/get-order-by-Id?id=${result[1]}");
-      if (response.isNotEmpty) {
-        if (Get.currentRoute.contains("OrderDetailById")) {
-          Get.back();
-        }
-        Get.to(OrderDetailById(GetAllOrdersResponse.fromJson(json.decode(response))));
-      }
+    fairTruckProvider.gotoOrderBookingScreen(result[1]);
     }
   }
 }

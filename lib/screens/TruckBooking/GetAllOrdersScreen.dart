@@ -42,13 +42,6 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
     return Consumer<FairTruckProvider>(
         builder: (BuildContext context, value, Widget? child) {
       return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text("All Orders"),
-
-          leading: IconButton(onPressed: (){
-          Get.back();
-        }, icon: Icon(Icons.arrow_back,color: Colors.white,)),),
         backgroundColor: greybackColor,
         body: Container(
             height: Get.height,

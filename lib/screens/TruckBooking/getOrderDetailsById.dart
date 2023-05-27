@@ -863,7 +863,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                               InkWell(
                                 onTap: ()async {
 
-                                  bool? isPaid =await Get.to(PaymentWebView(initUrl: "https://cp.truck.deeps.info/Home/Payment?UserId=${order!.orderDetails!.user!.id}&amount=${order!.totalFare! * 100}&OrderId=${order!.orderId}",));
+                                  bool? isPaid =await Get.to(PaymentWebView(initUrl: "https://cp.truck.deeps.info/Home/Payment?UserId=${order!.orderDetails!.user!.id}&amount=${(order!.totalFare! * 100).toInt()}&OrderId=${order!.orderId}",));
                                   if(isPaid==true){
                                     order!.isPaid=true;
                                     setState(() {
@@ -910,7 +910,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                 sw(7),
                                 Expanded(
                                   child: Text(
-                                    'Payment Varified',
+                                    'Payment Verified',
                                     style: TextStyle(
                                         fontSize: h * 12,
                                         color: textYellowColor),
@@ -940,7 +940,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                 sw(7),
                                 Expanded(
                                   child: Text(
-                                    'Varified By',
+                                    'Verified By',
                                     style: TextStyle(
                                         fontSize: h * 12,
                                         color: textYellowColor),
@@ -969,7 +969,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                 sw(7),
                                 Expanded(
                                   child: Text(
-                                    'Varified Date',
+                                    'Verified Date',
                                     style: TextStyle(
                                         fontSize: h * 12,
                                         color: textYellowColor),
