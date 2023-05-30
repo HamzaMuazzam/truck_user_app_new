@@ -65,7 +65,8 @@ dependencies:
   # Connections
 
   socket_io_client: ^2.0.0
-  flutter_inappwebview: ^5.7.2+3
+  webviewx: ^0.2.2
+#  flutter_inappwebview: ^5.7.2+3
 
 
 

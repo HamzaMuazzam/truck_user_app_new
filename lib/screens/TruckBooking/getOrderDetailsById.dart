@@ -700,6 +700,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                 ),
                               ],
                             ),
+                            sh(10),
+
                             if(order!.truckDriver!=null)
                             Column(
                               children: [
@@ -906,9 +908,9 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                 color: Colors.grey,
                                 height: 1,
                               ),
-                            sh(20),
                             InkWell(
                               onTap: () async {
+                                if (order!.isPaid == true) return;
                                 bool? isPaid = await Get.to(PaymentWebView(
                                   initUrl:
                                       "https://cp.truck.deeps.info/Home/Payment?UserId=${order!.orderDetails!.user!.id}&amount=${(order!.totalFare! * 100).toInt()}&OrderId=${order!.orderId}",
@@ -935,10 +937,11 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                     child: Align(
                                       alignment: Alignment.topRight,
                                       child: Text(
-                                        "Click to Proceed",
+                                       order!.isPaid==true ?"PAID" : "Click to Proceed",
                                         style: TextStyle(
                                           color: Colors.green,
-                                          fontSize: h * 12,
+                                          fontSize: h * 15,
+                                          fontWeight: FontWeight.bold
                                         ),
                                       ),
                                     ),

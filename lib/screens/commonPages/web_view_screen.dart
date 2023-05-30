@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart' as web;
+
+// import 'package:flutter_inappwebview/flutter_inappwebview.dart' as web;
 import 'package:sultan_cab/utils/commons.dart';
+import 'package:webviewx/webviewx.dart';
 
 
 class PaymentWebView extends StatefulWidget {
@@ -24,9 +26,8 @@ class _PaymentWebViewState extends State<PaymentWebView> {
   @override
   void initState() {
     super.initState();
-
   }
-
+int x=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,28 +53,35 @@ class _PaymentWebViewState extends State<PaymentWebView> {
       body: Builder(builder: (BuildContext context) {
         return Stack(
           children: <Widget>[
-            web.InAppWebView(
-              initialUrlRequest: web.URLRequest(url: Uri.parse(initUrl!),
-                headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
-                },
-              ),
 
-            onLoadStop: (controller,uri) async {
+            WebViewX(
+              initialContent: initUrl!,
+              onPageStarted: (value){
 
-                logger.e(uri.toString());
-                if(uri.toString().contains("status=success") || uri.toString().contains("status=paid")) {
-                  Get.back(result: true);
-                }
-                setState(() {
-                  isLoading = false;
-                });
-            },
+              },
+              onPageFinished: (value){
+
+                    logger.e(value.toString());
+                    if(value.toString().contains("status=success") || value.toString().contains("status=paid")|| value.toString().contains("message=Succeeded")) {
+                      if(x==0){
+                      Get.back(result: true);
+                     }
+                      ++x;
+                    }
+                    else{
+                      print("Fool");
+                    }
+              },
+
+              initialSourceType: SourceType.url,
+              onWebViewCreated: (controller) {
+
+              },
+              width: Get.width,
+              height: Get.height,
             ),
-            isLoading
-                ? Center(
-                child: CircularProgressIndicator())
-                : Stack()
+
+
           ],
         );
       }),

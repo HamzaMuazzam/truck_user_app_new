@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -19,27 +17,20 @@ PaymentProvider paymentProvider =
     Provider.of<PaymentProvider>(Get.context!, listen: false);
 
 class PaymentProvider extends ChangeNotifier {
-  XFile? paymentFile;
+   XFile? paymentFile;
 
-  static Future<String> _multiPartPostMethodTruck(
-      {String? fileName,String? files, Map<String, String>? fields,required String
-      feed}
-      ) async {
+   Future<String> _multiPartPostMethodTruck(
+      {String? fileName,
+      Map<String, String>? fields,
+      required String feed}) async {
     AppConst.startProgress();
-    var request = http.MultipartRequest('POST',
-        Uri.parse('https://cp.truck.deeps.info/api/${feed}'));
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('https://cp.truck.deeps.info/api/${feed}'));
     if (fields != null) request.fields.addAll(fields);
-    if (files != null){
-      // if(kIsWeb){
-        List<int> fileBytes = File(files).readAsBytesSync();
-        String base64Image = base64Encode(fileBytes);
-        request.files.add(await http.MultipartFile.fromString(fileName!, base64Image));
-
-      // }else{
-      //   request.files.add(await http.MultipartFile.fromPath(fileName, files));
-      //
-      // }
-
+    if (paymentFile != null) {
+      final fileBytes = await paymentFile!.readAsBytes();
+      final base64String = base64Encode(fileBytes);
+      request.files.add(await http.MultipartFile.fromString(fileName!, base64String));
     }
     request.headers.addAll({'content-type': 'multipart/form-data'});
     http.StreamedResponse response = await request.send();
@@ -67,7 +58,6 @@ class PaymentProvider extends ChangeNotifier {
     String body = await _multiPartPostMethodTruck(
         feed: ApiUrls.UPLOAD_PAYMENT_EVIDENCE,
         fields: fields,
-        files: paymentFile!.path.toString(),
         fileName: 'PaymentProof');
     if (body.isEmpty) {
       return false;
@@ -92,6 +82,7 @@ class PaymentProvider extends ChangeNotifier {
       notifyListeners();
     }
     if (paymentFile != null) {
+
       await uploadPaymentEvidence(orderId);
       // paymentFile == null;
     }

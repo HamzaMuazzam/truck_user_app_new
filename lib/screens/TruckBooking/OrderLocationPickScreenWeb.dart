@@ -182,6 +182,15 @@ class _OrderLocationPickScreenWebState
                 LatLng? latlng;
                 if (kIsWeb) {
                   await Get.to(MapLocationPicker(
+                    placesApiHeaders:{
+                      "Accept": "application/json",
+                      "Access-Control-Allow-Origin": "*"
+                    } ,
+
+                      // final url = Uri.parse(
+                  // "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+                  // "key=${widget.apiKey}&location=${latLng.latitude},${latLng.longitude}"
+                  // "&radius=150&language=${widget.localizationItem!.languageCode}");
                     apiKey: GoogleMapApiKey,
                     currentLatLng: LatLng(position!.latitude,position!.longitude),
                     minMaxZoomPreference: MinMaxZoomPreference(3,20),
