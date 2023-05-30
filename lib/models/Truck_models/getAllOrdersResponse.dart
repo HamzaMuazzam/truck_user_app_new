@@ -10,7 +10,6 @@ String getAllOrdersResponseToJson(List<GetAllOrdersResponse> data) => json.encod
 
 class GetAllOrdersResponse {
   GetAllOrdersResponse({
-    this.id,
     this.orderId,
     this.orderDetails,
     this.truckTypeId,
@@ -28,10 +27,9 @@ class GetAllOrdersResponse {
     this.isLoaded,
     this.loadedTime,
     this.cancelationReason,
-    this.isPaid,
+    this.isPaid
   });
 
-  dynamic id;
   dynamic orderId;
   OrderDetails? orderDetails;
   dynamic truckTypeId;
@@ -52,7 +50,6 @@ class GetAllOrdersResponse {
   dynamic cancelationReason;
 
   factory GetAllOrdersResponse.fromJson(Map<String, dynamic> json) => GetAllOrdersResponse(
-    id: json["id"],
     orderId: json["orderId"],
     orderDetails: json["orderDetails"] == null ? null : OrderDetails.fromJson(json["orderDetails"]),
     truckTypeId: json["truckTypeId"],
@@ -74,7 +71,6 @@ class GetAllOrdersResponse {
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
     "orderId": orderId,
     "orderDetails": orderDetails?.toJson(),
     "truckTypeId": truckTypeId,

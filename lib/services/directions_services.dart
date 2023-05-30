@@ -3,7 +3,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:sultan_cab/models/directions_model.dart';
 import 'package:sultan_cab/services/ApiServices/api_urls.dart';
-import 'package:sultan_cab/utils/api_keys.dart';
 
 class DirectionServices {
   Future<Directions?> getDirections({
@@ -11,26 +10,7 @@ class DirectionServices {
     required LatLng dest,
   }) async {
     try {
-      // var headers = {
-      //   "Access-Control-Allow-Origin": "*",
-      //   'Content-Type': 'application/json',
-      //   'Accept': '*/*'
-      // };
-
-
-
-      // Uri link = Uri(
-      //     scheme: "https",
-      //     host: 'maps.googleapis.com',
-      //     path: 'maps/api/directions/json',
-      //     queryParameters: {
-      //       'origin': '${origin.latitude},${origin.longitude}',
-      //       'destination': '${dest.latitude},${dest.longitude}',
-      //       'key': GoogleMapApiKey,
-      //     });
-
       final res = await http.Client().get(Uri.parse(ApiUrls.BASE_URL_TRUCK+ApiUrls.GET_DISTANCE+"?origin=${origin.latitude},${origin.longitude}&destination=${dest.latitude},${dest.longitude}")).timeout(Duration(seconds: 15));
-      // final res = await http.Client().get(link,headers: headers).timeout(Duration(seconds: 15));
       if (res.statusCode == 200) {
         return Directions.fromMap(jsonDecode(res.body));
       }
@@ -39,5 +19,6 @@ class DirectionServices {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 }

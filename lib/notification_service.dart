@@ -82,8 +82,7 @@ class NotificationRoutes {
           if (Get.currentRoute.contains("OrderDetailById")) {
             Get.back();
           }
-          Get.to(OrderDetailById(
-              GetAllOrdersResponse.fromJson(json.decode(response))));
+          Get.to(OrderDetailById(GetAllOrdersResponse.fromJson(json.decode(response))));
         }
       }
     }catch(e){

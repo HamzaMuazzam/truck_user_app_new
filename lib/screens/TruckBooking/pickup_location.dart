@@ -9,6 +9,7 @@ import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
 
+import '../../utils/commons.dart';
 import '/models/directions_model.dart';
 import '/services/directions_services.dart';
 import '/utils/api_keys.dart';
@@ -31,14 +32,19 @@ Future<String> getCityName(double lat, double lng) async {
     final url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$apiKey";
     final response = await http.get(Uri.parse(url));
     final data = json.decode(response.body);
+    logger.i(data);
+    var city="";
     final cityName = data["results"][0]["address_components"];
-    print(cityName);
     for(var x in cityName){
-      if(x["types"].toString().contains("locality")){
-        return x["long_name"].toString();
-      }
+      var list = x["types"] as List;
+      list.forEach((element) {
+        if(element=="locality"){
+          city=x["long_name"].toString();
+        };
+      });
+
     }
-    return "";
+    return city;
 
 
   }catch(e){

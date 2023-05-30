@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:sultan_cab/services/ApiServices/StorageServices/get_storage.dart';
 import 'package:sultan_cab/services/ApiServices/api_urls.dart';
@@ -56,10 +57,21 @@ class ApiServices {
     http.StreamedResponse response = await request.send();
     String result = await response.stream.bytesToString();
     logger.i(result);
+
     if (response.statusCode == 200) {
       return result;
     } else {
       logger.e(result);
+      // await 10.delay();
+      // Get.dialog(Material(
+      //     child: Container(
+      //       child: Center(child: Text(
+      //
+      //           "\nURL: $feedUrl"
+      //           "\nCode ${response.statusCode}"
+      //           "\nResponse: $result")),
+      //     )
+      // ));
       return "";
     }
   }

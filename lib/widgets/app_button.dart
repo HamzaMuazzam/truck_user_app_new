@@ -24,7 +24,7 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     var h = SizeConfig.screenHeight / 812;
-    var b = SizeConfig.screenWidth / 375;
+    // var b = SizeConfig.screenWidth / 375;
 
     return InkWell(
       onTap: onPressed,

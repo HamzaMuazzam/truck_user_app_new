@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/services/ApiServices/api_services.dart';
@@ -26,7 +27,7 @@ class FairTruckProvider extends ChangeNotifier {
   TextEditingController deliveryNote = TextEditingController();
   List<GetTruckFareResponse>? getTruckFareResponse = [];
 
-  // var totalFare;
+
   Future<bool> getAllTruckFairs() async {
     AppConst.startProgress();
     var body =
@@ -213,14 +214,23 @@ class FairTruckProvider extends ChangeNotifier {
   }
 
   void gotoOrderBookingScreen(String orderID) async{
+
     String response = await ApiServices.getMethod(feedUrl: "Order/get-order-by-Id?id=$orderID");
 
+
+
+
+
+
     if (response.isNotEmpty) {
-      await 0.delay();
+      await 5.delay();
       Get.to(OrderDetailById(GetAllOrdersResponse.fromJson(json.decode(response))));
     }
     else{
       Get.snackbar("Error", "Error on getting order");
     }
+
   }
+
+
 }
