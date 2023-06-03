@@ -11,6 +11,7 @@ import 'package:sultan_cab/utils/const.dart';
 import '../../models/Truck_models/getAllCitiesResponse.dart';
 import '../../models/Truck_models/getAllOrdersResponse.dart';
 import '../../models/fair_by_car_id/fair_by_truck_id.dart';
+import '../../screens/TruckBooking/booking_summary.dart';
 import '../../screens/TruckBooking/getOrderDetailsById.dart';
 import '../../services/ApiServices/StorageServices/get_storage.dart';
 import '../../services/ApiServices/api_urls.dart';
@@ -40,26 +41,9 @@ class FairTruckProvider extends ChangeNotifier {
     return true;
   }
 
-  int totalValue = 0;
+  // int totalValue = 0;
 
-  int _totalFair() {
-    fairTruckProvider.getTruckFareResponse!.forEach((element) {
-      String distance;
-      if (appFlowProvider.directions == null) {
-        distance = "50.0";
-      } else {
-        distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
-      }
-      if (element.quantity > 0) {
-        var i = element.quantity *
-            element.farePerKm!.toInt() *
-            double.parse(distance)
-                .toInt();
-        totalValue = totalValue + i;
-      }
-    });
-    return totalValue;
-  }
+
 
   Future<List<dynamic>> submitOrder() async {
     try {
@@ -132,10 +116,10 @@ class FairTruckProvider extends ChangeNotifier {
           } else {
             distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
           }
-          var i = element.quantity *
-              element.farePerKm!.toInt() *
-              double.parse(distance).toInt();
-          totalValue = totalValue + i;
+          var i = (element.quantity *
+              double.parse(element.moreThan400KmFares!) *
+              double.parse(distance)).toInt();
+          // totalValue = totalValue + i;
           list.add({
             "truckId": element.id.toString(),
             "noOfTrucks": element.quantity.toString(),
@@ -144,7 +128,7 @@ class FairTruckProvider extends ChangeNotifier {
         }
       });
       map2["truckDetails"] = list;
-      map2["totalFare"] = totalValue.toString();
+      map2["totalFare"] = getTotalFairs();
       logger.i(map2);
       AppConst.startProgress(barrierDismissible: true);
       String response = await ApiServices.postMethodTruck(feedUrl: ApiUrls.BOOKING_REQUEST, body: json.encode(map2));

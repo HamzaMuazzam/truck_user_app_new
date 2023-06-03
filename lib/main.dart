@@ -11,7 +11,6 @@ import 'package:sultan_cab/providers/home_provider.dart';
 import 'package:sultan_cab/providers/track_provider.dart';
 import 'package:sultan_cab/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:sultan_cab/screens/commonPages/web_view_screen.dart';
 import 'auth_widget.dart';
 import 'providers/GoogleMapProvider/location_and_map_provider.dart';
 import 'providers/NotificationProvider/notification_provider.dart';

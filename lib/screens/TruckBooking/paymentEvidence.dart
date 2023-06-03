@@ -86,12 +86,12 @@ class _PaymentEvidenceState extends State<PaymentEvidence> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       sh(10),
-                                      Text(
-                                        'Estimated Cost: SAR ${fairTruckProvider.totalValue.toString()}',
-                                        style: TextStyle(
-                                            fontSize: h * 12,
-                                            color: textGreyColor),
-                                      ),
+                                      // Text(
+                                      //   'Estimated Cost: SAR ${fairTruckProvider.tot.toString()}',
+                                      //   style: TextStyle(
+                                      //       fontSize: h * 12,
+                                      //       color: textGreyColor),
+                                      // ),
                                     ],
                                   ),
                                 ),

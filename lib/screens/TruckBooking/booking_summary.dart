@@ -19,7 +19,7 @@ class BookingSummary extends StatefulWidget {
 
 class _BookingSummaryState extends State<BookingSummary> {
   FairTruckProvider fairTruckProvider =
-  Provider.of(Get.context!, listen: false);
+      Provider.of(Get.context!, listen: false);
 
   @override
   void initState() {
@@ -66,13 +66,12 @@ class _BookingSummaryState extends State<BookingSummary> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-
                         margin: EdgeInsets.symmetric(
                           horizontal: b * 15,
                           vertical: h * 15,
                         ),
                         padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 20, b * 17, h * 20),
+                            EdgeInsets.fromLTRB(b * 17, h * 20, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -90,9 +89,8 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
                                       /// 1st Location
                                       Text(
                                         appProvider.currentAdd ?? PickUpAddrLbl,
@@ -117,24 +115,21 @@ class _BookingSummaryState extends State<BookingSummary> {
                               children: [
                                 Image.asset(
                                   'assets/icons/unloading.png',
-
                                   height: h * 20,
                                 ),
                                 sw(19),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
                                       /// Other Location
                                       Text(
                                         appProvider.destAdd ??
                                             "Your Destination",
                                         style: TextStyle(
                                             fontSize: h * 12,
-                                            color: textGreyColor
-                                        ),
+                                            color: textGreyColor),
                                       ),
                                     ],
                                   ),
@@ -156,7 +151,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                           vertical: h * 0,
                         ),
                         padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                            EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -170,16 +165,14 @@ class _BookingSummaryState extends State<BookingSummary> {
                                   'assets/images/truckSummary.png',
                                   width: b * 35,
                                   height: h * 35,
-
                                   color: textYellowColor,
                                 ),
                                 sw(7),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
                                       /// Selected Truck
                                       Text(
                                         'Selected Truck',
@@ -188,7 +181,6 @@ class _BookingSummaryState extends State<BookingSummary> {
                                             color: textYellowColor),
                                       ),
                                       sh(10),
-
                                     ],
                                   ),
                                 ),
@@ -200,18 +192,14 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
-
-
                                       sh(10),
                                       Text(
                                         getSelectedTrucks(),
                                         style: TextStyle(
-                                            fontSize:h * 12,
-                                            color: textGreyColor
-                                        ),
+                                            fontSize: h * 12,
+                                            color: textGreyColor),
                                       ),
                                     ],
                                   ),
@@ -219,7 +207,6 @@ class _BookingSummaryState extends State<BookingSummary> {
                               ],
                             ),
                             sh(10),
-
                             Container(
                               color: Colors.grey,
                               height: 1,
@@ -233,7 +220,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                           vertical: h * 0,
                         ),
                         padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                            EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -247,16 +234,14 @@ class _BookingSummaryState extends State<BookingSummary> {
                                   'assets/images/truckSummary.png',
                                   width: b * 35,
                                   height: h * 35,
-
                                   color: textYellowColor,
                                 ),
                                 sw(7),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
                                       /// Selected Truck
                                       Text(
                                         'Load City',
@@ -265,7 +250,6 @@ class _BookingSummaryState extends State<BookingSummary> {
                                             color: textYellowColor),
                                       ),
                                       sh(10),
-
                                     ],
                                   ),
                                 ),
@@ -277,16 +261,15 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
                                       /// Selected Truck
 
                                       sh(10),
                                       Text(
                                         fairTruckProvider.loadCity,
                                         style: TextStyle(
-                                          fontSize:h * 12,
+                                          fontSize: h * 12,
                                         ),
                                       ),
                                     ],
@@ -295,7 +278,6 @@ class _BookingSummaryState extends State<BookingSummary> {
                               ],
                             ),
                             sh(10),
-
                             Container(
                               color: Colors.grey,
                               height: 1,
@@ -309,7 +291,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                           vertical: h * 0,
                         ),
                         padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                            EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -323,16 +305,14 @@ class _BookingSummaryState extends State<BookingSummary> {
                                   'assets/images/truckSummary.png',
                                   width: b * 35,
                                   height: h * 35,
-
                                   color: textYellowColor,
                                 ),
                                 sw(7),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
                                       Text(
                                         'UnLoad City',
                                         style: TextStyle(
@@ -340,7 +320,6 @@ class _BookingSummaryState extends State<BookingSummary> {
                                             color: textYellowColor),
                                       ),
                                       sh(10),
-
                                     ],
                                   ),
                                 ),
@@ -352,9 +331,8 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
                                       /// Selected Truck
 
                                       sh(10),
@@ -370,7 +348,6 @@ class _BookingSummaryState extends State<BookingSummary> {
                               ],
                             ),
                             sh(10),
-
                             Container(
                               color: Colors.grey,
                               height: 1,
@@ -385,7 +362,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                           vertical: h * 0,
                         ),
                         padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                            EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -395,14 +372,17 @@ class _BookingSummaryState extends State<BookingSummary> {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.social_distance,size: 35, color: yellowColor,),
+                                Icon(
+                                  Icons.social_distance,
+                                  size: 35,
+                                  color: yellowColor,
+                                ),
                                 sw(7),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
                                       Text(
                                         "Total Distance",
                                         style: TextStyle(
@@ -410,7 +390,6 @@ class _BookingSummaryState extends State<BookingSummary> {
                                             color: textYellowColor),
                                       ),
                                       sh(10),
-
                                     ],
                                   ),
                                 ),
@@ -422,14 +401,13 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
-
-
                                       sh(10),
                                       Text(
-                                        appFlowProvider.directions!.totalDistance.toString(),
+                                        appFlowProvider
+                                            .directions!.totalDistance
+                                            .toString(),
                                         style: TextStyle(
                                           fontSize: h * 12,
                                         ),
@@ -440,7 +418,6 @@ class _BookingSummaryState extends State<BookingSummary> {
                               ],
                             ),
                             sh(10),
-
                             Container(
                               color: Colors.grey,
                               height: 1,
@@ -455,7 +432,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                           vertical: h * 0,
                         ),
                         padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                            EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -465,14 +442,17 @@ class _BookingSummaryState extends State<BookingSummary> {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.price_check,size: 35, color: yellowColor,),
+                                Icon(
+                                  Icons.price_check,
+                                  size: 35,
+                                  color: yellowColor,
+                                ),
                                 sw(7),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
                                       Text(
                                         "Total Fairs",
                                         style: TextStyle(
@@ -480,7 +460,6 @@ class _BookingSummaryState extends State<BookingSummary> {
                                             color: textYellowColor),
                                       ),
                                       sh(10),
-
                                     ],
                                   ),
                                 ),
@@ -492,11 +471,8 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
-                                      /// Selected Truck
-
                                       sh(10),
                                       Text(
                                         getTotalFairs(),
@@ -510,7 +486,6 @@ class _BookingSummaryState extends State<BookingSummary> {
                               ],
                             ),
                             sh(10),
-
                             Container(
                               color: Colors.grey,
                               height: 1,
@@ -525,7 +500,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                           vertical: h * 0,
                         ),
                         padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                            EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -533,18 +508,12 @@ class _BookingSummaryState extends State<BookingSummary> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             Container(
-                              height:120,
-                              width: Get.width
-                              ,
-
+                              height: 120,
+                              width: Get.width,
                               decoration: BoxDecoration(
                                 color: phoneBoxBackground,
                                 borderRadius: BorderRadius.circular(10),
-
-
-
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -558,10 +527,8 @@ class _BookingSummaryState extends State<BookingSummary> {
                                   ),
                                 ),
                               ),
-
                             ),
                             sh(10),
-
                           ],
                         ),
                       ),
@@ -574,8 +541,7 @@ class _BookingSummaryState extends State<BookingSummary> {
             child: AppButton(
               label: "Submit",
               onPressed: () async {
-
-                  Get.to(()=>SearchingWidget());
+                Get.to(() => SearchingWidget());
               },
             ),
           ),
@@ -585,28 +551,8 @@ class _BookingSummaryState extends State<BookingSummary> {
     );
   }
 
-  String getTotalFairs() {
-var totalValue=0;
-    fairTruckProvider.getTruckFareResponse!.forEach((element) {
-      if (element.quantity > 0) {
-        String distance;
-        if (appFlowProvider.directions == null) {
-          distance = "50.0";
-        } else {
-          distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
-        }
-        var i = element.quantity *
-            element.farePerKm!.toInt() *
-            double.parse(distance).toInt();
-        totalValue = totalValue + i;
-      }
-    });
-
-    return totalValue.toString() +" SAR";
-  }
-
-
 }
+
 String getSelectedTrucks() {
   List<String> list = [];
   fairTruckProvider.getTruckFareResponse!.forEach((element) {
@@ -614,15 +560,49 @@ String getSelectedTrucks() {
     String quantity = '';
     if (element.quantity > 0) {
       if (element.truckType != '') {
-        trucks = ' ( ' + element
-            .truckType! + ' )';
+        trucks = ' ( ' + element.truckType! + ' )';
       }
-      if(element.quantity>1)
-      {
-        quantity=' * ' + element.quantity.toString();
+      if (element.quantity > 1) {
+        quantity = ' * ' + element.quantity.toString();
       }
       list.add(element.truckName! + trucks + quantity);
     }
   });
   return list.isEmpty ? "" : list.join("\n");
+}
+String getTotalFairs() {
+  double total = 0.0;
+  fairTruckProvider.getTruckFareResponse!.forEach((element) {
+    double totalValue = 0.0;
+
+    if (element.quantity > 0) {
+      String distance;
+      double distanceDouble=0.0;
+      if (appFlowProvider.directions == null) {
+        distance = "50.0";
+      }
+      else {
+        distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
+      }
+      if(distance.contains(",")){
+        distance=distance.replaceAll(",", "");
+        distanceDouble = double.parse(distance);
+      }
+
+      if(distanceDouble<=100){
+        totalValue=totalValue+double.parse(element.upto100Km!);
+      }
+      else if(distanceDouble>100 && distanceDouble<=400){
+        totalValue=totalValue+double.parse(element.upto400Km!);
+      }
+      else if(distanceDouble>400){
+        totalValue= totalValue + distanceDouble * double.parse(element.moreThan400KmFares!);
+      }
+      totalValue=totalValue*element.quantity;
+      total=total+totalValue;
+
+    }
+  });
+
+  return (total + 200.0).toStringAsFixed(0) + " SAR";
 }

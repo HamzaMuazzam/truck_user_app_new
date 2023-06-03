@@ -106,7 +106,7 @@ class _ChooseCarState extends State<ChooseCar> {
                                                 right: 15.0,
                                               ),
                                               child: Text(
-                                                truck.farePerKm!.toInt().toString() +" per KM",
+                                                truck.moreThan400KmFares!.toString() +" per KM",
                                                 style: TextStyle(
                                                     fontSize: 15,
                                                     color: greyColor),
