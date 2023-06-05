@@ -128,7 +128,7 @@ class FairTruckProvider extends ChangeNotifier {
         }
       });
       map2["truckDetails"] = list;
-      map2["totalFare"] = getTotalFairs();
+      map2["totalFare"] = getTotalFairs().replaceAll(" SAR", "");
       logger.i(map2);
       AppConst.startProgress(barrierDismissible: true);
       String response = await ApiServices.postMethodTruck(feedUrl: ApiUrls.BOOKING_REQUEST, body: json.encode(map2));

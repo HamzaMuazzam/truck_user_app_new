@@ -580,16 +580,18 @@ String getTotalFairs() {
       double distanceDouble=0.0;
       if (appFlowProvider.directions == null) {
         distance = "50.0";
+        distanceDouble = double.parse(distance);
+
       }
       else {
         distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
       }
       if(distance.contains(",")){
         distance=distance.replaceAll(",", "");
-        distanceDouble = double.parse(distance);
       }
+      distanceDouble = double.parse(distance);
 
-      if(distanceDouble<=100){
+      if(distanceDouble<=100 && distanceDouble<400){
         totalValue=totalValue+double.parse(element.upto100Km!);
       }
       else if(distanceDouble>100 && distanceDouble<=400){
@@ -599,10 +601,11 @@ String getTotalFairs() {
         totalValue= totalValue + distanceDouble * double.parse(element.moreThan400KmFares!);
       }
       totalValue=totalValue*element.quantity;
-      total=total+totalValue;
+      var commission = double.parse(element.commission!)* element.quantity;
+      total=total+totalValue + commission;
 
     }
   });
 
-  return (total + 200.0).toStringAsFixed(0) + " SAR";
+  return (total).toStringAsFixed(0) + " SAR";
 }
