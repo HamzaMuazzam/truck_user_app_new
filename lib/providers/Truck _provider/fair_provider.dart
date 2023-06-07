@@ -105,28 +105,36 @@ class FairTruckProvider extends ChangeNotifier {
       }else{
         map2["distance"]=0.toString();
       }
+      logger.i(map2);
 
       List<Map<String, String>> list = [];
+      try{
+        fairTruckProvider.getTruckFareResponse!.forEach((element) {
+          if (element.quantity > 0) {
+            String distance;
+            if (appFlowProvider.directions == null) {
+              distance = "50.0";
+            } else {
+              distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
+            }
+              distance=distance.replaceAll("km", "").replaceAll("Km", "").replaceAll(",","");
 
-      fairTruckProvider.getTruckFareResponse!.forEach((element) {
-        if (element.quantity > 0) {
-          String distance;
-          if (appFlowProvider.directions == null) {
-            distance = "50.0";
-          } else {
-            distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
+
+            var i = (element.quantity *
+                    double.parse(element.moreThan400KmFares!) *
+                    double.parse(distance))
+                .toInt();
+            // totalValue = totalValue + i;
+            list.add({
+              "truckId": element.id.toString(),
+              "noOfTrucks": element.quantity.toString(),
+              "totalFare": i.toString(),
+            });
           }
-          var i = (element.quantity *
-              double.parse(element.moreThan400KmFares!) *
-              double.parse(distance)).toInt();
-          // totalValue = totalValue + i;
-          list.add({
-            "truckId": element.id.toString(),
-            "noOfTrucks": element.quantity.toString(),
-            "totalFare": i.toString(),
-          });
-        }
-      });
+        });
+      }catch(e){
+        print("object "+ e.toString());
+      }
       map2["truckDetails"] = list;
       map2["totalFare"] = getTotalFairs().replaceAll(" SAR", "");
       logger.i(map2);
@@ -140,30 +148,12 @@ class FairTruckProvider extends ChangeNotifier {
       logger.i('booking api done');
       return [true,json.decode(response)['orderId']];
     } catch (e) {
-      print(e);
+      print("CATCHED ERROR => "+e.toString());
       return [false,0];
     }
   }
 
 
-  String convertTimeString(String time){
-    try{
-      if (time.contains("hours")) {
-        var split = time.split(" ");
-        var hours = split[0];
-        var mints = split[3];
-        return "$hours:$mints";
-      } else if (!time.contains("hours") && time.contains("mins")) {
-        var split = time.split(" ");
-        var mints = split[0];
-        return "00:$mints";
-      }
-    }catch(e){
-      return "55:00";
-    }
-
-    return "45:00";
-  }
   List<GetAllCitiesResponse>? getAllCitiesResponse = [];
 
   Future<bool> getAllCities() async {
@@ -214,6 +204,48 @@ class FairTruckProvider extends ChangeNotifier {
       Get.snackbar("Error", "Error on getting order");
     }
 
+  }
+  String convertTimeString(String time){
+    try{
+      if (time.contains("hours")) {
+        var split = time.split(" ");
+        var hours = split[0];
+        var mints = split[2];
+
+        if(hours.length==2 && mints.length==2){
+          return "$hours:$mints";
+        }
+        else if(hours.length==1 && mints.length==2) {
+          return "0$hours:$mints";
+        }
+        else if(hours.length==2 && mints.length==1) {
+          return "$hours:0$mints";
+        }
+        else if(hours.length==1 && mints.length==1) {
+          return "0$hours:0$mints";
+        }
+        else{
+          return "$hours:$mints";
+
+        }
+
+
+        } else if (!time.contains("hours") && time.contains("mins")) {
+        var split = time.split(" ");
+        var mints = split[0];
+        if(mints.length==2){
+
+        return "00:$mints";
+        }
+        else{
+          return "00:0$mints";
+        }
+      }
+    }catch(e){
+      return "55:00";
+    }
+
+    return "45:00";
   }
 
 

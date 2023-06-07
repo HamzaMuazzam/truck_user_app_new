@@ -30,10 +30,13 @@ class _BookingSummaryState extends State<BookingSummary> {
 
   @override
   Widget build(BuildContext context) {
+
     SizeConfig().init(context);
     h = SizeConfig.screenHeight / 812;
     b = SizeConfig.screenWidth / 375;
     final appProvider = Provider.of<AppFlowProvider>(context);
+    var travelTime = fairTruckProvider.convertTimeString(appProvider.directions!.totalDuration!);
+    print(travelTime);
 
     return Scaffold(
       backgroundColor: greybackColor,
@@ -432,7 +435,75 @@ class _BookingSummaryState extends State<BookingSummary> {
                           vertical: h * 0,
                         ),
                         padding:
-                            EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                        decoration: BoxDecoration(
+                          color: greybackColor,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.timer,
+                                  size: 35,
+                                  color: yellowColor,
+                                ),
+                                sw(7),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Total Estimated Time:",
+                                        style: TextStyle(
+                                            fontSize: h * 12,
+                                            color: textYellowColor),
+                                      ),
+                                      sh(10),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                sw(42),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      sh(10),
+                                      Text(
+                                        travelTime,
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            sh(10),
+                            Container(
+                              color: Colors.grey,
+                              height: 1,
+                            ),
+                            sh(10),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: b * 15,
+                          vertical: h * 0,
+                        ),
+                        padding:
+                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -451,7 +522,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "Total Fairs",
@@ -471,7 +542,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       sh(10),
                                       Text(

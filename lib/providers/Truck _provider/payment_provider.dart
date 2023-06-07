@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ import 'package:sultan_cab/services/ApiServices/api_urls.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/const.dart';
 import 'package:http/http.dart' as http;
+import '../../models/Truck_models/getAllOrdersResponse.dart';
 import '../../services/apiServices/api_services.dart';
 import '../../widgets/app_widgets.dart';
 import 'dart:convert';
@@ -18,14 +20,14 @@ PaymentProvider paymentProvider =
 
 class PaymentProvider extends ChangeNotifier {
    XFile? paymentFile;
-
+Widget? paymentWidget;
    Future<String> _multiPartPostMethodTruck(
       {String? fileName,
       Map<String, String>? fields,
       required String feed}) async {
     AppConst.startProgress();
     var request = http.MultipartRequest(
-        'POST', Uri.parse('https://cp.truck.deeps.info/api/${feed}'));
+        'POST', Uri.parse('http://cp.truck.deeps.info/api/${feed}'));
     if (fields != null) request.fields.addAll(fields);
     if (paymentFile != null) {
       final fileBytes = await paymentFile!.readAsBytes();
@@ -44,7 +46,6 @@ class PaymentProvider extends ChangeNotifier {
       String result = await response.stream.bytesToString();
       logger.i(result.toString());
       AppConst.errorSnackBar('Something is wrong \n $result');
-
       return "";
     }
   }
@@ -105,4 +106,7 @@ class PaymentProvider extends ChangeNotifier {
     notifyListeners();
     return true;
   }
+
+   GetAllOrdersResponse? order;
+
 }
