@@ -126,7 +126,7 @@ class ApiServices {
     String contentType = 'application/json',
   }) async {
     var request = http.Request(
-        requestType, Uri.parse("https://api.truck.deeps.info/api/$feedUrl"));
+        requestType, Uri.parse("${ApiUrls.BASE_URL_TRUCK}$feedUrl"));
 
     request.headers.addAll({'content-type': 'application/json'});
     if (requestType == "GET") {
@@ -137,7 +137,7 @@ class ApiServices {
     AppConst.stopProgress();
 
     var s = await response.stream.bytesToString();
-      print(s);
+      logger.i("postMethodTruck "+ s);
     if (response.statusCode == 200 || response.statusCode == 201) {
       print("await response.stream.bytesToString()");
       return s;
@@ -158,7 +158,7 @@ class ApiServices {
      ) async {
     AppConst.startProgress();
     var request = http.MultipartRequest('POST',
-        Uri.parse('https://api.truck.deeps.info/api/${feed}'));
+        Uri.parse('${ApiUrls.BASE_URL_TRUCK}${feed}'));
     if (fields != null) request.fields.addAll(fields);
     if (files != null && fileName!=null)
       request.files.add(await http.MultipartFile.fromPath(fileName, files));

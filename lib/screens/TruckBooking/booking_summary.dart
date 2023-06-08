@@ -680,3 +680,43 @@ String getTotalFairs() {
 
   return (total).toStringAsFixed(0) + " SAR";
 }
+
+String getTotalFairsWithoutCommission() {
+  double total = 0.0;
+  fairTruckProvider.getTruckFareResponse!.forEach((element) {
+    double totalValue = 0.0;
+
+    if (element.quantity > 0) {
+      String distance;
+      double distanceDouble=0.0;
+      if (appFlowProvider.directions == null) {
+        distance = "50.0";
+        distanceDouble = double.parse(distance);
+
+      }
+      else {
+        distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
+      }
+      if(distance.contains(",")){
+        distance=distance.replaceAll(",", "");
+      }
+      distanceDouble = double.parse(distance);
+
+      if(distanceDouble<=100 && distanceDouble<400){
+        totalValue=totalValue+double.parse(element.upto100Km!);
+      }
+      else if(distanceDouble>100 && distanceDouble<=400){
+        totalValue=totalValue+double.parse(element.upto400Km!);
+      }
+      else if(distanceDouble>400){
+        totalValue= totalValue + distanceDouble * double.parse(element.moreThan400KmFares!);
+      }
+      totalValue=totalValue*element.quantity;
+      // var commission = double.parse(element.commission!) * element.quantity;
+      total=total+totalValue /*+ commission*/;
+
+    }
+  });
+
+  return (total).toStringAsFixed(0);
+}
