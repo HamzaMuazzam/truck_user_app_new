@@ -158,10 +158,8 @@ class FairTruckProvider extends ChangeNotifier {
   List<GetAllCitiesResponse>? getAllCitiesResponse = [];
 
   Future<bool> getAllCities() async {
-    var response =
-        await ApiServices.getMethodTruck(feedUrl: ApiUrls.GET_ALL_CITIES);
+    var response = await ApiServices.getMethodTruck(feedUrl: ApiUrls.GET_ALL_CITIES);
     if (response.isEmpty) return false;
-
     getAllCitiesResponse = getAllCitiesResponseFromJson(response);
     notifyListeners();
     return true;

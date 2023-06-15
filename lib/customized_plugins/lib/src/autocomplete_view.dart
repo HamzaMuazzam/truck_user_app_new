@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart' hide ErrorBuilder;
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
@@ -5,6 +7,7 @@ import 'package:http/http.dart';
 
 import '../map_location_picker.dart';
 import 'logger.dart';
+import 'package:http/http.dart' as http;
 
 class PlacesAutocomplete extends StatelessWidget {
   /// API key for the map & places
@@ -420,13 +423,26 @@ class PlacesAutocomplete extends StatelessWidget {
         apiHeaders: placesApiHeaders,
         baseUrl: placesBaseUrl,
       );
-      final PlacesDetailsResponse response = await places.getDetailsByPlaceId(
-        placeId,
-        region: region,
-        sessionToken: sessionToken,
-        language: language,
-        fields: fields,
-      );
+
+      var request = http.Request('GET', Uri.parse('https://k36cd77s49.execute-api.us-west-1.amazonaws.com/prod/getDetailsByPlaceId?placeid=${placeId}'));
+      http.StreamedResponse result = await request.send();
+      var  body = await result.stream.bytesToString();
+      print(body);
+      if (result.statusCode == 200) {
+
+      }
+      else {
+        print(result.reasonPhrase);
+        return ;
+      }
+      final PlacesDetailsResponse response = await PlacesDetailsResponse.fromJson(json.decode(body));
+      // final PlacesDetailsResponse response = await places.getDetailsByPlaceId(
+      //   placeId,
+      //   region: region,
+      //   sessionToken: sessionToken,
+      //   language: language,
+      //   fields: fields,
+      // );
 
       /// When get any error from the API, show the error in the console.
       if (response.hasNoResults ||
@@ -519,8 +535,7 @@ class PlacesAutocomplete extends StatelessWidget {
                 return predictions;
               },
               onSuggestionSelected: (value) async {
-                textController.value.selection = TextSelection.collapsed(
-                    offset: textController.value.text.length);
+                textController.value.selection = TextSelection.collapsed(offset: textController.value.text.length);
                 _getDetailsByPlaceId(value.placeId ?? "", context);
                 onSuggestionSelected?.call(value);
               },

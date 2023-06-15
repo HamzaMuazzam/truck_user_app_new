@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import "package:google_maps_webapi/places.dart";
 import 'package:http/http.dart';
 
 import 'logger.dart';
-
+import 'package:http/http.dart' as http;
 class AutoCompleteState {
   AutoCompleteState({
     this.httpClient,
@@ -67,25 +69,43 @@ class AutoCompleteState {
     String? region,
   }) async {
     try {
-      final places = GoogleMapsPlaces(
-        apiKey: apiKey,
-        httpClient: httpClient,
-        apiHeaders: apiHeaders,
-        baseUrl: baseUrl,
-      );
-      final PlacesAutocompleteResponse response = await places.autocomplete(
-        query,
-        region: region,
-        language: language,
-        components: components,
-        location: location,
-        offset: offset,
-        origin: origin,
-        radius: radius,
-        sessionToken: sessionToken,
-        strictbounds: strictbounds,
-        types: types,
-      );
+      // final places = GoogleMapsPlaces(
+      //   apiKey: apiKey,
+      //   httpClient: httpClient,
+      //   apiHeaders: apiHeaders,
+      //   baseUrl: baseUrl,
+      // );
+
+
+
+      if(query.isEmpty) return [];
+      var request = http.Request('GET', Uri.parse('https://k36cd77s49.execute-api.us-west-1.amazonaws.com/prod/api?input=${query}'));
+
+      http.StreamedResponse result = await request.send();
+      var  body = await result.stream.bytesToString();
+        print(body);
+      if (result.statusCode == 200) {
+
+      }
+      else {
+        print(result.reasonPhrase);
+        return [];
+      }
+
+      PlacesAutocompleteResponse response = PlacesAutocompleteResponse.fromJson(json.decode(body));
+      // final PlacesAutocompleteResponse response = await places.autocomplete(
+      //   query,
+      //   region: region,
+      //   language: language,
+      //   components: components,
+      //   location: location,
+      //   offset: offset,
+      //   origin: origin,
+      //   radius: radius,
+      //   sessionToken: sessionToken,
+      //   strictbounds: strictbounds,
+      //   types: types,
+      // );
 
       /// When get any error from the API, show the error in the console.
       if (response.hasNoResults ||

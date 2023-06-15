@@ -343,8 +343,7 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
               final controller = await _controller.future;
               controller.animateCamera(
                   CameraUpdate.newCameraPosition(cameraPosition()));
-              _decodeAddress(
-                  Location(lat: position.latitude, lng: position.longitude));
+              _decodeAddress(Location(lat: position.latitude, lng: position.longitude));
               setState(() {});
             },
             onMapCreated: (GoogleMapController controller) async {
@@ -368,7 +367,7 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-             /* PlacesAutocomplete(
+              PlacesAutocomplete(
                 apiKey: widget.apiKey,
                 mounted: mounted,
                 searchController: _searchController,
@@ -397,7 +396,6 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                 types: widget.types,
                 onGetDetailsByPlaceId: (placesDetails) async {
                   if (placesDetails == null) {
-                    logger.e("placesDetails is null");
                     return;
                   }
                   _initialPosition = LatLng(
@@ -405,13 +403,12 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                     placesDetails.result.geometry?.location.lng ?? 0,
                   );
                   final controller = await _controller.future;
-                  controller.animateCamera(
-                      CameraUpdate.newCameraPosition(cameraPosition()));
+                  controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition()));
                   _address = placesDetails.result.formattedAddress ?? "";
                   widget.onSuggestionSelected?.call(placesDetails);
                   setState(() {});
                 },
-              ),*/
+              ),
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.all(5.0),

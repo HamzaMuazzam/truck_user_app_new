@@ -98,13 +98,12 @@ class _OrderLocationPickScreenWebState
           children: [
           InkWell(
             onTap: ()async {
-              // String? address;
               String? city="";
               LatLng? latlng;
               if (kIsWeb) {
                 await Get.to(MapLocationPicker(
                   apiKey: GoogleMapApiKey,
-                  currentLatLng: LatLng(position!.latitude,position!.longitude),
+                   currentLatLng: LatLng(position!.latitude,position!.longitude),
                   minMaxZoomPreference: MinMaxZoomPreference(3,20),
                   onNext: (GeocodingResult? result) async {
                     if (result != null) {
@@ -176,23 +175,12 @@ class _OrderLocationPickScreenWebState
           InkWell(
             onTap: ()async{
               if (appProvider.currentAdd != null) {
-
-                // String? address="";
                 String? city="";
                 LatLng? latlng;
                 if (kIsWeb) {
                   await Get.to(MapLocationPicker(
-                    placesApiHeaders:{
-                      "Accept": "application/json",
-                      "Access-Control-Allow-Origin": "*"
-                    } ,
-
-                      // final url = Uri.parse(
-                  // "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
-                  // "key=${widget.apiKey}&location=${latLng.latitude},${latLng.longitude}"
-                  // "&radius=150&language=${widget.localizationItem!.languageCode}");
                     apiKey: GoogleMapApiKey,
-                    currentLatLng: LatLng(position!.latitude,position!.longitude),
+                    currentLatLng:LatLng(position!.latitude,position!.longitude),
                     minMaxZoomPreference: MinMaxZoomPreference(3,20),
                     onNext: (GeocodingResult? result) async {
                       if (result != null) {
