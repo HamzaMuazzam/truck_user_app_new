@@ -11,7 +11,9 @@ import 'package:sultan_cab/providers/home_provider.dart';
 import 'package:sultan_cab/providers/track_provider.dart';
 import 'package:sultan_cab/providers/user_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:sultan_cab/screens/TruckBooking/OrderLocationPickScreenWeb.dart';
 import 'auth_widget.dart';
+import 'customized_plugins/lib/src/WebMapProvider.dart';
 import 'providers/GoogleMapProvider/location_and_map_provider.dart';
 import 'providers/NotificationProvider/notification_provider.dart';
 import 'providers/TaxiBookingProvider/in_progress_ride_provider.dart';
@@ -69,14 +71,15 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => InProgressRideProvider()),
         ChangeNotifierProvider(create: (_) => FairTruckProvider()),
         ChangeNotifierProvider(create: (_) => PaymentProvider()),
+        ChangeNotifierProvider(create: (_) => WebMapProvider()),
       ],
       child: GetMaterialApp(
         title: 'Truc-king',
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
         theme: ThemeData.dark(),
-        // home: PaymentWebView(initUrl: "google.com",),
         home: AuthWidget(),
+        // home: OrderLocationPickScreenWeb(),
       ),
 
     );

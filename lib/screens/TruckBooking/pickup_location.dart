@@ -107,11 +107,11 @@ class _PickupLocationState extends State<PickupLocation> {
               }
 
               if (address != null && latlng!=null) {
-                appProvider.currentAdd = address;
+                appProvider.currentAddress = address;
                 await appProvider.setPickUpLoc(
                     latlng!, address!);
 
-                if (appProvider.currentAdd == null) {
+                if (appProvider.currentAddress == null) {
                   await AppConst.infoSnackBar(ChooseStartingMsg);
                   return;
                 } else {
@@ -161,7 +161,7 @@ class _PickupLocationState extends State<PickupLocation> {
                       sw(10),
                       Expanded(
                         child: Text(
-                          appProvider.currentAdd ?? ChooseYourLocLabel,
+                          appProvider.currentAddress ?? ChooseYourLocLabel,
                           maxLines: 1,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,

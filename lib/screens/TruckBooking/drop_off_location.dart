@@ -85,7 +85,7 @@ class _DropOffLocationState extends State<DropOffLocation> {
                 ),
                 InkWell(
                   onTap: () async {
-                    if (appProvider.currentAdd != null) {
+                    if (appProvider.currentAddress != null) {
 
                       String? address="";
                       String? city="";
@@ -131,7 +131,7 @@ class _DropOffLocationState extends State<DropOffLocation> {
                           await AppConst.infoSnackBar(ChooseDestinationMsg);
                           return;
                         }
-                        else if (appProvider.currentAdd == null) {
+                        else if (appProvider.currentAddress == null) {
                           await AppConst.infoSnackBar(ChooseStartingMsg);
                           return;
                         }
@@ -178,7 +178,7 @@ class _DropOffLocationState extends State<DropOffLocation> {
           sh(20),
           if (appProvider.directions != null &&
               appProvider.destAdd != null &&
-              appProvider.currentAdd != null)
+              appProvider.currentAddress != null)
             Column(
               children: [
                 // Row(

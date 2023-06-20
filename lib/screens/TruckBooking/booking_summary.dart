@@ -96,7 +96,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                     children: [
                                       /// 1st Location
                                       Text(
-                                        appProvider.currentAdd ?? PickUpAddrLbl,
+                                        appProvider.currentAddress ?? PickUpAddrLbl,
                                         style: TextStyle(
                                             fontSize: h * 12,
                                             color: textYellowColor),

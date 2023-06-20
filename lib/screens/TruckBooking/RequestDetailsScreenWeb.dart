@@ -61,6 +61,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                     width: 150,
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +80,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                                 color: Colors.orangeAccent,
                               ),
                               Text(
-                                " ${appProvider.currentAdd ?? PickUpAddrLbl}",
+                                " ${appProvider.currentAddress ?? PickUpAddrLbl}",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -150,7 +151,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                                 color: Colors.blueAccent,
                               ),
                               Text(
-                                " ${appProvider.currentAdd ?? PickUpAddrLbl}",
+                                " ${appProvider.destAdd ?? PickUpAddrLbl}",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,

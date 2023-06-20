@@ -70,13 +70,13 @@ class AppFlowProvider extends ChangeNotifier {
 
   LatLng? currentLoc;
 
-  String? currentAdd;
+  String? currentAddress;
 
   LatLng? _destLoc;
   LatLng? get destLoc => _destLoc;
 
-  String? _destAdd;
-  String? get destAdd => _destAdd;
+  String? destAddress;
+  String? get destAdd => destAddress;
 
   Directions? _directions;
   Directions? get directions => _directions;
@@ -211,7 +211,7 @@ class AppFlowProvider extends ChangeNotifier {
 
   Future setPickUpLoc(LatLng loc, String add) async {
     currentLoc = loc;
-    currentAdd = add;
+    currentAddress = add;
     if(!kIsWeb){
       await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
 
@@ -221,12 +221,12 @@ class AppFlowProvider extends ChangeNotifier {
   }
   Future removePickUpLoc() async {
     currentLoc = null;
-    currentAdd = null;
+    currentAddress = null;
     notifyListeners();
   }
   Future setDestinationLoc(LatLng loc, String add) async {
     _destLoc = loc;
-    _destAdd = add;
+    destAddress = add;
     if(!kIsWeb){
     await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
     }
@@ -246,7 +246,7 @@ class AppFlowProvider extends ChangeNotifier {
   }
   Future removeDestinationLoc() async {
     _destLoc = LatLng(0.0, 0.0);
-    _destAdd = null;
+    destAddress = null;
     notifyListeners();
   }
 
@@ -266,10 +266,10 @@ class AppFlowProvider extends ChangeNotifier {
     List<Placemark>? placeMarks = await placemarkFromCoordinates(lat, lng);
     Placemark first = placeMarks.first;
 
-    currentAdd = "${first.subLocality} ${first.administrativeArea} "
+    currentAddress = "${first.subLocality} ${first.administrativeArea} "
         "${first.subAdministrativeArea} ${first.name}";
     notifyListeners();
-    return currentAdd;
+    return currentAddress;
   }
 
 

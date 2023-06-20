@@ -103,7 +103,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                   children: [
                                     /// 1st Location
                                     Text(
-                                      appProvider.currentAdd ?? PickUpAddrLbl,
+                                      appProvider.currentAddress ?? PickUpAddrLbl,
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),

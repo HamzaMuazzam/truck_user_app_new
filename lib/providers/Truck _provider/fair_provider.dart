@@ -58,7 +58,7 @@ class FairTruckProvider extends ChangeNotifier {
       print(string3);
       var string4 = appFlowProvider.currentLoc!.longitude.toString();
       print(string4);
-      var string5 = appFlowProvider.currentAdd.toString();
+      var string5 = appFlowProvider.currentAddress.toString();
       print(string5);
       var string6 = appFlowProvider.destLoc!.latitude.toString();
       print(string6);
@@ -86,7 +86,7 @@ class FairTruckProvider extends ChangeNotifier {
         "pickUpLat": appFlowProvider.currentLoc!.latitude.toString(),
         "pickUpLng": appFlowProvider.currentLoc!.longitude.toString(),
         "pickUpLink": "https://www.google.com/maps/search/?api=1&query=${appFlowProvider.currentLoc!.latitude.toString()},${appFlowProvider.currentLoc!.longitude.toString()}",
-        "pickUpAddress": appFlowProvider.currentAdd.toString(),
+        "pickUpAddress": appFlowProvider.currentAddress.toString(),
         "dropOffLLink": "https://www.google.com/maps/search/?api=1&query=${appFlowProvider.destLoc!.latitude.toString()},${appFlowProvider.destLoc!.longitude.toString()}",
         "dropOffAddress": appFlowProvider.destAdd.toString(),
         "dropOffLat": appFlowProvider.destLoc!.latitude.toString(),
