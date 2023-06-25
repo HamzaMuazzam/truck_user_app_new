@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:map_location_picker/map_location_picker.dart';
 import 'package:place_picker/place_picker.dart';
@@ -22,32 +23,33 @@ import '../../utils/const.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+
 class PickupLocation extends StatefulWidget {
   @override
   State<PickupLocation> createState() => _PickupLocationState();
 }
+
 Future<String> getCityName(double lat, double lng) async {
-  try{
+  try {
     final apiKey = GoogleMapApiKey; // Replace with your Google Maps API key
-    final url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$apiKey";
+    final url =
+        "https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$apiKey";
     final response = await http.get(Uri.parse(url));
     final data = json.decode(response.body);
     logger.i(data);
-    var city="";
+    var city = "";
     final cityName = data["results"][0]["address_components"];
-    for(var x in cityName){
+    for (var x in cityName) {
       var list = x["types"] as List;
       list.forEach((element) {
-        if(element=="locality"){
-          city=x["long_name"].toString();
-        };
+        if (element == "locality") {
+          city = x["long_name"].toString();
+        }
+        ;
       });
-
     }
     return city;
-
-
-  }catch(e){
+  } catch (e) {
     print(e);
     return "";
   }
@@ -60,13 +62,6 @@ class _PickupLocationState extends State<PickupLocation> {
     super.initState();
   }
 
-
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -78,8 +73,30 @@ class _PickupLocationState extends State<PickupLocation> {
         children: [
           InkWell(
             onTap: () async {
+              Get.dialog(Center(
+                child: CircularProgressIndicator(),
+              ));
+              await fairTruckProvider.getAllOrdersDetails();
+              if (Get.isDialogOpen == true) {
+                Get.back();
+              }
+              if (fairTruckProvider.getAllOrdersResponse != null &&
+                  fairTruckProvider.getAllOrdersResponse.isNotEmpty) {
+                for (int i = 0;
+                    i < fairTruckProvider.getAllOrdersResponse.length;
+                    i++) {
+                  if (fairTruckProvider.getAllOrdersResponse[i].isPaid ==
+                          false ||
+                      fairTruckProvider.getAllOrdersResponse[i].isPaid ==
+                          null) {
+                    showAlertWarning();
+                    return;
+                  }
+                }
+              }
+
               String? address;
-              String? city="";
+              String? city = "";
               LatLng? latlng;
               if (kIsWeb) {
                 await Get.to(MapLocationPicker(
@@ -90,26 +107,25 @@ class _PickupLocationState extends State<PickupLocation> {
                       address = result.formattedAddress!;
                       latlng = LatLng(result.geometry.location.lat,
                           result.geometry.location.lng);
-                      city = await getCityName(latlng!.latitude,latlng!.longitude);
+                      city = await getCityName(
+                          latlng!.latitude, latlng!.longitude);
                       Get.back();
                     }
                   },
                 ));
-              }
-              else {
+              } else {
                 LocationResult? result =
                     await Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => PlacePicker(GoogleMapApiKey),
                 ));
                 address = result?.formattedAddress!;
-                latlng =result!.latLng;
-                city=result.city!.name!;
+                latlng = result!.latLng;
+                city = result.city!.name!;
               }
 
-              if (address != null && latlng!=null) {
+              if (address != null && latlng != null) {
                 appProvider.currentAddress = address;
-                await appProvider.setPickUpLoc(
-                    latlng!, address!);
+                await appProvider.setPickUpLoc(latlng!, address!);
 
                 if (appProvider.currentAddress == null) {
                   await AppConst.infoSnackBar(ChooseStartingMsg);
@@ -183,5 +199,64 @@ class _PickupLocationState extends State<PickupLocation> {
         ],
       );
     });
+  }
+
+  showAlertWarning() async {
+    await 0.delay();
+    if (Get.isDialogOpen == true) {
+      Get.back();
+    }
+    Get.dialog(Material(
+      color: Colors.transparent,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Container(
+            width: Get.width,
+            color: Colors.white,
+            child: Padding(
+              padding: EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Alert!",
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "\nYou can't book new order until you pay for your previous order.\n\n"
+                    "Please go to order history and pay for your previous order.\n",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Text(
+                              "OK",
+                              style: TextStyle(
+                                  color: Colors.green,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    ));
   }
 }
