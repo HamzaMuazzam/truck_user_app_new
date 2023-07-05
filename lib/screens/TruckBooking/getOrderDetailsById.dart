@@ -49,18 +49,18 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
     SizeConfig().init(context);
     h = SizeConfig.screenHeight / 812;
     b = SizeConfig.screenWidth / 375;
-    if (
-        paymentProvider.order!.isDelievered==true
-        &&
-        paymentProvider.order!.isPaid == false
-        // &&
-        // paymentProvider.paymentEvidenceUrl.isEmpty
-
-    ) {
-      if (Get.isDialogOpen==false) {
-        openPaymentAskDialogue();
-      }
-    }
+    // if (
+    //     paymentProvider.order!.isDelievered==true
+    //     &&
+    //     paymentProvider.order!.isPaid == false
+    //     // &&
+    //     // paymentProvider.paymentEvidenceUrl.isEmpty
+    //
+    // ) {
+    //   if (Get.isDialogOpen==false) {
+    //     openPaymentAskDialogue();
+    //   }
+    // }
     paymentProvider.paymentWidget= showPaymentPart();
     return Scaffold(
       backgroundColor: greybackColor,
