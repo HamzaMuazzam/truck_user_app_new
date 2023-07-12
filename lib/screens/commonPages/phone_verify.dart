@@ -112,6 +112,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                     label: 'Enter Password',
                                     controller: authProvider.passwordController,
                                     error: false,
+
                                   ),
                                   sh(20),
                                   Container(
@@ -203,14 +204,10 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       label: LoginLabel,
                                       onPressed: () async {
                                         if (!terms) {
-                                          AppConst.errorSnackBar(
-                                              "Please Accept Terms & conditions");
-
+                                          AppConst.errorSnackBar("Please Accept Terms & conditions");
                                           return;
                                         }
-                                        authProvider.loginFormValidation();
-                                        // Get.to(() => VerifyPhoneNumberScreen(
-                                        //     phoneNumber: authProvider.phoneController.text));
+                                          authProvider.loginFormValidation();
                                       },
                                     ),
                                   ),
@@ -225,8 +222,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       Expanded(
                                         child: InkWell(
                                             onTap: () {
-                                              authProvider
-                                                  .gotoPage(RegisterScreen());
+                                              authProvider.gotoPage(RegisterScreen());
                                             },
                                             child: Align(
                                                 alignment:

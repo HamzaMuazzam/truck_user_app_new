@@ -1248,6 +1248,9 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
         ),
       InkWell(
         onTap: () async {
+          if(paymentProvider.order?.isLoaded==false) return;
+
+
           if (paymentProvider.order!.isPaid == true) return;
 
           if(Get.isDialogOpen==true){
@@ -1296,6 +1299,14 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
     ],);
   }
 
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    paymentProvider.paymentEvidenceUrl="";
+    paymentProvider.getPaymentEvidenceResponse=null;
+  }
 
 }
 

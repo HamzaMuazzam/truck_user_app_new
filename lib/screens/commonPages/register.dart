@@ -103,6 +103,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 
+
+
 List<Widget>  listRegister(){
   return  [
     sh(20),
@@ -191,15 +193,28 @@ List<Widget>  listRegister(){
       controller: authProvider.passwordController,
       isMisMatch: isMisMatch,
       error: isError,
+      validator: (value) {
+        if(isPasswordCompliant(value)){
+          return null;
+        }else{
+          return "Password must contain digit, capital, small and special character.";
+        }
 
+      },
     ),
     sh(20),
     AppTextFieldPassword(
       label: CnfmPasswordLabel,
       isMisMatch: isMisMatch,
       controller: authProvider.password2Controller,
-
       error: isError1,
+      validator: (value) {
+        if(isPasswordCompliant(value)){
+          return null;
+        }else{
+          return "Password must contain digit, capital, small and special character.";
+        }
+      },
 
     ),
 
@@ -211,8 +226,11 @@ List<Widget>  listRegister(){
       suffix: null,
       isVisibilty: null,
       validator: (val) {
-        if (authProvider.nameController.text.trim() == "")
+        if (authProvider.companyCR.text.trim() == "")
           return FieldEmptyError;
+        else if (authProvider.companyCR.text.length<10){
+          return "CR can't be less then 10 digits";
+        }
         else
           return null;
       },
@@ -224,7 +242,7 @@ List<Widget>  listRegister(){
       suffix: null,
       isVisibilty: null,
       validator: (val) {
-        if (authProvider.nameController.text.trim() == "")
+        if (authProvider.companyContact.text.trim() == "")
           return FieldEmptyError;
         else
           return null;
@@ -242,4 +260,25 @@ List<Widget>  listRegister(){
     ),
     sh(40),
   ];
+}
+
+
+bool isPasswordCompliant(String? password, [int minLength = 8]) {
+  if (password == null || password.length < minLength) {
+    return false;
+  }
+
+  bool hasUppercase = password.contains(RegExp(r'[A-Z]'));
+  if (hasUppercase) {
+    bool hasDigits = password.contains(RegExp(r'[0-9]'));
+    if (hasDigits) {
+      bool hasLowercase = password.contains(RegExp(r'[a-z]'));
+      if (hasLowercase) {
+        bool hasSpecialCharacters = password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+        return hasSpecialCharacters;
+      }
+    }
+  }
+
+  return false;
 }

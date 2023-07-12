@@ -233,6 +233,39 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                             ],
                                           ),
                                           sh(10),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Order Status",
+                                                  style: TextStyle(
+                                                      fontSize: h * 12,
+                                                      color: textYellowColor),
+                                                ),
+                                              ),
+
+                                              Expanded(
+                                                child: Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: Text(
+                                                    value
+                                                        .getAllOrdersResponse[
+                                                    index].isDelievered==true? "Completed" : "Ongoing",
+                                                    style: TextStyle(
+                                                      fontSize: h * 16,
+                                                      color: value
+                                                          .getAllOrdersResponse[
+                                                      index].isDelievered==true? Colors.green:Colors.red
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              // ),
+                                            ],
+                                          ),
+                                          sh(10),
                                           Container(
                                             color: Colors.grey,
                                             height: 1,

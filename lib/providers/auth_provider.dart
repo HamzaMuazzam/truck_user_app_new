@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -17,6 +18,7 @@ import 'package:sultan_cab/utils/const.dart';
 import '../models/registration/userRegResponse.dart';
 import '../screens/TruckBooking/navigation_screen.dart';
 import '../screens/commonPages/otp_verifications.dart';
+import '../screens/commonPages/register.dart';
 
 AuthProvider authProvider = Provider.of(Get.context!, listen: false);
 
@@ -182,6 +184,9 @@ class AuthProvider extends ChangeNotifier {
 
   Future<bool> logout() async {
     try {
+      var instance = FirebaseMessaging.instance;
+      await instance.unsubscribeFromTopic("AllUsers");
+      await instance.unsubscribeFromTopic(StorageCRUD.getUser().id.toString());
       await StorageCRUD.erase();
       return true;
     } catch (e) {
@@ -289,6 +294,13 @@ class AuthProvider extends ChangeNotifier {
       return false;
     }
 
+
+    if(isPasswordCompliant(passwordController.text.trim())){
+    }else{
+      AppConst.errorSnackBar("Password must contain digit, capital, small and special character.");
+      return false;
+    }
+
     if (password2Controller.text != passwordController.text) {
       AppConst.errorSnackBar("password doesn't match..");
       return false;
@@ -303,6 +315,8 @@ class AuthProvider extends ChangeNotifier {
       AppConst.errorSnackBar("Password should not be less than 8 digits.");
       return false;
     }
+
+
     await userRegistration();
     return true;
   }
@@ -328,13 +342,18 @@ class AuthProvider extends ChangeNotifier {
     return true;
   }
 
-  //TODO
   Future<bool> loginFormValidation() async {
     if (passwordController.text.isEmpty || emailController.text.isEmpty) {
       AppConst.errorSnackBar('Something is missing..');
       return false;
     }
-
+    else{
+      if(isPasswordCompliant(passwordController.text.trim())){
+      }else{
+        AppConst.errorSnackBar("Password must contain digit, capital, small and special character.");
+        return false;
+      }
+    }
     await userLogin();
     return true;
   }

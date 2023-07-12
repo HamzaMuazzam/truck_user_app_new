@@ -26,19 +26,20 @@ class _AuthWidgetState extends State<AuthWidget> {
   @override
   void initState() {
     super.initState();
+    _checkStates();
   }
 
   _checkStates() async {
-    await 0.delay();
-    bool _user =
-        Provider.of<AuthProvider>(Get.context!, listen: false).checkUser();
+    await 2.delay();
+    bool _user = Provider.of<AuthProvider>(Get.context!, listen: false).checkUser();
     if (!_user) {
       Navigator.of(Get.context!).pushReplacement(
         MaterialPageRoute(
           builder: (_) => VerifyPhoneScreen(),
         ),
       );
-    } else {
+    }
+    else {
       Navigator.of(Get.context!).pushReplacement(
         MaterialPageRoute(
           builder: (_) => NavigationScreen(),
@@ -71,33 +72,33 @@ class _AuthWidgetState extends State<AuthWidget> {
                             height: Get.height),
                       ],
                     ),
-                    Align(
-                      alignment: Alignment(0, 0.85),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        child: InkWell(
-                          onTap: _checkStates,
-                          child: Container(
-                            height: 55,
-                            width: Get.width,
-                            decoration: BoxDecoration(
-                              color: Colors.amber,
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Get Started",
-                                style: TextStyle(
-                                    color: greyColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
+                    // Align(
+                    //   alignment: Alignment(0, 0.85),
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.symmetric(
+                    //         horizontal: 20, vertical: 10),
+                    //     child: InkWell(
+                    //       onTap: _checkStates,
+                    //       child: Container(
+                    //         height: 55,
+                    //         width: Get.width,
+                    //         decoration: BoxDecoration(
+                    //           color: Colors.amber,
+                    //           borderRadius: BorderRadius.circular(100),
+                    //         ),
+                    //         child: Center(
+                    //           child: Text(
+                    //             "Get Started",
+                    //             style: TextStyle(
+                    //                 color: greyColor,
+                    //                 fontWeight: FontWeight.bold,
+                    //                 fontSize: 18),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
               )
