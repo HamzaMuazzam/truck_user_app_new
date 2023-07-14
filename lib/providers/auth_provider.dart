@@ -295,11 +295,11 @@ class AuthProvider extends ChangeNotifier {
     }
 
 
-    if(isPasswordCompliant(passwordController.text.trim())){
-    }else{
-      AppConst.errorSnackBar("Password must contain digit, capital, small and special character.");
-      return false;
-    }
+    // if(isPasswordCompliant(passwordController.text.trim())){
+    // }else{
+    //   AppConst.errorSnackBar("Password must contain digit, capital, small and special character.");
+    //   return false;
+    // }
 
     if (password2Controller.text != passwordController.text) {
       AppConst.errorSnackBar("password doesn't match..");
@@ -348,11 +348,11 @@ class AuthProvider extends ChangeNotifier {
       return false;
     }
     else{
-      if(isPasswordCompliant(passwordController.text.trim())){
-      }else{
-        AppConst.errorSnackBar("Password must contain digit, capital, small and special character.");
-        return false;
-      }
+      // if(isPasswordCompliant(passwordController.text.trim())){
+      // }else{
+      //   AppConst.errorSnackBar("Password must contain digit, capital, small and special character.");
+      //   return false;
+      // }
     }
     await userLogin();
     return true;

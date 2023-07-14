@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
+import 'package:sultan_cab/screens/commonPages/phone_verify.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
@@ -30,6 +31,8 @@ bool isMisMatch = false;
 
 bool phoneVerified = false;
 class _RegisterScreenState extends State<RegisterScreen> {
+  Set<int> checks={};
+  Set<int> checks2={};
 
 
   @override
@@ -101,184 +104,206 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-}
 
-
-
-List<Widget>  listRegister(){
-  return  [
-    sh(20),
-    Text(
-      CreateAccountLbl,
-      style: TextStyle(
-        fontWeight: FontWeight.w900,
-        fontSize: h * 20,
-        letterSpacing: 0.5,
+  List<Widget>  listRegister(){
+    return  [
+      sh(20),
+      Text(
+        CreateAccountLbl,
+        style: TextStyle(
+          fontWeight: FontWeight.w900,
+          fontSize: h * 20,
+          letterSpacing: 0.5,
+        ),
       ),
-    ),
-    sh(30),
-    Text(
-      PersonalDetailsLabel,
-      style: TextStyle(
-        fontWeight: FontWeight.w900,
-        fontSize: h * 15,
-        letterSpacing: 0.5,
+      sh(30),
+      Text(
+        PersonalDetailsLabel,
+        style: TextStyle(
+          fontWeight: FontWeight.w900,
+          fontSize: h * 15,
+          letterSpacing: 0.5,
+        ),
       ),
-    ),
-    sh(30),
-    SizedBox(
-      child: IntlPhoneField(
-        // style: TextStyle(color: Colors.black),
-        decoration: InputDecoration(
-          // fillColor: primaryColor,
+      sh(30),
+      SizedBox(
+        child: IntlPhoneField(
+          // style: TextStyle(color: Colors.black),
+          decoration: InputDecoration(
+            // fillColor: primaryColor,
 
-          filled: true,
-          labelText: 'Phone Number',
+            filled: true,
+            labelText: 'Phone Number',
 
-          labelStyle: TextStyle(
-            color: Colors.grey,
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.black,
-              width: 1.5,
+            labelStyle: TextStyle(
+              color: Colors.grey,
+            ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 1.5,
+              ),
             ),
           ),
+          initialCountryCode: 'SA',
+
+          onChanged: (phone) {
+            authProvider.phoneController.text =
+                phone.completeNumber;
+          },
         ),
-        initialCountryCode: 'SA',
+      ),
+      sh(0),
 
-        onChanged: (phone) {
-          authProvider.phoneController.text =
-              phone.completeNumber;
+      AppTextField(
+        label: NameLabel,
+        controller: authProvider.nameController,
+        suffix: null,
+        isVisibilty: null,
+        validator: (val) {
+          if (authProvider.nameController.text.trim() == "")
+            return FieldEmptyError;
+          else
+            return null;
         },
       ),
-    ),
-    sh(0),
-
-    AppTextField(
-      label: NameLabel,
-      controller: authProvider.nameController,
-      suffix: null,
-      isVisibilty: null,
-      validator: (val) {
-        if (authProvider.nameController.text.trim() == "")
-          return FieldEmptyError;
-        else
-          return null;
-      },
-    ),
-    sh(20),
-    AppTextField(
-      label: EmailLabel,
-      controller: authProvider.emailController,
-      suffix: null,
-      isVisibilty: null,
-      validator: (value) {
-        Pattern emailPattern =
-            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-        RegExp regex = new RegExp(emailPattern.toString());
-        if (value!.isEmpty) {
-          return FieldEmptyError;
-        } else if ((!regex.hasMatch(value.trim()))) {
-          return ValidEmailLabel;
-        } else
-          return null;
-      },
-    ),
-    sh(20),
-
-
-    AppTextFieldPassword(
-      label: PasswordLabel,
-      controller: authProvider.passwordController,
-      isMisMatch: isMisMatch,
-      error: isError,
-      validator: (value) {
-        if(isPasswordCompliant(value)){
-          return null;
-        }else{
-          return "Password must contain digit, capital, small and special character.";
-        }
-
-      },
-    ),
-    sh(20),
-    AppTextFieldPassword(
-      label: CnfmPasswordLabel,
-      isMisMatch: isMisMatch,
-      controller: authProvider.password2Controller,
-      error: isError1,
-      validator: (value) {
-        if(isPasswordCompliant(value)){
-          return null;
-        }else{
-          return "Password must contain digit, capital, small and special character.";
-        }
-      },
-
-    ),
-
-
-    sh(20),
-    AppTextField(
-      label: CompanyCR,
-      controller: authProvider.companyCR,
-      suffix: null,
-      isVisibilty: null,
-      validator: (val) {
-        if (authProvider.companyCR.text.trim() == "")
-          return FieldEmptyError;
-        else if (authProvider.companyCR.text.length<10){
-          return "CR can't be less then 10 digits";
-        }
-        else
-          return null;
-      },
-    ),
-    sh(20),
-    AppTextField(
-      label: 'Company ContactNo',
-      controller: authProvider.companyContact,
-      suffix: null,
-      isVisibilty: null,
-      validator: (val) {
-        if (authProvider.companyContact.text.trim() == "")
-          return FieldEmptyError;
-        else
-          return null;
-      },
-    ),
-
-    sh(30),
-    Center(
-      child: AppButton(
-        label: RegisterLabel,
-        onPressed: () async {
-          await authProvider.registrationFormValidation();
+      sh(20),
+      AppTextField(
+        label: EmailLabel,
+        controller: authProvider.emailController,
+        suffix: null,
+        isVisibilty: null,
+        validator: (value) {
+          Pattern emailPattern =
+              r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+          RegExp regex = new RegExp(emailPattern.toString());
+          if (value!.isEmpty) {
+            return FieldEmptyError;
+          } else if ((!regex.hasMatch(value.trim()))) {
+            return ValidEmailLabel;
+          } else
+            return null;
         },
       ),
-    ),
-    sh(40),
-  ];
+      sh(20),
+
+      AppTextFieldPassword(
+        label: PasswordLabel,
+        controller: authProvider.passwordController,
+        isMisMatch: isMisMatch,
+        error: isError,
+        validator: (value) {
+          // if(isPasswordCompliant(value)){
+          //   return null;
+          // }else{
+          //   return "Password must contain digit, capital, small and special character.";
+          // }
+
+        },
+        onChanged: (text) {
+
+          checks = isPasswordCompliant(text);
+
+          setState(() {
+
+          });
+
+        },
+      ),
+      Text("~Password must be greater than 8.", style: TextStyle(color: checks.contains(0)?Colors.red:Colors.grey),),
+      Text("~Must contain capital letter", style: TextStyle(color: checks.contains(1)?Colors.red:Colors.grey)),
+      Text("~Must contain number",
+        style: TextStyle(color: checks.contains(2)?Colors.red:Colors.grey),),
+      Text("~Must contain lower case letter",
+        style: TextStyle(color: checks.contains(3)?Colors.red:Colors.grey),),
+      Text("~Must contain special character.",
+        style: TextStyle(color: checks.contains(4)?Colors.red:Colors.grey),
+      ),
+
+      sh(20),
+      AppTextFieldPassword(
+        label: CnfmPasswordLabel,
+        isMisMatch: isMisMatch,
+        controller: authProvider.password2Controller,
+        error: isError1,
+        validator: (value) {
+          // if(isPasswordCompliant(value)){
+          //   return null;
+          // }else{
+          //   return "Password must contain digit, capital, small and special character.";
+          // }
+        },
+        onChanged: (text) {
+
+          checks2 = isPasswordCompliant(text);
+
+          setState(() {
+
+          });
+
+        },
+      ),
+      Text("~Password must be greater than 8.", style: TextStyle(color: checks2.contains(0)?Colors.red:Colors.grey),),
+      Text("~Must contain capital letter", style: TextStyle(color: checks2.contains(1)?Colors.red:Colors.grey)),
+      Text("~Must contain number",
+        style: TextStyle(color: checks2.contains(2)?Colors.red:Colors.grey),),
+      Text("~Must contain lower case letter",
+        style: TextStyle(color: checks2.contains(3)?Colors.red:Colors.grey),),
+      Text("~Must contain special character.",
+        style: TextStyle(color: checks2.contains(4)?Colors.red:Colors.grey),
+      ),
+
+
+      sh(20),
+      AppTextField(
+        label: CompanyCR,
+        controller: authProvider.companyCR,
+        suffix: null,
+        isVisibilty: null,
+        validator: (val) {
+          if (authProvider.companyCR.text.trim() == "")
+            return FieldEmptyError;
+          else if (authProvider.companyCR.text.length<10){
+            return "CR can't be less then 10 digits";
+          }
+          else
+            return null;
+        },
+      ),
+      sh(20),
+      AppTextField(
+        label: 'Company ContactNo',
+        controller: authProvider.companyContact,
+        suffix: null,
+        isVisibilty: null,
+        validator: (val) {
+          if (authProvider.companyContact.text.trim() == "")
+            return FieldEmptyError;
+          else
+            return null;
+        },
+      ),
+
+      sh(30),
+      Center(
+        child: AppButton(
+          label: RegisterLabel,
+          onPressed: () async {
+
+            if(checks.isNotEmpty || checks2.isNotEmpty) return;
+
+
+
+            await authProvider.registrationFormValidation();
+          },
+        ),
+      ),
+      sh(40),
+    ];
+  }
+
 }
 
 
-bool isPasswordCompliant(String? password, [int minLength = 8]) {
-  if (password == null || password.length < minLength) {
-    return false;
-  }
 
-  bool hasUppercase = password.contains(RegExp(r'[A-Z]'));
-  if (hasUppercase) {
-    bool hasDigits = password.contains(RegExp(r'[0-9]'));
-    if (hasDigits) {
-      bool hasLowercase = password.contains(RegExp(r'[a-z]'));
-      if (hasLowercase) {
-        bool hasSpecialCharacters = password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
-        return hasSpecialCharacters;
-      }
-    }
-  }
 
-  return false;
-}

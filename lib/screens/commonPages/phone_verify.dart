@@ -10,6 +10,7 @@ import 'package:sultan_cab/utils/const.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
+
 import '../../widgets/app_text_field.dart';
 
 class VerifyPhoneScreen extends StatefulWidget {
@@ -30,13 +31,12 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
 
     super.initState();
   }
-
+  Set<int> checks={};
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     var h = SizeConfig.screenHeight / 812;
     var b = SizeConfig.screenWidth / 375;
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Form(
@@ -112,7 +112,24 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                     label: 'Enter Password',
                                     controller: authProvider.passwordController,
                                     error: false,
+                                    onChanged: (text) {
 
+                                      checks = isPasswordCompliant(text);
+
+                                      setState(() {
+
+                                      });
+
+                                    },
+                                  ),
+                                  Text("~Password must be greater than 8.", style: TextStyle(color: checks.contains(0)?Colors.red:Colors.grey),),
+                                  Text("~Must contain capital letter", style: TextStyle(color: checks.contains(1)?Colors.red:Colors.grey)),
+                                  Text("~Must contain number",
+                                    style: TextStyle(color: checks.contains(2)?Colors.red:Colors.grey),),
+                                  Text("~Must contain lower case letter",
+                                    style: TextStyle(color: checks.contains(3)?Colors.red:Colors.grey),),
+                                  Text("~Must contain special character.",
+                                    style: TextStyle(color: checks.contains(4)?Colors.red:Colors.grey),
                                   ),
                                   sh(20),
                                   Container(
@@ -120,7 +137,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                         children: [
                                           Checkbox(
                                             side: BorderSide(
@@ -141,20 +158,16 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                             },
                                           ),
                                           sh(2),
-
                                           Expanded(
-                                            child:
-                                            Padding(
-                                              padding: EdgeInsets.only
-                                                (top:paddings()),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: paddings()),
                                               child: RichText(
-
                                                   text: TextSpan(
                                                       style: TextStyle(
                                                         height: 1.6,
                                                         fontSize: h * 15,
                                                         color: Colors.white,
-
                                                       ),
                                                       children: [
                                                     TextSpan(text: AgreeLabel),
@@ -172,16 +185,17 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                                                   ),
                                                                 );
                                                               }),
-                                                        TextSpan(text:   ' $AndLabel '),
-                                                        TextSpan(
-                                                            text:  PrivacyPolicyLabel
+                                                    TextSpan(
+                                                        text: ' $AndLabel '),
+                                                    TextSpan(
+                                                        text: PrivacyPolicyLabel
                                                                 .toLowerCase() +
-                                                                ".",
-                                                            recognizer:
+                                                            ".",
+                                                        recognizer:
                                                             TapGestureRecognizer()
                                                               ..onTap = () {
                                                                 Navigator.of(
-                                                                    context)
+                                                                        context)
                                                                     .push(
                                                                   MaterialPageRoute(
                                                                     builder: (_) =>
@@ -192,8 +206,6 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                                   ])),
                                             ),
                                           ),
-
-
                                         ],
                                       ),
                                     ),
@@ -203,11 +215,17 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                     child: AppButton(
                                       label: LoginLabel,
                                       onPressed: () async {
-                                        if (!terms) {
-                                          AppConst.errorSnackBar("Please Accept Terms & conditions");
+                                        if(checks.isNotEmpty){
                                           return;
                                         }
-                                          authProvider.loginFormValidation();
+
+
+                                        if (!terms) {
+                                          AppConst.errorSnackBar(
+                                              "Please Accept Terms & conditions");
+                                          return;
+                                        }
+                                        authProvider.loginFormValidation();
                                       },
                                     ),
                                   ),
@@ -222,7 +240,8 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       Expanded(
                                         child: InkWell(
                                             onTap: () {
-                                              authProvider.gotoPage(RegisterScreen());
+                                              authProvider
+                                                  .gotoPage(RegisterScreen());
                                             },
                                             child: Align(
                                                 alignment:
@@ -254,7 +273,9 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                               Expanded(flex: 2, child: Container()),
                           ],
                         ),
-                        SizedBox(height: 50,)
+                        SizedBox(
+                          height: 50,
+                        )
                       ],
                     ),
                   ),
@@ -266,14 +287,14 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
       ),
     );
   }
-  double paddings(){
-    double widths=0.0;
-    if(Get.width<1107 && Get.width>392)
-      return 14.0;
-    if(Get.width<392)
-      return 30.0;
+
+  double paddings() {
+    double widths = 0.0;
+    if (Get.width < 1107 && Get.width > 392) return 14.0;
+    if (Get.width < 392) return 30.0;
     return widths;
   }
+
 }
 
 extension PasswordValidator on String {
@@ -282,4 +303,46 @@ extension PasswordValidator on String {
             r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
         .hasMatch(this);
   }
+
+}
+
+Set<int> isPasswordCompliant(String password, [int minLength = 8]) {
+  Set<int> checks = {};
+
+  if (password.length < minLength) {
+    checks.add(0);
+  }else{
+    checks.remove(0);
+  }
+
+  bool hasUppercase = password.contains(RegExp(r'[A-Z]'));
+  if (!hasUppercase) {
+    checks.add(1);
+  }else{
+    checks.remove(1);
+  }
+
+  bool hasDigits = password.contains(RegExp(r'[0-9]'));
+  if (!hasDigits) {
+    checks.add(2);
+  }else{
+    checks.remove(2);
+  }
+  bool hasLowercase = password.contains(RegExp(r'[a-z]'));
+  if (!hasLowercase) {
+    checks.add(3);
+  }else{
+    checks.remove(3);
+  }
+  bool hasSpecialCharacters =
+  password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+
+  if (!hasSpecialCharacters) {
+    checks.add(4);
+  }else{
+    checks.remove(4);
+  }
+
+
+  return checks;
 }

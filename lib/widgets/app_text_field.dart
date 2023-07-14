@@ -155,6 +155,7 @@ class AppTextFieldPassword extends StatefulWidget {
     this.validator,
     this.error,
     this.isMisMatch,
+    this.onChanged
   });
 
   final String? label;
@@ -165,6 +166,7 @@ class AppTextFieldPassword extends StatefulWidget {
   final double? vertPad;
   final String? hint;
   final bool? error;
+  final onChanged;
   final String? Function(String?)? validator;
   bool? isMisMatch;
 
@@ -206,6 +208,7 @@ class _AppTextFieldPasswordState extends State<AppTextFieldPassword> {
               Expanded(
                 child: TextFormField(
                   cursorColor: secondaryColor,
+                  onChanged: widget.onChanged,
                   validator: widget.validator ??
                           (val) {
                         return null;

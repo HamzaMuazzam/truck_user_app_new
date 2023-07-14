@@ -235,7 +235,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                     ]
                                   : [
                                       Column(
-                                        children: listRegister(),
+                                        // children: listRegister({}),
                                       ),
                                       Row(
                                         mainAxisAlignment:
