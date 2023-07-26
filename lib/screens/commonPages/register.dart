@@ -33,7 +33,7 @@ bool phoneVerified = false;
 class _RegisterScreenState extends State<RegisterScreen> {
   Set<int> checks={};
   Set<int> checks2={};
-
+String crNo="";
 
   @override
   void initState() {
@@ -210,15 +210,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         },
       ),
-      Text("~Password must be greater than 8.", style: TextStyle(color: checks.contains(0)?Colors.red:Colors.grey),),
-      Text("~Must contain capital letter", style: TextStyle(color: checks.contains(1)?Colors.red:Colors.grey)),
-      Text("~Must contain number",
-        style: TextStyle(color: checks.contains(2)?Colors.red:Colors.grey),),
-      Text("~Must contain lower case letter",
-        style: TextStyle(color: checks.contains(3)?Colors.red:Colors.grey),),
-      Text("~Must contain special character.",
-        style: TextStyle(color: checks.contains(4)?Colors.red:Colors.grey),
-      ),
+      checks.contains(0)?
+      Text("~Password must be greater than 8.", style: TextStyle(color: checks.contains(0)?Colors.red:Colors.grey),):Container(),
+      checks.contains(1)?
+      Text("~Must contain capital letter", style: TextStyle(color: checks.contains(1)?Colors.red:Colors.grey)):Container(),
+      checks.contains(2)?
+      Text("~Must contain number", style: TextStyle(color: checks.contains(2)?Colors.red:Colors.grey),):Container(),
+      checks.contains(3)?
+      Text("~Must contain lower case letter", style: TextStyle(color: checks.contains(3)?Colors.red:Colors.grey),):Container(),
+      checks.contains(4)?
+      Text("~Must contain special character.", style: TextStyle(color: checks.contains(4)?Colors.red:Colors.grey)):Container(),
 
       sh(20),
       AppTextFieldPassword(
@@ -243,33 +244,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         },
       ),
-      Text("~Password must be greater than 8.", style: TextStyle(color: checks2.contains(0)?Colors.red:Colors.grey),),
-      Text("~Must contain capital letter", style: TextStyle(color: checks2.contains(1)?Colors.red:Colors.grey)),
-      Text("~Must contain number",
-        style: TextStyle(color: checks2.contains(2)?Colors.red:Colors.grey),),
-      Text("~Must contain lower case letter",
-        style: TextStyle(color: checks2.contains(3)?Colors.red:Colors.grey),),
-      Text("~Must contain special character.",
-        style: TextStyle(color: checks2.contains(4)?Colors.red:Colors.grey),
-      ),
+      checks2.contains(0)?
+      Text("~Password must be greater than 8.", style: TextStyle(color: checks2.contains(0)?Colors.red:Colors.grey),):Container(),
+      checks2.contains(1)?
+      Text("~Must contain capital letter", style: TextStyle(color: checks2.contains(1)?Colors.red:Colors.grey)):Container(),
+      checks2.contains(2)?
+      Text("~Must contain number", style: TextStyle(color: checks2.contains(2)?Colors.red:Colors.grey),):Container(),
+      checks2.contains(3)?
+      Text("~Must contain lower case letter", style: TextStyle(color: checks2.contains(3)?Colors.red:Colors.grey),):Container(),
+      checks2.contains(4)?
+      Text("~Must contain special character.", style: TextStyle(color: checks2.contains(4)?Colors.red:Colors.grey)):Container(),
 
 
       sh(20),
       AppTextField(
-        label: CompanyCR,
+        label: CompanyCR,inputType: TextInputType.number,
         controller: authProvider.companyCR,
         suffix: null,
         isVisibilty: null,
-        validator: (val) {
-          if (authProvider.companyCR.text.trim() == "")
-            return FieldEmptyError;
-          else if (authProvider.companyCR.text.length<10){
-            return "CR can't be less then 10 digits";
-          }
-          else
-            return null;
+        maxLength: 10,
+        onChange: (text){
+          crNo=text;
+          setState(() {
+          });
         },
+        // validator: (val) {
+        //   if (authProvider.companyCR.text.trim() == "")
+        //     return FieldEmptyError;
+        //   else if (authProvider.companyCR.text.length<10){
+        //     return "CR can't be less then 10 digits";
+        //   }
+        //   else if (authProvider.companyCR.text.length>10){
+        //     return "CR can't be more then 10 digits";
+        //   }
+        //   else
+        //     return null;
+        // },
       ),
+      sh(5),
+      if(crNo.isEmpty)
+      Text("CR number can't be empty",style: TextStyle(color: Colors.red),),
+      if(crNo.length<10)
+      Text("CR number can't be less than 10",style: TextStyle(color: Colors.red),),
+      if(crNo.length>10)
+      Text("CR number can't be greater than 10",style: TextStyle(color: Colors.red),),
+
       sh(20),
       AppTextField(
         label: 'Company ContactNo',
@@ -289,11 +308,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: AppButton(
           label: RegisterLabel,
           onPressed: () async {
-
             if(checks.isNotEmpty || checks2.isNotEmpty) return;
-
-
-
             await authProvider.registrationFormValidation();
           },
         ),

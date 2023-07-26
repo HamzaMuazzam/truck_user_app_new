@@ -27,7 +27,7 @@ Widget? paymentWidget;
       required String feed}) async {
     AppConst.startProgress();
     var request = http.MultipartRequest(
-        'POST', Uri.parse('http://cp.truck.deeps.info/api/${feed}'));
+        'POST', Uri.parse('https://cp.truck.deeps.info/api/${feed}'));
     if (fields != null) request.fields.addAll(fields);
     if (paymentFile != null) {
       final fileBytes = await paymentFile!.readAsBytes();
@@ -74,13 +74,15 @@ Widget? paymentWidget;
     notifyListeners();
     String choice = await AppWidgets.chooseImageSource();
     if (choice == "Camera") {
-      paymentFile =
-          await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
+      paymentFile = await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
       notifyListeners();
     } else if (choice == "Gallery") {
-      paymentFile =
-          await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+      paymentFile = await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
       notifyListeners();
+    }
+    else if(choice=="Cancel"){
+      paymentFile=null;
+      return;
     }
     if (paymentFile != null) {
 

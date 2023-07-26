@@ -122,15 +122,16 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
 
                                     },
                                   ),
-                                  Text("~Password must be greater than 8.", style: TextStyle(color: checks.contains(0)?Colors.red:Colors.grey),),
-                                  Text("~Must contain capital letter", style: TextStyle(color: checks.contains(1)?Colors.red:Colors.grey)),
-                                  Text("~Must contain number",
-                                    style: TextStyle(color: checks.contains(2)?Colors.red:Colors.grey),),
-                                  Text("~Must contain lower case letter",
-                                    style: TextStyle(color: checks.contains(3)?Colors.red:Colors.grey),),
-                                  Text("~Must contain special character.",
-                                    style: TextStyle(color: checks.contains(4)?Colors.red:Colors.grey),
-                                  ),
+                                  checks.contains(0)?
+                                  Text("~Password must be greater than 8.", style: TextStyle(color: checks.contains(0)?Colors.red:Colors.grey),):Container(),
+                                  checks.contains(1)?
+                                  Text("~Must contain capital letter", style: TextStyle(color: checks.contains(1)?Colors.red:Colors.grey)):Container(),
+                                  checks.contains(2)?
+                                  Text("~Must contain number", style: TextStyle(color: checks.contains(2)?Colors.red:Colors.grey),):Container(),
+                                  checks.contains(3)?
+                                  Text("~Must contain lower case letter", style: TextStyle(color: checks.contains(3)?Colors.red:Colors.grey),):Container(),
+                                  checks.contains(4)?
+                                  Text("~Must contain special character.", style: TextStyle(color: checks.contains(4)?Colors.red:Colors.grey)):Container(),
                                   sh(20),
                                   Container(
                                     child: Padding(

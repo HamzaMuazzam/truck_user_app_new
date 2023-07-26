@@ -183,6 +183,32 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                 sw(7),
                                 Expanded(
                                   child: Text(
+                                    'Order ID:',
+                                    style: TextStyle(
+                                        fontSize: h * 12,
+                                        color: textYellowColor),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Align(
+                                    alignment: Alignment.topRight,
+                                    child: Text(
+                                      paymentProvider.order?.orderId?.toString()??"",
+                                      style: TextStyle(
+                                        fontSize: h * 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            sh(20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                sw(7),
+                                Expanded(
+                                  child: Text(
                                     'Load City',
                                     style: TextStyle(
                                         fontSize: h * 12,
@@ -1064,8 +1090,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                         if(Get.isDialogOpen==true){
                           Get.back();
                         }
-                        await paymentProvider
-                            .getPaymentImage(paymentProvider.order!.orderId.toString());
+                        await paymentProvider.getPaymentImage(paymentProvider.order!.orderId.toString());
                         setState(() {});
                       },
                       child: Center(child: Text('Upload Evidence'))),
@@ -1248,7 +1273,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
         ),
       InkWell(
         onTap: () async {
-          if(paymentProvider.order?.isLoaded==false) return;
+          // if(paymentProvider.order?.isLoaded==false) return;
 
 
           if (paymentProvider.order!.isPaid == true) return;
