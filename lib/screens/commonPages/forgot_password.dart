@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:otp_text_field/otp_text_field.dart';
-import 'package:otp_text_field/style.dart';
+// import 'package:otp_text_field/otp_text_field.dart';
+// import 'package:otp_text_field/style.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
@@ -104,19 +104,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     // ),
                     sh(20),
                     if (authProvider.emailOtp != null)
-                      OTPTextField(
-                        onCompleted: (pin) {
-                          if (pin == authProvider.emailOtp) {
-                            status = true;
-                          } else {
-                            AppConst.errorSnackBar("OTP mismatch");
-                          }
-                        },
-                        width: MediaQuery.of(context).size.width * .9,
-                        length: 6,
-                        fieldWidth: 30,
-                        fieldStyle: FieldStyle.underline,
-                      ),
+                      // OTPTextField(
+                      //   onCompleted: (pin) {
+                      //     if (pin == authProvider.emailOtp) {
+                      //       status = true;
+                      //     } else {
+                      //       AppConst.errorSnackBar("OTP mismatch");
+                      //     }
+                      //   },
+                      //   width: MediaQuery.of(context).size.width * .9,
+                      //   length: 6,
+                      //   fieldWidth: 30,
+                      //   fieldStyle: FieldStyle.underline,
+                      // ),
                     sh(20),
                     if (status)
                       Column(

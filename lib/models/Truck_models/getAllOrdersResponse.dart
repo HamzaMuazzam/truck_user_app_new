@@ -37,7 +37,7 @@ class GetAllOrdersResponse {
   dynamic truckDriverId;
   TruckDriver? truckDriver;
   dynamic noOfTruck;
-  double? totalFare;
+  dynamic totalFare;
   bool? inProgress;
   bool? isAccepted;
   bool? isCanceled;

@@ -9,7 +9,7 @@ import 'package:sultan_cab/services/ApiServices/api_services.dart';
 import 'package:sultan_cab/services/ApiServices/api_urls.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/const.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 enum RideStage {
   Normal,
@@ -36,12 +36,6 @@ class TruckBookingProvider extends ChangeNotifier {
 
   RideStage stage = RideStage.Bidding;
 
-  void changeRideStage(RideStage currentStage) {
-    stage = currentStage;
-    notifyListeners();
-  }
-
-
 
 
 
@@ -54,13 +48,13 @@ class TruckBookingProvider extends ChangeNotifier {
 
 
 
-  Future<void> makePhoneCall(String phoneNumber) async {
-    final Uri launchUri = Uri(
-      scheme: 'tel',
-      path: phoneNumber,
-    );
-    await launchUrl(launchUri);
-  }
+  // Future<void> makePhoneCall(String phoneNumber) async {
+  //   final Uri launchUri = Uri(
+  //     scheme: 'tel',
+  //     path: phoneNumber,
+  //   );
+  //   await launchUrl(launchUri);
+  // }
 
   void showDriverOnMap(data) {
     onDriverLocationChange = OnLocationChange.fromJson(data);

@@ -59,12 +59,27 @@ class LocationAndMapProvider extends ChangeNotifier {
   );
 
   Future<void> setCurrentLocMarker() async {
-    final permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever)
-      await Geolocator.requestPermission();
 
-    final loc =
-        await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
+    final permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever){
+
+      showLocationPermissionDialog(Get.context!,(){
+
+      },() async{
+        await Geolocator.requestPermission();
+        _hasPermissions();
+      });
+      return;
+    }
+    else{
+      _hasPermissions();
+    }
+
+  }
+
+
+  void _hasPermissions()async{
+    final loc = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
     newCameraPosition = CameraPosition(target: LatLng(loc.latitude, loc.longitude), zoom: 15);
     appFlowProvider.currentLoc = LatLng(loc.latitude, loc.longitude);
     notifyListeners();
@@ -114,4 +129,67 @@ class LocationAndMapProvider extends ChangeNotifier {
 
 
 
+}
+
+class LocationPermissionDialog extends StatelessWidget {
+  var onLaterPressed;
+  var onGrantPressed;
+  LocationPermissionDialog(this.onLaterPressed,this.onGrantPressed);
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.location_on,
+              size: 48,
+              color: Colors.blue,
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              "Why do we need your location?",
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              "To process your order smoothly, we need access to your pickup and drop off locations. This enables us to find the nearest drivers and deliver your order efficiently.",
+              style: TextStyle(fontSize: 16.0),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                onGrantPressed();
+                Navigator.of(context).pop();
+              },
+              child: Text("Grant Location Permission"),
+            ),
+            TextButton(
+              onPressed: () {
+                onLaterPressed();
+                Navigator.of(context).pop();
+              },
+              child: Text("Maybe Later"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+void showLocationPermissionDialog(BuildContext context, var onLaterPressed, var onGrantPressed) {
+  showDialog(
+    context: context,
+    builder: (context) => LocationPermissionDialog(onLaterPressed,onGrantPressed),
+  );
 }

@@ -2,7 +2,7 @@ import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+// import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/commons.dart';
@@ -153,58 +153,58 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
                         ),
                       ),
                       const SizedBox(height: 15),
-                      PinCodeTextField(
-                        appContext: context,
-                        length: 6,
-                        // onFocusChange: (hasFocus) async {
-                        //   if (hasFocus) await _scrollToBottomOnKeyboardOpen();
-                        // },
-                        // onSubmit: (enteredOTP) async {
-                        //   final isValidOTP = await controller.verifyOTP(
-                        //     otp: enteredOTP,
-                        //   );
-                        //   // Incorrect OTP
-                        //   if (!isValidOTP) {
-                        //     Get.snackbar('', 'The entered OTP is invalid!');
-                        //   }
-                        // },
-                        showCursor: false,
-                        animationType: AnimationType.scale,
-                        pinTheme: PinTheme(
-                          inactiveColor:secondaryColor,
-                          shape: PinCodeFieldShape.box,
-                          selectedColor: secondaryColor,
-                          activeColor: secondaryColor,
-                          // inactiveColor: ColorRes.COLOR_PRIMARY.withOpacity(0.3),
-                          borderRadius: const BorderRadius.all(Radius.circular(5)),
-                        ),
-                        // textStyle: theme.style25W800.copyWith(fontSize: 30, fontWeight: FontWeight.w600),
-                        animationDuration: const Duration(milliseconds: 150),
-                        useExternalAutoFillGroup: true,
-                        useHapticFeedback: true,
-                        textStyle: TextStyle(color: textColor),
-                        keyboardType:
-                            const TextInputType.numberWithOptions(decimal: true, signed: false),
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                        ],
-                        hapticFeedbackTypes: HapticFeedbackTypes.selection,
-                        onCompleted: (enteredOTP) async {
-                          debugPrint("Completed");
-                          final isValidOTP = await controller.verifyOtp(enteredOTP);
-                          // Incorrect OTP
-                          if (!isValidOTP) {
-                            AppConst.errorSnackBar(
-                              'The entered OTP is invalid!',
-                            );
-                          }
-                        },
-                        onChanged: (_) {},
-                        beforeTextPaste: (text) {
-                          debugPrint("Allowing to paste $text");
-                          return true;
-                        },
-                      ),
+                      // PinCodeTextField(
+                      //   appContext: context,
+                      //   length: 6,
+                      //   // onFocusChange: (hasFocus) async {
+                      //   //   if (hasFocus) await _scrollToBottomOnKeyboardOpen();
+                      //   // },
+                      //   // onSubmit: (enteredOTP) async {
+                      //   //   final isValidOTP = await controller.verifyOTP(
+                      //   //     otp: enteredOTP,
+                      //   //   );
+                      //   //   // Incorrect OTP
+                      //   //   if (!isValidOTP) {
+                      //   //     Get.snackbar('', 'The entered OTP is invalid!');
+                      //   //   }
+                      //   // },
+                      //   showCursor: false,
+                      //   animationType: AnimationType.scale,
+                      //   pinTheme: PinTheme(
+                      //     inactiveColor:secondaryColor,
+                      //     shape: PinCodeFieldShape.box,
+                      //     selectedColor: secondaryColor,
+                      //     activeColor: secondaryColor,
+                      //     // inactiveColor: ColorRes.COLOR_PRIMARY.withOpacity(0.3),
+                      //     borderRadius: const BorderRadius.all(Radius.circular(5)),
+                      //   ),
+                      //   // textStyle: theme.style25W800.copyWith(fontSize: 30, fontWeight: FontWeight.w600),
+                      //   animationDuration: const Duration(milliseconds: 150),
+                      //   useExternalAutoFillGroup: true,
+                      //   useHapticFeedback: true,
+                      //   textStyle: TextStyle(color: textColor),
+                      //   keyboardType:
+                      //       const TextInputType.numberWithOptions(decimal: true, signed: false),
+                      //   inputFormatters: [
+                      //     FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                      //   ],
+                      //   hapticFeedbackTypes: HapticFeedbackTypes.selection,
+                      //   onCompleted: (enteredOTP) async {
+                      //     debugPrint("Completed");
+                      //     final isValidOTP = await controller.verifyOtp(enteredOTP);
+                      //     // Incorrect OTP
+                      //     if (!isValidOTP) {
+                      //       AppConst.errorSnackBar(
+                      //         'The entered OTP is invalid!',
+                      //       );
+                      //     }
+                      //   },
+                      //   onChanged: (_) {},
+                      //   beforeTextPaste: (text) {
+                      //     debugPrint("Allowing to paste $text");
+                      //     return true;
+                      //   },
+                      // ),
                     ],
                   )
                 : Column(

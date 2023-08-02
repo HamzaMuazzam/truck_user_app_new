@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/UserModel/user_model.dart';
@@ -29,10 +29,10 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController phoneController = TextEditingController();
   TextEditingController pinPutController = TextEditingController();
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  // TextEditingController emailController = TextEditingController(text: "hamzamuazzam1011@gmail.com");
-  // TextEditingController passwordController = TextEditingController(text: 'Power\$321');
+  // TextEditingController emailController = TextEditingController();
+  // TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(text: "hamzamuazzam1011@gmail.com");
+  TextEditingController passwordController = TextEditingController(text: 'Power\$321');
   TextEditingController password2Controller = TextEditingController();
   UserCredential? userCredential;
   UserAuthModel? userAuthModel;
@@ -217,48 +217,48 @@ class AuthProvider extends ChangeNotifier {
   }
 
   //TODO
-  Future<bool> signInWithGoogle() async {
-    AppConst.startProgress();
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    if (googleUser == null) {
-      AppConst.stopProgress();
-      return false;
-    }
-
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser.authentication;
-    if (googleAuth == null) {
-      AppConst.stopProgress();
-      return false;
-    }
-
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-    userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-
-    if (userCredential != null) {
-      // Map<String, String> userCreate = {
-      //   'name': userCredential!.user!.displayName!,
-      //   'loginId': googleUser.email,
-      //   'isSocialLogin': 'true',
-      //   'socialType': 'GOOGLE',
-      //   'isActive': 'false',
-      //   'userType': 'Driver',
-      // };
-      // await createAccount(
-      //   userCreate,
-      // );
-
-      AppConst.stopProgress();
-      return true;
-    }
-    AppConst.errorSnackBar('userCredentials are null');
-    AppConst.stopProgress();
-    return false;
-  }
+  // Future<bool> signInWithGoogle() async {
+  //   AppConst.startProgress();
+  //   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  //   if (googleUser == null) {
+  //     AppConst.stopProgress();
+  //     return false;
+  //   }
+  //
+  //   final GoogleSignInAuthentication? googleAuth =
+  //       await googleUser.authentication;
+  //   if (googleAuth == null) {
+  //     AppConst.stopProgress();
+  //     return false;
+  //   }
+  //
+  //   final credential = GoogleAuthProvider.credential(
+  //     accessToken: googleAuth.accessToken,
+  //     idToken: googleAuth.idToken,
+  //   );
+  //   userCredential =
+  //       await FirebaseAuth.instance.signInWithCredential(credential);
+  //
+  //   if (userCredential != null) {
+  //     // Map<String, String> userCreate = {
+  //     //   'name': userCredential!.user!.displayName!,
+  //     //   'loginId': googleUser.email,
+  //     //   'isSocialLogin': 'true',
+  //     //   'socialType': 'GOOGLE',
+  //     //   'isActive': 'false',
+  //     //   'userType': 'Driver',
+  //     // };
+  //     // await createAccount(
+  //     //   userCreate,
+  //     // );
+  //
+  //     AppConst.stopProgress();
+  //     return true;
+  //   }
+  //   AppConst.errorSnackBar('userCredentials are null');
+  //   AppConst.stopProgress();
+  //   return false;
+  // }
 
   //TODO
   UserRegResponse? userRegResponse;

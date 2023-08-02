@@ -4,27 +4,27 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e7735bd-e291-44a7-a421-1313418efd95" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/kotlin/com/lahdatech/trucking/MainActivity.kt" afterDir="false" />
+    <list default="true" id="10f664b7-77c6-4be9-9d07-cfd0f89c1303" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../build/app/generated/source/buildConfig/debug/com/lahdatech/trucking/BuildConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../build/app/generated/source/buildConfig/release/com/lahdatech/trucking/BuildConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../build/app/intermediates/javac/release/classes/com/lahdatech/trucking/BuildConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/kotlin/com/futurevision/trucking/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/profile/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/profile/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/providers/Truck _provider/payment_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/Truck _provider/payment_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/Truck_models/getAllOrdersResponse.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/Truck_models/getAllOrdersResponse.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/GoogleMapProvider/location_and_map_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/GoogleMapProvider/location_and_map_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/TaxiBookingProvider/truck_booking_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/TaxiBookingProvider/truck_booking_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/providers/auth_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/auth_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/TruckBooking/getOrderDetailsById.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/TruckBooking/getOrderDetailsById.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/phone_verify.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/phone_verify.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/register.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/TruckBooking/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/TruckBooking/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/forgot_password.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/forgot_password.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/otp_verifications.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/otp_verifications.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/logoutDialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/logoutDialog.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
     </list>
@@ -39,13 +39,19 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="EXPORT_PRIVATE_KEY" value="false" />
+    <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../lib/trucking" />
+    <option name="KEY_ALIAS" value="trucking" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2T6r1RcoY8DI8fdqBEgufYGnr1C" />
+  <component name="ProjectId" id="2TR7GEJOOWITli4aqq2u8yUhY2E" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -131,11 +137,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0e7735bd-e291-44a7-a421-1313418efd95" name="Changes" comment="" />
-      <created>1690374156480</created>
+      <changelist id="10f664b7-77c6-4be9-9d07-cfd0f89c1303" name="Changes" comment="" />
+      <created>1690993941868</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1690374156480</updated>
+      <updated>1690993941868</updated>
     </task>
     <servers />
   </component>

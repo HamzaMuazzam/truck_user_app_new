@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
@@ -95,7 +94,7 @@ class LogOutDialog extends StatelessWidget {
 
 Future<bool> dialogBoxLogout(BuildContext context) async {
   bool status = false;
-  await showAnimatedDialog(
+  await showDialog(
     context: context,
     barrierDismissible: true,
     barrierColor: Colors.black.withOpacity(0.4),
@@ -107,9 +106,6 @@ Future<bool> dialogBoxLogout(BuildContext context) async {
         },
       );
     },
-    animationType: DialogTransitionType.fadeScale,
-    curve: Curves.fastOutSlowIn,
-    duration: Duration(milliseconds: 300),
   );
   return status;
 }
