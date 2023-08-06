@@ -4,29 +4,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10f664b7-77c6-4be9-9d07-cfd0f89c1303" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../build/app/generated/source/buildConfig/debug/com/lahdatech/trucking/BuildConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../build/app/generated/source/buildConfig/release/com/lahdatech/trucking/BuildConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../build/app/intermediates/javac/release/classes/com/lahdatech/trucking/BuildConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins" afterDir="false" />
+    <list default="true" id="eb2cb4bf-39b5-4cfc-9103-2f5fa140beac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/models/Truck_models/getAllOrdersResponse.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/Truck_models/getAllOrdersResponse.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/providers/GoogleMapProvider/location_and_map_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/GoogleMapProvider/location_and_map_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/providers/TaxiBookingProvider/truck_booking_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/TaxiBookingProvider/truck_booking_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/providers/auth_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/auth_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/TruckBooking/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/TruckBooking/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/TruckBooking/getOrderDetailsById.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/TruckBooking/getOrderDetailsById.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/forgot_password.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/forgot_password.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/otp_verifications.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/otp_verifications.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/widgets/logoutDialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/logoutDialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +26,8 @@
   </component>
   <component name="GenerateSignedApkSettings">
     <option name="EXPORT_PRIVATE_KEY" value="false" />
-    <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../lib/trucking" />
+    <option name="KEY_STORE_PATH" value="$USER_HOME$/Desktop/trucking" />
     <option name="KEY_ALIAS" value="trucking" />
-    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -51,7 +35,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2TR7GEJOOWITli4aqq2u8yUhY2E" />
+  <component name="ProjectId" id="2TcdZgoUq9DfTGtZE8F4wusag1m" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -137,11 +121,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="10f664b7-77c6-4be9-9d07-cfd0f89c1303" name="Changes" comment="" />
-      <created>1690993941868</created>
+      <changelist id="eb2cb4bf-39b5-4cfc-9103-2f5fa140beac" name="Changes" comment="" />
+      <created>1691346359902</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1690993941868</updated>
+      <updated>1691346359902</updated>
     </task>
     <servers />
   </component>

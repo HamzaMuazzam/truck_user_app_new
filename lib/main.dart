@@ -42,10 +42,8 @@ void main() async {
         apiKey: 'AIzaSyCrE9nXUcr0QSd18fiv4-juxqXD9Ch6Ad0',
         appId: '1:236880847063:android:95fe652d2293b1cef15092',
         messagingSenderId: '236880847063',
-        projectId:
-        'tucking-app-c9418'),
+        projectId: 'tucking-app-c9418'),
   );
-  // setUrlStrategy(PathUrlStrategy());
   runApp(
     MyApp(),
   );

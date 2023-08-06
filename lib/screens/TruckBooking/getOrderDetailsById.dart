@@ -935,12 +935,20 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                               height: 1,
                             ),
                             sh(20),
-                         paymentProvider.paymentWidget!,
-                            sh(20),
-                            Container(
-                              color: Colors.grey,
-                              height: 1,
-                            ),
+
+
+
+
+                            if(paymentProvider.order?.isLoaded==true)
+                              Column(children: [
+                                paymentProvider.paymentWidget!,
+                                sh(20),
+                                Container(
+                                  color: Colors.grey,
+                                  height: 1,
+                                ),
+                              ],),
+
                             sh(20),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1243,11 +1251,11 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
     );
   }
 
-  void openPaymentAskDialogue() async{
-    await 0.delay();
-    Get.back();
-    Get.dialog(_PaymentDialogue(),barrierDismissible: false,);
-  }
+  // void openPaymentAskDialogue() async{
+  //   await 0.delay();
+  //   Get.back();
+  //   Get.dialog(_PaymentDialogue(),barrierDismissible: false,);
+  // }
 
   Widget showPaymentPart() {
     return Column(children: [
@@ -1335,47 +1343,47 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
 
 }
 
-class _PaymentDialogue extends StatelessWidget {
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-            child: Container(
-              color: Colors.black.withOpacity(0.4),
-              width: double.infinity,
-              height: double.infinity,
-            ),
-          ),
-          // Dialog box
-          Column(children: [
-            SizedBox(height: 100,),
-            Padding(
-              padding: const EdgeInsets.all(25),
-              child: paymentProvider.paymentWidget!,
-            ),
-            Center(
-              child: AlertDialog(
-                title: Text('Alert!'),
-                content: Text('Please pay your order dues to proceed.'),
-                actions: [
-                  ElevatedButton(
-                    onPressed: () {
-                    Get.back();
-                    },
-                    child: Text('OK'),
-                  ),
-                ],
-              ),
-            ),
-
-          ],),
-        ],
-      ),
-    );
-  }
-}
+// class _PaymentDialogue extends StatelessWidget {
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Stack(
+//         children: [
+//           BackdropFilter(
+//             filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
+//             child: Container(
+//               color: Colors.black.withOpacity(0.4),
+//               width: double.infinity,
+//               height: double.infinity,
+//             ),
+//           ),
+//           // Dialog box
+//           Column(children: [
+//             SizedBox(height: 100,),
+//             Padding(
+//               padding: const EdgeInsets.all(25),
+//               child: paymentProvider.paymentWidget!,
+//             ),
+//             Center(
+//               child: AlertDialog(
+//                 title: Text('Alert!'),
+//                 content: Text('Please pay your order dues to proceed.'),
+//                 actions: [
+//                   ElevatedButton(
+//                     onPressed: () {
+//                     Get.back();
+//                     },
+//                     child: Text('OK'),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//
+//           ],),
+//         ],
+//       ),
+//     );
+//   }
+// }
