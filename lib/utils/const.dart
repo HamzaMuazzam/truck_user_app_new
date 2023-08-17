@@ -6,7 +6,7 @@ import 'package:sultan_cab/utils/colors.dart';
 class AppConst {
   static const String countryCode = '+966';
 
-  static Future startProgress({bool barrierDismissible=false}) async {
+  static Future startProgress({bool barrierDismissible=true}) async {
     if (!Get.isDialogOpen!)
       await 0.delay();
       await 0.delay();

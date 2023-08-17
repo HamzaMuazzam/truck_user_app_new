@@ -225,10 +225,14 @@ class AppFlowProvider extends ChangeNotifier {
     notifyListeners();
   }
   Future setDestinationLoc(LatLng loc, String add) async {
-    _destLoc = loc;
-    destAddress = add;
-    if(!kIsWeb){
-    await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
+    try{
+      _destLoc = loc;
+      destAddress = add;
+      if(!kIsWeb){
+        await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
+      }
+    }catch(e){
+      logger.e(e);
     }
     notifyListeners();
   }
@@ -236,7 +240,13 @@ class AppFlowProvider extends ChangeNotifier {
     _directions = dir;
 
     if(!kIsWeb){
-      await mapController!.animateCamera(CameraUpdate.newLatLngBounds(directions!.bounds!, 100),);
+      try{
+        if(!kIsWeb){
+          await mapController!.animateCamera(CameraUpdate.newLatLngBounds(directions!.bounds!, 100),);
+        }
+      }catch(e){
+        logger.e(e);
+      }
     }
     notifyListeners();
   }

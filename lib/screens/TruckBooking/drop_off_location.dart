@@ -87,8 +87,8 @@ class _DropOffLocationState extends State<DropOffLocation> {
                   onTap: () async {
                     if (appProvider.currentAddress != null) {
 
-                      String? address="";
-                      String? city="";
+                      String? address;
+                      String? city;
                       LatLng? latlng;
                       if (kIsWeb) {
                         await Get.to(MapLocationPicker(
@@ -111,8 +111,12 @@ class _DropOffLocationState extends State<DropOffLocation> {
                           builder: (context) => PlacePicker(GoogleMapApiKey),
                         ));
                         address = result?.formattedAddress!;
-                        latlng =result!.latLng;
-                        city=result.city!.name!;
+                        latlng =result?.latLng;
+                        city=result?.city!.name!;
+
+                        print(address);
+                        print(latlng);
+                        print(city);
                       }
 
 
@@ -125,14 +129,14 @@ class _DropOffLocationState extends State<DropOffLocation> {
                             .getDirections(
                             origin: appProvider.currentLoc!,
                             dest: latlng!);
-
+                        print(dir);
                         if (dir != null) await appProvider.setDirections(dir);
                         if (appProvider.destAdd == null) {
-                          await AppConst.infoSnackBar(ChooseDestinationMsg);
+                          // await AppConst.infoSnackBar(ChooseDestinationMsg);
                           return;
                         }
                         else if (appProvider.currentAddress == null) {
-                          await AppConst.infoSnackBar(ChooseStartingMsg);
+                          // await AppConst.infoSnackBar(ChooseStartingMsg);
                           return;
                         }
                         else {
@@ -143,8 +147,10 @@ class _DropOffLocationState extends State<DropOffLocation> {
                         }
 
                       }
-                    } else
-                      appSnackBar(context: context, msg: ChooseStartingMsg, isError: true);
+                    }
+
+                    // else
+                    //   appSnackBar(context: context, msg: ChooseStartingMsg, isError: true);
                   },
                   child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 14),

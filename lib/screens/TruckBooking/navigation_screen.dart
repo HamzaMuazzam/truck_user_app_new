@@ -70,7 +70,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       bottomNavigationBar:
 
       Container(
-        height: h * 55,
+        height: h * 60,
         child: BottomNavigationBar(
           backgroundColor: greybackColor,
           type: BottomNavigationBarType.fixed,

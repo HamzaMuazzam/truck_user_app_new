@@ -150,6 +150,7 @@ class FairTruckProvider extends ChangeNotifier {
       return [true,json.decode(response)['orderId']];
     } catch (e) {
       print("CATCHED ERROR => "+e.toString());
+      Get.back();
       return [false,0];
     }
   }

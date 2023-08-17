@@ -72,33 +72,7 @@ class _AuthWidgetState extends State<AuthWidget> {
                             height: Get.height),
                       ],
                     ),
-                    // Align(
-                    //   alignment: Alignment(0, 0.85),
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.symmetric(
-                    //         horizontal: 20, vertical: 10),
-                    //     child: InkWell(
-                    //       onTap: _checkStates,
-                    //       child: Container(
-                    //         height: 55,
-                    //         width: Get.width,
-                    //         decoration: BoxDecoration(
-                    //           color: Colors.amber,
-                    //           borderRadius: BorderRadius.circular(100),
-                    //         ),
-                    //         child: Center(
-                    //           child: Text(
-                    //             "Get Started",
-                    //             style: TextStyle(
-                    //                 color: greyColor,
-                    //                 fontWeight: FontWeight.bold,
-                    //                 fontSize: 18),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // )
+
                   ],
                 ),
               )

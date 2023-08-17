@@ -15,20 +15,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-// GoogleMapController? mapController;
-
 class _HomePageState extends State<HomePage> {
-  late LocationAndMapProvider gMapProv;
-  Completer<GoogleMapController> _controller = Completer();
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    gMapProv = Provider.of<LocationAndMapProvider>(context, listen: false);
-    // gMapProv.setCurrentLocMarker();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

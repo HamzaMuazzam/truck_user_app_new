@@ -197,51 +197,41 @@ class _SearchingWidgetState extends State<SearchingWidget>
 }
 
 void bookOrder() async {
-  List<dynamic> result = await fairTruckProvider.submitOrder();
-  if (result[0]==true) {
-    await 3.delay();
+  try{
+    List<dynamic> result = await fairTruckProvider.submitOrder();
+    if (result[0] == true) {
+      await 3.delay();
+      if (!kIsWeb) {
+        await Provider.of<AppFlowProvider>(Get.context!, listen: false)
+            .changeBookingStage(BookingStage.SearchingVehicle);
+        appFlowProvider.stage = BookingStage.PickUp;
+      }
 
-    // fairTruckProvider.totalFair();
+      if (!kIsWeb) {
+        await Fluttertoast.showToast(
+            msg: "The order has been booked.",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      } else {
+        Get.snackbar("Congratulations", "The order has been booked.");
+      }
+      await 0.delay();
 
-    // await appFlowProvider.removeDestinationLoc();
-    // locProv.polyLines = {};
-    // await appProvider.removeDirections();
-    // await appProvider.removePickUpLoc();
-    // locProv.locMarkers = {};
-    // locProv.polylineCoordinates = [];
-    // fairTruckProvider.loadCity = '';
-    // fairTruckProvider.unloadCity = '';
-    if (!kIsWeb) {
-      await Provider.of<AppFlowProvider>(Get.context!, listen: false).changeBookingStage(BookingStage.SearchingVehicle);
-      appFlowProvider.stage = BookingStage.PickUp;
+      if (kIsWeb) {
+        appFlowProvider.changeWebWidget(BookingStage.Orders);
+      } else {
+        gotoPage(NavigationScreen(), isClosePrevious: true);
+      }
 
+      if (result[0] == true) {
+        fairTruckProvider.gotoOrderBookingScreen(result[1].toString());
+      }
     }
-
-
-    if(!kIsWeb){
-      await Fluttertoast.showToast(
-          msg: "The order has been booked.",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-          fontSize: 16.0);
-    }else{
-      Get.snackbar("Congratulations", "The order has been booked.");
-    }
-    await 0.delay();
-
-    if (kIsWeb) {
-      appFlowProvider.changeWebWidget(BookingStage.Orders);
-
-    }
-    else {
-      gotoPage(NavigationScreen(), isClosePrevious: true);
-    }
-
-    if(result[0]==true){
-    fairTruckProvider.gotoOrderBookingScreen(result[1].toString());
-    }
+  }catch(e){
+    print(e);
   }
 }

@@ -948,7 +948,28 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   height: 1,
                                 ),
                               ],),
+                            if (paymentProvider.order?.isPaid == false)
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
 
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      'Payment Status',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Text(
+                                    'Unpaid',
+                                    style: TextStyle(
+                                        fontSize: h * 12, color: Colors.red),
+                                  ),
+                                ],
+                              ),
                             sh(20),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

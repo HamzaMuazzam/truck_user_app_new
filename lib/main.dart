@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -37,13 +38,20 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
 
-  await Firebase.initializeApp(
-    options: FirebaseOptions(
-        apiKey: 'AIzaSyCrE9nXUcr0QSd18fiv4-juxqXD9Ch6Ad0',
-        appId: '1:236880847063:android:95fe652d2293b1cef15092',
-        messagingSenderId: '236880847063',
-        projectId: 'tucking-app-c9418'),
-  );
+  if(kIsWeb){
+
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+      apiKey: 'AIzaSyCrE9nXUcr0QSd18fiv4-juxqXD9Ch6Ad0',
+      appId: '1:236880847063:android:95fe652d2293b1cef15092',
+      messagingSenderId: '236880847063',
+      projectId: 'tucking-app-c9418'
+      ),
+    );
+  }{
+
+    await Firebase.initializeApp();
+  }
   runApp(
     MyApp(),
   );

@@ -1,28 +1,24 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:map_location_picker/map_location_picker.dart';
 import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
 
-import '../../utils/commons.dart';
-import '/models/directions_model.dart';
-import '/services/directions_services.dart';
+import '../../models/directions_model.dart';
+import '../../services/directions_services.dart';
+import '../../utils/const.dart';
 import '/utils/api_keys.dart';
 import '/utils/colors.dart';
 import '/utils/sizeConfig.dart';
 import '/utils/strings.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
-import '../../utils/const.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:http/http.dart' as http;
+import '../../utils/commons.dart';
 
 class PickupLocation extends StatefulWidget {
   @override
@@ -73,76 +69,83 @@ class _PickupLocationState extends State<PickupLocation> {
         children: [
           InkWell(
             onTap: () async {
-              Get.dialog(Center(
-                child: CircularProgressIndicator(),
-              ));
-              await fairTruckProvider.getAllOrdersDetails();
-              if (Get.isDialogOpen == true) {
-                Get.back();
-              }
-              if (fairTruckProvider.getAllOrdersResponse != null &&
-                  fairTruckProvider.getAllOrdersResponse.isNotEmpty) {
-                for (int i = 0;
-                    i < fairTruckProvider.getAllOrdersResponse.length;
-                    i++) {
-                  if (fairTruckProvider.getAllOrdersResponse[i].isPaid ==
-                          false ||
-                      fairTruckProvider.getAllOrdersResponse[i].isPaid ==
-                          null) {
-                    showAlertWarning();
-                    return;
+              try {
+                Get.dialog(Center(
+                  child: CircularProgressIndicator(),
+                ));
+                await fairTruckProvider.getAllOrdersDetails();
+                if (Get.isDialogOpen == true) {
+                  Get.back();
+                }
+                if (fairTruckProvider.getAllOrdersResponse != null &&
+                    fairTruckProvider.getAllOrdersResponse.isNotEmpty) {
+                  for (int i = 0;
+                      i < fairTruckProvider.getAllOrdersResponse.length;
+                      i++) {
+                    if (fairTruckProvider.getAllOrdersResponse[i].isPaid ==
+                            false ||
+                        fairTruckProvider.getAllOrdersResponse[i].isPaid ==
+                            null) {
+                      showAlertWarning();
+                      return;
+                    }
                   }
                 }
-              }
 
-              String? address;
-              String? city = "";
-              LatLng? latlng;
-              if (kIsWeb) {
-                await Get.to(MapLocationPicker(
-                  apiKey: GoogleMapApiKey,
-                  onNext: (GeocodingResult? result) async {
-                    if (result != null) {
-                      print(result.toJson());
-                      address = result.formattedAddress!;
-                      latlng = LatLng(result.geometry.location.lat,
-                          result.geometry.location.lng);
-                      city = await getCityName(
-                          latlng!.latitude, latlng!.longitude);
-                      Get.back();
-                    }
-                  },
-                ));
-              } else {
-                LocationResult? result =
-                    await Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => PlacePicker(GoogleMapApiKey),
-                ));
-                address = result?.formattedAddress!;
-                latlng = result!.latLng;
-                city = result.city!.name!;
-              }
-
-              if (address != null && latlng != null) {
-                appProvider.currentAddress = address;
-                await appProvider.setPickUpLoc(latlng!, address!);
-
-                if (appProvider.currentAddress == null) {
-                  await AppConst.infoSnackBar(ChooseStartingMsg);
-                  return;
+                String? address;
+                String? city = "";
+                LatLng? latlng;
+                if (kIsWeb) {
+                  await Get.to(MapLocationPicker(
+                    apiKey: GoogleMapApiKey,
+                    onNext: (GeocodingResult? result) async {
+                      if (result != null) {
+                        print(result.toJson());
+                        address = result.formattedAddress!;
+                        latlng = LatLng(result.geometry.location.lat,
+                            result.geometry.location.lng);
+                        city = await getCityName(
+                            latlng!.latitude, latlng!.longitude);
+                        Get.back();
+                      }
+                    },
+                  ));
                 } else {
-                  fairTruckProvider.loadCity = city!;
-                  await Provider.of<AppFlowProvider>(context, listen: false)
-                      .changeBookingStage(BookingStage.DropOffLocation);
+                  await 1.delay();
+                  LocationResult? result =
+                      await Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => PlacePicker(GoogleMapApiKey),
+                  ));
+                  address = result?.formattedAddress!;
+                  latlng = result?.latLng;
+                  city = result?.city!.name!;
+
                 }
-              }
-              if (appFlowProvider.pickupLocation?.latLng != null) {
-                Directions? dir = await DirectionServices().getDirections(
-                    origin: appProvider.currentLoc!,
-                    dest: appProvider.destLoc ?? LatLng(0.0, 0.0));
-                if (dir != null) {
-                  await appProvider.setDirections(dir);
+                await 1.delay();
+
+                if (address != null && latlng != null) {
+                  appProvider.currentAddress = address;
+                  await appProvider.setPickUpLoc(latlng!, address!);
+
+                  if (appProvider.currentAddress == null) {
+                    await AppConst.infoSnackBar(ChooseStartingMsg);
+                    return;
+                  } else {
+                    fairTruckProvider.loadCity = city!;
+                    await Provider.of<AppFlowProvider>(context, listen: false)
+                        .changeBookingStage(BookingStage.DropOffLocation);
+                  }
                 }
+                if (appFlowProvider.pickupLocation?.latLng != null) {
+                  Directions? dir = await DirectionServices().getDirections(
+                      origin: appProvider.currentLoc!,
+                      dest: appProvider.destLoc ?? LatLng(0.0, 0.0));
+                  if (dir != null) {
+                    await appProvider.setDirections(dir);
+                  }
+                }
+              } catch (e) {
+                logger.e(e);
               }
             },
             child: Container(
