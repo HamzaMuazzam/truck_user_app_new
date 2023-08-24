@@ -49,18 +49,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
     SizeConfig().init(context);
     h = SizeConfig.screenHeight / 812;
     b = SizeConfig.screenWidth / 375;
-    // if (
-    //     paymentProvider.order!.isDelievered==true
-    //     &&
-    //     paymentProvider.order!.isPaid == false
-    //     // &&
-    //     // paymentProvider.paymentEvidenceUrl.isEmpty
-    //
-    // ) {
-    //   if (Get.isDialogOpen==false) {
-    //     openPaymentAskDialogue();
-    //   }
-    // }
+
     paymentProvider.paymentWidget= showPaymentPart();
     return Scaffold(
       backgroundColor: greybackColor,
@@ -939,7 +928,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
 
 
 
-                            if(paymentProvider.order?.isLoaded==true)
+                            if(paymentProvider.order?.isLoaded==true && paymentProvider.order?.isPaid==false)
                               Column(children: [
                                 paymentProvider.paymentWidget!,
                                 sh(20),
@@ -1271,13 +1260,6 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
       ],
     );
   }
-
-  // void openPaymentAskDialogue() async{
-  //   await 0.delay();
-  //   Get.back();
-  //   Get.dialog(_PaymentDialogue(),barrierDismissible: false,);
-  // }
-
   Widget showPaymentPart() {
     return Column(children: [
       if (paymentProvider.order!.isPaid == false)
@@ -1363,48 +1345,3 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
   }
 
 }
-
-// class _PaymentDialogue extends StatelessWidget {
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Stack(
-//         children: [
-//           BackdropFilter(
-//             filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-//             child: Container(
-//               color: Colors.black.withOpacity(0.4),
-//               width: double.infinity,
-//               height: double.infinity,
-//             ),
-//           ),
-//           // Dialog box
-//           Column(children: [
-//             SizedBox(height: 100,),
-//             Padding(
-//               padding: const EdgeInsets.all(25),
-//               child: paymentProvider.paymentWidget!,
-//             ),
-//             Center(
-//               child: AlertDialog(
-//                 title: Text('Alert!'),
-//                 content: Text('Please pay your order dues to proceed.'),
-//                 actions: [
-//                   ElevatedButton(
-//                     onPressed: () {
-//                     Get.back();
-//                     },
-//                     child: Text('OK'),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//
-//           ],),
-//         ],
-//       ),
-//     );
-//   }
-// }
