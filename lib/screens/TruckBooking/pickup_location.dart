@@ -82,10 +82,8 @@ class _PickupLocationState extends State<PickupLocation> {
                   for (int i = 0;
                       i < fairTruckProvider.getAllOrdersResponse.length;
                       i++) {
-                    if (fairTruckProvider.getAllOrdersResponse[i].isPaid ==
-                            false ||
-                        fairTruckProvider.getAllOrdersResponse[i].isPaid ==
-                            null) {
+                    if (fairTruckProvider.getAllOrdersResponse[i].isPaid == false || fairTruckProvider.getAllOrdersResponse[i].isPaid ==
+                            null &&(fairTruckProvider.getAllOrdersResponse[i].isLoaded==true)) {
                       showAlertWarning();
                       return;
                     }

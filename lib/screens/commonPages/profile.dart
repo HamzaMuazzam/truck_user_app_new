@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sultan_cab/models/vehicle_model.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/services/ApiServices/StorageServices/get_storage.dart';
 import 'package:sultan_cab/services/ApiServices/api_urls.dart';
@@ -18,9 +17,8 @@ import '/models/UserModel/user_model.dart';
 
 class ProfileScreen extends StatefulWidget {
   final bool? isBooking;
-  final VehicleModel? vehicle;
 
-  ProfileScreen({Key? key, @required this.isBooking, this.vehicle}) : super(key: key);
+  ProfileScreen({Key? key, @required this.isBooking}) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();

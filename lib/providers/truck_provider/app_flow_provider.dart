@@ -7,24 +7,16 @@ import 'package:place_picker/entities/location_result.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/directions_model.dart';
 import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
-import 'package:sultan_cab/screens/commonPages/settings.dart';
-import 'package:sultan_cab/screens/staticPages/aboutUs.dart';
 import 'package:sultan_cab/services/directions_services.dart';
-import 'package:sultan_cab/services/profile_services.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/strings.dart';
 
 import '../../screens/TruckBooking/OrderLocationPickScreenWeb.dart';
 import '../../screens/TruckBooking/RequestDetailsScreenWeb.dart';
 import '../../screens/TruckBooking/VehicleChooseScreenWeb.dart';
-import '../../screens/TruckBooking/booking_summary.dart';
 import '../../screens/TruckBooking/GetAllOrdersScreen.dart';
-import '../../screens/TruckBooking/home_page.dart';
 import '../../screens/TruckBooking/navigation_screens_web.dart';
 import '../../screens/TruckBooking/start_booking.dart';
-import '../../screens/staticPages/contactUs.dart';
-import '../../screens/staticPages/privacy_policy.dart';
-import '../GoogleMapProvider/location_and_map_provider.dart';
 
 enum BookingStage {
   PickUp,

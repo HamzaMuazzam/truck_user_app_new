@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/get_location_change_model/get_location_change_model.dart';
-import 'package:sultan_cab/models/get_vehicle_type_model/get_vehicle_type.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
 import 'package:sultan_cab/services/ApiServices/api_services.dart';
 import 'package:sultan_cab/services/ApiServices/api_urls.dart';
@@ -28,7 +27,6 @@ TruckBookingProvider taxiBookingProvider =
 
 class TruckBookingProvider extends ChangeNotifier {
   TextEditingController offerPriceCtrl = TextEditingController();
-  GetVehicleTypesModel? getVehicleTypesModel;
 
   OnLocationChange? onDriverLocationChange;
   String carID = "";

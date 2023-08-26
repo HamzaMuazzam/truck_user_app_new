@@ -7,17 +7,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
-import 'package:sultan_cab/providers/booking_provider.dart';
-import 'package:sultan_cab/providers/home_provider.dart';
-import 'package:sultan_cab/providers/track_provider.dart';
-import 'package:sultan_cab/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:sultan_cab/screens/TruckBooking/OrderLocationPickScreenWeb.dart';
 import 'auth_widget.dart';
 import 'customized_plugins/lib/src/WebMapProvider.dart';
 import 'providers/GoogleMapProvider/location_and_map_provider.dart';
-import 'providers/NotificationProvider/notification_provider.dart';
-import 'providers/TaxiBookingProvider/in_progress_ride_provider.dart';
 import 'providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'providers/Truck _provider/fair_provider.dart';
 import 'providers/truck_provider/app_flow_provider.dart';
@@ -65,16 +58,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
-        ChangeNotifierProvider(create: (_) => NotificationsProvider()),
-        ChangeNotifierProvider(create: (_) => HomeProvider()),
-        ChangeNotifierProvider(create: (_) => UserProvider()),
-        ChangeNotifierProvider(create: (_) => BookingProvider()),
-        ChangeNotifierProvider(create: (_) => TrackProvider()),
         ChangeNotifierProvider(create: (_) => TruckBookingProvider()),
         ChangeNotifierProvider(create: (_) => AppFlowProvider()),
         ChangeNotifierProvider(create: (_) => LocationAndMapProvider()),
         ChangeNotifierProvider(create: (_) => FirebasePhoneAuthController()),
-        ChangeNotifierProvider(create: (_) => InProgressRideProvider()),
         ChangeNotifierProvider(create: (_) => FairTruckProvider()),
         ChangeNotifierProvider(create: (_) => PaymentProvider()),
         ChangeNotifierProvider(create: (_) => WebMapProvider()),
