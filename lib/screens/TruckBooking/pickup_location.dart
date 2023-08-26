@@ -82,8 +82,14 @@ class _PickupLocationState extends State<PickupLocation> {
                   for (int i = 0;
                       i < fairTruckProvider.getAllOrdersResponse.length;
                       i++) {
-                    if (fairTruckProvider.getAllOrdersResponse[i].isPaid == false || fairTruckProvider.getAllOrdersResponse[i].isPaid ==
-                            null &&(fairTruckProvider.getAllOrdersResponse[i].isLoaded==true)) {
+                    if (
+
+
+                    fairTruckProvider.getAllOrdersResponse[i].isLoaded == true && (fairTruckProvider.getAllOrdersResponse[i].isPaid == false || fairTruckProvider.getAllOrdersResponse[i].isPaid == null)
+
+
+
+                    ) {
                       showAlertWarning();
                       return;
                     }
@@ -117,7 +123,6 @@ class _PickupLocationState extends State<PickupLocation> {
                   address = result?.formattedAddress!;
                   latlng = result?.latLng;
                   city = result?.city!.name!;
-
                 }
                 await 1.delay();
 
