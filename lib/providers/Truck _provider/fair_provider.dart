@@ -41,10 +41,6 @@ class FairTruckProvider extends ChangeNotifier {
     return true;
   }
 
-  // int totalValue = 0;
-
-
-
   Future<List<dynamic>> submitOrder() async {
     try {
       AppFlowProvider appFlowProvider =

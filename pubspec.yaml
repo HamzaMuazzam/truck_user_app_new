@@ -24,6 +24,7 @@ dependencies:
   geocoding:
   location: ^4.4.0
   permission_handler: ^10.0.2
+  url_launcher: ^6.1.14
 #  firebase_core_platform_interface: ^4.4.1
 
   provider: ^6.0.3

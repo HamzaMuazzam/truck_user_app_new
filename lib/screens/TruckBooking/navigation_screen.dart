@@ -18,9 +18,11 @@ class NavigationScreen extends StatefulWidget {
   final int index;
 
   const NavigationScreen({Key? key, this.index = 0}) : super(key: key);
+
   @override
   _NavigationScreenState createState() => _NavigationScreenState();
 }
+
 late List<Widget> _screens;
 
 class _NavigationScreenState extends State<NavigationScreen> {
@@ -42,7 +44,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
       Settings(),
     ];
 
-
     FCM();
     // inProgressRideProvider.getRideInProgress();
     super.initState();
@@ -51,7 +52,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
   List<NavigationModel> _menu = [
     NavigationModel(icon: 'assets/icons/home.svg'),
     NavigationModel(icon: 'assets/icons/history.svg'),
-    NavigationModel(icon: 'assets/icons/settings.svg',),
+    NavigationModel(
+      icon: 'assets/icons/settings.svg',
+    ),
   ];
 
   @override
@@ -59,73 +62,62 @@ class _NavigationScreenState extends State<NavigationScreen> {
     SizeConfig().init(context);
     var h = SizeConfig.screenHeight / 812;
 
-    return
-
-
-      kIsWeb
-          ?
-      GetStartedWeb()
-          :
-      Scaffold(
-      bottomNavigationBar:
-
-      Container(
-        height: h * 60,
-        child: BottomNavigationBar(
-          backgroundColor: greybackColor,
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedFontSize: 0,
-          unselectedFontSize: 0,
-          selectedIconTheme: IconThemeData(size: h * 20),
-          currentIndex: _index,
-          items: _menu.map((e) {
-            return BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                e.icon,
-                color: Color(0xffcccccc),
+    return kIsWeb
+        ? GetStartedWeb()
+        : Scaffold(
+            bottomNavigationBar: Container(
+              height: h * 60,
+              child: BottomNavigationBar(
+                backgroundColor: greybackColor,
+                type: BottomNavigationBarType.fixed,
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                selectedFontSize: 0,
+                unselectedFontSize: 0,
+                selectedIconTheme: IconThemeData(size: h * 20),
+                currentIndex: _index,
+                items: _menu.map((e) {
+                  return BottomNavigationBarItem(
+                    icon: SvgPicture.asset(
+                      e.icon,
+                      color: Color(0xffcccccc),
+                    ),
+                    activeIcon: SvgPicture.asset(
+                      e.icon,
+                      color: secondaryColor,
+                    ),
+                    label: '',
+                  );
+                }).toList(),
+                onTap: (menuIndex) {
+                  setState(() {
+                    _index = menuIndex;
+                  });
+                },
               ),
-              activeIcon: SvgPicture.asset(
-                e.icon,
-                color: secondaryColor,
-              ),
-              label: '',
-            );
-          }).toList(),
-          onTap: (menuIndex) {
-            setState(() {
-              _index = menuIndex;
-            });
-          },
-        ),
-      ),
-      body:
-
-      PageStorage(
-        child: _screens[_index],
-        bucket: bucket,
-      ),
-    );
+            ),
+            body: PageStorage(
+              child: _screens[_index],
+              bucket: bucket,
+            ),
+          );
   }
 }
 
 class NavigationModel {
   String icon;
+
   NavigationModel({required this.icon});
 }
 
-
 class GetStartedWeb extends StatefulWidget {
   const GetStartedWeb({Key? key}) : super(key: key);
-
 
   @override
   State<GetStartedWeb> createState() => _GetStartedWebState();
 }
 
 class _GetStartedWebState extends State<GetStartedWeb> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -133,6 +125,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
 
     appFlowProvider.changeWebWidget(BookingStage.WebHome);
   }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -149,15 +142,12 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                 children: [
                   WebHeader(),
                   Expanded(
-                    child: Consumer<AppFlowProvider>(
-                      builder: (_,data,__) {
-                        return Container(
-                            height: Get.height,
-                            width: Get.width,
-                            child: data.currentWidgetWeb);
-                      }
-                    ),
-
+                    child: Consumer<AppFlowProvider>(builder: (_, data, __) {
+                      return Container(
+                          height: Get.height,
+                          width: Get.width,
+                          child: data.currentWidgetWeb);
+                    }),
                   )
                 ],
               ),

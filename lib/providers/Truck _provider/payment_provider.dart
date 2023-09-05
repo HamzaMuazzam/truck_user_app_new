@@ -34,6 +34,7 @@ Widget? paymentWidget;
       final base64String = base64Encode(fileBytes);
       request.files.add(await http.MultipartFile.fromString(fileName!, base64String));
     }
+    // request.headers.addAll({'content-type': 'application/json'});
     request.headers.addAll({'content-type': 'multipart/form-data'});
     http.StreamedResponse response = await request.send();
     AppConst.stopProgress();

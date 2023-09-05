@@ -14,7 +14,7 @@ import 'providers/GoogleMapProvider/location_and_map_provider.dart';
 import 'providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'providers/Truck _provider/fair_provider.dart';
 import 'providers/truck_provider/app_flow_provider.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -31,18 +31,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
 
-  if(kIsWeb){
-
+  if (kIsWeb) {
     await Firebase.initializeApp(
       options: FirebaseOptions(
-      apiKey: 'AIzaSyCrE9nXUcr0QSd18fiv4-juxqXD9Ch6Ad0',
-      appId: '1:236880847063:android:95fe652d2293b1cef15092',
-      messagingSenderId: '236880847063',
-      projectId: 'tucking-app-c9418'
-      ),
+          apiKey: 'AIzaSyCrE9nXUcr0QSd18fiv4-juxqXD9Ch6Ad0',
+          appId: '1:236880847063:android:95fe652d2293b1cef15092',
+          messagingSenderId: '236880847063',
+          projectId: 'tucking-app-c9418'),
     );
-  }{
-
+  }
+  {
     await Firebase.initializeApp();
   }
   runApp(
@@ -71,12 +69,63 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
         theme: ThemeData.dark(),
-        home: AuthWidget(),
+        home: LayoutBuilder(builder: (context, constraints) {
+          if (GetPlatform.isWeb && constraints.biggest.width <= 650.0) {
+            print(constraints.biggest.width);
+
+            return Material(
+              child: Container(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("Download App from the stores."),
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: InkWell(
+                                    onTap: (){
+                                      openAppInStore("https://play.google.com/store/apps/details?id=com.lahdatech.trucking");
+                                    },
+                                    child: Container(
+                                      child: Image.asset("assets/images/google-play-badge.png"),
+                              ),
+                                  )),
+                              SizedBox(width: 20,),
+                              Expanded(
+                                  child: InkWell(
+                                    onTap: (){
+                                      openAppInStore("https://apps.apple.com/app/id<your_app_id>");
+                                    },
+                                    child: Container(
+                                      child: Image.asset("assets/images/app-store-badge-128x128.png"),
+                              ),
+                                  )),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
+
+          return AuthWidget();
+        }),
         // home: OrderLocationPickScreenWeb(),
       ),
-
     );
   }
-
-
+}
+Future<void> openAppInStore(String appId) async {
+  if (await canLaunch(appId)) {
+    await launch(appId);
+  } else {
+    throw 'Could not launch $appId';
+  }
 }

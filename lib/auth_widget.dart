@@ -32,12 +32,15 @@ class _AuthWidgetState extends State<AuthWidget> {
   _checkStates() async {
     await 2.delay();
     bool _user = Provider.of<AuthProvider>(Get.context!, listen: false).checkUser();
-    if (!_user) {
+    if (!_user ) {
+
+    if(!GetPlatform.isWeb){
       Navigator.of(Get.context!).pushReplacement(
         MaterialPageRoute(
           builder: (_) => VerifyPhoneScreen(),
         ),
       );
+    }
     }
     else {
       Navigator.of(Get.context!).pushReplacement(

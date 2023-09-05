@@ -788,7 +788,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                         child: Align(
                                           alignment: Alignment.topRight,
                                           child: Text(
-                                            paymentProvider.order!.truckDriver!.tdId
+                                            paymentProvider.order?.truckDriver?.tdId
                                                     .toString() ??
                                                 "",
                                             style: TextStyle(
