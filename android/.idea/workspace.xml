@@ -4,21 +4,29 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb2cb4bf-39b5-4cfc-9103-2f5fa140beac" name="Changes" comment="">
+    <list default="true" id="ffd124c4-5f9d-4c4e-96f2-bd972f359bc3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/json/profile.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/translations/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/../assets/translations/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/translations/pt.json" beforeDir="false" afterPath="$PROJECT_DIR$/../assets/translations/pt.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/providers/auth_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/auth_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/TruckBooking/getOrderDetailsById.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/TruckBooking/getOrderDetailsById.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/forgot_password.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/forgot_password.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/phone_verify.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/phone_verify.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/settings.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/services/apiServices/api_services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/services/apiServices/api_services.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/services/apiServices/api_urls.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/services/apiServices/api_urls.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utils/strings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utils/strings.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[9d950614]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R3CN1008LSZ]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -26,8 +34,9 @@
   </component>
   <component name="GenerateSignedApkSettings">
     <option name="EXPORT_PRIVATE_KEY" value="false" />
-    <option name="KEY_STORE_PATH" value="$USER_HOME$/Desktop/trucking" />
+    <option name="KEY_STORE_PATH" value="C:\Users\hamza\StudioProjects\truck_user_app_new\lib\trucking" />
     <option name="KEY_ALIAS" value="trucking" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -35,8 +44,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2TcdZgoUq9DfTGtZE8F4wusag1m" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2V2WgicEYiT5ErlN5dHhic0FBhL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -44,12 +52,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "BundleExportedModule": "android.app",
-    "ExportBundle.BundlePathForandroid.app": "/Users/hamzamuazzam/StudioProjects/truck_user_app/android/app",
+    "ExportBundle.BundlePathForandroid.app": "C:\\Users\\hamza\\StudioProjects\\truck_user_app_new\\android\\app",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "C:/Users/hamza/StudioProjects/truck_user_app_new/lib/trucking",
+    "memory.settings.postsync.last.time.stamp": "1694036343758",
     "show.migrate.to.gradle.popup": "false"
   },
   "keyToStringList": {
@@ -69,7 +79,6 @@
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
-      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
@@ -85,6 +94,8 @@
         <option name="WORKING_DIR" value="" />
         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
       </Auto>
       <Hybrid>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
@@ -92,14 +103,21 @@
         <option name="WORKING_DIR" value="" />
         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
       </Hybrid>
-      <Java />
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
       <Native>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
         <option name="WORKING_DIR" value="" />
         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
       </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
@@ -121,23 +139,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eb2cb4bf-39b5-4cfc-9103-2f5fa140beac" name="Changes" comment="" />
-      <created>1691346359902</created>
+      <changelist id="ffd124c4-5f9d-4c4e-96f2-bd972f359bc3" name="Changes" comment="" />
+      <created>1694034768647</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1691346359902</updated>
+      <updated>1694034768647</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

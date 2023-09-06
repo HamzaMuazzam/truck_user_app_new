@@ -12,10 +12,9 @@ import 'package:provider/provider.dart';
 
 import '../TruckBooking/navigation_screen.dart';
 
-
-
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
+
   @override
   _SettingsState createState() => _SettingsState();
 }
@@ -27,28 +26,29 @@ class _SettingsState extends State<Settings> {
     var h = SizeConfig.screenHeight / 812;
     var b = SizeConfig.screenWidth / 375;
     return Scaffold(
-
-appBar:
-        Get.width<700 ?
-AppBar(
-  title: Text('Profile', style: TextStyle(color: textColor, fontSize: h*12,),),
-  centerTitle: true,
-  backgroundColor: secondaryColor,
-
-):
-      AppBar(backgroundColor: Colors.transparent,shadowColor: Colors.transparent,),
+      appBar: Get.width < 700
+          ? AppBar(
+              title: Text(
+                'Profile',
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: h * 12,
+                ),
+              ),
+              centerTitle: true,
+              backgroundColor: secondaryColor,
+            )
+          : AppBar(
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+            ),
       body: SafeArea(
         child: Row(
           children: [
-            if(Get.width>700)
+            if (Get.width > 700) Expanded(flex: 2, child: Container()),
             Expanded(
-                flex:2,
-                child: Container()),
-
-            Expanded(
-              flex:7,
+              flex: 7,
               child: Column(children: [
-
                 Expanded(
                   child: Container(
                     // color: Colors.white,
@@ -66,69 +66,33 @@ AppBar(
                               isBooking: false,
                             ),
                           ),
-                          // sh(21),
-                          // SettingsTile(
-                          //   title: ProfileLabel,
-                          //   icon: 'profileIcon',
-                          //   page: PaymentEvidence(),
-                          // ),
-                          sh(21),
-                          // SettingsTile(
-                          //   title: 'Booking',
-                          //   icon: 'setting',
-                          //   page: BookingTime(),
-                          // ),
-                          sh(21),
-                          // SettingsTile(
-                          //   title: "Subscription Plans",
-                          //   icon: 'tnc_icon',
-                          //   page: SubscriptionPlan(),
-                          // ),
-                          // sh(21),
-                          // SettingsTile(
-                          //   title: "Disputes",
-                          //   icon: 'tnc_icon',
-                          //   page: AllDisputeList(),
-                          // ),
-                          // sh(21),
-                          // SettingsTile(
-                          //   title: "Reoccurring",
-                          //   icon: 'privacy_icon',
-                          //   page: ReoccurringList(),
-                          // ),
-                          // sh(21),
-                          // SettingsTile(
-                          //   title: TnCLabel,
-                          //   icon: 'tnc_icon',
-                          //   page: TnCScreen(),
-                          // ),
 
-                          // SettingsTile(
-                          //   title: RegisterLabel,
-                          //   icon: 'profile_icon',
-                          //   page: RegisterScreen(),
-                          // ),
+                          SizedBox(height: 25,),
+
                           Center(
                             child: MaterialButton(
                               elevation: 0,
                               splashColor: Colors.transparent,
                               padding: EdgeInsets.zero,
                               highlightColor: Colors.transparent,
-
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(h * 5),
                               ),
                               onPressed: () async {
-                                bool confirmation = await dialogBoxLogout(context);
+                                bool confirmation =
+                                    await dialogBoxLogout(context);
 
                                 if (confirmation) {
-                                  bool status =
-                                      await Provider.of<AuthProvider>(context, listen: false).logout();
+                                  bool status = await Provider.of<AuthProvider>(
+                                          context,
+                                          listen: false)
+                                      .logout();
 
                                   if (status) {
                                     Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
-                                        builder: (context) => VerifyPhoneScreen(),
+                                        builder: (context) =>
+                                            VerifyPhoneScreen(),
                                       ),
                                       (route) => false,
                                     );
@@ -144,16 +108,15 @@ AppBar(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.logout_rounded, size: h * 16,
-                                        color: secondaryColor),
+                                    Icon(Icons.logout_rounded,
+                                        size: h * 16, color: secondaryColor),
                                     sw(5),
                                     Text(
                                       LogOutLabel,
                                       style: TextStyle(
-                                        fontSize: h * 12,
-                                        fontWeight: FontWeight.w700,
-                                        color: secondaryColor
-                                      ),
+                                          fontSize: h * 12,
+                                          fontWeight: FontWeight.w700,
+                                          color: secondaryColor),
                                     ),
                                   ],
                                 ),
@@ -167,11 +130,7 @@ AppBar(
                 ),
               ]),
             ),
-            if(Get.width>700)
-            Expanded(
-                flex:2,
-                child: Container()),
-
+            if (Get.width > 700) Expanded(flex: 2, child: Container()),
           ],
         ),
       ),
@@ -184,7 +143,9 @@ class SettingsTile extends StatelessWidget {
   final String icon;
   final dynamic page;
   final Widget? dialogBox;
-  SettingsTile({required this.title, required this.icon, this.page, this.dialogBox});
+
+  SettingsTile(
+      {required this.title, required this.icon, this.page, this.dialogBox});
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +157,6 @@ class SettingsTile extends StatelessWidget {
       splashColor: primaryColor,
       padding: EdgeInsets.zero,
       highlightColor: scaffoldColor,
-
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(h * 4),
       ),
@@ -230,32 +190,31 @@ class SettingsTile extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-          Row(
-            children: [
-              sw(h*10),
-              SvgPicture.asset(
-                'assets/icons/${this.icon}.svg',
-                color: scaffoldColor,
-                height: h * 16,
-
-              ),
-              sw(22),
-              Text(
-                this.title,
-                style: TextStyle(
-                    fontSize: h * 14,
-                    fontWeight: FontWeight.w700,
-                    color: textColor
+            Row(
+              children: [
+                sw(h * 10),
+                SvgPicture.asset(
+                  'assets/icons/${this.icon}.svg',
+                  color: scaffoldColor,
+                  height: h * 16,
                 ),
-              ),],
-          ),
+                sw(22),
+                Text(
+                  this.title,
+                  style: TextStyle(
+                      fontSize: h * 14,
+                      fontWeight: FontWeight.w700,
+                      color: textColor),
+                ),
+              ],
+            ),
             Padding(
-              padding: const EdgeInsets.only(right:8.0),
+              padding: const EdgeInsets.only(right: 8.0),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Icon(Icons.arrow_forward_ios,
-                size: 15,
-
+                child: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 15,
                 ),
               ),
             ),

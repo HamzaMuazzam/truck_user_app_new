@@ -110,7 +110,6 @@ String TotalAmountLabel = "Total Amount";
 String AccountSectionLabel = "Profile";
 String LogOutLabel = "Log Out";
 String SKIPLabel = "SKIP";
-String AgreeLabel = "By creating your account, you agree to the ";
 String AndLabel = "and";
 // String LoginwithFacebookLabel = "Login with Facebook";
 String ContinueWithGoogleLabel = "Continue with Google";

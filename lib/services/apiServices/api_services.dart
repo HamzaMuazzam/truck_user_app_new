@@ -23,22 +23,19 @@ class ApiServices {
     http.MultipartRequest request =
         http.MultipartRequest('POST', Uri.parse(ApiUrls.BASE_URL_TRUCK + feedUrl));
     if (fields != null) request.fields.addAll(fields);
-    if (files != null)
-      request.files
-          .add(await http.MultipartFile.fromPath('profileImage', files));
+    if (files != null) request.files.add(await http.MultipartFile.fromPath('profileImage', files));
     if (!forSignInSignUp) request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
     if (showProgress) AppConst.stopProgress();
 
+    String result = await response.stream.bytesToString();
+    logger.e(result);
     if (response.statusCode == 200 || response.statusCode == 201) {
-      String result = await response.stream.bytesToString();
       logger.i(result);
       return result;
     } else {
-      String result = await response.stream.bytesToString();
       dynamic parsed = jsonDecode(result);
-      // await AppConst.errorSnackBar("${response.statusCode} ${parsed["message"]}");
       await AppConst.errorSnackBar("Something went wrong.");
 
       logger.e(parsed);
@@ -137,7 +134,7 @@ class ApiServices {
     AppConst.stopProgress();
 
     var s = await response.stream.bytesToString();
-      logger.i("postMethodTruck "+ s);
+      logger.i("postMethodTruck "+ s+" \n respnse code is : ${response.statusCode}");
     if (response.statusCode == 200 || response.statusCode == 201) {
       print("await response.stream.bytesToString()");
       return s;

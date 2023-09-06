@@ -123,8 +123,10 @@ class MyApp extends StatelessWidget {
   }
 }
 Future<void> openAppInStore(String appId) async {
-  if (await canLaunch(appId)) {
-    await launch(appId);
+  var parse = Uri.parse(appId);
+
+  if (await canLaunchUrl(parse)) {
+    await launchUrl(parse);
   } else {
     throw 'Could not launch $appId';
   }

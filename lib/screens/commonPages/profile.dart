@@ -40,9 +40,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-   Gradient buttonGradient = LinearGradient(
+  Gradient buttonGradient = LinearGradient(
     colors: [greybackColor, greybackColor],
   );
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -51,17 +52,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
       backgroundColor: greybackColor,
-         appBar: Get.width<700
-             ? AppBar(
-
-        backgroundColor: secondaryColor,
-        centerTitle: true,
-        elevation: 0,
-        leading:
-        // (widget.isBooking == true || isRead)
-        //     ?
-
-        Align(
+      appBar: Get.width < 700
+          ? AppBar(
+              backgroundColor: secondaryColor,
+              centerTitle: true,
+              elevation: 0,
+              leading: Align(
                 alignment: Alignment.centerLeft,
                 child: InkWell(
                   onTap: () {
@@ -80,98 +76,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
-        //     :
-        // Align(
-        //         alignment: Alignment.centerLeft,
-        //         child: Padding(
-        //           padding: EdgeInsets.symmetric(
-        //             vertical: h * 22,
-        //             horizontal: b * 20,
-        //           ),
-        //           child: Icon(
-        //             Icons.arrow_back_ios_new_rounded,
-        //             size: b * 18,
-        //             color: Colors.transparent,
-        //           ),
-        //         ),
-        //       ),
-        title: Text(
-          ProfileLabel,
-          style: TextStyle(
-            fontSize: h * 18,
-            fontWeight: FontWeight.w700,
-            color: secondaryColor ),
-        ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: buttonGradient,
-          ),
-        ),
-        // actions: [
-        //   Align(
-        //     alignment: Alignment.centerRight,
-        //     child: widget.isBooking != null && widget.isBooking == false
-        //         ? isRead
-        //             ? InkWell(
-        //                 onTap: () {
-        //                   FocusScope.of(context).unfocus();
-        //                   setState(() {
-        //                     isRead = false;
-        //                   });
-        //                 },
-        //                 child: Padding(
-        //                   padding: EdgeInsets.symmetric(
-        //                     vertical: h * 22,
-        //                     horizontal: b * 20,
-        //                   ),
-        //                   child: SvgPicture.asset(
-        //                     'assets/icons/edit_icon.svg',
-        //                     color: Colors.black,
-        //                     width: b * 20,
-        //                   ),
-        //                 ),
-        //               )
-        //             : InkWell(
-        //                 onTap: () {
-        //                   FocusScope.of(context).unfocus();
-        //                   // loadFiles();
-        //                   setState(() {
-        //                     isRead = true;
-        //                   });
-        //                 },
-        //                 child: Padding(
-        //                   padding: EdgeInsets.symmetric(
-        //                     vertical: h * 22,
-        //                     horizontal: b * 20,
-        //                   ),
-        //                   child: Icon(
-        //                     Icons.cancel,
-        //                     size: b * 22,
-        //                   ),
-        //                 ),
-        //               )
-        //         : sh(0),
-        //   ),
-        // ],
-      )
-    :
-       AppBar(
-         backgroundColor:Colors.transparent,
-         shadowColor: Colors.transparent,
-         leading: Container(),
-       ),
+              title: Text(
+                ProfileLabel,
+                style: TextStyle(
+                    fontSize: h * 18,
+                    fontWeight: FontWeight.w700,
+                    color: secondaryColor),
+              ),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: buttonGradient,
+                ),
+              ),
+            )
+          : AppBar(
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              leading: Container(),
+            ),
       body: Row(
-
         children: [
-
-      if(Get.width>700)
-        Expanded(
-        flex:2,
-        child: Container()),
+          if (Get.width > 700) Expanded(flex: 2, child: Container()),
           Expanded(
-            flex:7,
+            flex: 7,
             child: Column(
-
               children: [
                 Expanded(
                   child: SingleChildScrollView(
@@ -181,56 +109,62 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          // sh(41),
-                          // userDP(dpUrl: ApiUrls.BASE_URL + data!.profileImage, xFile: authProvider.xFile),
                           sh(41),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: b * 25),
-                            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                              AppTextField(
-
-                                label: FullName,
-                                readOnly: isRead,
-                                controller: authProvider.nameController,
-                                suffix: null,
-                                size: h * 12,
-                                spacing: 0.6,
-                                isVisibilty: null,
-                                validator: (val) {
-                                  if (authProvider.nameController.text.trim() == "")
-                                    return FieldEmptyError;
-                                  else
-                                    return null;
-                                },
-                              ),
-                              sh(20),
-                              AppTextField(
-
-                                label: PhoneNoLabel,
-                                readOnly: true,
-                                controller: phoneController,
-                                suffix: null,
-                                size: h * 12,
-                                spacing: 0.6,
-                                isVisibilty: null,
-                                validator: (val) {
-                                  if (authProvider.nameController.text.trim() == "")
-                                    return FieldEmptyError;
-                                  else
-                                    return null;
-                                },
-                              ),
-                            ]),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppTextField(
+                                    label: FullName,
+                                    readOnly: isRead,
+                                    controller: authProvider.nameController,
+                                    suffix: null,
+                                    size: h * 12,
+                                    spacing: 0.6,
+                                    isVisibilty: null,
+                                    validator: (val) {
+                                      if (authProvider.nameController.text
+                                              .trim() ==
+                                          "")
+                                        return FieldEmptyError;
+                                      else
+                                        return null;
+                                    },
+                                  ),
+                                  sh(20),
+                                  AppTextField(
+                                    label: PhoneNoLabel,
+                                    readOnly: true,
+                                    controller: phoneController,
+                                    suffix: null,
+                                    size: h * 12,
+                                    spacing: 0.6,
+                                    isVisibilty: null,
+                                    validator: (val) {
+                                      if (authProvider.nameController.text
+                                              .trim() ==
+                                          "")
+                                        return FieldEmptyError;
+                                      else
+                                        return null;
+                                    },
+                                  ),
+                                ]),
                           ),
                           sh(20),
                           !isRead
                               ? Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: b * 25),
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: b * 25),
                                   child: AppButton(
-                                    label: widget.isBooking! ? ContinueLabel : SaveLabel,
+                                    label: widget.isBooking!
+                                        ? ContinueLabel
+                                        : SaveLabel,
                                     onPressed: () async {
                                       FocusScope.of(context).unfocus();
-                                      bool result = await authProvider.updateProfile();
+                                      bool result =
+                                          await authProvider.updateProfile();
 
                                       if (result) {}
                                     },
@@ -238,6 +172,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 )
                               : sh(0),
                           sh(40),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: InkWell(
+                              onTap: () {
+                                showDeleteConfirmationDialog(context);
+                              },
+                              child: Container(
+                                height: 56,
+                                width: Get.width,
+                                decoration: BoxDecoration(
+                                    color: Colors.red,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Center(
+                                  child: Text(
+                                    "Delete account",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -246,10 +204,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          if(Get.width>700)
-            Expanded(
-                flex:2,
-                child: Container()),
+          if (Get.width > 700) Expanded(flex: 2, child: Container()),
         ],
       ),
     );
@@ -285,7 +240,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     image: DecorationImage(
                         image: imageProvider,
                         fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+                        colorFilter:
+                            ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
                   ),
                 ),
                 placeholder: (context, url) => CircularProgressIndicator(),
@@ -293,6 +249,55 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
         backgroundColor: Colors.grey,
       ),
+    );
+  }
+
+  void showDeleteConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Delete Account'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Are you sure you want to delete your account?',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              Text('This action will delete all your data and settings.'),
+              SizedBox(height: 10),
+              Text(
+                  'You will need to create a new account if you wish to come back.'),
+              SizedBox(height: 10),
+              Text(
+                'Please note that this will perform a hard delete from our database, and no information will remain stored in our system.',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: ElevatedButton(
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  await authProvider.deleteAccount();
+                  },
+                child: Text('Delete Account'),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

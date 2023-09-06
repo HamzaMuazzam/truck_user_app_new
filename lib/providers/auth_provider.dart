@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/UserModel/user_model.dart';
@@ -15,10 +14,11 @@ import 'package:sultan_cab/services/ApiServices/api_urls.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/widgets/app_widgets.dart';
 import 'package:sultan_cab/utils/const.dart';
+import '../auth_widget.dart';
 import '../models/registration/userRegResponse.dart';
 import '../screens/TruckBooking/navigation_screen.dart';
 import '../screens/commonPages/otp_verifications.dart';
-import '../screens/commonPages/register.dart';
+import 'package:http/http.dart' as http;
 
 AuthProvider authProvider = Provider.of(Get.context!, listen: false);
 
@@ -31,6 +31,7 @@ class AuthProvider extends ChangeNotifier {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   // TextEditingController emailController = TextEditingController(text: "hamzamuazzam1011@gmail.com");
   // TextEditingController passwordController = TextEditingController(text: 'Power\$321');
   TextEditingController password2Controller = TextEditingController();
@@ -144,6 +145,7 @@ class AuthProvider extends ChangeNotifier {
       AppConst.stopProgress();
     }
   }
+
   Future<bool> verifyPhone() async {
     AppConst.startProgress();
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
@@ -274,7 +276,8 @@ class AuthProvider extends ChangeNotifier {
     };
     AppConst.startProgress();
 
-    String request = await ApiServices.postMethodTruck(feedUrl: ApiUrls.REGISTRATION,body:json.encode(body));
+    String request = await ApiServices.postMethodTruck(
+        feedUrl: ApiUrls.REGISTRATION, body: json.encode(body));
 
     if (request.isEmpty) return false;
 
@@ -296,7 +299,6 @@ class AuthProvider extends ChangeNotifier {
       return false;
     }
 
-
     // if(isPasswordCompliant(passwordController.text.trim())){
     // }else{
     //   AppConst.errorSnackBar("Password must contain digit, capital, small and special character.");
@@ -317,7 +319,6 @@ class AuthProvider extends ChangeNotifier {
       AppConst.errorSnackBar("Password should not be less than 8 digits.");
       return false;
     }
-
 
     await userRegistration();
     return true;
@@ -348,15 +349,31 @@ class AuthProvider extends ChangeNotifier {
     if (passwordController.text.isEmpty || emailController.text.isEmpty) {
       AppConst.errorSnackBar('Something is missing..');
       return false;
-    }
-    else{
-      // if(isPasswordCompliant(passwordController.text.trim())){
-      // }else{
-      //   AppConst.errorSnackBar("Password must contain digit, capital, small and special character.");
-      //   return false;
-      // }
-    }
+    } else {}
     await userLogin();
     return true;
+  }
+
+  Future<bool> deleteAccount() async {
+    AppConst.startProgress();
+
+    var request = http.Request(
+        'POST',
+        Uri.parse(
+            'https://apitruck.deeps.info/api/Accounts/delete-user?id=${StorageCRUD.getUser().id}'));
+
+    http.StreamedResponse response = await request.send();
+    AppConst.stopProgress();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      await StorageCRUD.erase();
+      gotoPage(AuthWidget(), isClosePrevious: true);
+      disposeController();
+      return true;
+    } else {
+      print(response.reasonPhrase);
+      return false;
+    }
   }
 }

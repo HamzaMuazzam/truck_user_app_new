@@ -51,6 +51,7 @@ class ApiUrls {
 
   static String REGISTRATION="Accounts/register";
   static String LOGIN="Accounts/signin";
+  static String DELETE_ACCOUNT="Accounts/delete-user";
   ///truck fare
   static String TRUCK_ALL_FARES="Truck/get-truck-fare-details";
   ///booking
@@ -67,4 +68,6 @@ class ApiUrls {
   ///getPaymentEvidence
 
   static String GET_PAYMENT_EVIDENCE="PaymentEvidence/Get-Evidence";
+
+
 }

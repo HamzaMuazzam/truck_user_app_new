@@ -23,7 +23,6 @@ class VerifyPhoneScreen extends StatefulWidget {
 class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
   final formKey = GlobalKey<FormState>();
   bool isPhVerify = false;
-  bool terms = false;
 
   @override
   void initState() {
@@ -132,98 +131,90 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                   Text("~Must contain lower case letter", style: TextStyle(color: checks.contains(3)?Colors.red:Colors.grey),):Container(),
                                   checks.contains(4)?
                                   Text("~Must contain special character.", style: TextStyle(color: checks.contains(4)?Colors.red:Colors.grey)):Container(),
-                                  sh(20),
-                                  Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Checkbox(
-                                            side: BorderSide(
-                                                color: Color(0xffcccccc),
-                                                width: h * 1),
-                                            materialTapTargetSize:
-                                                MaterialTapTargetSize
-                                                    .shrinkWrap,
-                                            visualDensity:
-                                                VisualDensity.compact,
-                                            activeColor: Colors.black,
-                                            checkColor: Colors.white,
-                                            value: terms,
-                                            onChanged: (v) {
-                                              setState(() {
-                                                terms = v!;
-                                              });
-                                            },
-                                          ),
-                                          sh(2),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: paddings()),
-                                              child: RichText(
-                                                  text: TextSpan(
-                                                      style: TextStyle(
-                                                        height: 1.6,
-                                                        fontSize: h * 15,
-                                                        color: Colors.white,
-                                                      ),
-                                                      children: [
-                                                    TextSpan(text: AgreeLabel),
-                                                    TextSpan(
-                                                        text: TnCLabel,
-                                                        recognizer:
-                                                            TapGestureRecognizer()
-                                                              ..onTap = () {
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .push(
-                                                                  MaterialPageRoute(
-                                                                    builder: (_) =>
-                                                                        TnCScreen(),
-                                                                  ),
-                                                                );
-                                                              }),
-                                                    TextSpan(
-                                                        text: ' $AndLabel '),
-                                                    TextSpan(
-                                                        text: PrivacyPolicyLabel
-                                                                .toLowerCase() +
-                                                            ".",
-                                                        recognizer:
-                                                            TapGestureRecognizer()
-                                                              ..onTap = () {
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .push(
-                                                                  MaterialPageRoute(
-                                                                    builder: (_) =>
-                                                                        PrivacyPolicyScreen(),
-                                                                  ),
-                                                                );
-                                                              }),
-                                                  ])),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
+                                  // sh(20),
+                                  // Container(
+                                  //   child: Padding(
+                                  //     padding: const EdgeInsets.all(8.0),
+                                  //     child: Row(
+                                  //       mainAxisAlignment:
+                                  //           MainAxisAlignment.start,
+                                  //       children: [
+                                  //         Checkbox(
+                                  //           side: BorderSide(
+                                  //               color: Color(0xffcccccc),
+                                  //               width: h * 1),
+                                  //           materialTapTargetSize:
+                                  //               MaterialTapTargetSize
+                                  //                   .shrinkWrap,
+                                  //           visualDensity:
+                                  //               VisualDensity.compact,
+                                  //           activeColor: Colors.black,
+                                  //           checkColor: Colors.white,
+                                  //           value: terms,
+                                  //           onChanged: (v) {
+                                  //             setState(() {
+                                  //               terms = v!;
+                                  //             });
+                                  //           },
+                                  //         ),
+                                  //         sh(2),
+                                  //         Expanded(
+                                  //           child: Padding(
+                                  //             padding: EdgeInsets.only(
+                                  //                 top: paddings()),
+                                  //             child: RichText(
+                                  //                 text: TextSpan(
+                                  //                     style: TextStyle(
+                                  //                       height: 1.6,
+                                  //                       fontSize: h * 15,
+                                  //                       color: Colors.white,
+                                  //                     ),
+                                  //                     children: [
+                                  //                   // TextSpan(text: AgreeLabel),
+                                  //                   TextSpan(
+                                  //                       text: TnCLabel,
+                                  //                       recognizer:
+                                  //                           TapGestureRecognizer()
+                                  //                             ..onTap = () {
+                                  //                               Navigator.of(
+                                  //                                       context)
+                                  //                                   .push(
+                                  //                                 MaterialPageRoute(
+                                  //                                   builder: (_) =>
+                                  //                                       TnCScreen(),
+                                  //                                 ),
+                                  //                               );
+                                  //                             }),
+                                  //
+                                  //                   // TextSpan(
+                                  //                   //     text: PrivacyPolicyLabel
+                                  //                   //             .toLowerCase() +
+                                  //                   //         ".",
+                                  //                   //     recognizer:
+                                  //                   //         TapGestureRecognizer()
+                                  //                   //           ..onTap = () {
+                                  //                   //             Navigator.of(
+                                  //                   //                     context)
+                                  //                   //                 .push(
+                                  //                   //               MaterialPageRoute(
+                                  //                   //                 builder: (_) =>
+                                  //                   //                     PrivacyPolicyScreen(),
+                                  //                   //               ),
+                                  //                   //             );
+                                  //                   //           }),
+                                  //                 ])),
+                                  //           ),
+                                  //         ),
+                                  //       ],
+                                  //     ),
+                                  //   ),
+                                  // ),
                                   sh(20),
                                   Center(
                                     child: AppButton(
                                       label: LoginLabel,
                                       onPressed: () async {
                                         if(checks.isNotEmpty){
-                                          return;
-                                        }
-
-
-                                        if (!terms) {
-                                          AppConst.errorSnackBar(
-                                              "Please Accept Terms & conditions");
                                           return;
                                         }
                                         authProvider.loginFormValidation();
