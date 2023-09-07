@@ -25,30 +25,35 @@ Widget? paymentWidget;
       {String? fileName,
       Map<String, String>? fields,
       required String feed}) async {
-    AppConst.startProgress();
-    var request = http.MultipartRequest(
-        'POST', Uri.parse('https://cp.truck.deeps.info/api/${feed}'));
-    if (fields != null) request.fields.addAll(fields);
-    if (paymentFile != null) {
-      final fileBytes = await paymentFile!.readAsBytes();
-      final base64String = base64Encode(fileBytes);
-      request.files.add(await http.MultipartFile.fromString(fileName!, base64String));
-    }
-    // request.headers.addAll({'content-type': 'application/json'});
-    request.headers.addAll({'content-type': 'multipart/form-data'});
-    http.StreamedResponse response = await request.send();
-    AppConst.stopProgress();
+     AppConst.startProgress();
+     var headers = {
+       'Content-Type': 'application/json'
+     };
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      String result = await response.stream.bytesToString();
-      logger.i(result);
-      return result;
-    } else {
-      String result = await response.stream.bytesToString();
-      logger.i(result.toString());
-      AppConst.errorSnackBar('Something is wrong \n $result');
-      return "";
-    }
+     if (paymentFile != null) {
+       final fileBytes = await paymentFile!.readAsBytes();
+       final base64String = base64Encode(fileBytes);
+       fields!["PaymentProof"]=base64String;
+
+     }
+     var request = http.Request('POST', Uri.parse('https://cp.truck.deeps.info/api/PaymentEvidence/Upload-Payment-Evidence'));
+
+
+     request.body = json.encode(fields);
+     request.headers.addAll(headers);
+
+     http.StreamedResponse response = await request.send();
+     var s = await response.stream.bytesToString();
+     AppConst.stopProgress();
+     if (response.statusCode == 200) {
+       print(s);
+       return s;
+     }
+     else {
+       print(response.reasonPhrase);
+         AppConst.errorSnackBar('Something is wrong \n ${response.reasonPhrase}');
+         return "";
+     }
   }
 
   Future<bool> uploadPaymentEvidence(String orderId) async {

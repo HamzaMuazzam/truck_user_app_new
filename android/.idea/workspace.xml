@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffd124c4-5f9d-4c4e-96f2-bd972f359bc3" name="Changes" comment="">
+    <list default="true" id="ec97352a-dac8-49a6-8dd1-e824233afcf2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../assets/json/profile.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../assets/translations/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/../assets/translations/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../assets/translations/pt.json" beforeDir="false" afterPath="$PROJECT_DIR$/../assets/translations/pt.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/Truck _provider/payment_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/Truck _provider/payment_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/providers/auth_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/auth_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/phone_verify.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/phone_verify.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/settings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/services/apiServices/api_services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/services/apiServices/api_services.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/services/apiServices/api_urls.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/services/apiServices/api_urls.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/utils/strings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utils/strings.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/web_view_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/web_view_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +34,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2V2WgicEYiT5ErlN5dHhic0FBhL" />
+  <component name="ProjectId" id="2V4nBuMpb2Q03uVEVnFxCfoLr8e" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -59,7 +49,6 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "last_opened_file_path": "C:/Users/hamza/StudioProjects/truck_user_app_new/lib/trucking",
-    "memory.settings.postsync.last.time.stamp": "1694036343758",
     "show.migrate.to.gradle.popup": "false"
   },
   "keyToStringList": {
@@ -139,11 +128,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ffd124c4-5f9d-4c4e-96f2-bd972f359bc3" name="Changes" comment="" />
-      <created>1694034768647</created>
+      <changelist id="ec97352a-dac8-49a6-8dd1-e824233afcf2" name="Changes" comment="" />
+      <created>1694104087485</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1694034768647</updated>
+      <updated>1694104087485</updated>
     </task>
     <servers />
   </component>

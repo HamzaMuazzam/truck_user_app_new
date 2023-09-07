@@ -218,51 +218,7 @@ class AuthProvider extends ChangeNotifier {
     phoneController.clear();
   }
 
-  //TODO
-  // Future<bool> signInWithGoogle() async {
-  //   AppConst.startProgress();
-  //   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-  //   if (googleUser == null) {
-  //     AppConst.stopProgress();
-  //     return false;
-  //   }
-  //
-  //   final GoogleSignInAuthentication? googleAuth =
-  //       await googleUser.authentication;
-  //   if (googleAuth == null) {
-  //     AppConst.stopProgress();
-  //     return false;
-  //   }
-  //
-  //   final credential = GoogleAuthProvider.credential(
-  //     accessToken: googleAuth.accessToken,
-  //     idToken: googleAuth.idToken,
-  //   );
-  //   userCredential =
-  //       await FirebaseAuth.instance.signInWithCredential(credential);
-  //
-  //   if (userCredential != null) {
-  //     // Map<String, String> userCreate = {
-  //     //   'name': userCredential!.user!.displayName!,
-  //     //   'loginId': googleUser.email,
-  //     //   'isSocialLogin': 'true',
-  //     //   'socialType': 'GOOGLE',
-  //     //   'isActive': 'false',
-  //     //   'userType': 'Driver',
-  //     // };
-  //     // await createAccount(
-  //     //   userCreate,
-  //     // );
-  //
-  //     AppConst.stopProgress();
-  //     return true;
-  //   }
-  //   AppConst.errorSnackBar('userCredentials are null');
-  //   AppConst.stopProgress();
-  //   return false;
-  // }
 
-  //TODO
   UserRegResponse? userRegResponse;
 
   Future<bool> userRegistration() async {

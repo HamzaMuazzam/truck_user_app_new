@@ -62,7 +62,7 @@ int x=0;
               onPageFinished: (value){
 
                     logger.e(value.toString());
-                    if(value.toString().contains("status=success") || value.toString().contains("status=paid")|| value.toString().contains("message=Succeeded")) {
+                    if(value.toString().contains("message=APPROVED") || value.toString().contains("status=success") || value.toString().contains("status=authorized") || value.toString().contains("status=paid")|| value.toString().contains("message=Succeeded")) {
                       if(x==0){
                       Get.back(result: true);
                      }
