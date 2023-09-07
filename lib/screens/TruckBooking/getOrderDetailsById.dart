@@ -1282,6 +1282,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
           color: Colors.grey,
           height: 1,
         ),
+      if(paymentProvider.paymentEvidenceUrl.isEmpty)
       InkWell(
         onTap: () async {
           // if(paymentProvider.order?.isLoaded==false) return;
