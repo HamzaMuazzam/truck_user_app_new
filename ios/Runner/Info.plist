@@ -38,7 +38,12 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to location when in the background.</string>
+	<string>App need location permission to fetch your desire location for order processing</string>
+
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    	<string>App need location permission to fetch your desire location for order processing</string>
+
+
 	<key>NSLocationUsageDescription</key>
 	<string>App need location permission to fetch your desire location for order processing</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -73,5 +78,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
+
+
 </dict>
 </plist>
