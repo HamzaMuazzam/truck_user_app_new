@@ -174,9 +174,20 @@ class FairTruckProvider extends ChangeNotifier {
       notifyListeners();
       return false;
     }
+    List<GetAllOrdersResponse> orderWithDuplicates= getAllOrdersResponseFromJson(response);
 
-    getAllOrdersResponse = getAllOrdersResponseFromJson(response);
-    getAllOrdersResponse= getAllOrdersResponse.reversed.toList();
+    List<GetAllOrdersResponse> orderWithoutDuplicates=[];
+
+    orderWithDuplicates.forEach((elemented) {
+
+      if(orderWithoutDuplicates.firstWhereOrNull((element) => element.orderId==elemented.orderId)==null){
+        orderWithoutDuplicates.add(elemented);
+      }
+    });
+
+    getAllOrdersResponse = orderWithoutDuplicates.reversed.toList();
+    // getAllOrdersResponse= getAllOrdersResponse.toSet().toList();
+    // getAllOrdersResponse= getAllOrdersResponse.toSet().toList();
     allOrders = true;
     notifyListeners();
 
