@@ -67,7 +67,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                       Get.to(OrderDetailById(value.getAllOrdersResponse[index]));
                                     },
                                     child: Container(
-                                      height: h * 250,
+
                                       margin: EdgeInsets.symmetric(
                                         horizontal: b * 15,
                                         // vertical: h * 15,
@@ -161,7 +161,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                           sh(20),
                                           Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               Expanded(
                                                 child: Text(
@@ -178,13 +178,106 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                   alignment: Alignment.topRight,
                                                   child: Text(
                                                     fairTruckProvider
-                                                            .getAllOrdersResponse[
-                                                                index]
-                                                            .totalFare!
-                                                            .toInt()
-                                                            .toString() +
+                                                        .getAllOrdersResponse[
+                                                    index]
+                                                        .totalFare!
+                                                        .toInt()
+                                                        .toString() +
                                                         ' SAR',
                                                     style: TextStyle(
+                                                      fontSize: h * 12,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              // ),
+                                            ],
+                                          ),
+
+
+
+                                          sh(20),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  appProvider.destAdd ??
+                                                      "Order ID",
+                                                  style: TextStyle(
+                                                      fontSize: h * 12,
+                                                      color: textYellowColor),
+                                                ),
+                                              ),
+
+                                              Expanded(
+                                                child: Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: Text(
+                                                    fairTruckProvider.getAllOrdersResponse[index].orderId.toString(),
+                                                    style: TextStyle(
+                                                      fontSize: h * 12,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              // ),
+                                            ],
+                                          ),
+
+                                          sh(20),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  appProvider.destAdd ??
+                                                      "Payment",
+                                                  style: TextStyle(
+                                                      fontSize: h * 12,
+                                                      color: textYellowColor),
+                                                ),
+                                              ),
+
+                                              Expanded(
+                                                child: Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: Text(
+                                                    fairTruckProvider.getAllOrdersResponse[index].isLoaded==true &&
+                                                        fairTruckProvider.getAllOrdersResponse[index].isPaid==true?"PAID" : "UNPAID",
+                                                    style: TextStyle(
+                                                      fontSize: h * 12,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              // ),
+                                            ],
+                                          ),
+                                          sh(20),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  appProvider.destAdd ??
+                                                      "Is Loaded?",
+                                                  style: TextStyle(
+                                                      fontSize: h * 12,
+                                                      color: textYellowColor),
+                                                ),
+                                              ),
+
+                                              Expanded(
+                                                child: Align(
+                                                  alignment: Alignment.topRight,
+                                                  child: Text(
+                                                    fairTruckProvider.getAllOrdersResponse[index].isLoaded==true ?"Yes" : "No",
+                                                    style: TextStyle(
+                                                      color: fairTruckProvider.getAllOrdersResponse[index].isLoaded==true?Colors.green:Colors.red,
                                                       fontSize: h * 12,
                                                     ),
                                                   ),
