@@ -71,9 +71,6 @@ class NotificationRoutes {
       //TODO: if app is not open so we have to wait here to let the app open... if context is null we will not go further. wait instead .
       while (Get.context == null) {}
 
-      ///  maryam do work here if payload has specific value then go to that screen accordingly
-      ///  like payload['screenName']=="Order Details Screen" or   payload['orderId']!=null then go to order details screen with id
-
       if (payload['Route'] == "order_screen" &&
           (payload['orderId'] != null || payload['OrderId'] != null)) {
         String? orderID = payload['OrderId'] ?? payload['orderId'];

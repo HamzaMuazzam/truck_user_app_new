@@ -4,19 +4,26 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec97352a-dac8-49a6-8dd1-e824233afcf2" name="Changes" comment="">
+    <list default="true" id="5e0664ad-4052-4ae4-ab11-03d11bfb8d2e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/providers/Truck _provider/payment_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/Truck _provider/payment_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/providers/auth_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/auth_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/commonPages/web_view_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/commonPages/web_view_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Podfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/notification_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/notification_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../macos/Flutter/ephemeral/Flutter-Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../macos/Flutter/ephemeral/Flutter-Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../macos/Flutter/ephemeral/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../macos/Flutter/ephemeral/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R3CN1008LSZ]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -24,9 +31,8 @@
   </component>
   <component name="GenerateSignedApkSettings">
     <option name="EXPORT_PRIVATE_KEY" value="false" />
-    <option name="KEY_STORE_PATH" value="C:\Users\hamza\StudioProjects\truck_user_app_new\lib\trucking" />
+    <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../lib/trucking" />
     <option name="KEY_ALIAS" value="trucking" />
-    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -34,7 +40,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2V4nBuMpb2Q03uVEVnFxCfoLr8e" />
+  <component name="ProjectId" id="2VMEAVtKWthUUOl48SHIRatcUyY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -42,13 +48,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "BundleExportedModule": "android.app",
-    "ExportBundle.BundlePathForandroid.app": "C:\\Users\\hamza\\StudioProjects\\truck_user_app_new\\android\\app",
+    "ExportBundle.BundlePathForandroid.app": "/Users/hamzamuazzam/StudioProjects/truck_user_app_new/android/app",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "C:/Users/hamza/StudioProjects/truck_user_app_new/lib/trucking",
+    "memory.settings.postsync.last.time.stamp": "1694638696703",
     "show.migrate.to.gradle.popup": "false"
   },
   "keyToStringList": {
@@ -128,11 +134,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ec97352a-dac8-49a6-8dd1-e824233afcf2" name="Changes" comment="" />
-      <created>1694104087485</created>
+      <changelist id="5e0664ad-4052-4ae4-ab11-03d11bfb8d2e" name="Changes" comment="" />
+      <created>1694637405494</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1694104087485</updated>
+      <updated>1694637405494</updated>
     </task>
     <servers />
   </component>
