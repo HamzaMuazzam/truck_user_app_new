@@ -168,7 +168,7 @@ class FairTruckProvider extends ChangeNotifier {
   Future<bool> getAllOrdersDetails() async {
     getAllOrdersResponse.clear();
     var response = await ApiServices.getMethod(
-        feedUrl: 'Order/get-order-by-client?id=${StorageCRUD.getUser().id}');
+        feedUrl: '${ApiUrls.GET_ALL_ORDERS}${StorageCRUD.getUser().id}');
     if (response.isEmpty) {
       allOrders = false;
       notifyListeners();

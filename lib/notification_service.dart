@@ -8,6 +8,7 @@ import 'package:sultan_cab/services/ApiServices/api_services.dart';
 
 import 'FCM.dart';
 import 'models/Truck_models/getAllOrdersResponse.dart';
+import 'providers/Truck _provider/fair_provider.dart';
 import 'screens/TruckBooking/getOrderDetailsById.dart';
 import 'utils/commons.dart';
 
@@ -76,14 +77,22 @@ class NotificationRoutes {
       if (payload['Route'] == "order_screen" &&
           (payload['orderId'] != null || payload['OrderId'] != null)) {
         String? orderID = payload['OrderId'] ?? payload['orderId'];
-        String response = await ApiServices.getMethod(feedUrl: "Order/get-order-by-Id?id=$orderID");
 
-        if (response.isNotEmpty) {
-          if (Get.currentRoute.contains("OrderDetailById")) {
-            Get.back();
+
+        await fairTruckProvider.getAllOrdersDetails();
+
+        if(orderID!=null && fairTruckProvider.getAllOrdersResponse.isNotEmpty){
+
+          GetAllOrdersResponse? firstWhere = fairTruckProvider.getAllOrdersResponse.firstWhereOrNull((element) => element.orderId.toString()==orderID.toString());
+
+          if (firstWhere!=null) {
+            if (Get.currentRoute.contains("OrderDetailById")) {
+              Get.back();
+            }
+            Get.to(OrderDetailById(firstWhere));
           }
-          Get.to(OrderDetailById(GetAllOrdersResponse.fromJson(json.decode(response))));
         }
+
       }
     }catch(e){
       print(e);

@@ -976,16 +976,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider
-                                                  .getPaymentEvidenceResponse !=
-                                              null
-                                          ? paymentProvider
-                                                      .getPaymentEvidenceResponse!
-                                                      .isVerified ==
-                                                  true
-                                              ? 'Yes'
-                                              : 'No'
-                                          : 'No',
+                                      paymentProvider.order?.isPaid == false ?"NO":"YES",
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),

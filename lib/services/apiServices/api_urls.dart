@@ -62,7 +62,7 @@ class ApiUrls {
  static String GET_DISTANCE="Cities/get-disctance";
  ///getAllOrders
 
- static String GET_ALL_ORDERS="Order/get-order-by-client";
+ static String GET_ALL_ORDERS="Order/get-order-by-client?id=";
 ///uploadPaymentEvidence
  static String UPLOAD_PAYMENT_EVIDENCE="PaymentEvidence/Upload-Payment-Evidence";
   ///getPaymentEvidence
