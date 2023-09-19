@@ -1002,14 +1002,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider
-                                                  .getPaymentEvidenceResponse !=
-                                              null
-                                          ? paymentProvider
-                                              .getPaymentEvidenceResponse!
-                                              .paymentVerifiedBy
-                                              .toString()
-                                          : '--',
+                                      paymentProvider.getPaymentEvidenceResponse?.paymentVerifiedBy.toString()??"--",
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -1035,14 +1028,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider
-                                                  .getPaymentEvidenceResponse !=
-                                              null
-                                          ? paymentProvider
-                                              .getPaymentEvidenceResponse!
-                                              .paymentVerifiedDate
-                                              .toString()
-                                          : '--',
+                                      paymentProvider.getPaymentEvidenceResponse?.paymentVerifiedDate.toString()??"--",
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -1276,18 +1262,19 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
       if(paymentProvider.paymentEvidenceUrl.isEmpty)
       InkWell(
         onTap: () async {
-          // if(paymentProvider.order?.isLoaded==false) return;
+          if(paymentProvider.order?.isLoaded==false) {
 
-
+            return;
+          }
           if (paymentProvider.order!.isPaid == true) return;
-
           if(Get.isDialogOpen==true){
             Get.back();
           }
 
           bool? isPaid = await Get.to(PaymentWebView(
             initUrl:
-            "https://cp.truck.deeps.info/Home/Payment?UserId=${paymentProvider.order!.orderDetails!.user!.id}&amount=${(paymentProvider.order!.totalFare! * 100).toInt()}&OrderId=${paymentProvider.order!.orderId}",
+            "http://admin.truc-king.io/Home/Payment?UserId=${paymentProvider.order!.orderDetails!.user!.id}&amount=${(paymentProvider.order!.totalFare! * 100).toInt()}&OrderId=${paymentProvider.order!.orderId}",
+            // "https://cp.truck.deeps.info/Home/Payment?UserId=${paymentProvider.order!.orderDetails!.user!.id}&amount=${(paymentProvider.order!.totalFare! * 100).toInt()}&OrderId=${paymentProvider.order!.orderId}",
           ));
           if (isPaid == true) {
             paymentProvider.order!.isPaid = true;

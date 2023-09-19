@@ -4,8 +4,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e0664ad-4052-4ae4-ab11-03d11bfb8d2e" name="Changes" comment="update">
+    <list default="true" id="50224402-c1f5-4e43-b9af-15ed49efc0ed" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../ios/Podfile.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ios/Runner/Runner.entitlements" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Runner/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/Truck _provider/payment_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/Truck _provider/payment_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/TruckBooking/getOrderDetailsById.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/TruckBooking/getOrderDetailsById.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/TruckBooking/pickup_location.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/TruckBooking/pickup_location.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/services/apiServices/api_urls.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/services/apiServices/api_urls.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../macos/Flutter/ephemeral/Flutter-Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../macos/Flutter/ephemeral/Flutter-Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../macos/Flutter/ephemeral/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../macos/Flutter/ephemeral/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,13 +42,18 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2VMEAVtKWthUUOl48SHIRatcUyY" />
+  <component name="ProjectId" id="2VclebD45BhEdO7UBrxQTzHOSUk" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "BundleExportedModule": "android.app",
     "ExportBundle.BundlePathForandroid.app": "/Users/hamzamuazzam/StudioProjects/truck_user_app_new/android/app",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -43,7 +61,6 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "memory.settings.postsync.last.time.stamp": "1694638696703",
     "show.migrate.to.gradle.popup": "false"
   },
   "keyToStringList": {
@@ -123,24 +140,15 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5e0664ad-4052-4ae4-ab11-03d11bfb8d2e" name="Changes" comment="" />
-      <created>1694637405494</created>
+      <changelist id="50224402-c1f5-4e43-b9af-15ed49efc0ed" name="Changes" comment="" />
+      <created>1695143345976</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1694637405494</updated>
+      <updated>1695143345976</updated>
     </task>
-    <task id="LOCAL-00001" summary="update">
-      <created>1694639720304</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1694639720304</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

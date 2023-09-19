@@ -84,8 +84,7 @@ class _PickupLocationState extends State<PickupLocation> {
                       i++) {
                     var response = fairTruckProvider.getAllOrdersResponse[i];
 
-                    if (response.isLoaded == true &&
-                        (response.isPaid == false || response.isPaid == null)) {
+                    if (response.isLoaded == true && (response.isPaid == false || response.isPaid == null)) {
                       showAlertWarning();
                       return;
                     }

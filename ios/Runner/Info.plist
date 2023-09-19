@@ -39,14 +39,27 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This app needs access to location when in the background.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app needs access to location when in the foreground.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>App need location permission to fetch your desire location for order processing</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App need location permission to fetch your desire location for order processing</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>app would like to save photos from the app to your gallery</string>
+
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>app would like to access your photo gallery for uploading images to the app</string>
+
+	    <key>NSCameraUsageDescription</key>
+        <string>Please grant camera access to capture image to upload</string>
+
+         <key>NSMicrophoneUsageDescription</key>
+            <string>Please grant microphone access</string>
+
+
+
+
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
