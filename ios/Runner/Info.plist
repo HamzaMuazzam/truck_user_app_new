@@ -57,7 +57,11 @@
          <key>NSMicrophoneUsageDescription</key>
             <string>Please grant microphone access</string>
 
-
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
 
 
 	<key>UIApplicationSupportsIndirectInputEvents</key>

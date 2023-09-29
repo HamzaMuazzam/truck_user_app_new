@@ -8,6 +8,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:webview_flutter_web/webview_flutter_web.dart';
 import 'auth_widget.dart';
 import 'customized_plugins/lib/src/WebMapProvider.dart';
 import 'providers/GoogleMapProvider/location_and_map_provider.dart';
@@ -27,7 +29,6 @@ class MyHttpOverrides extends HttpOverrides {
 
 void main() async {
   HttpOverrides.global = MyHttpOverrides();
-
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
 
@@ -53,6 +54,7 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),

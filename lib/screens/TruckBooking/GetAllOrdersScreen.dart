@@ -6,16 +6,17 @@ import 'package:sultan_cab/providers/Truck%20_provider/fair_provider.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
+import '../../models/payment/TabPaymentDetails.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../services/ApiServices/StorageServices/get_storage.dart';
 import '../../utils/commons.dart';
 import '../../utils/strings.dart';
+import '../commonPages/web_view_screen.dart';
 import 'getOrderDetailsById.dart';
 
 class GetAllOrdersScreen extends StatefulWidget {
-
-
   GetAllOrdersScreen();
+
   @override
   _GetAllOrdersScreenState createState() => _GetAllOrdersScreenState();
 }
@@ -25,7 +26,6 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
   void initState() {
     fairTruckProvider.getAllOrdersDetails();
     super.initState();
-
   }
 
   late double h, b;
@@ -65,9 +65,9 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                       await paymentProvider.getPaymentEvidence(value.getAllOrdersResponse[index].orderId.toString());
                                       print(value.getAllOrdersResponse[index].orderId.toString());
                                       Get.to(OrderDetailById(value.getAllOrdersResponse[index]));
+
                                     },
                                     child: Container(
-
                                       margin: EdgeInsets.symmetric(
                                         horizontal: b * 15,
                                         // vertical: h * 15,
@@ -161,7 +161,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                           sh(20),
                                           Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Expanded(
                                                 child: Text(
@@ -178,11 +178,11 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                   alignment: Alignment.topRight,
                                                   child: Text(
                                                     fairTruckProvider
-                                                        .getAllOrdersResponse[
-                                                    index]
-                                                        .totalFare!
-                                                        .toInt()
-                                                        .toString() +
+                                                            .getAllOrdersResponse[
+                                                                index]
+                                                            .totalFare!
+                                                            .toInt()
+                                                            .toString() +
                                                         ' SAR',
                                                     style: TextStyle(
                                                       fontSize: h * 12,
@@ -193,13 +193,10 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                               // ),
                                             ],
                                           ),
-
-
-
                                           sh(20),
                                           Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Expanded(
                                                 child: Text(
@@ -215,7 +212,11 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                 child: Align(
                                                   alignment: Alignment.topRight,
                                                   child: Text(
-                                                    fairTruckProvider.getAllOrdersResponse[index].orderId.toString(),
+                                                    fairTruckProvider
+                                                        .getAllOrdersResponse[
+                                                            index]
+                                                        .orderId
+                                                        .toString(),
                                                     style: TextStyle(
                                                       fontSize: h * 12,
                                                     ),
@@ -225,11 +226,10 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                               // ),
                                             ],
                                           ),
-
                                           sh(20),
                                           Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Expanded(
                                                 child: Text(
@@ -245,8 +245,18 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                 child: Align(
                                                   alignment: Alignment.topRight,
                                                   child: Text(
-                                                    fairTruckProvider.getAllOrdersResponse[index].isLoaded==true &&
-                                                        fairTruckProvider.getAllOrdersResponse[index].isPaid==true?"PAID" : "UNPAID",
+                                                    fairTruckProvider
+                                                                    .getAllOrdersResponse[
+                                                                        index]
+                                                                    .isLoaded ==
+                                                                true &&
+                                                            fairTruckProvider
+                                                                    .getAllOrdersResponse[
+                                                                        index]
+                                                                    .isPaid ==
+                                                                true
+                                                        ? "PAID"
+                                                        : "UNPAID",
                                                     style: TextStyle(
                                                       fontSize: h * 12,
                                                     ),
@@ -259,7 +269,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                           sh(20),
                                           Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Expanded(
                                                 child: Text(
@@ -275,9 +285,21 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                 child: Align(
                                                   alignment: Alignment.topRight,
                                                   child: Text(
-                                                    fairTruckProvider.getAllOrdersResponse[index].isLoaded==true ?"Yes" : "No",
+                                                    fairTruckProvider
+                                                                .getAllOrdersResponse[
+                                                                    index]
+                                                                .isLoaded ==
+                                                            true
+                                                        ? "Yes"
+                                                        : "No",
                                                     style: TextStyle(
-                                                      color: fairTruckProvider.getAllOrdersResponse[index].isLoaded==true?Colors.green:Colors.red,
+                                                      color: fairTruckProvider
+                                                                  .getAllOrdersResponse[
+                                                                      index]
+                                                                  .isLoaded ==
+                                                              true
+                                                          ? Colors.green
+                                                          : Colors.red,
                                                       fontSize: h * 12,
                                                     ),
                                                   ),
@@ -328,7 +350,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                           sh(10),
                                           Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Expanded(
                                                 child: Text(
@@ -343,15 +365,20 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                 child: Align(
                                                   alignment: Alignment.topRight,
                                                   child: Text(
-                                                    value
-                                                        .getAllOrdersResponse[
-                                                    index].isDelievered==true? "Completed" : "Ongoing",
+                                                    value.getAllOrdersResponse[index]
+                                                                .isDelievered ==
+                                                            true
+                                                        ? "Completed"
+                                                        : "Ongoing",
                                                     style: TextStyle(
-                                                      fontSize: h * 16,
-                                                      color: value
-                                                          .getAllOrdersResponse[
-                                                      index].isDelievered==true? Colors.green:Colors.red
-                                                    ),
+                                                        fontSize: h * 16,
+                                                        color: value
+                                                                    .getAllOrdersResponse[
+                                                                        index]
+                                                                    .isDelievered ==
+                                                                true
+                                                            ? Colors.green
+                                                            : Colors.red),
                                                   ),
                                                 ),
                                               ),

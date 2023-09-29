@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -6,15 +7,20 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
+import 'package:sultan_cab/services/ApiServices/api_services.dart';
 
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import '../../models/Truck_models/getAllOrdersResponse.dart';
+import '../../models/payment/TabPaymentDetails.dart';
 import '../../providers/auth_provider.dart';
 import '../../services/ApiServices/api_urls.dart';
 import '../../utils/strings.dart';
 import '../commonPages/web_view_screen.dart';
+
+import 'package:http/http.dart' as http;
+
 
 class OrderDetailById extends StatefulWidget {
   final GetAllOrdersResponse? getAllOrdersResponse;
@@ -29,16 +35,14 @@ class OrderDetailById extends StatefulWidget {
 class _OrderDetailByIdState extends State<OrderDetailById> {
 
 
-  _OrderDetailByIdState(GetAllOrdersResponse? order){
-   paymentProvider.order=order;
+  _OrderDetailByIdState(GetAllOrdersResponse? order) {
+    paymentProvider.order = order;
   }
 
   @override
   void initState() {
     super.initState();
     logger.e(paymentProvider.order!.toJson());
-
-
   }
 
   late double h, b;
@@ -50,7 +54,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
     h = SizeConfig.screenHeight / 812;
     b = SizeConfig.screenWidth / 375;
 
-    paymentProvider.paymentWidget= showPaymentPart();
+    paymentProvider.paymentWidget = showPaymentPart();
     return Scaffold(
       backgroundColor: greybackColor,
       appBar: AppBar(
@@ -58,10 +62,14 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
         centerTitle: true,
         elevation: 0,
         title: Text(
-          "${paymentProvider.order!.orderDetails!.pickUpCity == 'string' ? 'Load '
-              'City' : paymentProvider.order!.orderDetails!.pickUpCity} To "
-          "${paymentProvider.order!.orderDetails!.dropOffCity == 'string' ? 'unLoad '
-              'City' : paymentProvider.order!.orderDetails!.dropOffCity}",
+          "${paymentProvider.order!.orderDetails!.pickUpCity == 'string'
+              ? 'Load '
+              'City'
+              : paymentProvider.order!.orderDetails!.pickUpCity} To "
+              "${paymentProvider.order!.orderDetails!.dropOffCity == 'string'
+              ? 'unLoad '
+              'City'
+              : paymentProvider.order!.orderDetails!.dropOffCity}",
           style: TextStyle(
               fontSize: 18, fontWeight: FontWeight.bold, color: scaffoldColor),
         ),
@@ -90,7 +98,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                           vertical: h * 15,
                         ),
                         padding:
-                            EdgeInsets.fromLTRB(b * 17, h * 20, b * 17, h * 20),
+                        EdgeInsets.fromLTRB(b * 17, h * 20, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -110,11 +118,13 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
+
                                       /// 1st Location
                                       Text(
-                                        paymentProvider.order!.orderDetails!.pickUpAddress ??
+                                        paymentProvider.order!.orderDetails!
+                                            .pickUpAddress ??
                                             PickUpAddrLbl,
                                         style: TextStyle(
                                             fontSize: h * 12,
@@ -144,11 +154,13 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
+
                                       /// Other Location
                                       Text(
-                                        paymentProvider.order!.orderDetails!.dropOffAddress ??
+                                        paymentProvider.order!.orderDetails!
+                                            .dropOffAddress ??
                                             "Your Destination",
                                         style: TextStyle(
                                           fontSize: h * 12,
@@ -182,7 +194,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order?.orderId?.toString()??"",
+                                      paymentProvider.order?.orderId
+                                          ?.toString() ?? "",
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -208,7 +221,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.pickUpCity
+                                      paymentProvider.order!.orderDetails!
+                                          .pickUpCity
                                           .toString(),
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -235,7 +249,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.dropOffCity
+                                      paymentProvider.order!.orderDetails!
+                                          .dropOffCity
                                           .toString(),
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -267,7 +282,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.pickUpLat.toString(),
+                                      paymentProvider.order!.orderDetails!
+                                          .pickUpLat.toString(),
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -293,7 +309,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.pickUpLng.toString(),
+                                      paymentProvider.order!.orderDetails!
+                                          .pickUpLng.toString(),
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -319,7 +336,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.dropOffLat
+                                      paymentProvider.order!.orderDetails!
+                                          .dropOffLat
                                           .toString(),
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -346,7 +364,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.dropOffLng
+                                      paymentProvider.order!.orderDetails!
+                                          .dropOffLng
                                           .toString(),
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -373,9 +392,11 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.pickUpLink != null
-                                          ? paymentProvider.order!.orderDetails!.pickUpLink!
-                                              .toString()
+                                      paymentProvider.order!.orderDetails!
+                                          .pickUpLink != null
+                                          ? paymentProvider.order!.orderDetails!
+                                          .pickUpLink!
+                                          .toString()
                                           : '--',
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -402,9 +423,11 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.dropOffLink != null
-                                          ? paymentProvider.order!.orderDetails!.dropOffLink!
-                                              .toString()
+                                      paymentProvider.order!.orderDetails!
+                                          .dropOffLink != null
+                                          ? paymentProvider.order!.orderDetails!
+                                          .dropOffLink!
+                                          .toString()
                                           : '--',
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -436,8 +459,9 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.isNotificationSent ==
-                                              true
+                                      paymentProvider.order!.orderDetails!
+                                          .isNotificationSent ==
+                                          true
                                           ? 'Yes'
                                           : 'No',
                                       style: TextStyle(
@@ -470,7 +494,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.distance.toString() +
+                                      paymentProvider.order!.orderDetails!
+                                          .distance.toString() +
                                           " KM",
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -497,7 +522,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.totalFare.toString() + " SAR",
+                                      paymentProvider.order!.totalFare
+                                          .toString() + " SAR",
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -528,14 +554,16 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.createdDate!.year
-                                              .toString() +
+                                      paymentProvider.order!.orderDetails!
+                                          .createdDate!.year
+                                          .toString() +
                                           '-' +
                                           paymentProvider.order!
                                               .orderDetails!.createdDate!.month
                                               .toString() +
                                           '-' +
-                                          paymentProvider.order!.orderDetails!.createdDate!.day
+                                          paymentProvider.order!.orderDetails!
+                                              .createdDate!.day
                                               .toString(),
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -567,11 +595,13 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.isLoaded != null
-                                          ? paymentProvider.order!.orderDetails!.isLoaded ==
-                                                  true
-                                              ? 'Yes'
-                                              : 'No'
+                                      paymentProvider.order!.orderDetails!
+                                          .isLoaded != null
+                                          ? paymentProvider.order!.orderDetails!
+                                          .isLoaded ==
+                                          true
+                                          ? 'Yes'
+                                          : 'No'
                                           : 'null',
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -598,11 +628,13 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.isAccepted != null
-                                          ? paymentProvider.order!.orderDetails!.isAccepted ==
-                                                  true
-                                              ? 'Yes'
-                                              : 'No'
+                                      paymentProvider.order!.orderDetails!
+                                          .isAccepted != null
+                                          ? paymentProvider.order!.orderDetails!
+                                          .isAccepted ==
+                                          true
+                                          ? 'Yes'
+                                          : 'No'
                                           : 'null',
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -630,9 +662,10 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                     alignment: Alignment.topRight,
                                     child: Text(
                                       paymentProvider.order!.inProgress != null
-                                          ? paymentProvider.order!.inProgress == true
-                                              ? 'Yes'
-                                              : 'No'
+                                          ? paymentProvider.order!.inProgress ==
+                                          true
+                                          ? 'Yes'
+                                          : 'No'
                                           : 'null',
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -659,11 +692,13 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.isDelievered != null
-                                          ? paymentProvider.order!.orderDetails!.isDelievered ==
-                                                  true
-                                              ? 'Yes'
-                                              : 'No'
+                                      paymentProvider.order!.orderDetails!
+                                          .isDelievered != null
+                                          ? paymentProvider.order!.orderDetails!
+                                          .isDelievered ==
+                                          true
+                                          ? 'Yes'
+                                          : 'No'
                                           : 'null',
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -690,11 +725,13 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.isInProcess != null
-                                          ? paymentProvider.order!.orderDetails!.isInProcess ==
-                                                  true
-                                              ? 'Yes'
-                                              : 'No'
+                                      paymentProvider.order!.orderDetails!
+                                          .isInProcess != null
+                                          ? paymentProvider.order!.orderDetails!
+                                          .isInProcess ==
+                                          true
+                                          ? 'Yes'
+                                          : 'No'
                                           : 'null',
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -721,11 +758,13 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.orderDetails!.isCanceled != null
-                                          ? paymentProvider.order!.orderDetails!.isCanceled ==
-                                                  true
-                                              ? 'Yes'
-                                              : 'No'
+                                      paymentProvider.order!.orderDetails!
+                                          .isCanceled != null
+                                          ? paymentProvider.order!.orderDetails!
+                                          .isCanceled ==
+                                          true
+                                          ? 'Yes'
+                                          : 'No'
                                           : 'null',
                                       style: TextStyle(
                                         fontSize: h * 12,
@@ -746,7 +785,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   sh(20),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                     children: [
                                       sw(7),
                                       Expanded(
@@ -761,7 +800,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                         child: Align(
                                           alignment: Alignment.topRight,
                                           child: Text(
-                                            paymentProvider.order!.truckDriver!.name ?? "",
+                                            paymentProvider.order!.truckDriver!
+                                                .name ?? "",
                                             style: TextStyle(
                                               fontSize: h * 12,
                                             ),
@@ -773,7 +813,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   sh(20),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                     children: [
                                       sw(7),
                                       Expanded(
@@ -788,8 +828,9 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                         child: Align(
                                           alignment: Alignment.topRight,
                                           child: Text(
-                                            paymentProvider.order?.truckDriver?.tdId
-                                                    .toString() ??
+                                            paymentProvider.order?.truckDriver
+                                                ?.tdId
+                                                .toString() ??
                                                 "",
                                             style: TextStyle(
                                               fontSize: h * 12,
@@ -802,7 +843,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   sh(20),
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                     children: [
                                       sw(7),
                                       Expanded(
@@ -817,7 +858,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                         child: Align(
                                           alignment: Alignment.topRight,
                                           child: Text(
-                                            paymentProvider.order!.truckDriver!.contact ?? "",
+                                            paymentProvider.order!.truckDriver!
+                                                .contact ?? "",
                                             style: TextStyle(
                                               fontSize: h * 12,
                                             ),
@@ -830,11 +872,13 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                 ],
                               ),
                             sh(20),
-                            if (paymentProvider.order!.orderDetails!.isCanceled != null &&
-                                paymentProvider.order!.orderDetails!.isCanceled == true)
+                            if (paymentProvider.order!.orderDetails!
+                                .isCanceled != null &&
+                                paymentProvider.order!.orderDetails!
+                                    .isCanceled == true)
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   sw(7),
                                   Expanded(
@@ -849,7 +893,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                     child: Align(
                                       alignment: Alignment.topRight,
                                       child: Text(
-                                        paymentProvider.order!.cancelationReason.toString(),
+                                        paymentProvider.order!.cancelationReason
+                                            .toString(),
                                         style: TextStyle(
                                           fontSize: h * 12,
                                         ),
@@ -879,9 +924,11 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order!.delieveredTime == null
+                                      paymentProvider.order!.delieveredTime ==
+                                          null
                                           ? "--"
-                                          : paymentProvider.order!.delieveredTime.toString(),
+                                          : paymentProvider.order!
+                                          .delieveredTime.toString(),
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -909,7 +956,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                     child: Text(
                                       paymentProvider.order!.loadedTime == null
                                           ? '--'
-                                          : paymentProvider.order!.loadedTime.toString(),
+                                          : paymentProvider.order!.loadedTime
+                                          .toString(),
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -926,9 +974,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                             sh(20),
 
 
-
-
-                            if(paymentProvider.order?.isLoaded==true && paymentProvider.order?.isPaid==false)
+                            if(paymentProvider.order?.isLoaded == true &&
+                                paymentProvider.order?.isPaid == false)
                               Column(children: [
                                 paymentProvider.paymentWidget!,
                                 sh(20),
@@ -937,14 +984,15 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   height: 1,
                                 ),
                               ],),
+                            sh(10),
                             if (paymentProvider.order?.isPaid == false)
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
 
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 10),
+                                    padding: const EdgeInsets.only(left: 4),
                                     child: Text(
                                       'Payment Status',
                                       style: TextStyle(
@@ -976,7 +1024,9 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.order?.isPaid == false ?"NO":"YES",
+                                      paymentProvider.order?.isPaid == false
+                                          ? "NO"
+                                          : "YES",
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -1002,7 +1052,9 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.getPaymentEvidenceResponse?.paymentVerifiedBy.toString()??"--",
+                                      paymentProvider.getPaymentEvidenceResponse
+                                          ?.paymentVerifiedBy.toString() ??
+                                          "--",
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -1028,7 +1080,9 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      paymentProvider.getPaymentEvidenceResponse?.paymentVerifiedDate.toString()??"--",
+                                      paymentProvider.getPaymentEvidenceResponse
+                                          ?.paymentVerifiedDate.toString() ??
+                                          "--",
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -1073,41 +1127,42 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
           padding: EdgeInsets.only(right: b * 6),
           child: imageUrl == ''
               ? Container(
-                  height: 120,
-                  width: Get.width,
-                  decoration: BoxDecoration(
-                    color: phoneBoxBackground,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: InkWell(
-                      onTap: () async {
-
-                        if(Get.isDialogOpen==true){
-                          Get.back();
-                        }
-                        await paymentProvider.getPaymentImage(paymentProvider.order!.orderId.toString());
-                        setState(() {});
-                      },
-                      child: Center(child: Text('Upload Evidence'))),
-                )
+            height: 120,
+            width: Get.width,
+            decoration: BoxDecoration(
+              color: phoneBoxBackground,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: InkWell(
+                onTap: () async {
+                  if (Get.isDialogOpen == true) {
+                    Get.back();
+                  }
+                  await paymentProvider.getPaymentImage(
+                      paymentProvider.order!.orderId.toString());
+                  setState(() {});
+                },
+                child: Center(child: Text('Upload Evidence'))),
+          )
               : CachedNetworkImage(
-                  imageUrl:
-                      'https://thumbs.dreamstime.com/z/red-stamp-paid-grunge-frame-big-thumbs-up-text-153975323.jpg',
-                  // ApiUrls.BASE_URL_TRUCK + imageUrl!,
-                  width: Get.width,
-                  height: Get.height * 0.25,
-                  fit: BoxFit.fitWidth,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      color: secondaryColor,
-                      borderRadius: BorderRadius.circular(b * 4),
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
+            imageUrl:
+            'https://thumbs.dreamstime.com/z/red-stamp-paid-grunge-frame-big-thumbs-up-text-153975323.jpg',
+            // ApiUrls.BASE_URL_TRUCK + imageUrl!,
+            width: Get.width,
+            height: Get.height * 0.25,
+            fit: BoxFit.fitWidth,
+            imageBuilder: (context, imageProvider) =>
+                Container(
+                  decoration: BoxDecoration(
+                    color: secondaryColor,
+                    borderRadius: BorderRadius.circular(b * 4),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
+          ),
         ),
         sh(20),
       ],
@@ -1140,7 +1195,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                 "Order",
                 style: TextStyle(
                     color:
-                        index == 0 || index > 0 ? Colors.green : Colors.white),
+                    index == 0 || index > 0 ? Colors.green : Colors.white),
               ),
               Text("Reached",
                   style: TextStyle(
@@ -1237,6 +1292,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
       ],
     );
   }
+
   Widget showPaymentPart() {
     return Column(children: [
       if (paymentProvider.order!.isPaid == false)
@@ -1260,57 +1316,74 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
           height: 1,
         ),
       if(paymentProvider.paymentEvidenceUrl.isEmpty)
-      InkWell(
-        onTap: () async {
-          if(paymentProvider.order?.isLoaded==false) {
+        InkWell(
+          onTap: () async {
+            if (paymentProvider.order?.isLoaded == false) {
+              return;
+            }
+            if (paymentProvider.order!.isPaid == true) return;
+            if (Get.isDialogOpen == true) {
+              Get.back();
+            }
+            bool? isPaid;
 
-            return;
-          }
-          if (paymentProvider.order!.isPaid == true) return;
-          if(Get.isDialogOpen==true){
-            Get.back();
-          }
+            if (GetPlatform.isWeb) {
+              Map<String, String> map = {
+                "OrderId": "${paymentProvider.order!.orderId}",
+                "userId": "${paymentProvider.order!.orderDetails!.user!.id}",
+                "Amount": "${(paymentProvider.order!.totalFare! * 100).toInt()}",
+                "Description": "...."
+              };
+              TabPaymentDetails? tabPaymentDetails= await getPaymentLink(map);
+              if(tabPaymentDetails!=null){
+              isPaid = await Get.to(PaymentWebView(initUrl: tabPaymentDetails.redirectUrl));
 
-          bool? isPaid = await Get.to(PaymentWebView(
-            initUrl:
-            "http://admin.truc-king.io/Home/Payment?UserId=${paymentProvider.order!.orderDetails!.user!.id}&amount=${(paymentProvider.order!.totalFare! * 100).toInt()}&OrderId=${paymentProvider.order!.orderId}",
-            // "https://cp.truck.deeps.info/Home/Payment?UserId=${paymentProvider.order!.orderDetails!.user!.id}&amount=${(paymentProvider.order!.totalFare! * 100).toInt()}&OrderId=${paymentProvider.order!.orderId}",
-          ));
-          if (isPaid == true) {
-            paymentProvider.order!.isPaid = true;
-            setState(() {});
-          }
-        },
-        child: Row(
-          mainAxisAlignment:
-          MainAxisAlignment.spaceBetween,
-          children: [
-            sw(7),
-            Expanded(
-              child: Text(
-                'Pay By Card',
-                style: TextStyle(
-                    fontSize: h * 12,
-                    color: textYellowColor),
-              ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.topRight,
+              }
+
+            } else {
+              isPaid = await Get.to(PaymentWebView(
+                initUrl: "http://admin.truc-king.io/Home/Payment?UserId=${paymentProvider
+                    .order!.orderDetails!.user!.id}&amount=${(paymentProvider
+                    .order!.totalFare! * 100).toInt()}&OrderId=${paymentProvider
+                    .order!.orderId}",));
+            }
+
+
+            if (isPaid == true) {
+              paymentProvider.order!.isPaid = true;
+              setState(() {});
+            }
+          },
+          child: Row(
+            mainAxisAlignment:
+            MainAxisAlignment.spaceBetween,
+            children: [
+              sw(7),
+              Expanded(
                 child: Text(
-                  paymentProvider.order!.isPaid == true
-                      ? "PAID"
-                      : "Click to Proceed",
+                  'Pay By Card',
                   style: TextStyle(
-                      color: Colors.green,
-                      fontSize: h * 15,
-                      fontWeight: FontWeight.bold),
+                      fontSize: h * 12,
+                      color: textYellowColor),
                 ),
               ),
-            ),
-          ],
+              Expanded(
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Text(
+                    paymentProvider.order!.isPaid == true
+                        ? "PAID"
+                        : "Click to Proceed",
+                    style: TextStyle(
+                        color: Colors.green,
+                        fontSize: h * 15,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
     ],);
   }
 
@@ -1319,8 +1392,33 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    paymentProvider.paymentEvidenceUrl="";
-    paymentProvider.getPaymentEvidenceResponse=null;
+    paymentProvider.paymentEvidenceUrl = "";
+    paymentProvider.getPaymentEvidenceResponse = null;
   }
 
+
+}
+
+Future<TabPaymentDetails?> getPaymentLink(Map<String, String> body) async {
+  try {
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request('POST',
+        Uri.parse('http://admin.truc-king.io/api/PaymentEvidence/pay'));
+    request.body = json.encode(body);
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    var responseBody = await response.stream.bytesToString();
+    if (response.statusCode == 200) {
+      print(responseBody);
+      return tabPaymentDetailsFromJson(responseBody);
+
+    } else {
+      print(response.reasonPhrase);
+      print(responseBody);
+      return null;
+    }
+  }catch(e){
+    print(e);
+    return null;
+  }
 }

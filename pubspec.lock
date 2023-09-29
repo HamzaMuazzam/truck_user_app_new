@@ -1214,7 +1214,7 @@ packages:
     source: hosted
     version: "0.1.4-beta"
   webview_flutter:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: webview_flutter
       sha256: "6886b3ceef1541109df5001054aade5ee3c36b5780302e41701c78357233721c"
@@ -1245,14 +1245,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.9.5"
-  webviewx:
-    dependency: "direct main"
-    description:
-      name: webviewx
-      sha256: "51845c6440645279dc9245876743a05d19233421b19e45c7519b13bd6c647b82"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.2"
   win32:
     dependency: transitive
     description:

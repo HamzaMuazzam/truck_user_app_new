@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:sultan_cab/models/payment/TabPaymentDetails.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/TruckBooking/RequestDetailsScreenWeb.dart';
 import 'package:sultan_cab/screens/TruckBooking/VehicleChooseScreenWeb.dart';
@@ -12,8 +13,10 @@ import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
 import 'package:sultan_cab/widgets/web_header.dart';
+import 'screens/TruckBooking/getOrderDetailsById.dart';
 import 'screens/TruckBooking/navigation_screen.dart';
 import 'screens/commonPages/phone_verify.dart';
+import 'screens/commonPages/web_view_screen.dart';
 
 class AuthWidget extends StatefulWidget {
   AuthWidget({Key? key}) : super(key: key);
@@ -92,9 +95,9 @@ class GetStartedWeb extends StatefulWidget {
 
 class _GetStartedWebState extends State<GetStartedWeb> {
   bool isLogin = true;
-
   @override
   Widget build(BuildContext context) {
+
     return Container(
       color: greybackColor,
       child: Stack(

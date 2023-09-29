@@ -2,7 +2,7 @@ name: sultan_cab
 description: A new Flutter project.
 publish_to: "none"
 
-version: 1.0.6+6
+version: 1.1.0+10
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -36,11 +36,12 @@ dependencies:
   fluttertoast:
   google_maps_flutter_web: ^0.4.0+7
   map_location_picker: ^1.2.0
-
   get: ^4.6.5
-
   get_storage: ^2.0.3
-  webviewx: ^0.2.2
+  webview_flutter:
+
+
+
 
 dev_dependencies:
   flutter_launcher_icons: ^0.12.0
@@ -56,7 +57,7 @@ flutter_icons:
   image_path: "assets/logo/trucking-logo2.png"
   min_sdk_android: 21
   adaptive_icon_background: "assets/logo/background.png"
-  adaptive_icon_foreground: "assets/logo/trucking-logo2.png"
+  adaptive_icon_foreground: "assets/logo/trucking-logo.png"
   web:
     generate: true
     image_path: "assets/logo/trucking-logo.png"
@@ -101,8 +102,3 @@ flutter:
 #    - android/.gradle/
 #    - android/.gradle/vcs-1/
 #    - android/.gradle/buildOutputCleanup/
-
-
-
-
-
