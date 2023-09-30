@@ -2,7 +2,7 @@ name: sultan_cab
 description: A new Flutter project.
 publish_to: "none"
 
-version: 1.1.0+10
+version: 1.1.1+11
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -38,7 +38,7 @@ dependencies:
   map_location_picker: ^1.2.0
   get: ^4.6.5
   get_storage: ^2.0.3
-  webview_flutter:
+  webview_flutter: ^4.2.4
 
 
 
@@ -54,13 +54,11 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/logo/trucking-logo2.png"
+  image_path: "assets/logo/app_logo.png"
   min_sdk_android: 21
-  adaptive_icon_background: "assets/logo/background.png"
-  adaptive_icon_foreground: "assets/logo/trucking-logo.png"
   web:
     generate: true
-    image_path: "assets/logo/trucking-logo.png"
+    image_path: "assets/logo/app_logo.png"
 #    background_color: "#hexcode"
 #    theme_color: "#hexcode"
 

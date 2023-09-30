@@ -26,46 +26,46 @@ class _PaymentWebViewState extends State<PaymentWebView> {
     print("URL: ${this.initUrl}");
 
     // #docregion webview_controller
-    // controller = WebViewController()
-    //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    //   ..setBackgroundColor(const Color(0x00000000))
-    //   ..setNavigationDelegate(
-    //     NavigationDelegate(
-    //       onProgress: (int progress) {
-    //
-    //       },
-    //       onPageStarted: (String value) {
-    //
-    //       },
-    //       onPageFinished: (String value) {
-    //         logger.e(value.toString());
-    //         if (value.toString().contains("message=APPROVED") ||
-    //             value.toString().contains("status=success") ||
-    //             value.toString().contains("status=authorized") ||
-    //             value.toString().contains("status=paid") ||
-    //             value.toString().contains("message=Succeeded")) {
-    //           if (x == 0) {
-    //             Get.back(result: true);
-    //           }
-    //           ++x;
-    //         } else {
-    //           print("Fool");
-    //         }
-    //       },
-    //       onWebResourceError: (WebResourceError error) {
-    //         print(error);
-    //
-    //       },
-    //       onNavigationRequest: (NavigationRequest request) {
-    //           // if (request.url.startsWith('https://www.youtube.com/')) {
-    //           //   return NavigationDecision.prevent;
-    //           // }
-    //           return NavigationDecision.navigate;
-    //       },
-    //     ),
-    //   );
-      // ..loadRequest(Uri.parse(this.initUrl??"google.com"));
-    // #enddocregion; webview_controller
+    controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+            // Update loading bar.
+          },
+          onPageStarted: (String value) {
+
+          },
+          onPageFinished: (String value) {
+            logger.e(value.toString());
+            if (value.toString().contains("message=APPROVED") ||
+                value.toString().contains("status=success") ||
+                value.toString().contains("status=authorized") ||
+                value.toString().contains("status=paid") ||
+                value.toString().contains("message=Succeeded")) {
+              if (x == 0) {
+                Get.back(result: true);
+              }
+              ++x;
+            } else {
+              print("Fool");
+            }
+          },
+          onWebResourceError: (WebResourceError error) {
+            print(error);
+
+          },
+          onNavigationRequest: (NavigationRequest request) {
+              // if (request.url.startsWith('https://www.youtube.com/')) {
+              //   return NavigationDecision.prevent;
+              // }
+              return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(this.initUrl??"google.com"));
+    // #enddocregion webview_controller
     super.initState();
   }
 
@@ -93,7 +93,6 @@ class _PaymentWebViewState extends State<PaymentWebView> {
             ),
           ),
         ),
-        // body: WebViewWidget(controller: controller)
-    );
+        body: WebViewWidget(controller: controller));
   }
 }

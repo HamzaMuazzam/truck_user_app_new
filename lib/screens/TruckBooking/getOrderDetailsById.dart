@@ -20,6 +20,7 @@ import '../../utils/strings.dart';
 import '../commonPages/web_view_screen.dart';
 
 import 'package:http/http.dart' as http;
+// import 'dart:html' as html;
 
 
 class OrderDetailById extends StatefulWidget {
@@ -1336,7 +1337,8 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
               };
               TabPaymentDetails? tabPaymentDetails= await getPaymentLink(map);
               if(tabPaymentDetails!=null){
-              isPaid = await Get.to(PaymentWebView(initUrl: tabPaymentDetails.redirectUrl));
+              // isPaid = await Get.to(PaymentWebView(initUrl: tabPaymentDetails.redirectUrl));
+              //   html.WindowBase base = html.window.open(tabPaymentDetails.redirectUrl??"google.com", 'Payment Tab');
 
               }
 
@@ -1345,7 +1347,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                 initUrl: "http://admin.truc-king.io/Home/Payment?UserId=${paymentProvider
                     .order!.orderDetails!.user!.id}&amount=${(paymentProvider
                     .order!.totalFare! * 100).toInt()}&OrderId=${paymentProvider
-                    .order!.orderId}",));
+                    .order!.orderId}"));
             }
 
 
