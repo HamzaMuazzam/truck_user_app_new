@@ -36,8 +36,7 @@ Widget? paymentWidget;
        fields!["PaymentProof"]=base64String;
 
      }
-     var request = http.Request('POST', Uri.parse('http://admin.truc-king.io/api/PaymentEvidence/Upload-Payment-Evidence'));
-     // var request = http.Request('POST', Uri.parse('https://cp.truck.deeps.info/api/PaymentEvidence/Upload-Payment-Evidence'));
+     var request = http.Request('POST', Uri.parse('https://admin.truc-king.io/api/PaymentEvidence/Upload-Payment-Evidence'));
 
 
      request.body = json.encode(fields);

@@ -1344,7 +1344,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
 
             } else {
               isPaid = await Get.to(PaymentWebView(
-                initUrl: "http://admin.truc-king.io/Home/Payment?UserId=${paymentProvider
+                initUrl: "https://admin.truc-king.io/Home/Payment?UserId=${paymentProvider
                     .order!.orderDetails!.user!.id}&amount=${(paymentProvider
                     .order!.totalFare! * 100).toInt()}&OrderId=${paymentProvider
                     .order!.orderId}"));
@@ -1405,7 +1405,7 @@ Future<TabPaymentDetails?> getPaymentLink(Map<String, String> body) async {
   try {
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request('POST',
-        Uri.parse('http://admin.truc-king.io/api/PaymentEvidence/pay'));
+        Uri.parse('https://admin.truc-king.io/api/PaymentEvidence/pay'));
     request.body = json.encode(body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

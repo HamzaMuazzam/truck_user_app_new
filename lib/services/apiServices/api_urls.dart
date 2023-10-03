@@ -1,8 +1,6 @@
 class ApiUrls {
-  // static String BASE_URL_TRUCK = "https://apitruck.deeps.info/api/";
-  static String BASE_URL_TRUCK = "http://api.truc-king.io:8091/api/";
+  static String BASE_URL_TRUCK = "https://api.truc-king.io/api/";
 
-  // static String BASE_URL = "https://makatib.ai/";
   static String CREATE_ACCOUNT = "user/createAccount";
   static String SIGN_IN = "user/loginUser";
   static String CHANGE_PASSWORD = "user/changePassword";
