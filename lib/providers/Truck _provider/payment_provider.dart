@@ -1,17 +1,15 @@
-import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/Truck_models/get_payment_evidence_response.dart';
-import 'package:sultan_cab/services/ApiServices/StorageServices/get_storage.dart';
-import 'package:sultan_cab/services/ApiServices/api_urls.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/const.dart';
 import 'package:http/http.dart' as http;
 import '../../models/Truck_models/getAllOrdersResponse.dart';
+import '../../services/apiServices/StorageServices/get_storage.dart';
 import '../../services/apiServices/api_services.dart';
+import '../../services/apiServices/api_urls.dart';
 import '../../widgets/app_widgets.dart';
 import 'dart:convert';
 
@@ -115,6 +113,5 @@ Widget? paymentWidget;
     return true;
   }
 
-   GetAllOrdersResponse? order;
 
 }

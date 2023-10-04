@@ -1,5 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
-import 'dart:ui';
+import 'dart:html' as html;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -7,21 +8,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
-import 'package:sultan_cab/services/ApiServices/api_services.dart';
-
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import '../../models/Truck_models/getAllOrdersResponse.dart';
 import '../../models/payment/TabPaymentDetails.dart';
-import '../../providers/auth_provider.dart';
-import '../../services/ApiServices/api_urls.dart';
+import '../../providers/Truck _provider/fair_provider.dart';
 import '../../utils/strings.dart';
 import '../commonPages/web_view_screen.dart';
-
 import 'package:http/http.dart' as http;
-// import 'dart:html' as html;
-
 
 class OrderDetailById extends StatefulWidget {
   final GetAllOrdersResponse? getAllOrdersResponse;
@@ -34,16 +29,21 @@ class OrderDetailById extends StatefulWidget {
 }
 
 class _OrderDetailByIdState extends State<OrderDetailById> {
-
-
   _OrderDetailByIdState(GetAllOrdersResponse? order) {
-    paymentProvider.order = order;
+    fairTruckProvider.order = order;
   }
-
+Timer? timer;
   @override
   void initState() {
     super.initState();
-    logger.e(paymentProvider.order!.toJson());
+    logger.e(fairTruckProvider.order!.toJson());
+    if (GetPlatform.isWeb && timer==null) {
+      Timer.periodic(Duration(seconds:10), (timer) {
+        this.timer=timer;
+        fairTruckProvider.updateSingleOrder(widget.getAllOrdersResponse?.orderId?.toString());
+
+      });
+    }
   }
 
   late double h, b;
@@ -63,14 +63,10 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
         centerTitle: true,
         elevation: 0,
         title: Text(
-          "${paymentProvider.order!.orderDetails!.pickUpCity == 'string'
-              ? 'Load '
-              'City'
-              : paymentProvider.order!.orderDetails!.pickUpCity} To "
-              "${paymentProvider.order!.orderDetails!.dropOffCity == 'string'
-              ? 'unLoad '
-              'City'
-              : paymentProvider.order!.orderDetails!.dropOffCity}",
+          "${fairTruckProvider.order!.orderDetails!.pickUpCity == 'string' ? 'Load '
+              'City' : fairTruckProvider.order!.orderDetails!.pickUpCity} To "
+          "${fairTruckProvider.order!.orderDetails!.dropOffCity == 'string' ? 'unLoad '
+              'City' : fairTruckProvider.order!.orderDetails!.dropOffCity}",
           style: TextStyle(
               fontSize: 18, fontWeight: FontWeight.bold, color: scaffoldColor),
         ),
@@ -84,807 +80,108 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          horizontal: b * 15,
-                          vertical: h * 15,
-                        ),
-                        padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 20, b * 17, h * 20),
-                        decoration: BoxDecoration(
-                          color: greybackColor,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            stepper(paymentProvider.order),
-                            sh(20),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/icons/blue_cirle.svg',
-                                  width: h * 17,
-                                ),
-                                sw(19),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-
-                                      /// 1st Location
-                                      Text(
-                                        paymentProvider.order!.orderDetails!
-                                            .pickUpAddress ??
-                                            PickUpAddrLbl,
-                                        style: TextStyle(
-                                            fontSize: h * 12,
-                                            color: textYellowColor),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Transform.translate(
-                              offset: Offset(-h * 3, 0),
-                              child: Icon(
-                                Icons.more_vert,
-                                color: Color(0xff999999),
-                              ),
-                            ),
-                            sh(5),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/icons/choose_city.svg',
-                                  color: Color(0xffD40511),
-                                  height: h * 20,
-                                ),
-                                sw(19),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-
-                                      /// Other Location
-                                      Text(
-                                        paymentProvider.order!.orderDetails!
-                                            .dropOffAddress ??
-                                            "Your Destination",
-                                        style: TextStyle(
-                                          fontSize: h * 12,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                // ),
-                              ],
-                            ),
-                            sh(20),
-                            Container(
-                              color: Colors.grey,
-                              height: 1,
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Order ID:',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order?.orderId
-                                          ?.toString() ?? "",
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Load City',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .pickUpCity
-                                          .toString(),
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'UnLoad City',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .dropOffCity
-                                          .toString(),
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Container(
-                              color: Colors.grey,
-                              height: 1,
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Pickup Lat',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .pickUpLat.toString(),
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Pickup Lng',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .pickUpLng.toString(),
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Dropoff Lat',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .dropOffLat
-                                          .toString(),
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Dropoff Lng',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .dropOffLng
-                                          .toString(),
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Pickup Link',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .pickUpLink != null
-                                          ? paymentProvider.order!.orderDetails!
-                                          .pickUpLink!
-                                          .toString()
-                                          : '--',
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'DropOff Link',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .dropOffLink != null
-                                          ? paymentProvider.order!.orderDetails!
-                                          .dropOffLink!
-                                          .toString()
-                                          : '--',
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Container(
-                              color: Colors.grey,
-                              height: 1,
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'NotificationSent',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .isNotificationSent ==
-                                          true
-                                          ? 'Yes'
-                                          : 'No',
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Container(
-                              color: Colors.grey,
-                              height: 1,
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Distance',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .distance.toString() +
-                                          " KM",
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Amount',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.totalFare
-                                          .toString() + " SAR",
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Container(
-                              color: Colors.grey,
-                              height: 1,
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Created Date',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .createdDate!.year
-                                          .toString() +
-                                          '-' +
-                                          paymentProvider.order!
-                                              .orderDetails!.createdDate!.month
-                                              .toString() +
-                                          '-' +
-                                          paymentProvider.order!.orderDetails!
-                                              .createdDate!.day
-                                              .toString(),
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Container(
-                              color: Colors.grey,
-                              height: 1,
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Loaded',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .isLoaded != null
-                                          ? paymentProvider.order!.orderDetails!
-                                          .isLoaded ==
-                                          true
-                                          ? 'Yes'
-                                          : 'No'
-                                          : 'null',
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Accepted',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .isAccepted != null
-                                          ? paymentProvider.order!.orderDetails!
-                                          .isAccepted ==
-                                          true
-                                          ? 'Yes'
-                                          : 'No'
-                                          : 'null',
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Progress',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.inProgress != null
-                                          ? paymentProvider.order!.inProgress ==
-                                          true
-                                          ? 'Yes'
-                                          : 'No'
-                                          : 'null',
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Delivered',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .isDelievered != null
-                                          ? paymentProvider.order!.orderDetails!
-                                          .isDelievered ==
-                                          true
-                                          ? 'Yes'
-                                          : 'No'
-                                          : 'null',
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'in process',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .isInProcess != null
-                                          ? paymentProvider.order!.orderDetails!
-                                          .isInProcess ==
-                                          true
-                                          ? 'Yes'
-                                          : 'No'
-                                          : 'null',
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Cancelled',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.orderDetails!
-                                          .isCanceled != null
-                                          ? paymentProvider.order!.orderDetails!
-                                          .isCanceled ==
-                                          true
-                                          ? 'Yes'
-                                          : 'No'
-                                          : 'null',
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(10),
-                            if (paymentProvider.order!.truckDriver != null)
-                              Column(
+      body: Consumer<FairTruckProvider>(builder: (context, data, child) {
+        return Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: b * 15,
+                            vertical: h * 15,
+                          ),
+                          padding: EdgeInsets.fromLTRB(
+                              b * 17, h * 20, b * 17, h * 20),
+                          decoration: BoxDecoration(
+                            color: greybackColor,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              stepper(fairTruckProvider.order),
+                              sh(20),
+                              Row(
                                 children: [
-                                  Container(
-                                    color: Colors.grey,
-                                    height: 1,
+                                  SvgPicture.asset(
+                                    'assets/icons/blue_cirle.svg',
+                                    width: h * 17,
                                   ),
-                                  sh(20),
-                                  Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      sw(7),
-                                      Expanded(
-                                        child: Text(
-                                          'Driver Name',
+                                  sw(19),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        /// 1st Location
+                                        Text(
+                                          fairTruckProvider.order!.orderDetails!
+                                                  .pickUpAddress ??
+                                              PickUpAddrLbl,
                                           style: TextStyle(
                                               fontSize: h * 12,
                                               color: textYellowColor),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment: Alignment.topRight,
-                                          child: Text(
-                                            paymentProvider.order!.truckDriver!
-                                                .name ?? "",
-                                            style: TextStyle(
-                                              fontSize: h * 12,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                  sh(20),
-                                  Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      sw(7),
-                                      Expanded(
-                                        child: Text(
-                                          'Driver ID',
-                                          style: TextStyle(
-                                              fontSize: h * 12,
-                                              color: textYellowColor),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment: Alignment.topRight,
-                                          child: Text(
-                                            paymentProvider.order?.truckDriver
-                                                ?.tdId
-                                                .toString() ??
-                                                "",
-                                            style: TextStyle(
-                                              fontSize: h * 12,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  sh(20),
-                                  Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      sw(7),
-                                      Expanded(
-                                        child: Text(
-                                          'Driver Contact',
-                                          style: TextStyle(
-                                              fontSize: h * 12,
-                                              color: textYellowColor),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment: Alignment.topRight,
-                                          child: Text(
-                                            paymentProvider.order!.truckDriver!
-                                                .contact ?? "",
-                                            style: TextStyle(
-                                              fontSize: h * 12,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  sh(20),
                                 ],
                               ),
-                            sh(20),
-                            if (paymentProvider.order!.orderDetails!
-                                .isCanceled != null &&
-                                paymentProvider.order!.orderDetails!
-                                    .isCanceled == true)
+                              Transform.translate(
+                                offset: Offset(-h * 3, 0),
+                                child: Icon(
+                                  Icons.more_vert,
+                                  color: Color(0xff999999),
+                                ),
+                              ),
+                              sh(5),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/icons/choose_city.svg',
+                                    color: Color(0xffD40511),
+                                    height: h * 20,
+                                  ),
+                                  sw(19),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        /// Other Location
+                                        Text(
+                                          fairTruckProvider.order!.orderDetails!
+                                                  .dropOffAddress ??
+                                              "Your Destination",
+                                          style: TextStyle(
+                                            fontSize: h * 12,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  // ),
+                                ],
+                              ),
+                              sh(20),
+                              Container(
+                                color: Colors.grey,
+                                height: 1,
+                              ),
+                              sh(20),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   sw(7),
                                   Expanded(
                                     child: Text(
-                                      'Cancellation Reason',
+                                      'Order ID:',
                                       style: TextStyle(
                                           fontSize: h * 12,
                                           color: textYellowColor),
@@ -894,7 +191,37 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                     child: Align(
                                       alignment: Alignment.topRight,
                                       child: Text(
-                                        paymentProvider.order!.cancelationReason
+                                        fairTruckProvider.order?.orderId
+                                                ?.toString() ??
+                                            "",
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Load City',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider
+                                            .order!.orderDetails!.pickUpCity
                                             .toString(),
                                         style: TextStyle(
                                           fontSize: h * 12,
@@ -904,205 +231,932 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   ),
                                 ],
                               ),
-                            Container(
-                              color: Colors.grey,
-                              height: 1,
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Delivered Time',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.delieveredTime ==
-                                          null
-                                          ? "--"
-                                          : paymentProvider.order!
-                                          .delieveredTime.toString(),
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Loaded Time',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Text(
-                                      paymentProvider.order!.loadedTime == null
-                                          ? '--'
-                                          : paymentProvider.order!.loadedTime
-                                          .toString(),
-                                      style: TextStyle(
-                                        fontSize: h * 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Container(
-                              color: Colors.grey,
-                              height: 1,
-                            ),
-                            sh(20),
-
-
-                            if(paymentProvider.order?.isLoaded == true &&
-                                paymentProvider.order?.isPaid == false)
-                              Column(children: [
-                                paymentProvider.paymentWidget!,
-                                sh(20),
-                                Container(
-                                  color: Colors.grey,
-                                  height: 1,
-                                ),
-                              ],),
-                            sh(10),
-                            if (paymentProvider.order?.isPaid == false)
+                              sh(20),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 4),
+                                  sw(7),
+                                  Expanded(
                                     child: Text(
-                                      'Payment Status',
+                                      'UnLoad City',
                                       style: TextStyle(
                                           fontSize: h * 12,
                                           color: textYellowColor),
                                     ),
                                   ),
-                                  Text(
-                                    'Unpaid',
-                                    style: TextStyle(
-                                        fontSize: h * 12, color: Colors.red),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider
+                                            .order!.orderDetails!.dropOffCity
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Payment Verified',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
+                              sh(20),
+                              Container(
+                                color: Colors.grey,
+                                height: 1,
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
                                     child: Text(
-                                      paymentProvider.order?.isPaid == false
-                                          ? "NO"
-                                          : "YES",
+                                      'Pickup Lat',
                                       style: TextStyle(
-                                        fontSize: h * 12,
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider
+                                            .order!.orderDetails!.pickUpLat
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Verified By',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
                                     child: Text(
-                                      paymentProvider.getPaymentEvidenceResponse
-                                          ?.paymentVerifiedBy.toString() ??
-                                          "--",
+                                      'Pickup Lng',
                                       style: TextStyle(
-                                        fontSize: h * 12,
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider
+                                            .order!.orderDetails!.pickUpLng
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            sh(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                sw(7),
-                                Expanded(
-                                  child: Text(
-                                    'Verified Date',
-                                    style: TextStyle(
-                                        fontSize: h * 12,
-                                        color: textYellowColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.topRight,
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
                                     child: Text(
-                                      paymentProvider.getPaymentEvidenceResponse
-                                          ?.paymentVerifiedDate.toString() ??
-                                          "--",
+                                      'Dropoff Lat',
                                       style: TextStyle(
-                                        fontSize: h * 12,
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider
+                                            .order!.orderDetails!.dropOffLat
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
                                       ),
                                     ),
                                   ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Dropoff Lng',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider
+                                            .order!.orderDetails!.dropOffLng
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Pickup Link',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.orderDetails!
+                                                    .pickUpLink !=
+                                                null
+                                            ? fairTruckProvider.order!
+                                                .orderDetails!.pickUpLink!
+                                                .toString()
+                                            : '--',
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'DropOff Link',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.orderDetails!
+                                                    .dropOffLink !=
+                                                null
+                                            ? fairTruckProvider.order!
+                                                .orderDetails!.dropOffLink!
+                                                .toString()
+                                            : '--',
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Container(
+                                color: Colors.grey,
+                                height: 1,
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'NotificationSent',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.orderDetails!
+                                                    .isNotificationSent ==
+                                                true
+                                            ? 'Yes'
+                                            : 'No',
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Container(
+                                color: Colors.grey,
+                                height: 1,
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Distance',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider
+                                                .order!.orderDetails!.distance
+                                                .toString() +
+                                            " KM",
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Amount',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.totalFare
+                                                .toString() +
+                                            " SAR",
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Container(
+                                color: Colors.grey,
+                                height: 1,
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Created Date',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.orderDetails!
+                                                .createdDate!.year
+                                                .toString() +
+                                            '-' +
+                                            fairTruckProvider.order!.orderDetails!
+                                                .createdDate!.month
+                                                .toString() +
+                                            '-' +
+                                            fairTruckProvider.order!.orderDetails!
+                                                .createdDate!.day
+                                                .toString(),
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Container(
+                                color: Colors.grey,
+                                height: 1,
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Loaded',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.orderDetails!
+                                                    .isLoaded !=
+                                                null
+                                            ? fairTruckProvider
+                                                        .order!
+                                                        .orderDetails!
+                                                        .isLoaded ==
+                                                    true
+                                                ? 'Yes'
+                                                : 'No'
+                                            : 'null',
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Accepted',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.orderDetails!
+                                                    .isAccepted !=
+                                                null
+                                            ? fairTruckProvider
+                                                        .order!
+                                                        .orderDetails!
+                                                        .isAccepted ==
+                                                    true
+                                                ? 'Yes'
+                                                : 'No'
+                                            : 'null',
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Progress',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.inProgress !=
+                                                null
+                                            ? fairTruckProvider
+                                                        .order!.inProgress ==
+                                                    true
+                                                ? 'Yes'
+                                                : 'No'
+                                            : 'null',
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Delivered',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.orderDetails!
+                                                    .isDelievered !=
+                                                null
+                                            ? fairTruckProvider
+                                                        .order!
+                                                        .orderDetails!
+                                                        .isDelievered ==
+                                                    true
+                                                ? 'Yes'
+                                                : 'No'
+                                            : 'null',
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'in process',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.orderDetails!
+                                                    .isInProcess !=
+                                                null
+                                            ? fairTruckProvider
+                                                        .order!
+                                                        .orderDetails!
+                                                        .isInProcess ==
+                                                    true
+                                                ? 'Yes'
+                                                : 'No'
+                                            : 'null',
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Cancelled',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.orderDetails!
+                                                    .isCanceled !=
+                                                null
+                                            ? fairTruckProvider
+                                                        .order!
+                                                        .orderDetails!
+                                                        .isCanceled ==
+                                                    true
+                                                ? 'Yes'
+                                                : 'No'
+                                            : 'null',
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(10),
+                              if (fairTruckProvider.order!.truckDriver != null)
+                                Column(
+                                  children: [
+                                    Container(
+                                      color: Colors.grey,
+                                      height: 1,
+                                    ),
+                                    sh(20),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        sw(7),
+                                        Expanded(
+                                          child: Text(
+                                            'Driver Name',
+                                            style: TextStyle(
+                                                fontSize: h * 12,
+                                                color: textYellowColor),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                            child: Text(
+                                              fairTruckProvider.order!
+                                                      .truckDriver!.name ??
+                                                  "",
+                                              style: TextStyle(
+                                                fontSize: h * 12,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    sh(20),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        sw(7),
+                                        Expanded(
+                                          child: Text(
+                                            'Driver ID',
+                                            style: TextStyle(
+                                                fontSize: h * 12,
+                                                color: textYellowColor),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                            child: Text(
+                                              fairTruckProvider
+                                                      .order?.truckDriver?.tdId
+                                                      .toString() ??
+                                                  "",
+                                              style: TextStyle(
+                                                fontSize: h * 12,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    sh(20),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        sw(7),
+                                        Expanded(
+                                          child: Text(
+                                            'Driver Contact',
+                                            style: TextStyle(
+                                                fontSize: h * 12,
+                                                color: textYellowColor),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                            child: Text(
+                                              fairTruckProvider.order!
+                                                      .truckDriver!.contact ??
+                                                  "",
+                                              style: TextStyle(
+                                                fontSize: h * 12,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    sh(20),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            sh(20),
-                          ],
+                              sh(20),
+                              if (fairTruckProvider
+                                          .order!.orderDetails!.isCanceled !=
+                                      null &&
+                                  fairTruckProvider
+                                          .order!.orderDetails!.isCanceled ==
+                                      true)
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    sw(7),
+                                    Expanded(
+                                      child: Text(
+                                        'Cancellation Reason',
+                                        style: TextStyle(
+                                            fontSize: h * 12,
+                                            color: textYellowColor),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: Alignment.topRight,
+                                        child: Text(
+                                          fairTruckProvider
+                                              .order!.cancelationReason
+                                              .toString(),
+                                          style: TextStyle(
+                                            fontSize: h * 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              Container(
+                                color: Colors.grey,
+                                height: 1,
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Delivered Time',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.delieveredTime ==
+                                                null
+                                            ? "--"
+                                            : fairTruckProvider
+                                                .order!.delieveredTime
+                                                .toString(),
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Loaded Time',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order!.loadedTime ==
+                                                null
+                                            ? '--'
+                                            : fairTruckProvider.order!.loadedTime
+                                                .toString(),
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Container(
+                                color: Colors.grey,
+                                height: 1,
+                              ),
+                              sh(20),
+                              if (fairTruckProvider.order?.isLoaded == true &&
+                                  fairTruckProvider.order?.isPaid == false)
+                                Column(
+                                  children: [
+                                    paymentProvider.paymentWidget!,
+                                    sh(20),
+                                    Container(
+                                      color: Colors.grey,
+                                      height: 1,
+                                    ),
+                                  ],
+                                ),
+                              sh(10),
+                              if (fairTruckProvider.order?.isPaid == false)
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 4),
+                                      child: Text(
+                                        'Payment Status',
+                                        style: TextStyle(
+                                            fontSize: h * 12,
+                                            color: textYellowColor),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Unpaid',
+                                      style: TextStyle(
+                                          fontSize: h * 12, color: Colors.red),
+                                    ),
+                                  ],
+                                ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Payment Verified',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        fairTruckProvider.order?.isPaid == false
+                                            ? "NO"
+                                            : "YES",
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Verified By',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        paymentProvider
+                                                .getPaymentEvidenceResponse
+                                                ?.paymentVerifiedBy
+                                                .toString() ??
+                                            "--",
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  sw(7),
+                                  Expanded(
+                                    child: Text(
+                                      'Verified Date',
+                                      style: TextStyle(
+                                          fontSize: h * 12,
+                                          color: textYellowColor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        paymentProvider
+                                                .getPaymentEvidenceResponse
+                                                ?.paymentVerifiedDate
+                                                .toString() ??
+                                            "--",
+                                        style: TextStyle(
+                                          fontSize: h * 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              sh(20),
+                            ],
+                          ),
                         ),
-                      ),
-                    ]),
+                      ]),
+                ),
               ),
             ),
-          ),
-          sh(20)
-        ],
-      ),
+            sh(20)
+          ],
+        );
+      }),
     );
   }
 
@@ -1128,42 +1182,41 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
           padding: EdgeInsets.only(right: b * 6),
           child: imageUrl == ''
               ? Container(
-            height: 120,
-            width: Get.width,
-            decoration: BoxDecoration(
-              color: phoneBoxBackground,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: InkWell(
-                onTap: () async {
-                  if (Get.isDialogOpen == true) {
-                    Get.back();
-                  }
-                  await paymentProvider.getPaymentImage(
-                      paymentProvider.order!.orderId.toString());
-                  setState(() {});
-                },
-                child: Center(child: Text('Upload Evidence'))),
-          )
-              : CachedNetworkImage(
-            imageUrl:
-            'https://thumbs.dreamstime.com/z/red-stamp-paid-grunge-frame-big-thumbs-up-text-153975323.jpg',
-            // ApiUrls.BASE_URL_TRUCK + imageUrl!,
-            width: Get.width,
-            height: Get.height * 0.25,
-            fit: BoxFit.fitWidth,
-            imageBuilder: (context, imageProvider) =>
-                Container(
+                  height: 120,
+                  width: Get.width,
                   decoration: BoxDecoration(
-                    color: secondaryColor,
-                    borderRadius: BorderRadius.circular(b * 4),
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
+                    color: phoneBoxBackground,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: InkWell(
+                      onTap: () async {
+                        if (Get.isDialogOpen == true) {
+                          Get.back();
+                        }
+                        await paymentProvider.getPaymentImage(
+                            fairTruckProvider.order!.orderId.toString());
+                        setState(() {});
+                      },
+                      child: Center(child: Text('Upload Evidence'))),
+                )
+              : CachedNetworkImage(
+                  imageUrl:
+                      'https://thumbs.dreamstime.com/z/red-stamp-paid-grunge-frame-big-thumbs-up-text-153975323.jpg',
+                  // ApiUrls.BASE_URL_TRUCK + imageUrl!,
+                  width: Get.width,
+                  height: Get.height * 0.25,
+                  fit: BoxFit.fitWidth,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      color: secondaryColor,
+                      borderRadius: BorderRadius.circular(b * 4),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-          ),
         ),
         sh(20),
       ],
@@ -1196,7 +1249,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                 "Order",
                 style: TextStyle(
                     color:
-                    index == 0 || index > 0 ? Colors.green : Colors.white),
+                        index == 0 || index > 0 ? Colors.green : Colors.white),
               ),
               Text("Reached",
                   style: TextStyle(
@@ -1295,100 +1348,94 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
   }
 
   Widget showPaymentPart() {
-    return Column(children: [
-      if (paymentProvider.order!.isPaid == false)
-        Consumer<PaymentProvider>(builder:
-            (BuildContext context, value, Widget? child) {
-          return docContainer(
-            label: "Payment Evidence",
-            imageUrl: value.paymentFile == null &&
-                value.paymentEvidenceUrl == ''
-                ? ''
-                : value.paymentEvidenceUrl.toString(),
-            fileCode: 1,
-          );
-        }),
+    return Column(
+      children: [
+        if (fairTruckProvider.order!.isPaid == false)
+          Consumer<PaymentProvider>(
+              builder: (BuildContext context, value, Widget? child) {
+            return docContainer(
+              label: "Payment Evidence",
+              imageUrl:
+                  value.paymentFile == null && value.paymentEvidenceUrl == ''
+                      ? ''
+                      : value.paymentEvidenceUrl.toString(),
+              fileCode: 1,
+            );
+          }),
+        if (fairTruckProvider.order!.isPaid == false &&
+            paymentProvider.paymentFile != null &&
+            paymentProvider.paymentEvidenceUrl != '')
+          Container(
+            color: Colors.grey,
+            height: 1,
+          ),
+        if (paymentProvider.paymentEvidenceUrl.isEmpty)
+          InkWell(
+            onTap: () async {
+              if (fairTruckProvider.order?.isLoaded == false) {
+                return;
+              }
+              if (fairTruckProvider.order!.isPaid == true) return;
+              if (Get.isDialogOpen == true) {
+                Get.back();
+              }
+              bool? isPaid;
 
-      if (paymentProvider.order!.isPaid == false &&
-          paymentProvider.paymentFile != null &&
-          paymentProvider.paymentEvidenceUrl != '')
-        Container(
-          color: Colors.grey,
-          height: 1,
-        ),
-      if(paymentProvider.paymentEvidenceUrl.isEmpty)
-        InkWell(
-          onTap: () async {
-            if (paymentProvider.order?.isLoaded == false) {
-              return;
-            }
-            if (paymentProvider.order!.isPaid == true) return;
-            if (Get.isDialogOpen == true) {
-              Get.back();
-            }
-            bool? isPaid;
-
-            if (GetPlatform.isWeb) {
-              Map<String, String> map = {
-                "OrderId": "${paymentProvider.order!.orderId}",
-                "userId": "${paymentProvider.order!.orderDetails!.user!.id}",
-                "Amount": "${(paymentProvider.order!.totalFare! * 100).toInt()}",
-                "Description": "...."
-              };
-              TabPaymentDetails? tabPaymentDetails= await getPaymentLink(map);
-              if(tabPaymentDetails!=null){
-              // isPaid = await Get.to(PaymentWebView(initUrl: tabPaymentDetails.redirectUrl));
-              //   html.WindowBase base = html.window.open(tabPaymentDetails.redirectUrl??"google.com", 'Payment Tab');
-
+              if (GetPlatform.isWeb) {
+                Map<String, String> map = {
+                  "OrderId": "${fairTruckProvider.order!.orderId}",
+                  "userId": "${fairTruckProvider.order!.orderDetails!.user!.id}",
+                  "Amount":
+                      "${(fairTruckProvider.order!.totalFare! * 100).toInt()}",
+                  "Description": "...."
+                };
+                TabPaymentDetails? tabPaymentDetails =
+                    await getPaymentLink(map);
+                if (tabPaymentDetails != null) {
+                  // isPaid = await Get.to(PaymentWebView(initUrl: tabPaymentDetails.redirectUrl));
+                    html.WindowBase base = html.window.open(tabPaymentDetails.redirectUrl??"google.com", 'Payment Tab');
+                }
+              } else {
+                isPaid = await Get.to(PaymentWebView(
+                    initUrl:
+                        "https://admin.truc-king.io/Home/Payment?UserId=${fairTruckProvider.order!.orderDetails!.user!.id}&amount=${(fairTruckProvider.order!.totalFare! * 100).toInt()}&OrderId=${fairTruckProvider.order!.orderId}"));
               }
 
-            } else {
-              isPaid = await Get.to(PaymentWebView(
-                initUrl: "https://admin.truc-king.io/Home/Payment?UserId=${paymentProvider
-                    .order!.orderDetails!.user!.id}&amount=${(paymentProvider
-                    .order!.totalFare! * 100).toInt()}&OrderId=${paymentProvider
-                    .order!.orderId}"));
-            }
-
-
-            if (isPaid == true) {
-              paymentProvider.order!.isPaid = true;
-              setState(() {});
-            }
-          },
-          child: Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceBetween,
-            children: [
-              sw(7),
-              Expanded(
-                child: Text(
-                  'Pay By Card',
-                  style: TextStyle(
-                      fontSize: h * 12,
-                      color: textYellowColor),
-                ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.topRight,
+              if (isPaid == true) {
+                fairTruckProvider.order!.isPaid = true;
+                setState(() {});
+              }
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                sw(7),
+                Expanded(
                   child: Text(
-                    paymentProvider.order!.isPaid == true
-                        ? "PAID"
-                        : "Click to Proceed",
-                    style: TextStyle(
-                        color: Colors.green,
-                        fontSize: h * 15,
-                        fontWeight: FontWeight.bold),
+                    'Pay By Card',
+                    style: TextStyle(fontSize: h * 12, color: textYellowColor),
                   ),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Text(
+                      fairTruckProvider.order!.isPaid == true
+                          ? "PAID"
+                          : "Click to Proceed",
+                      style: TextStyle(
+                          color: Colors.green,
+                          fontSize: h * 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-    ],);
+      ],
+    );
   }
-
 
   @override
   void dispose() {
@@ -1396,9 +1443,11 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
     super.dispose();
     paymentProvider.paymentEvidenceUrl = "";
     paymentProvider.getPaymentEvidenceResponse = null;
+    if(timer!=null){
+      print("I AM DISPOSED TIMER $timer");
+      timer?.cancel();
+    }
   }
-
-
 }
 
 Future<TabPaymentDetails?> getPaymentLink(Map<String, String> body) async {
@@ -1413,13 +1462,12 @@ Future<TabPaymentDetails?> getPaymentLink(Map<String, String> body) async {
     if (response.statusCode == 200) {
       print(responseBody);
       return tabPaymentDetailsFromJson(responseBody);
-
     } else {
       print(response.reasonPhrase);
       print(responseBody);
       return null;
     }
-  }catch(e){
+  } catch (e) {
     print(e);
     return null;
   }

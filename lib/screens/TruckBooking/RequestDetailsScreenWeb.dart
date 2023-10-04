@@ -6,23 +6,12 @@ import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/screens/TruckBooking/pickup_location.dart';
 import 'package:sultan_cab/screens/TruckBooking/searching_widget.dart';
-
-import '../../models/directions_model.dart';
-import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
-import '../../providers/auth_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
-import '../../services/ApiServices/StorageServices/get_storage.dart';
-import '../../services/directions_services.dart';
-import '../../utils/api_keys.dart';
+import '../../services/apiServices/StorageServices/get_storage.dart';
 import '../../utils/colors.dart';
-import '../../utils/commons.dart';
-import '../../utils/const.dart';
 import '../../utils/strings.dart';
-import '../../widgets/app_snackBar.dart';
-import '../../widgets/app_text_field.dart';
 import 'booking_summary.dart';
-import 'choose_vehicle.dart';
 
 class RequestDetailsScreenWeb extends StatefulWidget {
   const RequestDetailsScreenWeb({Key? key}) : super(key: key);

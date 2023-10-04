@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
-import 'package:sultan_cab/services/ApiServices/StorageServices/get_storage.dart';
-import 'package:sultan_cab/services/ApiServices/api_urls.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
 import '../../models/registration/userRegResponse.dart';
+import '../../services/apiServices/StorageServices/get_storage.dart';
+import '../../services/apiServices/api_urls.dart';
 import '/models/UserModel/user_model.dart';
 
 class ProfileScreen extends StatefulWidget {

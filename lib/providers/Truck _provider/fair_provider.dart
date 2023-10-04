@@ -1,11 +1,8 @@
 import 'dart:convert';
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:sultan_cab/services/ApiServices/api_services.dart';
 import 'package:sultan_cab/utils/const.dart';
 
 import '../../models/Truck_models/getAllCitiesResponse.dart';
@@ -13,10 +10,10 @@ import '../../models/Truck_models/getAllOrdersResponse.dart';
 import '../../models/fair_by_car_id/fair_by_truck_id.dart';
 import '../../screens/TruckBooking/booking_summary.dart';
 import '../../screens/TruckBooking/getOrderDetailsById.dart';
-import '../../services/ApiServices/StorageServices/get_storage.dart';
-import '../../services/ApiServices/api_urls.dart';
+import '../../services/apiServices/StorageServices/get_storage.dart';
+import '../../services/apiServices/api_services.dart';
+import '../../services/apiServices/api_urls.dart';
 import '../../utils/commons.dart';
-import '../GoogleMapProvider/location_and_map_provider.dart';
 import '../truck_provider/app_flow_provider.dart';
 
 FairTruckProvider fairTruckProvider =
@@ -27,7 +24,6 @@ class FairTruckProvider extends ChangeNotifier {
   String unloadCity = '';
   TextEditingController deliveryNote = TextEditingController();
   List<GetTruckFareResponse>? getTruckFareResponse = [];
-
 
   Future<bool> getAllTruckFairs() async {
     AppConst.startProgress();
@@ -81,9 +77,11 @@ class FairTruckProvider extends ChangeNotifier {
         "title": "",
         "pickUpLat": appFlowProvider.currentLoc!.latitude.toString(),
         "pickUpLng": appFlowProvider.currentLoc!.longitude.toString(),
-        "pickUpLink": "https://www.google.com/maps/search/?api=1&query=${appFlowProvider.currentLoc!.latitude.toString()},${appFlowProvider.currentLoc!.longitude.toString()}",
+        "pickUpLink":
+            "https://www.google.com/maps/search/?api=1&query=${appFlowProvider.currentLoc!.latitude.toString()},${appFlowProvider.currentLoc!.longitude.toString()}",
         "pickUpAddress": appFlowProvider.currentAddress.toString(),
-        "dropOffLLink": "https://www.google.com/maps/search/?api=1&query=${appFlowProvider.destLoc!.latitude.toString()},${appFlowProvider.destLoc!.longitude.toString()}",
+        "dropOffLLink":
+            "https://www.google.com/maps/search/?api=1&query=${appFlowProvider.destLoc!.latitude.toString()},${appFlowProvider.destLoc!.longitude.toString()}",
         "dropOffAddress": appFlowProvider.destAdd.toString(),
         "dropOffLat": appFlowProvider.destLoc!.latitude.toString(),
         "dropOffLng": appFlowProvider.destLoc!.longitude.toString(),
@@ -93,28 +91,31 @@ class FairTruckProvider extends ChangeNotifier {
         "pickUpCity": loadCity,
         "dropOffCity": unloadCity,
         "delieveryNote": deliveryNote.text.toString(),
-        "time":"${convertTimeString(appProvider.directions!.totalDuration!)}"
+        "time": "${convertTimeString(appProvider.directions!.totalDuration!)}"
       };
 
       if (appFlowProvider.directions != null) {
         map2["distance"] = appFlowProvider.directions?.totalDistance.toString();
-      }else{
-        map2["distance"]=0.toString();
+      } else {
+        map2["distance"] = 0.toString();
       }
       logger.i(map2);
 
       List<Map<String, String>> list = [];
-      try{
+      try {
         fairTruckProvider.getTruckFareResponse!.forEach((element) {
           if (element.quantity > 0) {
             String distance;
             if (appFlowProvider.directions == null) {
               distance = "50.0";
             } else {
-              distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
+              distance =
+                  appFlowProvider.directions!.totalDistance!.split(" ")[0];
             }
-              distance=distance.replaceAll("km", "").replaceAll("Km", "").replaceAll(",","");
-
+            distance = distance
+                .replaceAll("km", "")
+                .replaceAll("Km", "")
+                .replaceAll(",", "");
 
             var i = (element.quantity *
                     double.parse(element.moreThan400KmFares!) *
@@ -128,34 +129,35 @@ class FairTruckProvider extends ChangeNotifier {
             });
           }
         });
-      }catch(e){
-        print("object "+ e.toString());
+      } catch (e) {
+        print("object " + e.toString());
       }
       map2["truckDetails"] = list;
       map2["totalFare"] = getTotalFairs().replaceAll(" SAR", "");
       map2["truckDriverFare"] = getTotalFairsWithoutCommission();
       logger.i(map2);
       AppConst.startProgress(barrierDismissible: true);
-      String response = await ApiServices.postMethodTruck(feedUrl: ApiUrls.BOOKING_REQUEST, body: json.encode(map2));
+      String response = await ApiServices.postMethodTruck(
+          feedUrl: ApiUrls.BOOKING_REQUEST, body: json.encode(map2));
       AppConst.stopProgress();
       logger.e(response);
       if (response.isEmpty) {
-        return [false,0];
+        return [false, 0];
       }
       logger.i('booking api done');
-      return [true,json.decode(response)['orderId']];
+      return [true, json.decode(response)['orderId']];
     } catch (e) {
-      print("CATCHED ERROR => "+e.toString());
+      print("CATCHED ERROR => " + e.toString());
       Get.back();
-      return [false,0];
+      return [false, 0];
     }
   }
-
 
   List<GetAllCitiesResponse>? getAllCitiesResponse = [];
 
   Future<bool> getAllCities() async {
-    var response = await ApiServices.getMethodTruck(feedUrl: ApiUrls.GET_ALL_CITIES);
+    var response =
+        await ApiServices.getMethodTruck(feedUrl: ApiUrls.GET_ALL_CITIES);
     if (response.isEmpty) return false;
     getAllCitiesResponse = getAllCitiesResponseFromJson(response);
     notifyListeners();
@@ -174,13 +176,15 @@ class FairTruckProvider extends ChangeNotifier {
       notifyListeners();
       return false;
     }
-    List<GetAllOrdersResponse> orderWithDuplicates= getAllOrdersResponseFromJson(response);
+    List<GetAllOrdersResponse> orderWithDuplicates =
+        getAllOrdersResponseFromJson(response);
 
-    List<GetAllOrdersResponse> orderWithoutDuplicates=[];
+    List<GetAllOrdersResponse> orderWithoutDuplicates = [];
 
     orderWithDuplicates.forEach((elemented) {
-
-      if(orderWithoutDuplicates.firstWhereOrNull((element) => element.orderId==elemented.orderId)==null){
+      if (orderWithoutDuplicates.firstWhereOrNull(
+              (element) => element.orderId == elemented.orderId) ==
+          null) {
         orderWithoutDuplicates.add(elemented);
       }
     });
@@ -194,66 +198,65 @@ class FairTruckProvider extends ChangeNotifier {
     return true;
   }
 
-  void gotoOrderBookingScreen(String orderID) async{
-
-    String response = await ApiServices.getMethod(feedUrl: "Order/get-order-by-Id?id=$orderID");
-
-
-
-
-
-
+  void gotoOrderBookingScreen(String orderID) async {
+    String response = await getSingleOrder(orderID);
     if (response.isNotEmpty) {
       await 5.delay();
-      Get.to(OrderDetailById(GetAllOrdersResponse.fromJson(json.decode(response))));
-    }
-    else{
+      Get.to(OrderDetailById(
+          GetAllOrdersResponse.fromJson(json.decode(response))));
+    } else {
       Get.snackbar("Error", "Error on getting order");
     }
-
   }
-  String convertTimeString(String time){
-    try{
+
+  String convertTimeString(String time) {
+    try {
       if (time.contains("hours")) {
         var split = time.split(" ");
         var hours = split[0];
         var mints = split[2];
 
-        if(hours.length==2 && mints.length==2){
+        if (hours.length == 2 && mints.length == 2) {
           return "$hours:$mints";
-        }
-        else if(hours.length==1 && mints.length==2) {
+        } else if (hours.length == 1 && mints.length == 2) {
           return "0$hours:$mints";
-        }
-        else if(hours.length==2 && mints.length==1) {
+        } else if (hours.length == 2 && mints.length == 1) {
           return "$hours:0$mints";
-        }
-        else if(hours.length==1 && mints.length==1) {
+        } else if (hours.length == 1 && mints.length == 1) {
           return "0$hours:0$mints";
-        }
-        else{
+        } else {
           return "$hours:$mints";
-
         }
-
-
-        } else if (!time.contains("hours") && time.contains("mins")) {
+      } else if (!time.contains("hours") && time.contains("mins")) {
         var split = time.split(" ");
         var mints = split[0];
-        if(mints.length==2){
-
-        return "00:$mints";
-        }
-        else{
+        if (mints.length == 2) {
+          return "00:$mints";
+        } else {
           return "00:0$mints";
         }
       }
-    }catch(e){
+    } catch (e) {
       return "55:00";
     }
 
     return "45:00";
   }
 
+  Future<String> getSingleOrder(String orderID) async {
+    String response = await ApiServices.getMethod(
+        feedUrl: "Order/get-order-by-Id?id=$orderID");
+    return response;
+  }
+
+  void updateSingleOrder(String? orderID) async{
+    String response = await getSingleOrder(orderID.toString());
+    order= GetAllOrdersResponse.fromJson(json.decode(response));
+    notifyListeners();
+
+
+  }
+
+  GetAllOrdersResponse? order;
 
 }

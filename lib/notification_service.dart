@@ -1,11 +1,8 @@
 import 'dart:convert';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:sultan_cab/services/ApiServices/api_services.dart';
-
 import 'FCM.dart';
 import 'models/Truck_models/getAllOrdersResponse.dart';
 import 'providers/Truck _provider/fair_provider.dart';

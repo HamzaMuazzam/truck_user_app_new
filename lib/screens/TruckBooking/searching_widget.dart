@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,17 +8,11 @@ import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
-
-import '../../models/Truck_models/getAllOrdersResponse.dart';
 import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
-import '../../services/ApiServices/api_services.dart';
 import '../../utils/commons.dart';
 import '../../utils/strings.dart';
-import 'GetAllOrdersScreen.dart';
-import 'getOrderDetailsById.dart';
-import 'home_page.dart';
 import 'navigation_screen.dart';
 
 class SearchingWidget extends StatefulWidget {

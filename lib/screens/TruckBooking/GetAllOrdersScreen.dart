@@ -6,12 +6,9 @@ import 'package:sultan_cab/providers/Truck%20_provider/fair_provider.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import '../../models/payment/TabPaymentDetails.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
-import '../../services/ApiServices/StorageServices/get_storage.dart';
-import '../../utils/commons.dart';
+import '../../services/apiServices/StorageServices/get_storage.dart';
 import '../../utils/strings.dart';
-import '../commonPages/web_view_screen.dart';
 import 'getOrderDetailsById.dart';
 
 class GetAllOrdersScreen extends StatefulWidget {

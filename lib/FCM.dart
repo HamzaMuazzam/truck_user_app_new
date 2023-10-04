@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:sultan_cab/services/ApiServices/StorageServices/get_storage.dart';
+import 'package:sultan_cab/services/apiServices/StorageServices/get_storage.dart';
 import 'notification_service.dart';
 int notificationNumber = 0;
 

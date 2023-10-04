@@ -4,10 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/get_location_change_model/get_location_change_model.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
-import 'package:sultan_cab/services/ApiServices/api_services.dart';
-import 'package:sultan_cab/services/ApiServices/api_urls.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/const.dart';
+
+import '../../services/apiServices/api_services.dart';
+import '../../services/apiServices/api_urls.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 enum RideStage {

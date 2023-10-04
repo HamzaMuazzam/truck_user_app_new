@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:sultan_cab/services/ApiServices/StorageServices/get_storage.dart';
-import 'package:sultan_cab/services/ApiServices/api_urls.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/const.dart';
+
+import 'StorageServices/get_storage.dart';
+import 'api_urls.dart';
 
 class ApiServices {
   static final headers = {

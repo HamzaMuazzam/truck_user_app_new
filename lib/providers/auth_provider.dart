@@ -8,9 +8,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/UserModel/user_model.dart';
 import 'package:sultan_cab/screens/commonPages/phone_verify.dart';
-import 'package:sultan_cab/services/ApiServices/StorageServices/get_storage.dart';
-import 'package:sultan_cab/services/ApiServices/api_services.dart';
-import 'package:sultan_cab/services/ApiServices/api_urls.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/widgets/app_widgets.dart';
 import 'package:sultan_cab/utils/const.dart';
@@ -19,6 +16,10 @@ import '../models/registration/userRegResponse.dart';
 import '../screens/TruckBooking/navigation_screen.dart';
 import '../screens/commonPages/otp_verifications.dart';
 import 'package:http/http.dart' as http;
+
+import '../services/apiServices/StorageServices/get_storage.dart';
+import '../services/apiServices/api_services.dart';
+import '../services/apiServices/api_urls.dart';
 
 AuthProvider authProvider = Provider.of(Get.context!, listen: false);
 
