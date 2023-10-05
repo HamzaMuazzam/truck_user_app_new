@@ -245,7 +245,7 @@ class FairTruckProvider extends ChangeNotifier {
 
   Future<String> getSingleOrder(String orderID) async {
     String response = await ApiServices.getMethod(
-        feedUrl: "Order/get-order-by-Id?id=$orderID");
+        feedUrl: "Order/get-order-by-Id?id=$orderID&datetime=${DateTime.now()}");
     return response;
   }
 

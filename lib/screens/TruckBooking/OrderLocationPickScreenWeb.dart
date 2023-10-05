@@ -1,11 +1,9 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:place_picker/entities/location_result.dart';
 import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/screens/TruckBooking/pickup_location.dart';
-
 import '../../customized_plugins/lib/map_location_picker.dart';
 import '../../models/directions_model.dart';
 import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
@@ -63,13 +61,14 @@ class _OrderLocationPickScreenWebState
     }
 
     // Get the current position
-    Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
+    // Position? position= await getLocation();
+    Position? position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.best,
     );
 
     // Access the latitude and longitude
-    double latitude = position.latitude;
-    double longitude = position.longitude;
+    double? latitude = position.latitude;
+    double? longitude = position.longitude;
 
     print('Latitude: $latitude');
     print('Longitude: $longitude');
@@ -290,6 +289,22 @@ class _OrderLocationPickScreenWebState
   Position? position;
   void gteLocationLatLng() async {
      position = await  getCurrentLocation();
+  }
+
+
+  Future<Position?> getLocation() async {
+    final GeolocatorPlatform geolocator = GeolocatorPlatform.instance;
+    try {
+      final Position position = await geolocator.getCurrentPosition(
+        // desiredAccuracy: LocationAccuracy.best,
+        locationSettings: LocationSettings()
+      );
+      return position;
+    } catch (e) {
+      // Handle any errors here
+      print(e.toString());
+      return null;
+    }
   }
 }
 

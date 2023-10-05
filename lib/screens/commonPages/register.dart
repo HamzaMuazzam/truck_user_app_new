@@ -17,6 +17,7 @@ class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
+
 var b = SizeConfig.screenWidth / 375;
 var h = SizeConfig.screenHeight / 600;
 GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -30,10 +31,11 @@ bool isError1 = false;
 bool isMisMatch = false;
 
 bool phoneVerified = false;
+
 class _RegisterScreenState extends State<RegisterScreen> {
-  Set<int> checks={};
-  Set<int> checks2={};
-String crNo="";
+  Set<int> checks = {};
+  Set<int> checks2 = {};
+  String crNo = "";
 
   @override
   void initState() {
@@ -75,27 +77,20 @@ String crNo="";
               ),
               Row(
                 children: [
-                  if(Get.width>700)
-                    Expanded(
-                        flex:2,
-                        child: Container()),
+                  if (Get.width > 700) Expanded(flex: 2, child: Container()),
                   Expanded(
-                    flex:7,
+                    flex: 7,
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: b * 30),
                       child: Form(
                         key: _formKey,
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:listRegister()
-                        ),
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: listRegister()),
                       ),
                     ),
                   ),
-                  if(Get.width>700)
-                    Expanded(
-                        flex:2,
-                        child: Container()),
+                  if (Get.width > 700) Expanded(flex: 2, child: Container()),
                 ],
               )
             ],
@@ -105,8 +100,8 @@ String crNo="";
     );
   }
 
-  List<Widget>  listRegister(){
-    return  [
+  List<Widget> listRegister() {
+    return [
       sh(20),
       Text(
         CreateAccountLbl,
@@ -148,13 +143,11 @@ String crNo="";
           initialCountryCode: 'SA',
 
           onChanged: (phone) {
-            authProvider.phoneController.text =
-                phone.completeNumber;
+            authProvider.phoneController.text = phone.completeNumber;
           },
         ),
       ),
       sh(0),
-
       AppTextField(
         label: NameLabel,
         controller: authProvider.nameController,
@@ -186,7 +179,6 @@ String crNo="";
         },
       ),
       sh(20),
-
       AppTextFieldPassword(
         label: PasswordLabel,
         controller: authProvider.passwordController,
@@ -198,29 +190,44 @@ String crNo="";
           // }else{
           //   return "Password must contain digit, capital, small and special character.";
           // }
-
         },
         onChanged: (text) {
-
           checks = isPasswordCompliant(text);
 
-          setState(() {
-
-          });
-
+          setState(() {});
         },
       ),
-      checks.contains(0)?
-      Text("~Password must be greater than 8.", style: TextStyle(color: checks.contains(0)?Colors.red:Colors.grey),):Container(),
-      checks.contains(1)?
-      Text("~Must contain capital letter", style: TextStyle(color: checks.contains(1)?Colors.red:Colors.grey)):Container(),
-      checks.contains(2)?
-      Text("~Must contain number", style: TextStyle(color: checks.contains(2)?Colors.red:Colors.grey),):Container(),
-      checks.contains(3)?
-      Text("~Must contain lower case letter", style: TextStyle(color: checks.contains(3)?Colors.red:Colors.grey),):Container(),
-      checks.contains(4)?
-      Text("~Must contain special character.", style: TextStyle(color: checks.contains(4)?Colors.red:Colors.grey)):Container(),
-
+      checks.contains(0)
+          ? Text(
+              "~Password must be greater than 8.",
+              style: TextStyle(
+                  color: checks.contains(0) ? Colors.red : Colors.grey),
+            )
+          : Container(),
+      checks.contains(1)
+          ? Text("~Must contain capital letter",
+              style: TextStyle(
+                  color: checks.contains(1) ? Colors.red : Colors.grey))
+          : Container(),
+      checks.contains(2)
+          ? Text(
+              "~Must contain number",
+              style: TextStyle(
+                  color: checks.contains(2) ? Colors.red : Colors.grey),
+            )
+          : Container(),
+      checks.contains(3)
+          ? Text(
+              "~Must contain lower case letter",
+              style: TextStyle(
+                  color: checks.contains(3) ? Colors.red : Colors.grey),
+            )
+          : Container(),
+      checks.contains(4)
+          ? Text("~Must contain special character.",
+              style: TextStyle(
+                  color: checks.contains(4) ? Colors.red : Colors.grey))
+          : Container(),
       sh(20),
       AppTextFieldPassword(
         label: CnfmPasswordLabel,
@@ -235,38 +242,53 @@ String crNo="";
           // }
         },
         onChanged: (text) {
-
           checks2 = isPasswordCompliant(text);
 
-          setState(() {
-
-          });
-
+          setState(() {});
         },
       ),
-      checks2.contains(0)?
-      Text("~Password must be greater than 8.", style: TextStyle(color: checks2.contains(0)?Colors.red:Colors.grey),):Container(),
-      checks2.contains(1)?
-      Text("~Must contain capital letter", style: TextStyle(color: checks2.contains(1)?Colors.red:Colors.grey)):Container(),
-      checks2.contains(2)?
-      Text("~Must contain number", style: TextStyle(color: checks2.contains(2)?Colors.red:Colors.grey),):Container(),
-      checks2.contains(3)?
-      Text("~Must contain lower case letter", style: TextStyle(color: checks2.contains(3)?Colors.red:Colors.grey),):Container(),
-      checks2.contains(4)?
-      Text("~Must contain special character.", style: TextStyle(color: checks2.contains(4)?Colors.red:Colors.grey)):Container(),
-
-
+      checks2.contains(0)
+          ? Text(
+              "~Password must be greater than 8.",
+              style: TextStyle(
+                  color: checks2.contains(0) ? Colors.red : Colors.grey),
+            )
+          : Container(),
+      checks2.contains(1)
+          ? Text("~Must contain capital letter",
+              style: TextStyle(
+                  color: checks2.contains(1) ? Colors.red : Colors.grey))
+          : Container(),
+      checks2.contains(2)
+          ? Text(
+              "~Must contain number",
+              style: TextStyle(
+                  color: checks2.contains(2) ? Colors.red : Colors.grey),
+            )
+          : Container(),
+      checks2.contains(3)
+          ? Text(
+              "~Must contain lower case letter",
+              style: TextStyle(
+                  color: checks2.contains(3) ? Colors.red : Colors.grey),
+            )
+          : Container(),
+      checks2.contains(4)
+          ? Text("~Must contain special character.",
+              style: TextStyle(
+                  color: checks2.contains(4) ? Colors.red : Colors.grey))
+          : Container(),
       sh(20),
       AppTextField(
-        label: CompanyCR,inputType: TextInputType.number,
+        label: CompanyCR,
+        inputType: TextInputType.number,
         controller: authProvider.companyCR,
         suffix: null,
         isVisibilty: null,
         maxLength: 10,
-        onChange: (text){
-          crNo=text;
-          setState(() {
-          });
+        onChange: (text) {
+          crNo = text;
+          setState(() {});
         },
         // validator: (val) {
         //   if (authProvider.companyCR.text.trim() == "")
@@ -282,13 +304,21 @@ String crNo="";
         // },
       ),
       sh(5),
-      if(crNo.isEmpty)
-      Text("CR number can't be empty",style: TextStyle(color: Colors.red),),
-      if(crNo.length<10)
-      Text("CR number can't be less than 10",style: TextStyle(color: Colors.red),),
-      if(crNo.length>10)
-      Text("CR number can't be greater than 10",style: TextStyle(color: Colors.red),),
-
+      if (crNo.isEmpty)
+        Text(
+          "CR number can't be empty",
+          style: TextStyle(color: Colors.red),
+        ),
+      if (crNo.length < 10)
+        Text(
+          "CR number can't be less than 10",
+          style: TextStyle(color: Colors.red),
+        ),
+      if (crNo.length > 10)
+        Text(
+          "CR number can't be greater than 10",
+          style: TextStyle(color: Colors.red),
+        ),
       sh(20),
       AppTextField(
         label: 'Company ContactNo',
@@ -302,13 +332,12 @@ String crNo="";
             return null;
         },
       ),
-
       sh(30),
       Center(
         child: AppButton(
           label: RegisterLabel,
           onPressed: () async {
-            if(checks.isNotEmpty || checks2.isNotEmpty) return;
+            if (checks.isNotEmpty || checks2.isNotEmpty) return;
             await authProvider.registrationFormValidation();
           },
         ),
@@ -316,9 +345,4 @@ String crNo="";
       sh(40),
     ];
   }
-
 }
-
-
-
-

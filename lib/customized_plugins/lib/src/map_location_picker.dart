@@ -434,9 +434,9 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                       position: _initialPosition,
                     ),
                   },
-                  myLocationButtonEnabled: false,
+                  myLocationButtonEnabled: true,
                   myLocationEnabled: true,
-                  zoomControlsEnabled: false,
+                  zoomControlsEnabled: true,
                   padding: widget.padding,
                   compassEnabled: widget.compassEnabled,
                   liteModeEnabled: widget.liteModeEnabled,
@@ -511,30 +511,30 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                     ),
                   ),
 
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FloatingActionButton(
-                      tooltip: 'My Location',
-                      backgroundColor: Theme.of(context).primaryColor,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                      onPressed: () async {
-                        await Geolocator.requestPermission();
-                        Position position = await Geolocator.getCurrentPosition(
-                          desiredAccuracy: widget.desiredAccuracy,
-                        );
-                        LatLng latLng =
-                        LatLng(position.latitude, position.longitude);
-                        _initialPosition = latLng;
-                        final controller = await _controller.future;
-                        controller.animateCamera(
-                            CameraUpdate.newCameraPosition(cameraPosition()));
-                        _decodeAddress(Location(
-                            lat: position.latitude, lng: position.longitude));
-                        setState(() {});
-                      },
-                      child: const Icon(Icons.my_location),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: FloatingActionButton(
+                  //     tooltip: 'My Location',
+                  //     backgroundColor: Theme.of(context).primaryColor,
+                  //     foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  //     onPressed: () async {
+                  //       // await Geolocator.requestPermission();
+                  //       // Position position = await Geolocator.getCurrentPosition(
+                  //       //   desiredAccuracy: LocationAccuracy.bestForNavigation,
+                  //       // );
+                  //       // LatLng latLng =
+                  //       // LatLng(position.latitude, position.longitude);
+                  //       // _initialPosition = latLng;
+                  //       // final controller = await _controller.future;
+                  //       // controller.animateCamera(
+                  //       //     CameraUpdate.newCameraPosition(cameraPosition()));
+                  //       // _decodeAddress(Location(
+                  //       //     lat: position.latitude, lng: position.longitude));
+                  //       // setState(() {});
+                  //     },
+                  //     child: const Icon(Icons.my_location),
+                  //   ),
+                  // ),
                 ],
               ),
             ],
