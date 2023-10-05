@@ -134,14 +134,14 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                 height: 250,
                               ),
                               Text(
-                                "Affordable truck service",
+                                "Move your heavy load at the touch of a button!".tr,
                                 style: TextStyle(
                                     color: Colors.green,
                                     fontWeight: FontWeight.w900,
                                     fontSize: 30),
                               ),
                               Text(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.\n",
+                                "An all-in-one truck aggregation platform developed to fulfill the needs of businesses, brokers, and fleet owners.".tr,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18),
                               ),
