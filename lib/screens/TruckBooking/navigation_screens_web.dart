@@ -27,9 +27,9 @@ class _WebHomeScreemState extends State<WebHomeScreem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Affordable truck service",style: TextStyle(color: Colors.green,fontWeight: FontWeight.w900,fontSize: 60),),
+                Text("Move your heavy load at the touch of a button!",style: TextStyle(color: Colors.green,fontWeight: FontWeight.w900,fontSize: 60),),
                 Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.\n",style: TextStyle(color: Colors.white,fontSize: 18),),
+                  "An all-in-one truck aggregation platform developed to fulfill the needs of businesses, brokers, and fleet owners.",style: TextStyle(color: Colors.white,fontSize: 18),),
                 InkWell(
                   onTap: (){
                     appFlowProvider.changeWebWidget(BookingStage.PickUp);

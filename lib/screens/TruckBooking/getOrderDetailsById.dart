@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-// import 'dart:html' as html;
+import 'dart:html' as html;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -1386,14 +1386,14 @@ Timer? timer;
                   "OrderId": "${fairTruckProvider.order!.orderId}",
                   "userId": "${fairTruckProvider.order!.orderDetails!.user!.id}",
                   "Amount":
-                      "${(fairTruckProvider.order!.totalFare! * 100).toInt()}",
-                  "Description": "...."
+                      "${(fairTruckProvider.order!.totalFare!).toInt()}",
+                  "Description": "Truck booking payment"
                 };
                 TabPaymentDetails? tabPaymentDetails =
                     await getPaymentLink(map);
                 if (tabPaymentDetails != null) {
                   // isPaid = await Get.to(PaymentWebView(initUrl: tabPaymentDetails.redirectUrl));
-                  //   html.WindowBase base = html.window.open(tabPaymentDetails.redirectUrl??"google.com", 'Payment Tab');
+                    html.WindowBase base = html.window.open(tabPaymentDetails.redirectUrl??"google.com", 'Payment Tab');
                 }
               } else {
                 isPaid = await Get.to(PaymentWebView(

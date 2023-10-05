@@ -274,7 +274,10 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                               style: TextStyle(color: Colors.grey),
                             )
                           ],
-                        ),                        SizedBox(height: 12,),
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
 
                         Row(
                           children: [
@@ -290,23 +293,14 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                               style: TextStyle(color: Colors.white),
                             ),
                           ],
-                        ),                        SizedBox(height: 12,),
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
 
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.search,
-                              color: Colors.grey,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Sectors",
-                              style: TextStyle(color: Colors.grey),
-                            )
-                          ],
-                        ),                        SizedBox(height: 12,),
+                        SizedBox(
+                          height: 12,
+                        ),
 
                         Row(
                           children: [
@@ -317,13 +311,11 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                             SizedBox(
                               width: 10,
                             ),
-                            Text(
-                              "Vegetable",
-                              style: TextStyle(color: Colors.white),
-                            ),
                           ],
                         ),
-                        SizedBox(height: 12,),
+                        SizedBox(
+                          height: 12,
+                        ),
 
                         Row(
                           children: [
@@ -340,7 +332,9 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                             )
                           ],
                         ),
-                        SizedBox(height: 12,),
+                        SizedBox(
+                          height: 12,
+                        ),
                         Row(
                           children: [
                             Icon(
@@ -356,7 +350,9 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 12,),
+                        SizedBox(
+                          height: 12,
+                        ),
 
                         Row(
                           children: [
@@ -373,7 +369,9 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                             )
                           ],
                         ),
-                        SizedBox(height: 12,),
+                        SizedBox(
+                          height: 12,
+                        ),
                         Row(
                           children: [
                             Icon(
@@ -394,11 +392,11 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                   ),
                 ],
               ),
-
               Padding(
-                padding: const EdgeInsets.only(left: 100.0,right: 100,top: 25),
+                padding:
+                    const EdgeInsets.only(left: 100.0, right: 100, top: 25),
                 child: Container(
-                  height:120,
+                  height: 120,
                   width: Get.width,
                   decoration: BoxDecoration(
                     color: phoneBoxBackground,
@@ -416,7 +414,6 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                       ),
                     ),
                   ),
-
                 ),
               ),
               SizedBox(
@@ -427,7 +424,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                 children: [
                   InkWell(
                     onTap: () async {
-                       bookOrder();
+                      bookOrder();
                     },
                     child: Container(
                       height: 55,
@@ -450,8 +447,6 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
               SizedBox(
                 height: 100,
               ),
-
-
             ],
           ),
         );
