@@ -141,7 +141,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                     fontSize: 30),
                               ),
                               Text(
-                                "An all-in-one truck aggregation platform developed to fulfill the needs of businesses, brokers, and fleet owners.".tr,
+                                "An all-in-one truck aggregation platform developed to fulfill the needs of businesses, brokers, and fleet owners.\n".tr,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18),
                               ),

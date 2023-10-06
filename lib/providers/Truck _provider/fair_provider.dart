@@ -250,13 +250,12 @@ class FairTruckProvider extends ChangeNotifier {
   }
 
   void updateSingleOrder(String? orderID) async{
-    String response = await getSingleOrder(orderID.toString());
-    order= GetAllOrdersResponse.fromJson(json.decode(response));
-    notifyListeners();
-
-
+    await getAllOrdersDetails();
+    if(orderID!=null && getAllOrdersResponse.isNotEmpty){
+      GetAllOrdersResponse? order = getAllOrdersResponse.firstWhereOrNull((element) => element.orderId.toString()==orderID.toString());
+      this.order=order;
+      notifyListeners();
+    }
   }
-
   GetAllOrdersResponse? order;
-
 }

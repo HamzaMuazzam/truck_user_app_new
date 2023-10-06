@@ -125,7 +125,7 @@ class _WebHeaderState extends State<WebHeader> {
               width: 5,
             ),
             Text(
-              "+966 123456789\n+966 123456789",
+              "+966 533034057 \n+966 554170068",
               style: TextStyle(color: Colors.white),
             )
           ],

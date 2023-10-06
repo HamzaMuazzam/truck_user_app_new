@@ -11,6 +11,7 @@ import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
+import 'package:sultan_cab/utils/timer.dart';
 import '../../models/Truck_models/getAllOrdersResponse.dart';
 import '../../models/payment/TabPaymentDetails.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
@@ -32,18 +33,14 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
   _OrderDetailByIdState(GetAllOrdersResponse? order) {
     fairTruckProvider.order = order;
   }
-Timer? timer;
+
+
   @override
   void initState() {
     super.initState();
     logger.e(fairTruckProvider.order!.toJson());
-    if (GetPlatform.isWeb && timer==null) {
-      Timer.periodic(Duration(seconds:10), (timer) {
-        this.timer=timer;
-        fairTruckProvider.updateSingleOrder(widget.getAllOrdersResponse?.orderId?.toString());
+    TimerSingleton.instance.startTimer(widget.getAllOrdersResponse?.orderId?.toString()??"0");
 
-      });
-    }
   }
 
   late double h, b;
@@ -574,12 +571,15 @@ Timer? timer;
                                                 .createdDate!.year
                                                 .toString() +
                                             '-' +
-                                            fairTruckProvider.order!.orderDetails!
-                                                .createdDate!.month
+                                            fairTruckProvider
+                                                .order!
+                                                .orderDetails!
+                                                .createdDate!
+                                                .month
                                                 .toString() +
                                             '-' +
-                                            fairTruckProvider.order!.orderDetails!
-                                                .createdDate!.day
+                                            fairTruckProvider.order!
+                                                .orderDetails!.createdDate!.day
                                                 .toString(),
                                         style: TextStyle(
                                           fontSize: h * 12,
@@ -969,7 +969,8 @@ Timer? timer;
                                     child: Align(
                                       alignment: Alignment.topRight,
                                       child: Text(
-                                        fairTruckProvider.order!.delieveredTime ==
+                                        fairTruckProvider
+                                                    .order!.delieveredTime ==
                                                 null
                                             ? "--"
                                             : fairTruckProvider
@@ -1004,7 +1005,8 @@ Timer? timer;
                                         fairTruckProvider.order!.loadedTime ==
                                                 null
                                             ? '--'
-                                            : fairTruckProvider.order!.loadedTime
+                                            : fairTruckProvider
+                                                .order!.loadedTime
                                                 .toString(),
                                         style: TextStyle(
                                           fontSize: h * 12,
@@ -1384,16 +1386,18 @@ Timer? timer;
               if (GetPlatform.isWeb) {
                 Map<String, String> map = {
                   "OrderId": "${fairTruckProvider.order!.orderId}",
-                  "userId": "${fairTruckProvider.order!.orderDetails!.user!.id}",
-                  "Amount":
-                      "${(fairTruckProvider.order!.totalFare!).toInt()}",
+                  "userId":
+                      "${fairTruckProvider.order!.orderDetails!.user!.id}",
+                  "Amount": "${(fairTruckProvider.order!.totalFare!).toInt()}",
                   "Description": "Truck booking payment"
                 };
                 TabPaymentDetails? tabPaymentDetails =
                     await getPaymentLink(map);
                 if (tabPaymentDetails != null) {
                   // isPaid = await Get.to(PaymentWebView(initUrl: tabPaymentDetails.redirectUrl));
-                    html.WindowBase base = html.window.open(tabPaymentDetails.redirectUrl??"google.com", 'Payment Tab');
+                  html.WindowBase base = html.window.open(
+                      tabPaymentDetails.redirectUrl ?? "google.com",
+                      'Payment Tab');
                 }
               } else {
                 isPaid = await Get.to(PaymentWebView(
@@ -1443,10 +1447,8 @@ Timer? timer;
     super.dispose();
     paymentProvider.paymentEvidenceUrl = "";
     paymentProvider.getPaymentEvidenceResponse = null;
-    if(timer!=null){
-      print("I AM DISPOSED TIMER $timer");
-      timer?.cancel();
-    }
+    TimerSingleton.instance.stopTimer();
+
   }
 }
 
