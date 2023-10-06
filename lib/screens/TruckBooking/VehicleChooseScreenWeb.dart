@@ -73,8 +73,9 @@ class _VehicleChooseScreenWebState extends State<VehicleChooseScreenWeb> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
-                                        Text(truck.truckName??"",style: TextStyle(color: Colors.black),),
-                                        Text("Friendly with all types of goods",style: TextStyle(color: Colors.blueGrey),),
+                                        Text(truck.truckName??"",style: TextStyle(color: Colors.black),maxLines: 1),
+                                        Text(truck.truckType??"N/A",style: TextStyle(color: Colors.black),maxLines: 1),
+                                        Text("Friendly with all types of goods",style: TextStyle(color: Colors.blueGrey),maxLines: 1),
                                           SizedBox(height: 5,)
                                       ],),
                                     ),

@@ -18,6 +18,8 @@ import 'providers/Truck _provider/fair_provider.dart';
 import 'providers/truck_provider/app_flow_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'screens/TruckBooking/VehicleChooseScreenWeb.dart';
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -71,55 +73,55 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
         theme: ThemeData.dark(),
-        home: LayoutBuilder(builder: (context, constraints) {
-          if (GetPlatform.isWeb && constraints.biggest.width <= 650.0) {
-            print(constraints.biggest.width);
-
-            return Material(
-              child: Container(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text("Download App from the stores."),
-                      Container(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                  child: InkWell(
-                                    onTap: (){
-                                      openAppInStore("https://play.google.com/store/apps/details?id=com.lahdatech.trucking");
-                                    },
-                                    child: Container(
-                                      child: Image.asset("assets/images/google-play-badge.png"),
-                              ),
-                                  )),
-                              SizedBox(width: 20,),
-                              Expanded(
-                                  child: InkWell(
-                                    onTap: (){
-                                      openAppInStore("https://apps.apple.com/app/id<your_app_id>");
-                                    },
-                                    child: Container(
-                                      child: Image.asset("assets/images/app-store-badge-128x128.png"),
-                              ),
-                                  )),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }
-
-          return AuthWidget();
-        }),
-        // home: OrderLocationPickScreenWeb(),
+        // home: LayoutBuilder(builder: (context, constraints) {
+        //   if (GetPlatform.isWeb && constraints.biggest.width <= 650.0) {
+        //     print(constraints.biggest.width);
+        //
+        //     return Material(
+        //       child: Container(
+        //         child: Center(
+        //           child: Column(
+        //             mainAxisSize: MainAxisSize.min,
+        //             children: [
+        //               Text("Download App from the stores."),
+        //               Container(
+        //                 child: Padding(
+        //                   padding: const EdgeInsets.symmetric(horizontal: 20),
+        //                   child: Row(
+        //                     children: [
+        //                       Expanded(
+        //                           child: InkWell(
+        //                             onTap: (){
+        //                               openAppInStore("https://play.google.com/store/apps/details?id=com.lahdatech.trucking");
+        //                             },
+        //                             child: Container(
+        //                               child: Image.asset("assets/images/google-play-badge.png"),
+        //                       ),
+        //                           )),
+        //                       SizedBox(width: 20,),
+        //                       Expanded(
+        //                           child: InkWell(
+        //                             onTap: (){
+        //                               openAppInStore("https://apps.apple.com/app/id<your_app_id>");
+        //                             },
+        //                             child: Container(
+        //                               child: Image.asset("assets/images/app-store-badge-128x128.png"),
+        //                       ),
+        //                           )),
+        //                     ],
+        //                   ),
+        //                 ),
+        //               )
+        //             ],
+        //           ),
+        //         ),
+        //       ),
+        //     );
+        //   }
+        //
+        //   return AuthWidget();
+        // }),
+        home: VehicleChooseScreenWeb(),
       ),
     );
   }
