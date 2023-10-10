@@ -17,6 +17,7 @@ import '../../screens/TruckBooking/VehicleChooseScreenWeb.dart';
 import '../../screens/TruckBooking/GetAllOrdersScreen.dart';
 import '../../screens/TruckBooking/navigation_screens_web.dart';
 import '../../screens/TruckBooking/start_booking.dart';
+import '../../screens/commonPages/profile.dart';
 
 enum BookingStage {
   PickUp,
@@ -30,7 +31,7 @@ enum BookingStage {
   RideStarted,
   WebHome,
   Orders,
-  OurMessage, AboutUs, Summary
+  OurMessage, Profile, Summary
 }
 
 enum DestinationType {
@@ -286,8 +287,9 @@ class AppFlowProvider extends ChangeNotifier {
     else if(stage==BookingStage.OurMessage){
       currentWidgetWeb= Container();
     }
-    else if(stage==BookingStage.AboutUs){
-      currentWidgetWeb= Container();
+    else if(stage==BookingStage.Profile){
+      currentWidgetWeb= ProfileScreen(
+        isBooking: false);
     }
     else if(stage==BookingStage.PickUp){
       currentWidgetWeb= OrderLocationPickScreenWeb();

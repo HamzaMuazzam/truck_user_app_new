@@ -191,11 +191,10 @@ class _WebHeaderState extends State<WebHeader> {
                     Expanded(
                       child: InkWell(
                         onTap: () {
-                          appFlowProvider.changeWebWidget(BookingStage.AboutUs);
-
+                          appFlowProvider.changeWebWidget(BookingStage.Profile);
                         },
                         child: Text(
-                          "About us",
+                          "Profile",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
