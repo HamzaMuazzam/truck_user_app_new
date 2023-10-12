@@ -15,46 +15,48 @@ class WebHomeScreem extends StatefulWidget {
 class _WebHomeScreemState extends State<WebHomeScreem> {
   @override
   Widget build(BuildContext context) {
-    return   Container(
-      height: Get.height,
-      width: Get.width,
-      child: Row(
-        children: [
-          Expanded(child: Container()),
-          Expanded(
-            flex: 4,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Move your heavy load at the touch of a button!",style: TextStyle(color: Colors.green,fontWeight: FontWeight.w900,fontSize: 60),),
-                Text(
-                  "An all-in-one truck aggregation platform developed to fulfill the needs of businesses, brokers, and fleet owners.\n",style: TextStyle(color: Colors.white,fontSize: 18),),
-                InkWell(
-                  onTap: (){
-                    appFlowProvider.changeWebWidget(BookingStage.PickUp);
-                  },
-                  child: Container(
-                    height: 45,
-                    width: 180,
-                    decoration: BoxDecoration(
-                        color: yellowColor,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Center(
-                        child: Text(
-                          "Order Now",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                        )),
-                  ),
-                )
-              ],
+    return   Material(
+      child: Container(
+        height: Get.height,
+        width: Get.width,
+        child: Row(
+          children: [
+            Expanded(child: Container()),
+            Expanded(
+              flex: 4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Move your heavy load at the touch of a button!",style: TextStyle(color: Colors.green,fontWeight: FontWeight.w900,fontSize: 60),),
+                  Text(
+                    "An all-in-one truck aggregation platform developed to fulfill the needs of businesses, brokers, and fleet owners.\n",style: TextStyle(color: Colors.white,fontSize: 18),),
+                  InkWell(
+                    onTap: (){
+                      appFlowProvider.changeWebWidget(BookingStage.PickUp);
+                    },
+                    child: Container(
+                      height: 45,
+                      width: 180,
+                      decoration: BoxDecoration(
+                          color: yellowColor,
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Center(
+                          child: Text(
+                            "Order Now",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          )),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          Expanded(child: Container()),
-        ],
+            Expanded(child: Container()),
+          ],
+        ),
       ),
     );
   }

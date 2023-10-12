@@ -25,158 +25,160 @@ class _VehicleChooseScreenWebState extends State<VehicleChooseScreenWeb> {
   Widget build(BuildContext context) {
     return Material(
       child: Consumer<FairTruckProvider>(builder: (_, data, __) {
-        return Column(
-          children: [
-            SizedBox(
-              height: 60,
-            ),
-            stepper(1),
-            SizedBox(
-              height: 100,
-            ),
-            Container(
-              width: Get.width,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children:
-                      List.generate(data.getTruckFareResponse!.length, (index) {
-                    var truck = data.getTruckFareResponse![index];
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 60,
+              ),
+              stepper(1),
+              SizedBox(
+                height: 100,
+              ),
+              Container(
+                width: Get.width,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:
+                        List.generate(data.getTruckFareResponse!.length, (index) {
+                      var truck = data.getTruckFareResponse![index];
 
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 150,
-                            width: 250,
-                            child: Stack(
-                              children: [
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 150,
+                              width: 250,
+                              child: Stack(
+                                children: [
 
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Container(
-                                    height: 150,
-                                    width: 250,
-                                    decoration: BoxDecoration(
-                                        color:
-                                        fairTruckProvider.getTruckFareResponse![index].quantity>0?Colors.green:
-                                        Color(0xe8ffffff),
-                                        borderRadius: BorderRadius.circular(10),
-                                        // image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Container(
+                                      height: 150,
+                                      width: 250,
+                                      decoration: BoxDecoration(
+                                          color:
+                                          fairTruckProvider.getTruckFareResponse![index].quantity>0?Colors.green:
+                                          Color(0xe8ffffff),
+                                          borderRadius: BorderRadius.circular(10),
+                                          // image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)
 
+                                        ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                          Text(truck.truckName??"",style: TextStyle(color: Colors.black),maxLines: 1),
+                                          Text(truck.truckType??"N/A",style: TextStyle(color: Colors.black),maxLines: 1),
+                                          Text("Friendly with all types of goods",style: TextStyle(color: Colors.blueGrey),maxLines: 1),
+                                            SizedBox(height: 5,)
+                                        ],),
                                       ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                        Text(truck.truckName??"",style: TextStyle(color: Colors.black),maxLines: 1),
-                                        Text(truck.truckType??"N/A",style: TextStyle(color: Colors.black),maxLines: 1),
-                                        Text("Friendly with all types of goods",style: TextStyle(color: Colors.blueGrey),maxLines: 1),
-                                          SizedBox(height: 5,)
-                                      ],),
                                     ),
                                   ),
-                                ),
-                                Container(
-                                  height: 50,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)),
-                                ),
-                              ],
-                            ),
+                                  Container(
+                                    height: 50,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)),
+                                  ),
+                                ],
+                              ),
 
-                            // ChooseCar(),
-                          ),
-                          Container(
-                            width: 250,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 30),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
+                              // ChooseCar(),
+                            ),
+                            Container(
+                              width: 250,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 30),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InkWell(
+                                        onTap: (){
+                                          if(fairTruckProvider.getTruckFareResponse![index].quantity>0){
+                                            fairTruckProvider.getTruckFareResponse![index].quantity--;
+                                          }
+                                          setState(() {});
+                                        },
+                                        child: Text("-",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),)),
+
+                                    // Icon(Icons.minimize,color: Colors.white,size: 25,),
+                                  Text("${fairTruckProvider.getTruckFareResponse![index].quantity}",),
                                   InkWell(
                                       onTap: (){
-                                        if(fairTruckProvider.getTruckFareResponse![index].quantity>0){
-                                          fairTruckProvider.getTruckFareResponse![index].quantity--;
-                                        }
-                                        setState(() {});
+                                        fairTruckProvider.getTruckFareResponse![index].quantity++;
+                                        setState(() {
+
+                                        });
                                       },
-                                      child: Text("-",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),)),
-
-                                  // Icon(Icons.minimize,color: Colors.white,size: 25,),
-                                Text("${fairTruckProvider.getTruckFareResponse![index].quantity}",),
-                                InkWell(
-                                    onTap: (){
-                                      fairTruckProvider.getTruckFareResponse![index].quantity++;
-                                      setState(() {
-
-                                      });
-                                    },
-                                    child: Icon(Icons.add,color: Colors.white,size: 25,)),
-                              ],),
-                            ),
-                          )
-                        ],
-                      ),
-                    );
-                  }),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 100,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                InkWell(
-                  onTap: () async {
-
-                    bool where = fairTruckProvider.getTruckFareResponse!.where((element) => element.quantity>0).isNotEmpty;
-                    if(where){
-                      // await fairTruckProvider.getAllCities();
-                      appFlowProvider.changeWebWidget(BookingStage.Summary);
-
-
-
-                      // Get.to(BookingSummary());
-                    }else{
-                      AppConst.errorSnackBar("Please select one trailer at least");
-                      return;
-                    }
-
-
-                    // if(dropAddress==null || pickaddress==null){
-                    //   return;
-                    // }
-                    // appFlowProvider.changeWebWidget(BookingStage.Vehicle)
-                  },
-                  child: Container(
-                    height: 55,
-                    width: 150,
-                    child: Center(
-                      child: Text(
-                        "Next",
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(10)),
+                                      child: Icon(Icons.add,color: Colors.white,size: 25,)),
+                                ],),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }),
                   ),
                 ),
-                SizedBox(
-                  width: 100,
-                ),
-              ],
-            )
-          ],
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: () async {
+
+                      bool where = fairTruckProvider.getTruckFareResponse!.where((element) => element.quantity>0).isNotEmpty;
+                      if(where){
+                        // await fairTruckProvider.getAllCities();
+                        appFlowProvider.changeWebWidget(BookingStage.Summary);
+
+
+
+                        // Get.to(BookingSummary());
+                      }else{
+                        AppConst.errorSnackBar("Please select one trailer at least");
+                        return;
+                      }
+
+
+                      // if(dropAddress==null || pickaddress==null){
+                      //   return;
+                      // }
+                      // appFlowProvider.changeWebWidget(BookingStage.Vehicle)
+                    },
+                    child: Container(
+                      height: 55,
+                      width: 150,
+                      child: Center(
+                        child: Text(
+                          "Next",
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 100,
+                  ),
+                ],
+              )
+            ],
+          ),
         );
       }),
     );

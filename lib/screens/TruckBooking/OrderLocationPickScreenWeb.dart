@@ -84,115 +84,37 @@ class _OrderLocationPickScreenWebState
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 60,
-          ),
-          stepper(0),
-          SizedBox(
-            height: 100,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            InkWell(
-              onTap: ()async {
-                String? city="";
-                LatLng? latlng;
-                if (kIsWeb) {
-                  await Get.to(MapLocationPicker(
-                    apiKey: GoogleMapApiKey,
-                     currentLatLng: LatLng(position!.latitude,position!.longitude),
-                    minMaxZoomPreference: MinMaxZoomPreference(3,20),
-                    onNext: (GeocodingResult? result) async {
-                      if (result != null) {
-                        print(result.toJson());
-                        pickaddress = result.formattedAddress!;
-                        latlng = LatLng(result.geometry.location.lat,
-                            result.geometry.location.lng);
-                        city = await getCityName(latlng!.latitude,latlng!.longitude);
-                        Get.back();
-                        setState(() {
-                        });
-                      }
-                    },
-                  ));
-                }
-                else {
-                  LocationResult? result =
-                      await Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PlacePicker(GoogleMapApiKey),
-                  ));
-                  pickaddress = result?.formattedAddress!;
-                  latlng =result!.latLng;
-                  city=result.city!.name!;
-                }
-
-                if (pickaddress != null && latlng!=null) {
-                  appProvider.currentAddress = pickaddress;
-                  await appProvider.setPickUpLoc(
-                      latlng!, pickaddress!);
-
-                  if (appProvider.currentAddress == null) {
-                    await AppConst.infoSnackBar(ChooseStartingMsg);
-                    return;
-                  } else {
-                    fairTruckProvider.loadCity = city!;
-                    await Provider.of<AppFlowProvider>(context, listen: false)
-                        .changeBookingStage(BookingStage.DropOffLocation);
-                  }
-                }
-                if (appFlowProvider.pickupLocation?.latLng != null) {
-                  Directions? dir = await DirectionServices().getDirections(
-                      origin: appProvider.currentLoc!,
-                      dest: appProvider.destLoc ?? LatLng(0.0, 0.0));
-                  if (dir != null) {
-                    await appProvider.setDirections(dir);
-                  }
-                }
-                setState(() {
-                });
-              },
-              child: Container(
-                width: Get.width *0.5,
-                height: 55,
-                child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: Text(pickaddress??"Picking point",style: TextStyle(color: Colors.black),),
-                    )),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              ),
-            ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
             SizedBox(
-              height: 20,
+              height: 60,
             ),
-            InkWell(
-              onTap: ()async{
-                if (appProvider.currentAddress != null) {
+            stepper(0),
+            SizedBox(
+              height: 100,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              InkWell(
+                onTap: ()async {
                   String? city="";
                   LatLng? latlng;
                   if (kIsWeb) {
                     await Get.to(MapLocationPicker(
                       apiKey: GoogleMapApiKey,
-                      currentLatLng:LatLng(position!.latitude,position!.longitude),
+                       currentLatLng: LatLng(position!.latitude,position!.longitude),
                       minMaxZoomPreference: MinMaxZoomPreference(3,20),
-
                       onNext: (GeocodingResult? result) async {
                         if (result != null) {
                           print(result.toJson());
-                          dropAddress = result.formattedAddress!;
+                          pickaddress = result.formattedAddress!;
                           latlng = LatLng(result.geometry.location.lat,
                               result.geometry.location.lng);
                           city = await getCityName(latlng!.latitude,latlng!.longitude);
                           Get.back();
                           setState(() {
-
                           });
                         }
                       },
@@ -203,86 +125,166 @@ class _OrderLocationPickScreenWebState
                         await Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => PlacePicker(GoogleMapApiKey),
                     ));
-                    dropAddress = result?.formattedAddress!;
+                    pickaddress = result?.formattedAddress!;
                     latlng =result!.latLng;
                     city=result.city!.name!;
                   }
 
+                  if (pickaddress != null && latlng!=null) {
+                    appProvider.currentAddress = pickaddress;
+                    await appProvider.setPickUpLoc(
+                        latlng!, pickaddress!);
 
-                  if (dropAddress != null && latlng!=null) {
-                    fairTruckProvider.unloadCity=city!;
-
-                    appProvider.destAddress= dropAddress;
-                    await appProvider.setDestinationLoc(latlng!, dropAddress!);
-                    Directions? dir = await DirectionServices()
-                        .getDirections(
-                        origin: appProvider.currentLoc!,
-                        dest: latlng!);
-
-                    if (dir != null) await appProvider.setDirections(dir);
-                    if (appProvider.destAdd == null) {
-                      await AppConst.infoSnackBar(ChooseDestinationMsg);
-                      return;
-                    }
-                    else if (appProvider.destAdd == null) {
+                    if (appProvider.currentAddress == null) {
                       await AppConst.infoSnackBar(ChooseStartingMsg);
                       return;
+                    } else {
+                      fairTruckProvider.loadCity = city!;
+                      await Provider.of<AppFlowProvider>(context, listen: false)
+                          .changeBookingStage(BookingStage.DropOffLocation);
                     }
-                    else {
-                      if (await fairTruckProvider.getAllTruckFairs())
-                await Provider.of<AppFlowProvider>(context, listen: false).changeBookingStage(BookingStage.Destination);
-                else
-                logger.e('Error in truck fairs');
-                }
-
-                }
-                }
-                else {
-                    appSnackBar(
-                        context: context, msg: ChooseStartingMsg, isError: true);
                   }
+                  if (appFlowProvider.pickupLocation?.latLng != null) {
+                    Directions? dir = await DirectionServices().getDirections(
+                        origin: appProvider.currentLoc!,
+                        dest: appProvider.destLoc ?? LatLng(0.0, 0.0));
+                    if (dir != null) {
+                      await appProvider.setDirections(dir);
+                    }
+                  }
+                  setState(() {
+                  });
                 },
-              child: Container(
-                width: Get.width *0.5,
-                height: 55,
-                child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: Text(dropAddress??"Delivery point",style: TextStyle(color: Colors.black),),
-                    )),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
+                child: Container(
+                  width: Get.width *0.5,
+                  height: 55,
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Text(pickaddress??"Picking point",style: TextStyle(color: Colors.black),),
+                      )),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
                 ),
               ),
-            ),
-
-          ],),
-
-          SizedBox(
-            height: 100,
-          ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-            InkWell(
-              onTap: (){
-                if(dropAddress==null || pickaddress==null){
-                  return;
-                }
-                appFlowProvider.changeWebWidget(BookingStage.Vehicle);
-              },
-              child: Container(height: 55,width: 150,
-              child: Center(child: Text("Next",),),
-              decoration: BoxDecoration(color: Colors.green,borderRadius: BorderRadius.circular(10)),),
-            ),
               SizedBox(
-                width: 100,
+                height: 20,
               ),
-          ],)
-        ],
+              InkWell(
+                onTap: ()async{
+                  if (appProvider.currentAddress != null) {
+                    String? city="";
+                    LatLng? latlng;
+                    if (kIsWeb) {
+                      await Get.to(MapLocationPicker(
+                        apiKey: GoogleMapApiKey,
+                        currentLatLng:LatLng(position!.latitude,position!.longitude),
+                        minMaxZoomPreference: MinMaxZoomPreference(3,20),
+
+                        onNext: (GeocodingResult? result) async {
+                          if (result != null) {
+                            print(result.toJson());
+                            dropAddress = result.formattedAddress!;
+                            latlng = LatLng(result.geometry.location.lat,
+                                result.geometry.location.lng);
+                            city = await getCityName(latlng!.latitude,latlng!.longitude);
+                            Get.back();
+                            setState(() {
+
+                            });
+                          }
+                        },
+                      ));
+                    }
+                    else {
+                      LocationResult? result =
+                          await Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PlacePicker(GoogleMapApiKey),
+                      ));
+                      dropAddress = result?.formattedAddress!;
+                      latlng =result!.latLng;
+                      city=result.city!.name!;
+                    }
+
+
+                    if (dropAddress != null && latlng!=null) {
+                      fairTruckProvider.unloadCity=city!;
+
+                      appProvider.destAddress= dropAddress;
+                      await appProvider.setDestinationLoc(latlng!, dropAddress!);
+                      Directions? dir = await DirectionServices()
+                          .getDirections(
+                          origin: appProvider.currentLoc!,
+                          dest: latlng!);
+
+                      if (dir != null) await appProvider.setDirections(dir);
+                      if (appProvider.destAdd == null) {
+                        await AppConst.infoSnackBar(ChooseDestinationMsg);
+                        return;
+                      }
+                      else if (appProvider.destAdd == null) {
+                        await AppConst.infoSnackBar(ChooseStartingMsg);
+                        return;
+                      }
+                      else {
+                        if (await fairTruckProvider.getAllTruckFairs())
+                  await Provider.of<AppFlowProvider>(context, listen: false).changeBookingStage(BookingStage.Destination);
+                  else
+                  logger.e('Error in truck fairs');
+                  }
+
+                  }
+                  }
+                  else {
+                      appSnackBar(
+                          context: context, msg: ChooseStartingMsg, isError: true);
+                    }
+                  },
+                child: Container(
+                  width: Get.width *0.5,
+                  height: 55,
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Text(dropAddress??"Delivery point",style: TextStyle(color: Colors.black),),
+                      )),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+              ),
+
+            ],),
+
+            SizedBox(
+              height: 100,
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+              InkWell(
+                onTap: (){
+                  if(dropAddress==null || pickaddress==null){
+                    return;
+                  }
+                  appFlowProvider.changeWebWidget(BookingStage.Vehicle);
+                },
+                child: Container(height: 55,width: 150,
+                child: Center(child: Text("Next",),),
+                decoration: BoxDecoration(color: Colors.green,borderRadius: BorderRadius.circular(10)),),
+              ),
+                SizedBox(
+                  width: 100,
+                ),
+            ],)
+          ],
+        ),
       ),
     );
   }

@@ -172,6 +172,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 )
                               : sh(0),
                           sh(40),
+                          if(!GetPlatform.isWeb)
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 25),
                             child: InkWell(
@@ -195,7 +196,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
                             ),
-                          )
+                          ),
+
                         ],
                       ),
                     ),
