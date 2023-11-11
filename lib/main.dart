@@ -8,8 +8,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-// import 'package:webview_flutter_web/webview_flutter_web.dart';
 import 'auth_widget.dart';
 import 'customized_plugins/lib/src/WebMapProvider.dart';
 import 'providers/GoogleMapProvider/location_and_map_provider.dart';
@@ -17,8 +15,6 @@ import 'providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'providers/Truck _provider/fair_provider.dart';
 import 'providers/truck_provider/app_flow_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'screens/TruckBooking/VehicleChooseScreenWeb.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override

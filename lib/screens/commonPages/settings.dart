@@ -10,6 +10,7 @@ import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/logoutDialog.dart';
 import 'package:provider/provider.dart';
 
+import '../../main.dart';
 import '../TruckBooking/navigation_screen.dart';
 
 class Settings extends StatefulWidget {
@@ -92,7 +93,7 @@ class _SettingsState extends State<Settings> {
                                     Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            VerifyPhoneScreen(),
+                                            MyApp(),
                                       ),
                                       (route) => false,
                                     );

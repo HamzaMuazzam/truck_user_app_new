@@ -190,8 +190,12 @@ class AuthProvider extends ChangeNotifier {
   Future<bool> logout() async {
     try {
       var instance = FirebaseMessaging.instance;
-      await instance.unsubscribeFromTopic("AllUsers");
-      await instance.unsubscribeFromTopic(StorageCRUD.getUser().id.toString());
+      try{
+        await instance.unsubscribeFromTopic("AllUsers");
+        await instance.unsubscribeFromTopic(StorageCRUD.getUser().id.toString());
+      }catch(e){
+        logger.e(e);
+      }
       await StorageCRUD.erase();
       return true;
     } catch (e) {
