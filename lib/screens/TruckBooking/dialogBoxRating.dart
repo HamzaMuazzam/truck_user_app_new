@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
@@ -32,37 +33,39 @@ class _DialogBoxRatingState extends State<DialogBoxRating> {
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(b * 30, h * 30, b * 30, h * 30),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(
-                  "Rate Rider",
-                  style: TextStyle(
-                    fontSize: b * 24,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-                sh(15),
-                RatingBar.builder(
-                  initialRating: 3,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  onRatingUpdate: (rating) {
-                    taxiBookingProvider.setRating(rating);
-                  },
-                ),
-                sh(34),
-                AppButton(
-                  label: "Add Rating",
-                  onPressed: widget.submitRating,
-                )
-              ]),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Rate Rider".tr,
+                      style: TextStyle(
+                        fontSize: b * 24,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    sh(15),
+                    RatingBar.builder(
+                      initialRating: 3,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {
+                        taxiBookingProvider.setRating(rating);
+                      },
+                    ),
+                    sh(34),
+                    AppButton(
+                      label: "Add Rating".tr,
+                      onPressed: widget.submitRating,
+                    )
+                  ]),
             ),
           ],
         ),

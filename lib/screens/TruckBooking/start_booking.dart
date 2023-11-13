@@ -1,15 +1,14 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-
 import 'package:sultan_cab/utils/strings.dart';
-import '../../providers/truck_provider/app_flow_provider.dart';
+
 import '/providers/GoogleMapProvider/location_and_map_provider.dart';
 import '/utils/colors.dart';
 import '/utils/sizeConfig.dart';
-
-
+import '../../providers/truck_provider/app_flow_provider.dart';
 import 'choose_vehicle.dart';
 import 'destination_location.dart';
 import 'drop_off_location.dart';
@@ -70,104 +69,119 @@ class _StartBookingState extends State<StartBooking> {
           child: Consumer<LocationAndMapProvider>(
             builder: (BuildContext context, value, Widget? child) {
               return value.newCameraPosition != null
-                  ?
-
-              Stack(
-                children: [
-
-                  Column(
-                    children: [
-                      Expanded(
-                        child: !appProvider.isMap
-                            ? Container(
-                          color: Colors.white,
-                        )
-                            : GoogleMap(
-                          mapType: MapType.normal,
-                          compassEnabled: true,
-                          myLocationButtonEnabled: false,
-                          myLocationEnabled: false,
-                          buildingsEnabled: false,
-                          markers:
-                          (appProvider.destinationType == DestinationType.Multiple)
-                              ? appProvider.markerSet
-                              : {
-                            if (appProvider.currentLoc != null)
-                              Marker(
-                                markerId: MarkerId(PickupLabel),
-                                icon: BitmapDescriptor.defaultMarkerWithHue(
-                                  BitmapDescriptor.hueRed,
-                                ),
-                                infoWindow: InfoWindow(title: "Loadup Point"),
-                                position: LatLng(
-                                  appProvider.currentLoc!.latitude,
-                                  appProvider.currentLoc!.longitude,
-                                ),
-                              ),
-                            if (appProvider.destLoc != null)
-                              Marker(
-                                markerId: MarkerId(DestinationLabel),
-                                icon: BitmapDescriptor.defaultMarkerWithHue(
-                                  BitmapDescriptor.hueBlue,
-                                ),
-                                infoWindow:
-                                InfoWindow(title: DestinationPointLabel),
-                                position: LatLng(
-                                  appProvider.destLoc!.latitude,
-                                  appProvider.destLoc!.longitude,
-                                ),
-                              ),
-                          },
-                          polylines: appProvider.destinationType ==
-                              DestinationType.Multiple
-                              ? appProvider.polylineSet
-                              : {
-                            if (appProvider.directions != null)
-                              Polyline(
-                                polylineId: PolylineId('route'),
-                                color: Colors.black,
-                                width: 3,
-                                points:
-                                appProvider.directions!.polylinePoints!.map(
-                                      (e) {
-                                    return LatLng(e!.latitude, e.longitude);
-                                  },
-                                ).toList(),
-                              )
-                          },
-                          initialCameraPosition: value.newCameraPosition == null
-                              ? value.initCameraPosition
-                              : value.newCameraPosition!,
-                          onMapCreated: (GoogleMapController controller) async {
-                            value.setCurrentLocMarker();
-                            _controller.complete(controller);
-                            mapController = controller;
-                            await mapController!.animateCamera(
-                              CameraUpdate.newCameraPosition(value.newCameraPosition!),
-                            );
-                          },
+                  ? Stack(
+                      children: [
+                        Column(
+                          children: [
+                            Expanded(
+                              child: !appProvider.isMap
+                                  ? Container(
+                                      color: Colors.white,
+                                    )
+                                  : GoogleMap(
+                                      mapType: MapType.normal,
+                                      compassEnabled: true,
+                                      myLocationButtonEnabled: false,
+                                      myLocationEnabled: false,
+                                      buildingsEnabled: false,
+                                      markers: (appProvider.destinationType ==
+                                              DestinationType.Multiple)
+                                          ? appProvider.markerSet
+                                          : {
+                                              if (appProvider.currentLoc !=
+                                                  null)
+                                                Marker(
+                                                  markerId:
+                                                      MarkerId(PickupLabel),
+                                                  icon: BitmapDescriptor
+                                                      .defaultMarkerWithHue(
+                                                    BitmapDescriptor.hueRed,
+                                                  ),
+                                                  infoWindow: InfoWindow(
+                                                      title: "Loadup Point"),
+                                                  position: LatLng(
+                                                    appProvider
+                                                        .currentLoc!.latitude,
+                                                    appProvider
+                                                        .currentLoc!.longitude,
+                                                  ),
+                                                ),
+                                              if (appProvider.destLoc != null)
+                                                Marker(
+                                                  markerId: MarkerId(
+                                                      DestinationLabel),
+                                                  icon: BitmapDescriptor
+                                                      .defaultMarkerWithHue(
+                                                    BitmapDescriptor.hueBlue,
+                                                  ),
+                                                  infoWindow: InfoWindow(
+                                                      title:
+                                                          DestinationPointLabel),
+                                                  position: LatLng(
+                                                    appProvider
+                                                        .destLoc!.latitude,
+                                                    appProvider
+                                                        .destLoc!.longitude,
+                                                  ),
+                                                ),
+                                            },
+                                      polylines: appProvider.destinationType ==
+                                              DestinationType.Multiple
+                                          ? appProvider.polylineSet
+                                          : {
+                                              if (appProvider.directions !=
+                                                  null)
+                                                Polyline(
+                                                  polylineId:
+                                                      PolylineId('route'),
+                                                  color: Colors.black,
+                                                  width: 3,
+                                                  points: appProvider
+                                                      .directions!
+                                                      .polylinePoints!
+                                                      .map(
+                                                    (e) {
+                                                      return LatLng(e!.latitude,
+                                                          e.longitude);
+                                                    },
+                                                  ).toList(),
+                                                )
+                                            },
+                                      initialCameraPosition:
+                                          value.newCameraPosition == null
+                                              ? value.initCameraPosition
+                                              : value.newCameraPosition!,
+                                      onMapCreated: (GoogleMapController
+                                          controller) async {
+                                        value.setCurrentLocMarker();
+                                        _controller.complete(controller);
+                                        mapController = controller;
+                                        await mapController!.animateCamera(
+                                          CameraUpdate.newCameraPosition(
+                                              value.newCameraPosition!),
+                                        );
+                                      },
+                                    ),
+                            ),
+                            if (appProvider.stage == BookingStage.PickUp &&
+                                appProvider.destinationType ==
+                                    DestinationType.Single)
+                              PickupLocation(),
+                            if (appProvider.stage ==
+                                    BookingStage.DropOffLocation &&
+                                appProvider.destinationType ==
+                                    DestinationType.Single)
+                              DropOffLocation(),
+                          ],
                         ),
-                      ),
-
-                      if (appProvider.stage == BookingStage.PickUp && appProvider.destinationType == DestinationType.Single)
-                        PickupLocation(),
-                      if (appProvider.stage == BookingStage.DropOffLocation && appProvider
-                          .destinationType == DestinationType.Single)
-                        DropOffLocation(),
-
-                    ],
-                  ),
-
-                  if (appProvider.stage == BookingStage.Destination)
-
-                    DestinationScreen(),
-                  if (appProvider.stage == BookingStage.Vehicle)
-                    ChooseCar(),
-                  if (appProvider.stage == BookingStage.SearchingVehicle)
-                    SearchingWidget(),
-
-                ],
-              )
+                        if (appProvider.stage == BookingStage.Destination)
+                          DestinationScreen(),
+                        if (appProvider.stage == BookingStage.Vehicle)
+                          ChooseCar(),
+                        if (appProvider.stage == BookingStage.SearchingVehicle)
+                          SearchingWidget(),
+                      ],
+                    )
                   : SizedBox();
             },
           ),

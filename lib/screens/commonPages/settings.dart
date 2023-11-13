@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
-import 'package:sultan_cab/screens/commonPages/phone_verify.dart';
 import 'package:sultan_cab/screens/commonPages/profile.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/logoutDialog.dart';
-import 'package:provider/provider.dart';
 
 import '../../main.dart';
 import '../TruckBooking/navigation_screen.dart';
@@ -30,7 +29,7 @@ class _SettingsState extends State<Settings> {
       appBar: Get.width < 700
           ? AppBar(
               title: Text(
-                'Profile',
+                'Profile'.tr,
                 style: TextStyle(
                   color: textColor,
                   fontSize: h * 12,
@@ -62,14 +61,14 @@ class _SettingsState extends State<Settings> {
                           sh(50),
                           SettingsTile(
                             title: ProfileLabel,
-                            icon: 'profileIcon',
+                            icon: 'profileIcon'.tr,
                             page: ProfileScreen(
                               isBooking: false,
                             ),
                           ),
-
-                          SizedBox(height: 25,),
-
+                          SizedBox(
+                            height: 25,
+                          ),
                           Center(
                             child: MaterialButton(
                               elevation: 0,
@@ -92,8 +91,7 @@ class _SettingsState extends State<Settings> {
                                   if (status) {
                                     Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            MyApp(),
+                                        builder: (context) => MyApp(),
                                       ),
                                       (route) => false,
                                     );

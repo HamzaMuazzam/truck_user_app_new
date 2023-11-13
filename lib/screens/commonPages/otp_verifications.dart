@@ -1,6 +1,6 @@
 import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:get/route_manager.dart';
 // import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
@@ -14,10 +14,12 @@ class VerifyPhoneNumberScreen extends StatefulWidget {
 
   final String phoneNumber;
 
-  const VerifyPhoneNumberScreen({Key? key, required this.phoneNumber}) : super(key: key);
+  const VerifyPhoneNumberScreen({Key? key, required this.phoneNumber})
+      : super(key: key);
 
   @override
-  State<VerifyPhoneNumberScreen> createState() => _VerifyPhoneNumberScreenState();
+  State<VerifyPhoneNumberScreen> createState() =>
+      _VerifyPhoneNumberScreenState();
 }
 
 class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
@@ -62,11 +64,11 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
             '${VerifyPhoneNumberScreen.id},\n${autoVerified ? 'OTP was fetched automatically!' : 'OTP was verified manually!'}',
           );
 
-          AppConst.successSnackBar('Phone number verified successfully!');
+          AppConst.successSnackBar('Phone number verified successfully!'.tr);
 
           logger.d(
             ' h${VerifyPhoneNumberScreen.id},\nLogin Success UID: '
-                '${userCredential.user?.uid}',
+            '${userCredential.user?.uid}',
           );
 
           Get.back(result: true);
@@ -90,12 +92,15 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
             // backgroundColor: Colors.white,
             appBar: AppBar(
               elevation: 0,
-              title: const Text('Verify Phone Number'),
-              leading: InkWell(onTap: (){
-                Get.back();
-              },child: Icon(Icons.arrow_back_ios,color: secondaryColor,)),
-
-
+              title: Text('Verify Phone Number'.tr),
+              leading: InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: secondaryColor,
+                  )),
               actions: [
                 // Resend OTP code button
                 if (controller.codeSent)
@@ -103,7 +108,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
                     child: Text(
                       controller.isListeningForOtpAutoRetrieve
                           ? '${controller.autoRetrievalTimeLeft.inSeconds}s'
-                          : 'Resend',
+                          : 'Resend'.tr,
                       style: const TextStyle(color: Colors.blue, fontSize: 18),
                     ),
                     onPressed: controller.isListeningForOtpAutoRetrieve
@@ -122,7 +127,8 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
                     controller: scrollController,
                     children: [
                       Text(
-                        "We've sent an SMS with a verification code to ${widget.phoneNumber}",
+                        "We've sent an SMS with a verification code to ${widget.phoneNumber}"
+                            .tr,
                         style: const TextStyle(fontSize: 25, color: textColor),
                       ),
                       const SizedBox(height: 10),
@@ -131,8 +137,8 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
                         Column(
                           children: [
                             const SizedBox(height: 40),
-                            const Text(
-                              'Listening for OTP',
+                            Text(
+                              'Listening for OTP'.tr,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 25,
@@ -144,8 +150,8 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
                           ],
                         ),
                       const SizedBox(height: 15),
-                      const Text(
-                        'Enter OTP',
+                      Text(
+                        'Enter OTP'.tr,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
@@ -215,10 +221,13 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
                       const SizedBox(height: 40),
                       Center(
                         child: TextButton(
-                          onPressed: isAnyException ? () => Get.back(result: false) : null,
+                          onPressed: isAnyException
+                              ? () => Get.back(result: false)
+                              : null,
                           child: Text(
-                            isAnyException ? 'Try Again' : 'Sending OTP',
-                            style: const TextStyle(fontSize: 25, color: secondaryColor),
+                            isAnyException ? 'Try Again'.tr : 'Sending OTP'.tr,
+                            style: const TextStyle(
+                                fontSize: 25, color: secondaryColor),
                           ),
                         ),
                       ),

@@ -10,10 +10,10 @@ import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
+
 import '../../models/registration/userRegResponse.dart';
 import '../../services/apiServices/StorageServices/get_storage.dart';
 import '../../services/apiServices/api_urls.dart';
-import '/models/UserModel/user_model.dart';
 
 class ProfileScreen extends StatefulWidget {
   final bool? isBooking;
@@ -172,32 +172,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 )
                               : sh(0),
                           sh(40),
-                          if(!GetPlatform.isWeb)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: InkWell(
-                              onTap: () {
-                                showDeleteConfirmationDialog(context);
-                              },
-                              child: Container(
-                                height: 56,
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Center(
-                                  child: Text(
-                                    "Delete account",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
+                          if (!GetPlatform.isWeb)
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              child: InkWell(
+                                onTap: () {
+                                  showDeleteConfirmationDialog(context);
+                                },
+                                child: Container(
+                                  height: 56,
+                                  width: Get.width,
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Center(
+                                    child: Text(
+                                      "Delete account".tr,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-
                         ],
                       ),
                     ),
@@ -259,23 +259,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Delete Account'),
+          title: Text('Delete Account'.tr),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Are you sure you want to delete your account?',
+                'Are you sure you want to delete your account?'.tr,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              Text('This action will delete all your data and settings.'),
+              Text('This action will delete all your data and settings.'.tr),
               SizedBox(height: 10),
               Text(
-                  'You will need to create a new account if you wish to come back.'),
+                  'You will need to create a new account if you wish to come back.'
+                      .tr),
               SizedBox(height: 10),
               Text(
-                'Please note that this will perform a hard delete from our database, and no information will remain stored in our system.',
+                'Please note that this will perform a hard delete from our database, and no information will remain stored in our system.'
+                    .tr,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
@@ -285,7 +287,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('Cancel'),
+              child: Text('Cancel'.tr),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
@@ -293,8 +295,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () async {
                   Navigator.of(context).pop();
                   await authProvider.deleteAccount();
-                  },
-                child: Text('Delete Account'),
+                },
+                child: Text('Delete Account'.tr),
               ),
             ),
           ],

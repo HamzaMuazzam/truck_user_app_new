@@ -4,19 +4,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/UserModel/user_model.dart';
 import 'package:sultan_cab/screens/commonPages/phone_verify.dart';
 import 'package:sultan_cab/utils/commons.dart';
-import 'package:sultan_cab/widgets/app_widgets.dart';
 import 'package:sultan_cab/utils/const.dart';
+import 'package:sultan_cab/widgets/app_widgets.dart';
+
 import '../auth_widget.dart';
 import '../models/registration/userRegResponse.dart';
 import '../screens/TruckBooking/navigation_screen.dart';
 import '../screens/commonPages/otp_verifications.dart';
-import 'package:http/http.dart' as http;
-
 import '../services/apiServices/StorageServices/get_storage.dart';
 import '../services/apiServices/api_services.dart';
 import '../services/apiServices/api_urls.dart';
@@ -121,7 +121,7 @@ class AuthProvider extends ChangeNotifier {
           phoneNumber: phoneNumber,
           verificationCompleted: (PhoneAuthCredential credential) async {
             AppConst.stopProgress();
-            AppConst.errorSnackBar("Verification completed");
+            AppConst.errorSnackBar("Verification completed".tr);
           },
           verificationFailed: (FirebaseAuthException exception) async {
             AppConst.stopProgress();
@@ -131,7 +131,7 @@ class AuthProvider extends ChangeNotifier {
           },
           codeSent: (String verificationId, int? resendToken) async {
             AppConst.stopProgress();
-            AppConst.successSnackBar("Code Sent");
+            AppConst.successSnackBar("Code Sent".tr);
             this.verificationId = verificationId;
             // dialogBoxOtp(Get.context!);
             Get.to(() => VerifyPhoneNumberScreen(
@@ -160,7 +160,7 @@ class AuthProvider extends ChangeNotifier {
     } else {
       await signInWithMobile();
       AppConst.stopProgress();
-      AppConst.successSnackBar("Logged In");
+      AppConst.successSnackBar("Logged In".tr);
       return true;
     }
   }
@@ -190,10 +190,11 @@ class AuthProvider extends ChangeNotifier {
   Future<bool> logout() async {
     try {
       var instance = FirebaseMessaging.instance;
-      try{
+      try {
         await instance.unsubscribeFromTopic("AllUsers");
-        await instance.unsubscribeFromTopic(StorageCRUD.getUser().id.toString());
-      }catch(e){
+        await instance
+            .unsubscribeFromTopic(StorageCRUD.getUser().id.toString());
+      } catch (e) {
         logger.e(e);
       }
       await StorageCRUD.erase();
@@ -223,7 +224,6 @@ class AuthProvider extends ChangeNotifier {
     phoneController.clear();
   }
 
-
   UserRegResponse? userRegResponse;
 
   Future<bool> userRegistration() async {
@@ -242,7 +242,7 @@ class AuthProvider extends ChangeNotifier {
 
     if (request.isEmpty) return false;
 
-    AppConst.successSnackBar('user registered');
+    AppConst.successSnackBar('user registered'.tr);
     await StorageCRUD.saveUser(request);
     gotoPage(NavigationScreen(), isClosePrevious: true);
     return true;
@@ -256,7 +256,7 @@ class AuthProvider extends ChangeNotifier {
         phoneController.text.isEmpty ||
         companyCR.text.isEmpty ||
         companyContact.text.isEmpty) {
-      AppConst.errorSnackBar('Something is missing..');
+      AppConst.errorSnackBar('Something is missing..'.tr);
       return false;
     }
 
@@ -267,17 +267,18 @@ class AuthProvider extends ChangeNotifier {
     // }
 
     if (password2Controller.text != passwordController.text) {
-      AppConst.errorSnackBar("password doesn't match..");
+      AppConst.errorSnackBar("password doesn't match..".tr);
       return false;
     }
 
     if (!passwordController.text.isValidPassword()) {
       AppConst.errorSnackBar(
-          "Password must contain at least 1 special character, 1 numeric value, 1 upper case and 1 lower case.");
+          "Password must contain at least 1 special character, 1 numeric value, 1 upper case and 1 lower case."
+              .tr);
       return false;
     }
     if (passwordController.text.length < 8) {
-      AppConst.errorSnackBar("Password should not be less than 8 digits.");
+      AppConst.errorSnackBar("Password should not be less than 8 digits.".tr);
       return false;
     }
 
@@ -293,12 +294,12 @@ class AuthProvider extends ChangeNotifier {
     String request =
         await ApiServices.postMethodTruck(feedUrl: ApiUrls.LOGIN, body: body);
     if (request.isEmpty) {
-      AppConst.errorSnackBar('user name/password is invalid');
+      AppConst.errorSnackBar('user name/password is invalid'.tr);
       logger.i('user name/password is invalid');
       return false;
     }
 
-    AppConst.successSnackBar('Logged In');
+    AppConst.successSnackBar('Logged In'.tr);
     await StorageCRUD.saveUser(request);
     logger.i(StorageCRUD.getUser());
     gotoPage(NavigationScreen(), isClosePrevious: true);
@@ -308,7 +309,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future<bool> loginFormValidation() async {
     if (passwordController.text.isEmpty || emailController.text.isEmpty) {
-      AppConst.errorSnackBar('Something is missing..');
+      AppConst.errorSnackBar('Something is missing..'.tr);
       return false;
     } else {}
     await userLogin();

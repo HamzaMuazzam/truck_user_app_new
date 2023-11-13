@@ -6,6 +6,7 @@ import 'package:sultan_cab/providers/Truck%20_provider/fair_provider.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
+
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../services/apiServices/StorageServices/get_storage.dart';
 import '../../utils/strings.dart';
@@ -45,7 +46,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
             child: !value.allOrders
                 ? Center(
                     child: Text(
-                    'There is no order history',
+                    'There is no order history'.tr,
                     style: TextStyle(color: textYellowColor),
                   ))
                 : value.allOrders && value.getAllOrdersResponse.isNotEmpty
@@ -59,10 +60,15 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                 children: [
                                   InkWell(
                                     onTap: () async {
-                                      await paymentProvider.getPaymentEvidence(value.getAllOrdersResponse[index].orderId.toString());
-                                      print(value.getAllOrdersResponse[index].orderId.toString());
-                                      Get.to(OrderDetailById(value.getAllOrdersResponse[index]));
-
+                                      await paymentProvider.getPaymentEvidence(
+                                          value.getAllOrdersResponse[index]
+                                              .orderId
+                                              .toString());
+                                      print(value
+                                          .getAllOrdersResponse[index].orderId
+                                          .toString());
+                                      Get.to(OrderDetailById(
+                                          value.getAllOrdersResponse[index]));
                                     },
                                     child: Container(
                                       margin: EdgeInsets.symmetric(
@@ -144,7 +150,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                                   index]
                                                               .orderDetails!
                                                               .dropOffAddress ??
-                                                          "Your Destination",
+                                                          "Your Destination".tr,
                                                       style: TextStyle(
                                                         fontSize: h * 12,
                                                       ),
@@ -163,7 +169,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                               Expanded(
                                                 child: Text(
                                                   appProvider.destAdd ??
-                                                      "Estimated Price",
+                                                      "Estimated Price".tr,
                                                   style: TextStyle(
                                                       fontSize: h * 12,
                                                       color: textYellowColor),
@@ -180,7 +186,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                             .totalFare!
                                                             .toInt()
                                                             .toString() +
-                                                        ' SAR',
+                                                        ' SAR'.tr,
                                                     style: TextStyle(
                                                       fontSize: h * 12,
                                                     ),
@@ -198,7 +204,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                               Expanded(
                                                 child: Text(
                                                   appProvider.destAdd ??
-                                                      "Order ID",
+                                                      "Order ID".tr,
                                                   style: TextStyle(
                                                       fontSize: h * 12,
                                                       color: textYellowColor),
@@ -231,7 +237,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                               Expanded(
                                                 child: Text(
                                                   appProvider.destAdd ??
-                                                      "Payment",
+                                                      "Payment".tr,
                                                   style: TextStyle(
                                                       fontSize: h * 12,
                                                       color: textYellowColor),
@@ -252,8 +258,8 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                                         index]
                                                                     .isPaid ==
                                                                 true
-                                                        ? "PAID"
-                                                        : "UNPAID",
+                                                        ? "PAID".tr
+                                                        : "UNPAID".tr,
                                                     style: TextStyle(
                                                       fontSize: h * 12,
                                                     ),
@@ -271,7 +277,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                               Expanded(
                                                 child: Text(
                                                   appProvider.destAdd ??
-                                                      "Is Loaded?",
+                                                      "Is Loaded?".tr,
                                                   style: TextStyle(
                                                       fontSize: h * 12,
                                                       color: textYellowColor),
@@ -287,8 +293,8 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                                     index]
                                                                 .isLoaded ==
                                                             true
-                                                        ? "Yes"
-                                                        : "No",
+                                                        ? "Yes".tr
+                                                        : "No".tr,
                                                     style: TextStyle(
                                                       color: fairTruckProvider
                                                                   .getAllOrdersResponse[
@@ -312,7 +318,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                             children: [
                                               Expanded(
                                                 child: Text(
-                                                  "Driver Detail",
+                                                  "Driver Detail".tr,
                                                   style: TextStyle(
                                                       fontSize: h * 12,
                                                       color: textYellowColor),
@@ -351,7 +357,7 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                             children: [
                                               Expanded(
                                                 child: Text(
-                                                  "Order Status",
+                                                  "Order Status".tr,
                                                   style: TextStyle(
                                                       fontSize: h * 12,
                                                       color: textYellowColor),
@@ -365,8 +371,8 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                     value.getAllOrdersResponse[index]
                                                                 .isDelievered ==
                                                             true
-                                                        ? "Completed"
-                                                        : "Ongoing",
+                                                        ? "Completed".tr
+                                                        : "Ongoing".tr,
                                                     style: TextStyle(
                                                         fontSize: h * 16,
                                                         color: value

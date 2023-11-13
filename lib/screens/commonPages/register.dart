@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/phone_verify.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
-import 'package:provider/provider.dart';
+
 import '../../plugins/intel_phone_field/intl_phone_field.dart';
 import '../../widgets/app_button.dart';
 
@@ -128,7 +129,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // fillColor: primaryColor,
 
             filled: true,
-            labelText: 'Phone Number',
+            labelText: 'Phone Number'.tr,
 
             labelStyle: TextStyle(
               color: Colors.grey,
@@ -199,32 +200,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       checks.contains(0)
           ? Text(
-              "~Password must be greater than 8.",
+              "~Password must be greater than 8.".tr,
               style: TextStyle(
                   color: checks.contains(0) ? Colors.red : Colors.grey),
             )
           : Container(),
       checks.contains(1)
-          ? Text("~Must contain capital letter",
+          ? Text("~Must contain capital letter".tr,
               style: TextStyle(
                   color: checks.contains(1) ? Colors.red : Colors.grey))
           : Container(),
       checks.contains(2)
           ? Text(
-              "~Must contain number",
+              "~Must contain number".tr,
               style: TextStyle(
                   color: checks.contains(2) ? Colors.red : Colors.grey),
             )
           : Container(),
       checks.contains(3)
           ? Text(
-              "~Must contain lower case letter",
+              "~Must contain lower case letter".tr,
               style: TextStyle(
                   color: checks.contains(3) ? Colors.red : Colors.grey),
             )
           : Container(),
       checks.contains(4)
-          ? Text("~Must contain special character.",
+          ? Text("~Must contain special character.".tr,
               style: TextStyle(
                   color: checks.contains(4) ? Colors.red : Colors.grey))
           : Container(),
@@ -249,32 +250,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       checks2.contains(0)
           ? Text(
-              "~Password must be greater than 8.",
+              "~Password must be greater than 8.".tr,
               style: TextStyle(
                   color: checks2.contains(0) ? Colors.red : Colors.grey),
             )
           : Container(),
       checks2.contains(1)
-          ? Text("~Must contain capital letter",
+          ? Text("~Must contain capital letter".tr,
               style: TextStyle(
                   color: checks2.contains(1) ? Colors.red : Colors.grey))
           : Container(),
       checks2.contains(2)
           ? Text(
-              "~Must contain number",
+              "~Must contain number".tr,
               style: TextStyle(
                   color: checks2.contains(2) ? Colors.red : Colors.grey),
             )
           : Container(),
       checks2.contains(3)
           ? Text(
-              "~Must contain lower case letter",
+              "~Must contain lower case letter".tr,
               style: TextStyle(
                   color: checks2.contains(3) ? Colors.red : Colors.grey),
             )
           : Container(),
       checks2.contains(4)
-          ? Text("~Must contain special character.",
+          ? Text("~Must contain special character.".tr,
               style: TextStyle(
                   color: checks2.contains(4) ? Colors.red : Colors.grey))
           : Container(),
@@ -306,22 +307,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
       sh(5),
       if (crNo.isEmpty)
         Text(
-          "CR number can't be empty",
+          "CR number can't be empty".tr,
           style: TextStyle(color: Colors.red),
         ),
       if (crNo.length < 10)
         Text(
-          "CR number can't be less than 10",
+          "CR number can't be less than 10".tr,
           style: TextStyle(color: Colors.red),
         ),
       if (crNo.length > 10)
         Text(
-          "CR number can't be greater than 10",
+          "CR number can't be greater than 10".tr,
           style: TextStyle(color: Colors.red),
         ),
       sh(20),
       AppTextField(
-        label: 'Company ContactNo',
+        label: 'Company ContactNo'.tr,
         controller: authProvider.companyContact,
         suffix: null,
         isVisibilty: null,

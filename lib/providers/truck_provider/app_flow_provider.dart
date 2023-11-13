@@ -11,10 +11,10 @@ import 'package:sultan_cab/services/directions_services.dart';
 import 'package:sultan_cab/utils/commons.dart';
 import 'package:sultan_cab/utils/strings.dart';
 
+import '../../screens/TruckBooking/GetAllOrdersScreen.dart';
 import '../../screens/TruckBooking/OrderLocationPickScreenWeb.dart';
 import '../../screens/TruckBooking/RequestDetailsScreenWeb.dart';
 import '../../screens/TruckBooking/VehicleChooseScreenWeb.dart';
-import '../../screens/TruckBooking/GetAllOrdersScreen.dart';
 import '../../screens/TruckBooking/navigation_screens_web.dart';
 import '../../screens/TruckBooking/start_booking.dart';
 import '../../screens/commonPages/profile.dart';
@@ -32,7 +32,9 @@ enum BookingStage {
   RideStarted,
   WebHome,
   Orders,
-  Settings, Profile, Summary
+  Settings,
+  Profile,
+  Summary
 }
 
 enum DestinationType {
@@ -46,7 +48,9 @@ enum RideType {
   Reoccurring,
   Favorite,
 }
+
 final appProvider = Provider.of<AppFlowProvider>(Get.context!, listen: false);
+
 class AppFlowProvider extends ChangeNotifier {
   int rideValue = -1;
 
@@ -80,7 +84,8 @@ class AppFlowProvider extends ChangeNotifier {
 
   LocationResult? pickupLocation;
 
-  List<MultiDestinationsModel> multiDestinationList = <MultiDestinationsModel>[];
+  List<MultiDestinationsModel> multiDestinationList =
+      <MultiDestinationsModel>[];
   Set<Marker> markerSet = <Marker>[].toSet();
   Set<Polyline> polylineSet = <Polyline>[].toSet();
 
@@ -101,7 +106,8 @@ class AppFlowProvider extends ChangeNotifier {
 
     for (int i = 0; i < multiDestinationList.length; i++) {
       body.addAll({
-        "multiDestinations[$i][lat]": "${multiDestinationList[i].locationResult!.latLng!.latitude}",
+        "multiDestinations[$i][lat]":
+            "${multiDestinationList[i].locationResult!.latLng!.latitude}",
         "multiDestinations[$i][lng]":
             "${multiDestinationList[i].locationResult!.latLng!.longitude}",
         "multiDestinations[$i][addressTill]":
@@ -122,7 +128,7 @@ class AppFlowProvider extends ChangeNotifier {
         icon: BitmapDescriptor.defaultMarkerWithHue(
           BitmapDescriptor.hueRed,
         ),
-        infoWindow: InfoWindow(title: "Pickup Point"),
+        infoWindow: InfoWindow(title: "Pickup Point".tr),
         position: LatLng(
           currentLoc!.latitude,
           currentLoc!.longitude,
@@ -163,7 +169,8 @@ class AppFlowProvider extends ChangeNotifier {
       ),
       points: multiDestinationList.map(
         (e) {
-          return LatLng(e.locationResult!.latLng!.latitude, e.locationResult!.latLng!.longitude);
+          return LatLng(e.locationResult!.latLng!.latitude,
+              e.locationResult!.latLng!.longitude);
         },
       ).toList(),
     );
@@ -206,48 +213,56 @@ class AppFlowProvider extends ChangeNotifier {
   Future setPickUpLoc(LatLng loc, String add) async {
     currentLoc = loc;
     currentAddress = add;
-    if(!kIsWeb){
-      await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
-
+    if (!kIsWeb) {
+      await mapController!.animateCamera(CameraUpdate.newCameraPosition(
+          CameraPosition(target: loc, zoom: 15)));
     }
     addMarker(loc);
     notifyListeners();
   }
+
   Future removePickUpLoc() async {
     currentLoc = null;
     currentAddress = null;
     notifyListeners();
   }
+
   Future setDestinationLoc(LatLng loc, String add) async {
-    try{
+    try {
       _destLoc = loc;
       destAddress = add;
-      if(!kIsWeb){
-        await mapController!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: loc, zoom: 15)));
+      if (!kIsWeb) {
+        await mapController!.animateCamera(CameraUpdate.newCameraPosition(
+            CameraPosition(target: loc, zoom: 15)));
       }
-    }catch(e){
+    } catch (e) {
       logger.e(e);
     }
     notifyListeners();
   }
+
   Future setDirections(Directions dir) async {
     _directions = dir;
 
-    if(!kIsWeb){
-      try{
-        if(!kIsWeb){
-          await mapController!.animateCamera(CameraUpdate.newLatLngBounds(directions!.bounds!, 100),);
+    if (!kIsWeb) {
+      try {
+        if (!kIsWeb) {
+          await mapController!.animateCamera(
+            CameraUpdate.newLatLngBounds(directions!.bounds!, 100),
+          );
         }
-      }catch(e){
+      } catch (e) {
         logger.e(e);
       }
     }
     notifyListeners();
   }
+
   Future removeDirections() async {
     _directions = null;
     notifyListeners();
   }
+
   Future removeDestinationLoc() async {
     _destLoc = LatLng(0.0, 0.0);
     destAddress = null;
@@ -258,8 +273,8 @@ class AppFlowProvider extends ChangeNotifier {
 
   String totalDistance = "";
   calculateDistance(LocationResult result) async {
-    Directions? dir =
-        await DirectionServices().getDirections(origin: currentLoc!, dest: result.latLng!);
+    Directions? dir = await DirectionServices()
+        .getDirections(origin: currentLoc!, dest: result.latLng!);
     if (dir != null) {
       totalDistance = await dir.totalDistance ?? "";
       notifyListeners();
@@ -276,37 +291,26 @@ class AppFlowProvider extends ChangeNotifier {
     return currentAddress;
   }
 
-
   Widget currentWidgetWeb = Container();
 
   void changeWebWidget(BookingStage stage) {
-    if(stage==BookingStage.WebHome){
-      currentWidgetWeb= WebHomeScreem();
-    } else if(stage==BookingStage.Orders){
-      currentWidgetWeb= GetAllOrdersScreen();
-    }
-    else if(stage==BookingStage.Settings){
-      currentWidgetWeb=  Settings();
-    }
-    else if(stage==BookingStage.Profile){
-      currentWidgetWeb= ProfileScreen(
-        isBooking: false);
-    }
-    else if(stage==BookingStage.PickUp){
-      currentWidgetWeb= OrderLocationPickScreenWeb();
-    }
-    else if(stage==BookingStage.Vehicle){
-      currentWidgetWeb= VehicleChooseScreenWeb();
-    }
-
-    else if(stage==BookingStage.Summary){
-      currentWidgetWeb= RequestDetailsScreenWeb();
+    if (stage == BookingStage.WebHome) {
+      currentWidgetWeb = WebHomeScreem();
+    } else if (stage == BookingStage.Orders) {
+      currentWidgetWeb = GetAllOrdersScreen();
+    } else if (stage == BookingStage.Settings) {
+      currentWidgetWeb = Settings();
+    } else if (stage == BookingStage.Profile) {
+      currentWidgetWeb = ProfileScreen(isBooking: false);
+    } else if (stage == BookingStage.PickUp) {
+      currentWidgetWeb = OrderLocationPickScreenWeb();
+    } else if (stage == BookingStage.Vehicle) {
+      currentWidgetWeb = VehicleChooseScreenWeb();
+    } else if (stage == BookingStage.Summary) {
+      currentWidgetWeb = RequestDetailsScreenWeb();
     }
     notifyListeners();
   }
-
-
-
 }
 
 class MultiDestinationsModel {

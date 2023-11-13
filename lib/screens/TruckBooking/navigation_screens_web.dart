@@ -15,7 +15,7 @@ class WebHomeScreem extends StatefulWidget {
 class _WebHomeScreemState extends State<WebHomeScreem> {
   @override
   Widget build(BuildContext context) {
-    return   Material(
+    return Material(
       child: Container(
         height: Get.height,
         width: Get.width,
@@ -28,11 +28,20 @@ class _WebHomeScreemState extends State<WebHomeScreem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Move your heavy load at the touch of a button!",style: TextStyle(color: Colors.green,fontWeight: FontWeight.w900,fontSize: 60),),
                   Text(
-                    "An all-in-one truck aggregation platform developed to fulfill the needs of businesses, brokers, and fleet owners.\n",style: TextStyle(color: Colors.white,fontSize: 18),),
+                    "Move your heavy load at the touch of a button!".tr,
+                    style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 60),
+                  ),
+                  Text(
+                    "An all-in-one truck aggregation platform developed to fulfill the needs of businesses, brokers, and fleet owners."
+                        .tr,
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       appFlowProvider.changeWebWidget(BookingStage.PickUp);
                     },
                     child: Container(
@@ -43,12 +52,12 @@ class _WebHomeScreemState extends State<WebHomeScreem> {
                           borderRadius: BorderRadius.circular(8)),
                       child: Center(
                           child: Text(
-                            "Order Now",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          )),
+                        "Order Now".tr,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold),
+                      )),
                     ),
                   )
                 ],
@@ -61,4 +70,3 @@ class _WebHomeScreemState extends State<WebHomeScreem> {
     );
   }
 }
-

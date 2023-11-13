@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -205,7 +206,7 @@ class FairTruckProvider extends ChangeNotifier {
       Get.to(OrderDetailById(
           GetAllOrdersResponse.fromJson(json.decode(response))));
     } else {
-      Get.snackbar("Error", "Error on getting order");
+      Get.snackbar("Error".tr, "Error on getting order".tr);
     }
   }
 
@@ -245,17 +246,20 @@ class FairTruckProvider extends ChangeNotifier {
 
   Future<String> getSingleOrder(String orderID) async {
     String response = await ApiServices.getMethod(
-        feedUrl: "Order/get-order-by-Id?id=$orderID&datetime=${DateTime.now()}");
+        feedUrl:
+            "Order/get-order-by-Id?id=$orderID&datetime=${DateTime.now()}");
     return response;
   }
 
-  void updateSingleOrder(String? orderID) async{
+  void updateSingleOrder(String? orderID) async {
     await getAllOrdersDetails();
-    if(orderID!=null && getAllOrdersResponse.isNotEmpty){
-      GetAllOrdersResponse? order = getAllOrdersResponse.firstWhereOrNull((element) => element.orderId.toString()==orderID.toString());
-      this.order=order;
+    if (orderID != null && getAllOrdersResponse.isNotEmpty) {
+      GetAllOrdersResponse? order = getAllOrdersResponse.firstWhereOrNull(
+          (element) => element.orderId.toString() == orderID.toString());
+      this.order = order;
       notifyListeners();
     }
   }
+
   GetAllOrdersResponse? order;
 }

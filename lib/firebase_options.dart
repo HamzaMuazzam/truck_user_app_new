@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:get/get_utils/get_utils.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -17,7 +18,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-    return web;
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -27,13 +28,12 @@ class DefaultFirebaseOptions {
         return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+          'DefaultFirebaseOptions have not been configured for macos -you can reconfigure this by running the FlutterFire CLI again.'
+              .tr,
         );
       case TargetPlatform.windows:
         throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+          'DefaultFirebaseOptions have not been configured for windows - you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
@@ -61,8 +61,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '409671244772',
     projectId: 'sultantaxi-b0dc2',
     storageBucket: 'sultantaxi-b0dc2.appspot.com',
-    androidClientId: '409671244772-02tcjo0vj5pd45fc6amf5vmna49k6e16.apps.googleusercontent.com',
-    iosClientId: '409671244772-immacgmafi7brl8vqann2m183cl73hld.apps.googleusercontent.com',
+    androidClientId:
+        '409671244772-02tcjo0vj5pd45fc6amf5vmna49k6e16.apps.googleusercontent.com',
+    iosClientId:
+        '409671244772-immacgmafi7brl8vqann2m183cl73hld.apps.googleusercontent.com',
     iosBundleId: 'com.techhive.sultancab',
   );
   static const FirebaseOptions web = FirebaseOptions(
@@ -72,6 +74,5 @@ class DefaultFirebaseOptions {
       storageBucket: "tucking-app-c9418.appspot.com",
       messagingSenderId: "236880847063",
       appId: "1:236880847063:web:77c7d95af4e2386bf15092",
-      measurementId: "G-BELN9KVPQ5"
-  );
+      measurementId: "G-BELN9KVPQ5");
 }

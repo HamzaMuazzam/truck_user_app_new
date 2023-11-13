@@ -1,12 +1,8 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/register.dart';
-import 'package:sultan_cab/screens/staticPages/privacy_policy.dart';
-import 'package:sultan_cab/screens/staticPages/tnc.dart';
-import 'package:sultan_cab/utils/const.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
@@ -30,7 +26,8 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
 
     super.initState();
   }
-  Set<int> checks={};
+
+  Set<int> checks = {};
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -74,7 +71,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Text(
-                                          "Log in",
+                                          "Log in".tr,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: Get.height / 20,
@@ -108,29 +105,59 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                   ),
                                   sh(20),
                                   AppTextFieldPassword(
-                                    label: 'Enter Password',
+                                    label: 'Enter Password'.tr,
                                     controller: authProvider.passwordController,
                                     error: false,
                                     onChanged: (text) {
-
                                       checks = isPasswordCompliant(text);
 
-                                      setState(() {
-
-                                      });
-
+                                      setState(() {});
                                     },
                                   ),
-                                  checks.contains(0)?
-                                  Text("~Password must be greater than 8.", style: TextStyle(color: checks.contains(0)?Colors.red:Colors.grey),):Container(),
-                                  checks.contains(1)?
-                                  Text("~Must contain capital letter", style: TextStyle(color: checks.contains(1)?Colors.red:Colors.grey)):Container(),
-                                  checks.contains(2)?
-                                  Text("~Must contain number", style: TextStyle(color: checks.contains(2)?Colors.red:Colors.grey),):Container(),
-                                  checks.contains(3)?
-                                  Text("~Must contain lower case letter", style: TextStyle(color: checks.contains(3)?Colors.red:Colors.grey),):Container(),
-                                  checks.contains(4)?
-                                  Text("~Must contain special character.", style: TextStyle(color: checks.contains(4)?Colors.red:Colors.grey)):Container(),
+                                  checks.contains(0)
+                                      ? Text(
+                                          "~Password must be greater than 8."
+                                              .tr
+                                              .tr,
+                                          style: TextStyle(
+                                              color: checks.contains(0)
+                                                  ? Colors.red
+                                                  : Colors.grey),
+                                        )
+                                      : Container(),
+                                  checks.contains(1)
+                                      ? Text("~Must contain capital letter".tr,
+                                          style: TextStyle(
+                                              color: checks.contains(1)
+                                                  ? Colors.red
+                                                  : Colors.grey))
+                                      : Container(),
+                                  checks.contains(2)
+                                      ? Text(
+                                          "~Must contain number".tr,
+                                          style: TextStyle(
+                                              color: checks.contains(2)
+                                                  ? Colors.red
+                                                  : Colors.grey),
+                                        )
+                                      : Container(),
+                                  checks.contains(3)
+                                      ? Text(
+                                          "~Must contain lower case letter".tr,
+                                          style: TextStyle(
+                                              color: checks.contains(3)
+                                                  ? Colors.red
+                                                  : Colors.grey),
+                                        )
+                                      : Container(),
+                                  checks.contains(4)
+                                      ? Text(
+                                          "~Must contain special character.".tr,
+                                          style: TextStyle(
+                                              color: checks.contains(4)
+                                                  ? Colors.red
+                                                  : Colors.grey))
+                                      : Container(),
                                   // sh(20),
                                   // Container(
                                   //   child: Padding(
@@ -214,7 +241,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                     child: AppButton(
                                       label: LoginLabel,
                                       onPressed: () async {
-                                        if(checks.isNotEmpty){
+                                        if (checks.isNotEmpty) {
                                           return;
                                         }
                                         authProvider.loginFormValidation();
@@ -227,8 +254,8 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Expanded(
-                                          child:
-                                              Text("Don't have an account?")),
+                                          child: Text(
+                                              "Don't have an account?".tr)),
                                       Expanded(
                                         child: InkWell(
                                             onTap: () {
@@ -238,7 +265,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                             child: Align(
                                                 alignment:
                                                     Alignment.centerRight,
-                                                child: Text('Register'))),
+                                                child: Text('Register'.tr))),
                                       ),
                                     ],
                                   ),
@@ -286,7 +313,6 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
     if (Get.width < 392) return 30.0;
     return widths;
   }
-
 }
 
 extension PasswordValidator on String {
@@ -295,7 +321,6 @@ extension PasswordValidator on String {
             r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
         .hasMatch(this);
   }
-
 }
 
 Set<int> isPasswordCompliant(String password, [int minLength = 8]) {
@@ -303,38 +328,37 @@ Set<int> isPasswordCompliant(String password, [int minLength = 8]) {
 
   if (password.length < minLength) {
     checks.add(0);
-  }else{
+  } else {
     checks.remove(0);
   }
 
   bool hasUppercase = password.contains(RegExp(r'[A-Z]'));
   if (!hasUppercase) {
     checks.add(1);
-  }else{
+  } else {
     checks.remove(1);
   }
 
   bool hasDigits = password.contains(RegExp(r'[0-9]'));
   if (!hasDigits) {
     checks.add(2);
-  }else{
+  } else {
     checks.remove(2);
   }
   bool hasLowercase = password.contains(RegExp(r'[a-z]'));
   if (!hasLowercase) {
     checks.add(3);
-  }else{
+  } else {
     checks.remove(3);
   }
   bool hasSpecialCharacters =
-  password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+      password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
 
   if (!hasSpecialCharacters) {
     checks.add(4);
-  }else{
+  } else {
     checks.remove(4);
   }
-
 
   return checks;
 }

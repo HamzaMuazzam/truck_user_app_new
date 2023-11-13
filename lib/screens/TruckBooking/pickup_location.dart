@@ -9,16 +9,16 @@ import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
 
-import '../../models/directions_model.dart';
-import '../../services/directions_services.dart';
-import '../../utils/const.dart';
 import '/utils/api_keys.dart';
 import '/utils/colors.dart';
 import '/utils/sizeConfig.dart';
 import '/utils/strings.dart';
+import '../../models/directions_model.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
+import '../../services/directions_services.dart';
 import '../../utils/commons.dart';
+import '../../utils/const.dart';
 
 class PickupLocation extends StatefulWidget {
   @override
@@ -84,7 +84,8 @@ class _PickupLocationState extends State<PickupLocation> {
                       i++) {
                     var response = fairTruckProvider.getAllOrdersResponse[i];
 
-                    if (response.isLoaded == true && (response.isPaid == false || response.isPaid == null)) {
+                    if (response.isLoaded == true &&
+                        (response.isPaid == false || response.isPaid == null)) {
                       showAlertWarning();
                       return;
                     }
@@ -159,7 +160,7 @@ class _PickupLocationState extends State<PickupLocation> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
-                      "Load Location",
+                      "Load Location".tr,
                       style: TextStyle(
                           color: secondaryColor,
                           fontWeight: FontWeight.bold,
@@ -222,15 +223,20 @@ class _PickupLocationState extends State<PickupLocation> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Alert!",
+                    "Alert!".tr,
                     style: TextStyle(
                         color: Colors.red,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "\nYou can't book new order until you pay for your previous order.\n\n"
-                    "Please go to order history and pay for your previous order.\n",
+                    "\n" +
+                        "You can't book new order until you pay for your previous order."
+                            .tr +
+                        "\n\n" +
+                        "Please go to order history and pay for your previous order."
+                            .tr +
+                        "\n",
                     style: TextStyle(color: Colors.black),
                   ),
                   Padding(
@@ -243,7 +249,7 @@ class _PickupLocationState extends State<PickupLocation> {
                               Get.back();
                             },
                             child: Text(
-                              "OK",
+                              "OK".tr,
                               style: TextStyle(
                                   color: Colors.green,
                                   fontSize: 16,

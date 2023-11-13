@@ -1,6 +1,7 @@
 import 'dart:async';
-import 'package:get/get.dart';
+
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/get_location_change_model/get_location_change_model.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
@@ -22,7 +23,6 @@ enum RideStage {
   FinishRide,
 }
 
-
 TruckBookingProvider taxiBookingProvider =
     Provider.of<TruckBookingProvider>(Get.context!, listen: false);
 
@@ -35,17 +35,7 @@ class TruckBookingProvider extends ChangeNotifier {
 
   RideStage stage = RideStage.Bidding;
 
-
-
-
-
-
-
-
-
   late Timer timer;
-
-
 
   // Future<void> makePhoneCall(String phoneNumber) async {
   //   final Uri launchUri = Uri(
@@ -60,10 +50,8 @@ class TruckBookingProvider extends ChangeNotifier {
     locProv.setDriverMarker();
     if (locProv.currentPosition != null && !isRiderNotify)
       // notifyNearToArrival();
-    notifyListeners();
+      notifyListeners();
   }
-
-
 
   bool isRiderNotify = false;
   List<String> reviewsList = [];
@@ -84,7 +72,6 @@ class TruckBookingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
   Future<bool> addRatingAndReviews({
     required String driverID,
     required String requestId,
@@ -102,7 +89,7 @@ class TruckBookingProvider extends ChangeNotifier {
     if (response.isEmpty) return false;
 
     logger.i(response);
-    AppConst.successSnackBar("Review Added");
+    AppConst.successSnackBar("Review Added".tr);
     return true;
   }
 }

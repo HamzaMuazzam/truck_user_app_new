@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
@@ -9,11 +10,13 @@ import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/widgets/app_widgets.dart';
 
-import '../../utils/commons.dart';
 import '../truck_provider/app_flow_provider.dart';
 
-AppFlowProvider appFlowProvider = Provider.of<AppFlowProvider>(Get.context!, listen: false);
-LocationAndMapProvider locProv = Provider.of<LocationAndMapProvider>(Get.context!, listen: false);
+AppFlowProvider appFlowProvider =
+    Provider.of<AppFlowProvider>(Get.context!, listen: false);
+LocationAndMapProvider locProv =
+    Provider.of<LocationAndMapProvider>(Get.context!, listen: false);
+
 class LocationAndMapProvider extends ChangeNotifier {
   String googleMapApiKey = "AIzaSyCqcZ7xj1BPJeC3Uyo2coGi9qaGNpyU_EA";
 
@@ -43,10 +46,11 @@ class LocationAndMapProvider extends ChangeNotifier {
 
   void setDriverMarker() async {
     driverLocMarker = Marker(
-      icon: BitmapDescriptor.fromBytes(
-          await AppWidgets.getBytesFromAsset("assets/images/driver_location.png", 100)),
+      icon: BitmapDescriptor.fromBytes(await AppWidgets.getBytesFromAsset(
+          "assets/images/driver_location.png", 100)),
       markerId: MarkerId("driverLocMarker"),
-      position: LatLng(double.parse(taxiBookingProvider.onDriverLocationChange!.lat),
+      position: LatLng(
+          double.parse(taxiBookingProvider.onDriverLocationChange!.lat),
           double.parse(taxiBookingProvider.onDriverLocationChange!.lng)),
     );
     addMarkers();
@@ -59,28 +63,24 @@ class LocationAndMapProvider extends ChangeNotifier {
   );
 
   Future<void> setCurrentLocMarker() async {
-
     final permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever){
-
-      showLocationPermissionDialog(Get.context!,(){
-
-      },() async{
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      showLocationPermissionDialog(Get.context!, () {}, () async {
         await Geolocator.requestPermission();
         _hasPermissions();
       });
       return;
-    }
-    else{
+    } else {
       _hasPermissions();
     }
-
   }
 
-
-  void _hasPermissions()async{
-    final loc = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
-    newCameraPosition = CameraPosition(target: LatLng(loc.latitude, loc.longitude), zoom: 15);
+  void _hasPermissions() async {
+    final loc = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.bestForNavigation);
+    newCameraPosition =
+        CameraPosition(target: LatLng(loc.latitude, loc.longitude), zoom: 15);
     appFlowProvider.currentLoc = LatLng(loc.latitude, loc.longitude);
     notifyListeners();
   }
@@ -89,7 +89,6 @@ class LocationAndMapProvider extends ChangeNotifier {
     /// Return in meters
     return Geolocator.distanceBetween(
         currentPosition!.latitude!, currentPosition!.longitude!, lat, lon);
-
   }
 
   Future getCurrentPosition({bool addMarker = false}) async {
@@ -121,20 +120,18 @@ class LocationAndMapProvider extends ChangeNotifier {
     if (currentPosition != null)
       locMarkers = <Marker>{
         if (taxiBookingProvider.stage != RideStage.Started) currentLocMarker!,
-        if (taxiBookingProvider.stage == RideStage.DriverToRider) driverLocMarker!,
+        if (taxiBookingProvider.stage == RideStage.DriverToRider)
+          driverLocMarker!,
         if (taxiBookingProvider.stage == RideStage.Started) desLocMarker!,
       };
     notifyListeners();
   }
-
-
-
 }
 
 class LocationPermissionDialog extends StatelessWidget {
   var onLaterPressed;
   var onGrantPressed;
-  LocationPermissionDialog(this.onLaterPressed,this.onGrantPressed);
+  LocationPermissionDialog(this.onLaterPressed, this.onGrantPressed);
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -153,7 +150,7 @@ class LocationPermissionDialog extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             Text(
-              "Why do we need your location?",
+              "Why do we need your location?".tr,
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
@@ -161,7 +158,8 @@ class LocationPermissionDialog extends StatelessWidget {
             ),
             SizedBox(height: 8.0),
             Text(
-              "To process your order smoothly, we need access to your pickup and drop off locations. This enables us to find the nearest drivers and deliver your order efficiently.",
+              "To process your order smoothly, we need access to your pickup and drop off locations. This enables us to find the nearest drivers and deliver your order efficiently."
+                  .tr,
               style: TextStyle(fontSize: 16.0),
               textAlign: TextAlign.center,
             ),
@@ -171,14 +169,14 @@ class LocationPermissionDialog extends StatelessWidget {
                 onGrantPressed();
                 Navigator.of(context).pop();
               },
-              child: Text("Grant Location Permission"),
+              child: Text("Grant Location Permission".tr),
             ),
             TextButton(
               onPressed: () {
                 onLaterPressed();
                 Navigator.of(context).pop();
               },
-              child: Text("Maybe Later"),
+              child: Text("Maybe Later".tr),
             ),
           ],
         ),
@@ -187,9 +185,11 @@ class LocationPermissionDialog extends StatelessWidget {
   }
 }
 
-void showLocationPermissionDialog(BuildContext context, var onLaterPressed, var onGrantPressed) {
+void showLocationPermissionDialog(
+    BuildContext context, var onLaterPressed, var onGrantPressed) {
   showDialog(
     context: context,
-    builder: (context) => LocationPermissionDialog(onLaterPressed,onGrantPressed),
+    builder: (context) =>
+        LocationPermissionDialog(onLaterPressed, onGrantPressed),
   );
 }

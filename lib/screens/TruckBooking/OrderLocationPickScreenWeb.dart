@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/screens/TruckBooking/pickup_location.dart';
+
 import '../../customized_plugins/lib/map_location_picker.dart';
 import '../../models/directions_model.dart';
 import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
@@ -28,12 +29,8 @@ int _index = 0;
 String? pickaddress;
 String? dropAddress;
 
-
-
 class _OrderLocationPickScreenWebState
     extends State<OrderLocationPickScreenWeb> {
-
-
   Future<Position?> getCurrentLocation() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -74,13 +71,14 @@ class _OrderLocationPickScreenWebState
     print('Longitude: $longitude');
     return position;
   }
-@override
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
     gteLocationLatLng();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -97,210 +95,219 @@ class _OrderLocationPickScreenWebState
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              InkWell(
-                onTap: ()async {
-                  String? city="";
-                  LatLng? latlng;
-                  if (kIsWeb) {
-                    await Get.to(MapLocationPicker(
-                      apiKey: GoogleMapApiKey,
-                       currentLatLng: LatLng(position!.latitude,position!.longitude),
-                      minMaxZoomPreference: MinMaxZoomPreference(3,20),
-                      onNext: (GeocodingResult? result) async {
-                        if (result != null) {
-                          print(result.toJson());
-                          pickaddress = result.formattedAddress!;
-                          latlng = LatLng(result.geometry.location.lat,
-                              result.geometry.location.lng);
-                          city = await getCityName(latlng!.latitude,latlng!.longitude);
-                          Get.back();
-                          setState(() {
-                          });
-                        }
-                      },
-                    ));
-                  }
-                  else {
-                    LocationResult? result =
-                        await Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PlacePicker(GoogleMapApiKey),
-                    ));
-                    pickaddress = result?.formattedAddress!;
-                    latlng =result!.latLng;
-                    city=result.city!.name!;
-                  }
-
-                  if (pickaddress != null && latlng!=null) {
-                    appProvider.currentAddress = pickaddress;
-                    await appProvider.setPickUpLoc(
-                        latlng!, pickaddress!);
-
-                    if (appProvider.currentAddress == null) {
-                      await AppConst.infoSnackBar(ChooseStartingMsg);
-                      return;
-                    } else {
-                      fairTruckProvider.loadCity = city!;
-                      await Provider.of<AppFlowProvider>(context, listen: false)
-                          .changeBookingStage(BookingStage.DropOffLocation);
-                    }
-                  }
-                  if (appFlowProvider.pickupLocation?.latLng != null) {
-                    Directions? dir = await DirectionServices().getDirections(
-                        origin: appProvider.currentLoc!,
-                        dest: appProvider.destLoc ?? LatLng(0.0, 0.0));
-                    if (dir != null) {
-                      await appProvider.setDirections(dir);
-                    }
-                  }
-                  setState(() {
-                  });
-                },
-                child: Container(
-                  width: Get.width *0.5,
-                  height: 55,
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Text(pickaddress??"Picking point",style: TextStyle(color: Colors.black),),
-                      )),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                onTap: ()async{
-                  if (appProvider.currentAddress != null) {
-                    String? city="";
+                InkWell(
+                  onTap: () async {
+                    String? city = "";
                     LatLng? latlng;
                     if (kIsWeb) {
                       await Get.to(MapLocationPicker(
                         apiKey: GoogleMapApiKey,
-                        currentLatLng:LatLng(position!.latitude,position!.longitude),
-                        minMaxZoomPreference: MinMaxZoomPreference(3,20),
-
+                        currentLatLng:
+                            LatLng(position!.latitude, position!.longitude),
+                        minMaxZoomPreference: MinMaxZoomPreference(3, 20),
                         onNext: (GeocodingResult? result) async {
                           if (result != null) {
                             print(result.toJson());
-                            dropAddress = result.formattedAddress!;
+                            pickaddress = result.formattedAddress!;
                             latlng = LatLng(result.geometry.location.lat,
                                 result.geometry.location.lng);
-                            city = await getCityName(latlng!.latitude,latlng!.longitude);
+                            city = await getCityName(
+                                latlng!.latitude, latlng!.longitude);
                             Get.back();
-                            setState(() {
-
-                            });
+                            setState(() {});
                           }
                         },
                       ));
-                    }
-                    else {
+                    } else {
                       LocationResult? result =
                           await Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => PlacePicker(GoogleMapApiKey),
                       ));
-                      dropAddress = result?.formattedAddress!;
-                      latlng =result!.latLng;
-                      city=result.city!.name!;
+                      pickaddress = result?.formattedAddress!;
+                      latlng = result!.latLng;
+                      city = result.city!.name!;
                     }
 
+                    if (pickaddress != null && latlng != null) {
+                      appProvider.currentAddress = pickaddress;
+                      await appProvider.setPickUpLoc(latlng!, pickaddress!);
 
-                    if (dropAddress != null && latlng!=null) {
-                      fairTruckProvider.unloadCity=city!;
-
-                      appProvider.destAddress= dropAddress;
-                      await appProvider.setDestinationLoc(latlng!, dropAddress!);
-                      Directions? dir = await DirectionServices()
-                          .getDirections(
-                          origin: appProvider.currentLoc!,
-                          dest: latlng!);
-
-                      if (dir != null) await appProvider.setDirections(dir);
-                      if (appProvider.destAdd == null) {
-                        await AppConst.infoSnackBar(ChooseDestinationMsg);
-                        return;
-                      }
-                      else if (appProvider.destAdd == null) {
+                      if (appProvider.currentAddress == null) {
                         await AppConst.infoSnackBar(ChooseStartingMsg);
                         return;
+                      } else {
+                        fairTruckProvider.loadCity = city!;
+                        await Provider.of<AppFlowProvider>(context,
+                                listen: false)
+                            .changeBookingStage(BookingStage.DropOffLocation);
                       }
-                      else {
-                        if (await fairTruckProvider.getAllTruckFairs())
-                  await Provider.of<AppFlowProvider>(context, listen: false).changeBookingStage(BookingStage.Destination);
-                  else
-                  logger.e('Error in truck fairs');
-                  }
-
-                  }
-                  }
-                  else {
-                      appSnackBar(
-                          context: context, msg: ChooseStartingMsg, isError: true);
                     }
+                    if (appFlowProvider.pickupLocation?.latLng != null) {
+                      Directions? dir = await DirectionServices().getDirections(
+                          origin: appProvider.currentLoc!,
+                          dest: appProvider.destLoc ?? LatLng(0.0, 0.0));
+                      if (dir != null) {
+                        await appProvider.setDirections(dir);
+                      }
+                    }
+                    setState(() {});
                   },
-                child: Container(
-                  width: Get.width *0.5,
-                  height: 55,
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Text(dropAddress??"Delivery point",style: TextStyle(color: Colors.black),),
-                      )),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    width: Get.width * 0.5,
+                    height: 55,
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Text(
+                            pickaddress ?? "Picking point".tr,
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        )),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
                   ),
                 ),
-              ),
+                SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () async {
+                    if (appProvider.currentAddress != null) {
+                      String? city = "";
+                      LatLng? latlng;
+                      if (kIsWeb) {
+                        await Get.to(MapLocationPicker(
+                          apiKey: GoogleMapApiKey,
+                          currentLatLng:
+                              LatLng(position!.latitude, position!.longitude),
+                          minMaxZoomPreference: MinMaxZoomPreference(3, 20),
+                          onNext: (GeocodingResult? result) async {
+                            if (result != null) {
+                              print(result.toJson());
+                              dropAddress = result.formattedAddress!;
+                              latlng = LatLng(result.geometry.location.lat,
+                                  result.geometry.location.lng);
+                              city = await getCityName(
+                                  latlng!.latitude, latlng!.longitude);
+                              Get.back();
+                              setState(() {});
+                            }
+                          },
+                        ));
+                      } else {
+                        LocationResult? result =
+                            await Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => PlacePicker(GoogleMapApiKey),
+                        ));
+                        dropAddress = result?.formattedAddress!;
+                        latlng = result!.latLng;
+                        city = result.city!.name!;
+                      }
 
-            ],),
+                      if (dropAddress != null && latlng != null) {
+                        fairTruckProvider.unloadCity = city!;
 
+                        appProvider.destAddress = dropAddress;
+                        await appProvider.setDestinationLoc(
+                            latlng!, dropAddress!);
+                        Directions? dir = await DirectionServices()
+                            .getDirections(
+                                origin: appProvider.currentLoc!, dest: latlng!);
+
+                        if (dir != null) await appProvider.setDirections(dir);
+                        if (appProvider.destAdd == null) {
+                          await AppConst.infoSnackBar(ChooseDestinationMsg);
+                          return;
+                        } else if (appProvider.destAdd == null) {
+                          await AppConst.infoSnackBar(ChooseStartingMsg);
+                          return;
+                        } else {
+                          if (await fairTruckProvider.getAllTruckFairs())
+                            await Provider.of<AppFlowProvider>(context,
+                                    listen: false)
+                                .changeBookingStage(BookingStage.Destination);
+                          else
+                            logger.e('Error in truck fairs');
+                        }
+                      }
+                    } else {
+                      appSnackBar(
+                          context: context,
+                          msg: ChooseStartingMsg,
+                          isError: true);
+                    }
+                  },
+                  child: Container(
+                    width: Get.width * 0.5,
+                    height: 55,
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Text(
+                            dropAddress ?? "Delivery point".tr,
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        )),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             SizedBox(
               height: 100,
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-              InkWell(
-                onTap: (){
-                  if(dropAddress==null || pickaddress==null){
-                    return;
-                  }
-                  appFlowProvider.changeWebWidget(BookingStage.Vehicle);
-                },
-                child: Container(height: 55,width: 150,
-                child: Center(child: Text("Next",),),
-                decoration: BoxDecoration(color: Colors.green,borderRadius: BorderRadius.circular(10)),),
-              ),
+                InkWell(
+                  onTap: () {
+                    if (dropAddress == null || pickaddress == null) {
+                      return;
+                    }
+                    appFlowProvider.changeWebWidget(BookingStage.Vehicle);
+                  },
+                  child: Container(
+                    height: 55,
+                    width: 150,
+                    child: Center(
+                      child: Text(
+                        "Next".tr,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                ),
                 SizedBox(
                   width: 100,
                 ),
-            ],)
+              ],
+            )
           ],
         ),
       ),
     );
   }
+
   Position? position;
   void gteLocationLatLng() async {
-     position = await  getCurrentLocation();
+    position = await getCurrentLocation();
   }
-
 
   Future<Position?> getLocation() async {
     final GeolocatorPlatform geolocator = GeolocatorPlatform.instance;
     try {
       final Position position = await geolocator.getCurrentPosition(
-        // desiredAccuracy: LocationAccuracy.best,
-        locationSettings: LocationSettings()
-      );
+          // desiredAccuracy: LocationAccuracy.best,
+          locationSettings: LocationSettings());
       return position;
     } catch (e) {
       // Handle any errors here
@@ -319,19 +326,19 @@ Widget stepper(int index) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Order",
+              "Order".tr,
               style: TextStyle(
                   color: index == 0 || index > 0 ? Colors.green : Colors.white),
             ),
-            Text("Reached",
+            Text("Reached".tr,
                 style: TextStyle(
                     color:
                         index == 1 || index > 1 ? Colors.green : Colors.white)),
-            Text("Road",
+            Text("Road".tr,
                 style: TextStyle(
                     color:
                         index == 2 || index > 2 ? Colors.green : Colors.white)),
-            Text("Deliver",
+            Text("Deliver".tr,
                 style: TextStyle(
                     color:
                         index == 3 || index > 3 ? Colors.green : Colors.white))
@@ -339,7 +346,6 @@ Widget stepper(int index) {
         ),
       ),
       Container(
-
         height: 40,
         width: Get.width * 0.75,
         child: Center(

@@ -1,28 +1,21 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_location_picker/map_location_picker.dart';
 import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/models/directions_model.dart';
+import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/screens/TruckBooking/pickup_location.dart';
 import 'package:sultan_cab/services/directions_services.dart';
 import 'package:sultan_cab/utils/api_keys.dart';
 import 'package:sultan_cab/utils/colors.dart';
-import 'package:sultan_cab/utils/const.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
-import 'package:sultan_cab/widgets/app_button.dart';
-import 'package:sultan_cab/widgets/app_snackBar.dart';
-import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
+
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../utils/commons.dart';
-import 'package:http/http.dart' as http;
 
 class DropOffLocation extends StatefulWidget {
   const DropOffLocation({Key? key}) : super(key: key);
@@ -44,11 +37,6 @@ class _DropOffLocationState extends State<DropOffLocation> {
 
     super.initState();
   }
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +64,7 @@ class _DropOffLocationState extends State<DropOffLocation> {
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Text(
-                    "Unload Location",
+                    "Unload Location".tr,
                     style: TextStyle(
                         color: secondaryColor,
                         fontWeight: FontWeight.bold,
@@ -86,7 +74,6 @@ class _DropOffLocationState extends State<DropOffLocation> {
                 InkWell(
                   onTap: () async {
                     if (appProvider.currentAddress != null) {
-
                       String? address;
                       String? city;
                       LatLng? latlng;
@@ -99,53 +86,49 @@ class _DropOffLocationState extends State<DropOffLocation> {
                               address = result.formattedAddress!;
                               latlng = LatLng(result.geometry.location.lat,
                                   result.geometry.location.lng);
-                              city = await getCityName(latlng!.latitude,latlng!.longitude);
+                              city = await getCityName(
+                                  latlng!.latitude, latlng!.longitude);
                               Get.back();
                             }
                           },
                         ));
-                      }
-                      else {
+                      } else {
                         LocationResult? result =
-                        await Navigator.of(context).push(MaterialPageRoute(
+                            await Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => PlacePicker(GoogleMapApiKey),
                         ));
                         address = result?.formattedAddress!;
-                        latlng =result?.latLng;
-                        city=result?.city!.name!;
+                        latlng = result?.latLng;
+                        city = result?.city!.name!;
 
                         print(address);
                         print(latlng);
                         print(city);
                       }
 
-
-                      if (address != null && latlng!=null) {
-                        fairTruckProvider.unloadCity=city!;
-
+                      if (address != null && latlng != null) {
+                        fairTruckProvider.unloadCity = city!;
 
                         await appProvider.setDestinationLoc(latlng!, address!);
                         Directions? dir = await DirectionServices()
                             .getDirections(
-                            origin: appProvider.currentLoc!,
-                            dest: latlng!);
+                                origin: appProvider.currentLoc!, dest: latlng!);
                         print(dir);
                         if (dir != null) await appProvider.setDirections(dir);
                         if (appProvider.destAdd == null) {
                           // await AppConst.infoSnackBar(ChooseDestinationMsg);
                           return;
-                        }
-                        else if (appProvider.currentAddress == null) {
+                        } else if (appProvider.currentAddress == null) {
                           // await AppConst.infoSnackBar(ChooseStartingMsg);
                           return;
-                        }
-                        else {
+                        } else {
                           if (await fairTruckProvider.getAllTruckFairs())
-                            await Provider.of<AppFlowProvider>(context, listen: false).changeBookingStage(BookingStage.Destination);
+                            await Provider.of<AppFlowProvider>(context,
+                                    listen: false)
+                                .changeBookingStage(BookingStage.Destination);
                           else
                             logger.e('Error in truck fairs');
                         }
-
                       }
                     }
 

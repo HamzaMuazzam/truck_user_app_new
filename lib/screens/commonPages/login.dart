@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/phone_verify.dart';
 import 'package:sultan_cab/screens/commonPages/register_with_phone.dart';
 import 'package:sultan_cab/utils/colors.dart';
-import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:provider/provider.dart';
 import 'package:sultan_cab/utils/const.dart';
+import 'package:sultan_cab/utils/sizeConfig.dart';
 
 import '../TruckBooking/navigation_screen.dart';
 
@@ -36,13 +36,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     var h = SizeConfig.screenHeight / 812;
-   var width= MediaQuery.of(context).size.width;
-    var height= MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       // backgroundColor: Colors.black,
       body: SizedBox(
-        width: Get.width > 700 ?
-          Get.width/2  :Get.width ,
+        width: Get.width > 700 ? Get.width / 2 : Get.width,
         height: MediaQuery.of(context).size.height,
         child: SafeArea(
           child: Form(
@@ -51,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 sh(100),
                 Text(
-                  "Join us via phone Number",
+                  "Join us via phone Number".tr,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -80,11 +79,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           bool result = await authProvider.signInWithMobile();
                           if (result) {
                             Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (BuildContext context) {
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) {
                               return NavigationScreen();
                             }));
                           } else if (!result) {
-                            await AppConst.infoSnackBar("User Not Exist, Please create account");
+                            await AppConst.infoSnackBar(
+                                "User Not Exist, Please create account");
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -106,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     color: greenColor,
                     child: Text(
-                      "Next",
+                      "Next".tr,
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/fair_provider.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
+
 import '../../providers/auth_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../utils/colors.dart';
@@ -40,7 +41,7 @@ class _PaymentEvidenceState extends State<PaymentEvidence> {
         centerTitle: true,
         elevation: 0,
         title: Text(
-          "Booking Summary",
+          "Booking Summary".tr,
           style: TextStyle(
               fontSize: 18, fontWeight: FontWeight.bold, color: scaffoldColor),
         ),
@@ -129,7 +130,7 @@ class _PaymentEvidenceState extends State<PaymentEvidence> {
                                 ),
                                 sw(7),
                                 Expanded(
-                                  child:  InkWell(
+                                  child: InkWell(
                                     onTap: () {
                                       authProvider.getDpImage();
                                       // AppWidgets.dpImageFile(  xFile: authProvider!.xFile,
@@ -143,7 +144,7 @@ class _PaymentEvidenceState extends State<PaymentEvidence> {
                                       children: [
                                         /// Selected Truck
                                         Text(
-                                          'Payment proof*',
+                                          'Payment proof*'.tr,
                                           style: TextStyle(
                                               fontSize: h * 12,
                                               color: textYellowColor),
@@ -170,7 +171,7 @@ class _PaymentEvidenceState extends State<PaymentEvidence> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: AppButton(
-              label: "Submit",
+              label: "Submit".tr,
               onPressed: () async {
                 // bool result = await paymentProvider.uploadPaymentEvidence();
 

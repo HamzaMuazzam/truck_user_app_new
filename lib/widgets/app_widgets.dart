@@ -32,7 +32,7 @@ class AppWidgets {
                       if (Get.isBottomSheetOpen!) Get.back();
                       return value;
                     },
-                    label: 'Camera',
+                    label: 'Camera'.tr,
                   ),
                 ),
                 SizedBox(height: 5),
@@ -44,7 +44,7 @@ class AppWidgets {
                       if (Get.isBottomSheetOpen!) Get.back();
                       return value;
                     },
-                    label: "Gallery",
+                    label: "Gallery".tr,
                   ),
                 ),
               ],
@@ -59,7 +59,7 @@ class AppWidgets {
                 if (Get.isBottomSheetOpen!) Get.back();
                 return value;
               },
-              label: "Cancel",
+              label: "Cancel".tr,
             ),
           ),
           SizedBox(height: 10),
@@ -104,14 +104,14 @@ class AppWidgets {
 
   static Future<Uint8List> getBytesFromAsset(String path, int width) async {
     ByteData data = await rootBundle.load(path);
-    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
+        targetWidth: width);
     ui.FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
+        .buffer
+        .asUint8List();
   }
 }
-
-
-
 
 class LinearGradientButton extends StatelessWidget {
   final String text;
@@ -129,9 +129,7 @@ class LinearGradientButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color(0xFF35B66D),
-              Color(0xFFF1E41B)],
+            colors: [Color(0xFF35B66D), Color(0xFFF1E41B)],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
@@ -139,7 +137,8 @@ class LinearGradientButton extends StatelessWidget {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 8.0,bottom: 8,left: 12,right: 12),
+            padding:
+                const EdgeInsets.only(top: 8.0, bottom: 8, left: 12, right: 12),
             child: Text(
               text,
               style: TextStyle(

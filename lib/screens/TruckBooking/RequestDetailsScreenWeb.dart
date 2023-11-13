@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:map_location_picker/map_location_picker.dart';
-import 'package:place_picker/entities/location_result.dart';
-import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:sultan_cab/screens/TruckBooking/pickup_location.dart';
 import 'package:sultan_cab/screens/TruckBooking/searching_widget.dart';
+
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../services/apiServices/StorageServices/get_storage.dart';
@@ -56,7 +53,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "  Address of order",
+                            "  Address of order".tr,
                             style: TextStyle(color: Colors.grey),
                           ),
                           SizedBox(
@@ -270,7 +267,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                               width: 10,
                             ),
                             Text(
-                              "Loading Time",
+                              "Loading Time".tr,
                               style: TextStyle(color: Colors.grey),
                             )
                           ],
@@ -327,7 +324,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                               width: 10,
                             ),
                             Text(
-                              "Volumes of Good",
+                              "Volumes of Good".tr,
                               style: TextStyle(color: Colors.grey),
                             )
                           ],
@@ -345,7 +342,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                               width: 10,
                             ),
                             Text(
-                              "12 Tons",
+                              "12 Tons".tr,
                               style: TextStyle(color: Colors.white),
                             ),
                           ],
@@ -364,7 +361,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                               width: 10,
                             ),
                             Text(
-                              "Row Size",
+                              "Row Size".tr,
                               style: TextStyle(color: Colors.grey),
                             )
                           ],
@@ -382,7 +379,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                               width: 10,
                             ),
                             Text(
-                              "14m x 2m x 2m",
+                              "14m x 2m x 2m".tr,
                               style: TextStyle(color: Colors.white),
                             ),
                           ],
@@ -409,7 +406,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       decoration: InputDecoration(
-                        hintText: 'Delivery Note',
+                        hintText: 'Delivery Note'.tr,
                         border: InputBorder.none,
                       ),
                     ),
@@ -431,7 +428,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                       width: 150,
                       child: Center(
                         child: Text(
-                          "Next",
+                          "Next".tr,
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -470,19 +467,19 @@ Widget stepper(int index) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Order Information",
+              "Order Information".tr,
               style: TextStyle(
                   color: index == 0 || index > 0 ? Colors.green : Colors.white),
             ),
-            Text("Type of vehicle service",
+            Text("Type of vehicle service".tr,
                 style: TextStyle(
                     color:
                         index == 1 || index > 1 ? Colors.green : Colors.white)),
-            Text("Request details",
+            Text("Request details".tr,
                 style: TextStyle(
                     color:
                         index == 2 || index > 2 ? Colors.green : Colors.white)),
-            Text("Delivered ",
+            Text("Delivered".tr,
                 style: TextStyle(
                     color:
                         index == 3 || index > 3 ? Colors.green : Colors.white))

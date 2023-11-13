@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+
 import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
@@ -41,8 +42,8 @@ class _VehicleChooseScreenWebState extends State<VehicleChooseScreenWeb> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:
-                        List.generate(data.getTruckFareResponse!.length, (index) {
+                    children: List.generate(data.getTruckFareResponse!.length,
+                        (index) {
                       var truck = data.getTruckFareResponse![index];
 
                       return Padding(
@@ -54,31 +55,49 @@ class _VehicleChooseScreenWebState extends State<VehicleChooseScreenWeb> {
                               width: 250,
                               child: Stack(
                                 children: [
-
                                   Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: Container(
                                       height: 150,
                                       width: 250,
                                       decoration: BoxDecoration(
-                                          color:
-                                          fairTruckProvider.getTruckFareResponse![index].quantity>0?Colors.green:
-                                          Color(0xe8ffffff),
-                                          borderRadius: BorderRadius.circular(10),
-                                          // image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)
-
-                                        ),
+                                        color: fairTruckProvider
+                                                    .getTruckFareResponse![
+                                                        index]
+                                                    .quantity >
+                                                0
+                                            ? Colors.green
+                                            : Color(0xe8ffffff),
+                                        borderRadius: BorderRadius.circular(10),
+                                        // image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)
+                                      ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
                                           children: [
-                                          Text(truck.truckName??"",style: TextStyle(color: Colors.black),maxLines: 1),
-                                          Text(truck.truckType??"N/A",style: TextStyle(color: Colors.black),maxLines: 1),
-                                          Text("Friendly with all types of goods",style: TextStyle(color: Colors.blueGrey),maxLines: 1),
-                                            SizedBox(height: 5,)
-                                        ],),
+                                            Text(truck.truckName ?? "",
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                                maxLines: 1),
+                                            Text(truck.truckType ?? "N/A".tr,
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                                maxLines: 1),
+                                            Text(
+                                                "Friendly with all types of goods"
+                                                    .tr,
+                                                style: TextStyle(
+                                                    color: Colors.blueGrey),
+                                                maxLines: 1),
+                                            SizedBox(
+                                              height: 5,
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -88,7 +107,10 @@ class _VehicleChooseScreenWebState extends State<VehicleChooseScreenWeb> {
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(10),
-                                        image: DecorationImage(image: Image.asset("assets/logo/trucking-logo.png").image)),
+                                        image: DecorationImage(
+                                            image: Image.asset(
+                                                    "assets/logo/trucking-logo.png")
+                                                .image)),
                                   ),
                                 ],
                               ),
@@ -98,30 +120,50 @@ class _VehicleChooseScreenWebState extends State<VehicleChooseScreenWeb> {
                             Container(
                               width: 250,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 30),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 30),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     InkWell(
-                                        onTap: (){
-                                          if(fairTruckProvider.getTruckFareResponse![index].quantity>0){
-                                            fairTruckProvider.getTruckFareResponse![index].quantity--;
+                                        onTap: () {
+                                          if (fairTruckProvider
+                                                  .getTruckFareResponse![index]
+                                                  .quantity >
+                                              0) {
+                                            fairTruckProvider
+                                                .getTruckFareResponse![index]
+                                                .quantity--;
                                           }
                                           setState(() {});
                                         },
-                                        child: Text("-",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),)),
+                                        child: Text(
+                                          "-",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold),
+                                        )),
 
                                     // Icon(Icons.minimize,color: Colors.white,size: 25,),
-                                  Text("${fairTruckProvider.getTruckFareResponse![index].quantity}",),
-                                  InkWell(
-                                      onTap: (){
-                                        fairTruckProvider.getTruckFareResponse![index].quantity++;
-                                        setState(() {
-
-                                        });
-                                      },
-                                      child: Icon(Icons.add,color: Colors.white,size: 25,)),
-                                ],),
+                                    Text(
+                                      "${fairTruckProvider.getTruckFareResponse![index].quantity}",
+                                    ),
+                                    InkWell(
+                                        onTap: () {
+                                          fairTruckProvider
+                                              .getTruckFareResponse![index]
+                                              .quantity++;
+                                          setState(() {});
+                                        },
+                                        child: Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                          size: 25,
+                                        )),
+                                  ],
+                                ),
                               ),
                             )
                           ],
@@ -139,20 +181,19 @@ class _VehicleChooseScreenWebState extends State<VehicleChooseScreenWeb> {
                 children: [
                   InkWell(
                     onTap: () async {
-
-                      bool where = fairTruckProvider.getTruckFareResponse!.where((element) => element.quantity>0).isNotEmpty;
-                      if(where){
+                      bool where = fairTruckProvider.getTruckFareResponse!
+                          .where((element) => element.quantity > 0)
+                          .isNotEmpty;
+                      if (where) {
                         // await fairTruckProvider.getAllCities();
                         appFlowProvider.changeWebWidget(BookingStage.Summary);
 
-
-
                         // Get.to(BookingSummary());
-                      }else{
-                        AppConst.errorSnackBar("Please select one trailer at least");
+                      } else {
+                        AppConst.errorSnackBar(
+                            "Please select one trailer at least".tr);
                         return;
                       }
-
 
                       // if(dropAddress==null || pickaddress==null){
                       //   return;
@@ -164,7 +205,7 @@ class _VehicleChooseScreenWebState extends State<VehicleChooseScreenWeb> {
                       width: 150,
                       child: Center(
                         child: Text(
-                          "Next",
+                          "Next".tr,
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -198,19 +239,19 @@ Widget stepper(int index) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Order",
+              "Order".tr,
               style: TextStyle(
                   color: index == 0 || index > 0 ? Colors.green : Colors.white),
             ),
-            Text("Type of vehicle service",
+            Text("Type of vehicle service".tr,
                 style: TextStyle(
                     color:
                         index == 1 || index > 1 ? Colors.green : Colors.white)),
-            Text("Request details",
+            Text("Request details".tr,
                 style: TextStyle(
                     color:
                         index == 2 || index > 2 ? Colors.green : Colors.white)),
-            Text("Delivered ",
+            Text("Delivered".tr,
                 style: TextStyle(
                     color:
                         index == 3 || index > 3 ? Colors.green : Colors.white))

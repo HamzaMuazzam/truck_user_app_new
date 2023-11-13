@@ -2,22 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:sultan_cab/models/payment/TabPaymentDetails.dart';
 import 'package:sultan_cab/plugins/intel_phone_field/intl_phone_field.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
-import 'package:sultan_cab/screens/TruckBooking/RequestDetailsScreenWeb.dart';
-import 'package:sultan_cab/screens/TruckBooking/VehicleChooseScreenWeb.dart';
 import 'package:sultan_cab/screens/commonPages/register.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
-import 'package:sultan_cab/widgets/web_header.dart';
-import 'screens/TruckBooking/getOrderDetailsById.dart';
+
 import 'screens/TruckBooking/navigation_screen.dart';
 import 'screens/commonPages/phone_verify.dart';
-import 'screens/commonPages/web_view_screen.dart';
 
 class AuthWidget extends StatefulWidget {
   AuthWidget({Key? key}) : super(key: key);
@@ -35,18 +30,17 @@ class _AuthWidgetState extends State<AuthWidget> {
 
   _checkStates() async {
     await 2.delay();
-    bool _user = Provider.of<AuthProvider>(Get.context!, listen: false).checkUser();
-    if (!_user ) {
-
-    if(!GetPlatform.isWeb){
-      Navigator.of(Get.context!).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => VerifyPhoneScreen(),
-        ),
-      );
-    }
-    }
-    else {
+    bool _user =
+        Provider.of<AuthProvider>(Get.context!, listen: false).checkUser();
+    if (!_user) {
+      if (!GetPlatform.isWeb) {
+        Navigator.of(Get.context!).pushReplacement(
+          MaterialPageRoute(
+            builder: (_) => VerifyPhoneScreen(),
+          ),
+        );
+      }
+    } else {
       Navigator.of(Get.context!).pushReplacement(
         MaterialPageRoute(
           builder: (_) => NavigationScreen(),
@@ -62,8 +56,8 @@ class _AuthWidgetState extends State<AuthWidget> {
     return Scaffold(
         body: kIsWeb
             ?
-        // RequestDetailsScreenWeb()
-        GetStartedWeb()
+            // RequestDetailsScreenWeb()
+            GetStartedWeb()
             : Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
@@ -79,11 +73,9 @@ class _AuthWidgetState extends State<AuthWidget> {
                             height: Get.height),
                       ],
                     ),
-
                   ],
                 ),
-              )
-    );
+              ));
   }
 }
 
@@ -95,15 +87,13 @@ class GetStartedWeb extends StatefulWidget {
 }
 
 class _GetStartedWebState extends State<GetStartedWeb> {
-
-  Set<int> checks={};
-  Set<int> checks2={};
-  String crNo="";
+  Set<int> checks = {};
+  Set<int> checks2 = {};
+  String crNo = "";
 
   bool isLogin = true;
   @override
   Widget build(BuildContext context) {
-
     return Container(
       color: greybackColor,
       child: Stack(
@@ -134,14 +124,16 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                 height: 250,
                               ),
                               Text(
-                                "Move your heavy load at the touch of a button!".tr,
+                                "Move your heavy load at the touch of a button!"
+                                    .tr,
                                 style: TextStyle(
                                     color: Colors.green,
                                     fontWeight: FontWeight.w900,
                                     fontSize: 30),
                               ),
                               Text(
-                                "An all-in-one truck aggregation platform developed to fulfill the needs of businesses, brokers, and fleet owners.\n".tr,
+                                "An all-in-one truck aggregation platform developed to fulfill the needs of businesses, brokers, and fleet owners.\n"
+                                    .tr,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18),
                               ),
@@ -177,7 +169,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                       ),
                                       sh(20),
                                       AppTextFieldPassword(
-                                        label: 'Enter Password',
+                                        label: 'Enter Password'.tr,
                                         controller:
                                             authProvider.passwordController,
                                         error: false,
@@ -189,7 +181,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                         children: [
                                           Expanded(
                                               child: Text(
-                                                  "Don't have an account?")),
+                                                  "Don't have an account?".tr)),
                                           Expanded(
                                             child: InkWell(
                                                 onTap: () {
@@ -204,8 +196,8 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                                           isLogin = false;
                                                           setState(() {});
                                                         },
-                                                        child:
-                                                            Text('Register')))),
+                                                        child: Text(
+                                                            'Register'.tr)))),
                                           ),
                                         ],
                                       ),
@@ -221,7 +213,8 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                     ]
                                   : [
                                       Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: listRegister(),
                                       ),
                                       Row(
@@ -229,7 +222,8 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Expanded(
-                                              child: Text("Have an account?")),
+                                              child:
+                                                  Text("Have an account?".tr)),
                                           Expanded(
                                             child: InkWell(
                                                 onTap: () {
@@ -244,7 +238,8 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                                           isLogin = true;
                                                           setState(() {});
                                                         },
-                                                        child: Text('Login')))),
+                                                        child:
+                                                            Text('Login'.tr)))),
                                           ),
                                         ],
                                       ),
@@ -267,6 +262,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
       ),
     );
   }
+
   List<Widget> listRegister() {
     return [
       sh(20),
@@ -295,7 +291,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
             // fillColor: primaryColor,
 
             filled: true,
-            labelText: 'Phone Number',
+            labelText: 'Phone Number'.tr,
 
             labelStyle: TextStyle(
               color: Colors.grey,
@@ -366,34 +362,34 @@ class _GetStartedWebState extends State<GetStartedWeb> {
       ),
       checks.contains(0)
           ? Text(
-        "~Password must be greater than 8.",
-        style: TextStyle(
-            color: checks.contains(0) ? Colors.red : Colors.grey),
-      )
+              "~Password must be greater than 8.".tr,
+              style: TextStyle(
+                  color: checks.contains(0) ? Colors.red : Colors.grey),
+            )
           : Container(),
       checks.contains(1)
-          ? Text("~Must contain capital letter",
-          style: TextStyle(
-              color: checks.contains(1) ? Colors.red : Colors.grey))
+          ? Text("~Must contain capital letter".tr,
+              style: TextStyle(
+                  color: checks.contains(1) ? Colors.red : Colors.grey))
           : Container(),
       checks.contains(2)
           ? Text(
-        "~Must contain number",
-        style: TextStyle(
-            color: checks.contains(2) ? Colors.red : Colors.grey),
-      )
+              "~Must contain number".tr,
+              style: TextStyle(
+                  color: checks.contains(2) ? Colors.red : Colors.grey),
+            )
           : Container(),
       checks.contains(3)
           ? Text(
-        "~Must contain lower case letter",
-        style: TextStyle(
-            color: checks.contains(3) ? Colors.red : Colors.grey),
-      )
+              "~Must contain lower case letter".tr,
+              style: TextStyle(
+                  color: checks.contains(3) ? Colors.red : Colors.grey),
+            )
           : Container(),
       checks.contains(4)
-          ? Text("~Must contain special character.",
-          style: TextStyle(
-              color: checks.contains(4) ? Colors.red : Colors.grey))
+          ? Text("~Must contain special character.".tr,
+              style: TextStyle(
+                  color: checks.contains(4) ? Colors.red : Colors.grey))
           : Container(),
       sh(20),
       AppTextFieldPassword(
@@ -416,34 +412,34 @@ class _GetStartedWebState extends State<GetStartedWeb> {
       ),
       checks2.contains(0)
           ? Text(
-        "~Password must be greater than 8.",
-        style: TextStyle(
-            color: checks2.contains(0) ? Colors.red : Colors.grey),
-      )
+              "~Password must be greater than 8.".tr,
+              style: TextStyle(
+                  color: checks2.contains(0) ? Colors.red : Colors.grey),
+            )
           : Container(),
       checks2.contains(1)
-          ? Text("~Must contain capital letter",
-          style: TextStyle(
-              color: checks2.contains(1) ? Colors.red : Colors.grey))
+          ? Text("~Must contain capital letter".tr,
+              style: TextStyle(
+                  color: checks2.contains(1) ? Colors.red : Colors.grey))
           : Container(),
       checks2.contains(2)
           ? Text(
-        "~Must contain number",
-        style: TextStyle(
-            color: checks2.contains(2) ? Colors.red : Colors.grey),
-      )
+              "~Must contain number".tr,
+              style: TextStyle(
+                  color: checks2.contains(2) ? Colors.red : Colors.grey),
+            )
           : Container(),
       checks2.contains(3)
           ? Text(
-        "~Must contain lower case letter",
-        style: TextStyle(
-            color: checks2.contains(3) ? Colors.red : Colors.grey),
-      )
+              "~Must contain lower case letter".tr,
+              style: TextStyle(
+                  color: checks2.contains(3) ? Colors.red : Colors.grey),
+            )
           : Container(),
       checks2.contains(4)
-          ? Text("~Must contain special character.",
-          style: TextStyle(
-              color: checks2.contains(4) ? Colors.red : Colors.grey))
+          ? Text("~Must contain special character.".tr,
+              style: TextStyle(
+                  color: checks2.contains(4) ? Colors.red : Colors.grey))
           : Container(),
       sh(20),
       AppTextField(
@@ -473,22 +469,22 @@ class _GetStartedWebState extends State<GetStartedWeb> {
       sh(5),
       if (crNo.isEmpty)
         Text(
-          "CR number can't be empty",
+          "CR number can't be empty".tr,
           style: TextStyle(color: Colors.red),
         ),
       if (crNo.length < 10)
         Text(
-          "CR number can't be less than 10",
+          "CR number can't be less than 10".tr,
           style: TextStyle(color: Colors.red),
         ),
       if (crNo.length > 10)
         Text(
-          "CR number can't be greater than 10",
+          "CR number can't be greater than 10".tr,
           style: TextStyle(color: Colors.red),
         ),
       sh(20),
       AppTextField(
-        label: 'Company ContactNo',
+        label: 'Company ContactNo'.tr,
         controller: authProvider.companyContact,
         suffix: null,
         isVisibilty: null,
@@ -512,6 +508,4 @@ class _GetStartedWebState extends State<GetStartedWeb> {
       sh(40),
     ];
   }
-
-
 }

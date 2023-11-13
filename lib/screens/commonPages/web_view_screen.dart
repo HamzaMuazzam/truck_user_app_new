@@ -34,9 +34,7 @@ class _PaymentWebViewState extends State<PaymentWebView> {
           onProgress: (int progress) {
             // Update loading bar.
           },
-          onPageStarted: (String value) {
-
-          },
+          onPageStarted: (String value) {},
           onPageFinished: (String value) {
             logger.e(value.toString());
             if (value.toString().contains("message=APPROVED") ||
@@ -54,17 +52,16 @@ class _PaymentWebViewState extends State<PaymentWebView> {
           },
           onWebResourceError: (WebResourceError error) {
             print(error);
-
           },
           onNavigationRequest: (NavigationRequest request) {
-              // if (request.url.startsWith('https://www.youtube.com/')) {
-              //   return NavigationDecision.prevent;
-              // }
-              return NavigationDecision.navigate;
+            // if (request.url.startsWith('https://www.youtube.com/')) {
+            //   return NavigationDecision.prevent;
+            // }
+            return NavigationDecision.navigate;
           },
         ),
       )
-      ..loadRequest(Uri.parse(this.initUrl??"google.com"));
+      ..loadRequest(Uri.parse(this.initUrl ?? "google.com"));
     // #enddocregion webview_controller
     super.initState();
   }
@@ -85,8 +82,8 @@ class _PaymentWebViewState extends State<PaymentWebView> {
                 Icons.arrow_back_ios,
                 color: Colors.white,
               )),
-          title: const Text(
-            "Payment",
+          title: Text(
+            "Payment".tr,
             style: TextStyle(
               color: Colors.white,
               fontSize: 18,

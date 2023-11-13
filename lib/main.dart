@@ -1,20 +1,22 @@
 import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
-import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
+import 'package:sultan_cab/providers/auth_provider.dart' as Auth;
+import 'package:url_launcher/url_launcher.dart';
+
 import 'auth_widget.dart';
 import 'customized_plugins/lib/src/WebMapProvider.dart';
 import 'providers/GoogleMapProvider/location_and_map_provider.dart';
 import 'providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'providers/Truck _provider/fair_provider.dart';
 import 'providers/truck_provider/app_flow_provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -52,10 +54,9 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => Auth.AuthProvider()),
         ChangeNotifierProvider(create: (_) => TruckBookingProvider()),
         ChangeNotifierProvider(create: (_) => AppFlowProvider()),
         ChangeNotifierProvider(create: (_) => LocationAndMapProvider()),
@@ -79,7 +80,7 @@ class MyApp extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text("Download App from the stores."),
+                      Text("Download App from the stores.".tr),
                       Container(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -87,23 +88,29 @@ class MyApp extends StatelessWidget {
                             children: [
                               Expanded(
                                   child: InkWell(
-                                    onTap: (){
-                                      openAppInStore("https://play.google.com/store/apps/details?id=com.lahdatech.trucking");
-                                    },
-                                    child: Container(
-                                      child: Image.asset("assets/images/google-play-badge.png"),
+                                onTap: () {
+                                  openAppInStore(
+                                      "https://play.google.com/store/apps/details?id=com.lahdatech.trucking");
+                                },
+                                child: Container(
+                                  child: Image.asset(
+                                      "assets/images/google-play-badge.png"),
+                                ),
+                              )),
+                              SizedBox(
+                                width: 20,
                               ),
-                                  )),
-                              SizedBox(width: 20,),
                               Expanded(
                                   child: InkWell(
-                                    onTap: (){
-                                      openAppInStore("https://apps.apple.com/app/id<your_app_id>");
-                                    },
-                                    child: Container(
-                                      child: Image.asset("assets/images/app-store-badge-128x128.png"),
-                              ),
-                                  )),
+                                onTap: () {
+                                  openAppInStore(
+                                      "https://apps.apple.com/app/id<your_app_id>");
+                                },
+                                child: Container(
+                                  child: Image.asset(
+                                      "assets/images/app-store-badge-128x128.png"),
+                                ),
+                              )),
                             ],
                           ),
                         ),
@@ -122,6 +129,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 Future<void> openAppInStore(String appId) async {
   var parse = Uri.parse(appId);
 

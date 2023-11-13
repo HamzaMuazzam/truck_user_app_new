@@ -6,9 +6,9 @@ import 'package:sultan_cab/providers/Truck%20_provider/fair_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
+
 import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
-import '../../utils/commons.dart';
 import '../../utils/strings.dart';
 import 'searching_widget.dart';
 
@@ -30,12 +30,12 @@ class _BookingSummaryState extends State<BookingSummary> {
 
   @override
   Widget build(BuildContext context) {
-
     SizeConfig().init(context);
     h = SizeConfig.screenHeight / 812;
     b = SizeConfig.screenWidth / 375;
     final appProvider = Provider.of<AppFlowProvider>(context);
-    var travelTime = fairTruckProvider.convertTimeString(appProvider.directions!.totalDuration!);
+    var travelTime = fairTruckProvider
+        .convertTimeString(appProvider.directions!.totalDuration!);
     print(travelTime);
 
     return Scaffold(
@@ -45,7 +45,7 @@ class _BookingSummaryState extends State<BookingSummary> {
         centerTitle: true,
         elevation: 0,
         title: Text(
-          "Booking Summary",
+          "Booking Summary".tr,
           style: TextStyle(
               fontSize: 18, fontWeight: FontWeight.bold, color: scaffoldColor),
         ),
@@ -96,7 +96,8 @@ class _BookingSummaryState extends State<BookingSummary> {
                                     children: [
                                       /// 1st Location
                                       Text(
-                                        appProvider.currentAddress ?? PickUpAddrLbl,
+                                        appProvider.currentAddress ??
+                                            PickUpAddrLbl,
                                         style: TextStyle(
                                             fontSize: h * 12,
                                             color: textYellowColor),
@@ -129,7 +130,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                       /// Other Location
                                       Text(
                                         appProvider.destAdd ??
-                                            "Your Destination",
+                                            "Your Destination".tr,
                                         style: TextStyle(
                                             fontSize: h * 12,
                                             color: textGreyColor),
@@ -178,7 +179,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                     children: [
                                       /// Selected Truck
                                       Text(
-                                        'Selected Truck',
+                                        'Selected Truck'.tr,
                                         style: TextStyle(
                                             fontSize: h * 12,
                                             color: textYellowColor),
@@ -247,7 +248,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                     children: [
                                       /// Selected Truck
                                       Text(
-                                        'Load City',
+                                        'Load City'.tr,
                                         style: TextStyle(
                                             fontSize: h * 12,
                                             color: textYellowColor),
@@ -317,7 +318,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'UnLoad City',
+                                        'UnLoad City'.tr,
                                         style: TextStyle(
                                             fontSize: h * 12,
                                             color: textYellowColor),
@@ -387,7 +388,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Total Distance",
+                                        "Total Distance".tr,
                                         style: TextStyle(
                                             fontSize: h * 12,
                                             color: textYellowColor),
@@ -435,7 +436,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                           vertical: h * 0,
                         ),
                         padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                            EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -454,10 +455,10 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Total Estimated Time:",
+                                        "Total Estimated Time:".tr,
                                         style: TextStyle(
                                             fontSize: h * 12,
                                             color: textYellowColor),
@@ -474,7 +475,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       sh(10),
                                       Text(
@@ -503,7 +504,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                           vertical: h * 0,
                         ),
                         padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
+                            EdgeInsets.fromLTRB(b * 17, h * 0, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -522,10 +523,10 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Total Fairs",
+                                        "Total Fairs".tr,
                                         style: TextStyle(
                                             fontSize: h * 12,
                                             color: textYellowColor),
@@ -542,7 +543,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       sh(10),
                                       Text(
@@ -593,7 +594,8 @@ class _BookingSummaryState extends State<BookingSummary> {
                                   keyboardType: TextInputType.multiline,
                                   maxLines: null,
                                   decoration: InputDecoration(
-                                    hintText: 'My description details here..',
+                                    hintText:
+                                        'My description details here..'.tr,
                                     border: InputBorder.none,
                                   ),
                                 ),
@@ -610,7 +612,7 @@ class _BookingSummaryState extends State<BookingSummary> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: AppButton(
-              label: "Submit",
+              label: "Submit".tr,
               onPressed: () async {
                 Get.to(() => SearchingWidget());
               },
@@ -621,7 +623,6 @@ class _BookingSummaryState extends State<BookingSummary> {
       ),
     );
   }
-
 }
 
 String getSelectedTrucks() {
@@ -641,6 +642,7 @@ String getSelectedTrucks() {
   });
   return list.isEmpty ? "" : list.join("\n");
 }
+
 String getTotalFairs() {
   double total = 0.0;
   fairTruckProvider.getTruckFareResponse!.forEach((element) {
@@ -648,33 +650,29 @@ String getTotalFairs() {
 
     if (element.quantity > 0) {
       String distance;
-      double distanceDouble=0.0;
+      double distanceDouble = 0.0;
       if (appFlowProvider.directions == null) {
         distance = "50.0";
         distanceDouble = double.parse(distance);
-
-      }
-      else {
+      } else {
         distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
       }
-      if(distance.contains(",")){
-        distance=distance.replaceAll(",", "");
+      if (distance.contains(",")) {
+        distance = distance.replaceAll(",", "");
       }
       distanceDouble = double.parse(distance);
 
-      if(distanceDouble<=100 && distanceDouble<400){
-        totalValue=totalValue+double.parse(element.upto100Km!);
+      if (distanceDouble <= 100 && distanceDouble < 400) {
+        totalValue = totalValue + double.parse(element.upto100Km!);
+      } else if (distanceDouble > 100 && distanceDouble <= 400) {
+        totalValue = totalValue + double.parse(element.upto400Km!);
+      } else if (distanceDouble > 400) {
+        totalValue = totalValue +
+            distanceDouble * double.parse(element.moreThan400KmFares!);
       }
-      else if(distanceDouble>100 && distanceDouble<=400){
-        totalValue=totalValue+double.parse(element.upto400Km!);
-      }
-      else if(distanceDouble>400){
-        totalValue= totalValue + distanceDouble * double.parse(element.moreThan400KmFares!);
-      }
-      totalValue=totalValue*element.quantity;
-      var commission = double.parse(element.commission!)* element.quantity;
-      total=total+totalValue + commission;
-
+      totalValue = totalValue * element.quantity;
+      var commission = double.parse(element.commission!) * element.quantity;
+      total = total + totalValue + commission;
     }
   });
 
@@ -688,33 +686,29 @@ String getTotalFairsWithoutCommission() {
 
     if (element.quantity > 0) {
       String distance;
-      double distanceDouble=0.0;
+      double distanceDouble = 0.0;
       if (appFlowProvider.directions == null) {
         distance = "50.0";
         distanceDouble = double.parse(distance);
-
-      }
-      else {
+      } else {
         distance = appFlowProvider.directions!.totalDistance!.split(" ")[0];
       }
-      if(distance.contains(",")){
-        distance=distance.replaceAll(",", "");
+      if (distance.contains(",")) {
+        distance = distance.replaceAll(",", "");
       }
       distanceDouble = double.parse(distance);
 
-      if(distanceDouble<=100 && distanceDouble<400){
-        totalValue=totalValue+double.parse(element.upto100Km!);
+      if (distanceDouble <= 100 && distanceDouble < 400) {
+        totalValue = totalValue + double.parse(element.upto100Km!);
+      } else if (distanceDouble > 100 && distanceDouble <= 400) {
+        totalValue = totalValue + double.parse(element.upto400Km!);
+      } else if (distanceDouble > 400) {
+        totalValue = totalValue +
+            distanceDouble * double.parse(element.moreThan400KmFares!);
       }
-      else if(distanceDouble>100 && distanceDouble<=400){
-        totalValue=totalValue+double.parse(element.upto400Km!);
-      }
-      else if(distanceDouble>400){
-        totalValue= totalValue + distanceDouble * double.parse(element.moreThan400KmFares!);
-      }
-      totalValue=totalValue*element.quantity;
+      totalValue = totalValue * element.quantity;
       // var commission = double.parse(element.commission!) * element.quantity;
-      total=total+totalValue /*+ commission*/;
-
+      total = total + totalValue /*+ commission*/;
     }
   });
 

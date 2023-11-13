@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -8,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
+
 import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
@@ -85,7 +87,8 @@ class _SearchingWidgetState extends State<SearchingWidget>
                                   icon: BitmapDescriptor.defaultMarkerWithHue(
                                     BitmapDescriptor.hueRed,
                                   ),
-                                  infoWindow: InfoWindow(title: "Loadup Point"),
+                                  infoWindow:
+                                      InfoWindow(title: "Loadup Point".tr),
                                   position: LatLng(
                                     appProvider.currentLoc!.latitude,
                                     appProvider.currentLoc!.longitude,
@@ -152,12 +155,12 @@ class _SearchingWidgetState extends State<SearchingWidget>
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: AppButton(
-                    label: "Cancel Booking",
+                    label: "Cancel Booking".tr,
                     onPressed: () async {
                       appFlowProvider.stage = BookingStage.PickUp;
 
                       Fluttertoast.showToast(
-                          msg: "The order has been Cancelled.",
+                          msg: "The order has been Cancelled.".tr,
                           toastLength: Toast.LENGTH_LONG,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 1,
@@ -189,7 +192,7 @@ class _SearchingWidgetState extends State<SearchingWidget>
 }
 
 void bookOrder() async {
-  try{
+  try {
     List<dynamic> result = await fairTruckProvider.submitOrder();
     if (result[0] == true) {
       await 3.delay();
@@ -201,7 +204,7 @@ void bookOrder() async {
 
       if (!kIsWeb) {
         await Fluttertoast.showToast(
-            msg: "The order has been booked.",
+            msg: "The order has been booked.".tr,
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
@@ -209,7 +212,7 @@ void bookOrder() async {
             textColor: Colors.white,
             fontSize: 16.0);
       } else {
-        Get.snackbar("Congratulations", "The order has been booked.");
+        Get.snackbar("Congratulations".tr, "The order has been booked.".tr);
       }
       await 0.delay();
 
@@ -223,7 +226,7 @@ void bookOrder() async {
         fairTruckProvider.gotoOrderBookingScreen(result[1].toString());
       }
     }
-  }catch(e){
+  } catch (e) {
     print(e);
   }
 }

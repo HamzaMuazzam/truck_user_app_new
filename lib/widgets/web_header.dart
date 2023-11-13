@@ -47,8 +47,7 @@ class _WebHeaderState extends State<WebHeader> {
               width: Get.width,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Color(0xFF35B66D),
-                    Color(0xFFF1E41B)],
+                  colors: [Color(0xFF35B66D), Color(0xFFF1E41B)],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
@@ -82,7 +81,7 @@ class _WebHeaderState extends State<WebHeader> {
                     width: 5,
                   ),
                   Text(
-                    "Saudi Arabia\nRiyadh",
+                    "Saudi Arabia".tr + "\n" + "Riyadh".tr,
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
@@ -106,7 +105,7 @@ class _WebHeaderState extends State<WebHeader> {
                     width: 5,
                   ),
                   Text(
-                    "Work time\n09:00 am to 01:00 pm",
+                    "Work time".tr + "\n" + "09:00 am to 01:00 pm".tr,
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
@@ -172,7 +171,7 @@ class _WebHeaderState extends State<WebHeader> {
                           appFlowProvider.changeWebWidget(BookingStage.Orders);
                         },
                         child: Text(
-                          "Orders",
+                          "Orders".tr,
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -180,10 +179,11 @@ class _WebHeaderState extends State<WebHeader> {
                     Expanded(
                       child: InkWell(
                         onTap: () {
-                          appFlowProvider.changeWebWidget(BookingStage.Settings);
+                          appFlowProvider
+                              .changeWebWidget(BookingStage.Settings);
                         },
                         child: Text(
-                          "Settings",
+                          "Settings".tr,
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -194,7 +194,7 @@ class _WebHeaderState extends State<WebHeader> {
                           appFlowProvider.changeWebWidget(BookingStage.Profile);
                         },
                         child: Text(
-                          "Profile",
+                          "Profile".tr,
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -205,7 +205,7 @@ class _WebHeaderState extends State<WebHeader> {
             authProvider.checkUser()
                 ? Container()
                 : LinearGradientButton(
-                    text: 'Register or Login',
+                    text: 'Register or Login'.tr,
                     onPressed: () {},
                   ),
             Expanded(child: Container()),

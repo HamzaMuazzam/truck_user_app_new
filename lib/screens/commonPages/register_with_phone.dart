@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/login.dart';
 import 'package:sultan_cab/utils/colors.dart';
+import 'package:sultan_cab/utils/const.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
-import 'package:provider/provider.dart';
 import 'package:sultan_cab/widgets/app_widgets.dart';
-import 'package:sultan_cab/utils/const.dart';
 
 import '../TruckBooking/navigation_screen.dart';
 
@@ -17,7 +17,8 @@ class RegisterWithPhoneScreen extends StatefulWidget {
   const RegisterWithPhoneScreen({Key? key}) : super(key: key);
 
   @override
-  _RegisterWithPhoneScreenState createState() => _RegisterWithPhoneScreenState();
+  _RegisterWithPhoneScreenState createState() =>
+      _RegisterWithPhoneScreenState();
 }
 
 class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
@@ -116,8 +117,9 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                         validator: (val) {
                           if (authProvider!.phoneController.text.trim() == "")
                             return FieldEmptyError;
-                          else if (authProvider!.phoneController.text.length != 13)
-                            return "* Enter a valid number";
+                          else if (authProvider!.phoneController.text.length !=
+                              13)
+                            return "* Enter a valid number".tr;
                           else
                             return null;
                         },
@@ -127,12 +129,14 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                         label: RegisterLabel,
                         onPressed: () async {
                           if (authProvider!.xFile == null) {
-                            AppConst.infoSnackBar("Please Add Profile Image");
+                            AppConst.infoSnackBar(
+                                "Please Add Profile Image".tr);
                             return;
                           }
 
-                          authProvider!.phoneController.text = AppConst.arrangePhoneNumberFormat(
-                              authProvider!.phoneController.text)!;
+                          authProvider!.phoneController.text =
+                              AppConst.arrangePhoneNumberFormat(
+                                  authProvider!.phoneController.text)!;
 
                           Map<String, String> signUpFields = {
                             'name': authProvider!.nameController.text,
@@ -143,8 +147,9 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                             'userType': 'Rider'
                           };
 
-                          bool result = await authProvider!
-                              .signUp(fields: signUpFields, files: authProvider!.xFile!.path);
+                          bool result = await authProvider!.signUp(
+                              fields: signUpFields,
+                              files: authProvider!.xFile!.path);
 
                           if (result) {
                             authProvider!.disposeControllers();

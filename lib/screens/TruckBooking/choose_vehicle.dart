@@ -7,6 +7,7 @@ import 'package:sultan_cab/utils/const.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
+
 import 'booking_summary.dart';
 
 enum SingingCharacter { lafayette, jefferson }
@@ -20,9 +21,10 @@ class ChooseCar extends StatefulWidget {
 
 class _ChooseCarState extends State<ChooseCar> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  void initState()  {
+  void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -36,7 +38,7 @@ class _ChooseCarState extends State<ChooseCar> {
           mainAxisSize: MainAxisSize.min,
           children: [
             AppButton(
-              label: 'Select Trailer Type',
+              label: 'Select Trailer Type'.tr,
             ),
             Container(
               height: h * 380,
@@ -82,7 +84,7 @@ class _ChooseCarState extends State<ChooseCar> {
                                         padding: const EdgeInsets.only(top: 25),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Expanded(
                                               child: Padding(
@@ -92,7 +94,7 @@ class _ChooseCarState extends State<ChooseCar> {
                                                 child: Text(
                                                   fairTruckProvider
                                                       .getTruckFareResponse![
-                                                  index]
+                                                          index]
                                                       .truckName!
                                                       .toString(),
                                                   style: TextStyle(
@@ -106,7 +108,9 @@ class _ChooseCarState extends State<ChooseCar> {
                                                 right: 15.0,
                                               ),
                                               child: Text(
-                                                truck.moreThan400KmFares!.toString() +" per KM",
+                                                truck.moreThan400KmFares!
+                                                        .toString() +
+                                                    " per KM".tr,
                                                 style: TextStyle(
                                                     fontSize: 15,
                                                     color: greyColor),
@@ -116,7 +120,8 @@ class _ChooseCarState extends State<ChooseCar> {
                                         ),
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           sw(10),
                                           Padding(
@@ -124,11 +129,10 @@ class _ChooseCarState extends State<ChooseCar> {
                                                 right: 15.0, top: 20),
                                             child: Row(
                                               children: [
-
                                                 Text(
                                                   fairTruckProvider
                                                       .getTruckFareResponse![
-                                                  index]
+                                                          index]
                                                       .truckType!
                                                       .toString(),
                                                   style: TextStyle(
@@ -150,13 +154,18 @@ class _ChooseCarState extends State<ChooseCar> {
                               padding: const EdgeInsets.all(15.0),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   sw(70),
                                   InkWell(
                                     onTap: () {
-                                      if(fairTruckProvider.getTruckFareResponse![index].quantity>0){
-                                        fairTruckProvider.getTruckFareResponse![index].quantity--;
+                                      if (fairTruckProvider
+                                              .getTruckFareResponse![index]
+                                              .quantity >
+                                          0) {
+                                        fairTruckProvider
+                                            .getTruckFareResponse![index]
+                                            .quantity--;
                                         setState(() {});
                                       }
                                     },
@@ -192,7 +201,9 @@ class _ChooseCarState extends State<ChooseCar> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      fairTruckProvider.getTruckFareResponse![index].quantity++;
+                                      fairTruckProvider
+                                          .getTruckFareResponse![index]
+                                          .quantity++;
                                       setState(() {});
                                     },
                                     child: Container(
@@ -214,7 +225,7 @@ class _ChooseCarState extends State<ChooseCar> {
                             ),
                             Padding(
                               padding:
-                              const EdgeInsets.only(left: 90.0, right: 20),
+                                  const EdgeInsets.only(left: 90.0, right: 20),
                               child: Container(
                                 color: Colors.grey,
                                 height: 2,
@@ -226,33 +237,26 @@ class _ChooseCarState extends State<ChooseCar> {
                     );
                   }),
             ),
-
             AppButton(
               label: BookingContinue.toUpperCase(),
               onPressed: () async {
-                bool where = fairTruckProvider.getTruckFareResponse!.where((element) => element.quantity>0).isNotEmpty;
-                if(where){
+                bool where = fairTruckProvider.getTruckFareResponse!
+                    .where((element) => element.quantity > 0)
+                    .isNotEmpty;
+                if (where) {
                   // await fairTruckProvider.getAllCities();
                   // appFlowProvider.changeBookingStage(BookingStage.City);
 
                   Get.to(BookingSummary());
-                }else{
+                } else {
                   AppConst.errorSnackBar("Please select one trailer at least");
                   return;
                 }
-
-
-
               },
             ),
-
           ],
         ),
       );
     });
   }
-
 }
-
-
-

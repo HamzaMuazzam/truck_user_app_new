@@ -9,7 +9,6 @@ import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 
 import '../../providers/truck_provider/app_flow_provider.dart';
-import 'choose_vehicle.dart';
 
 class DestinationScreen extends StatefulWidget {
   const DestinationScreen({Key? key}) : super(key: key);
@@ -74,7 +73,8 @@ class _DestinationScreenState extends State<DestinationScreen> {
                         horizontal: b * 15,
                         vertical: h * 15,
                       ),
-                      padding: EdgeInsets.fromLTRB(b * 17, h * 20, b * 17, h * 20),
+                      padding:
+                          EdgeInsets.fromLTRB(b * 17, h * 20, b * 17, h * 20),
                       decoration: BoxDecoration(
                         color: greybackColor,
                         borderRadius: BorderRadius.circular(4),
@@ -103,7 +103,8 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                   children: [
                                     /// 1st Location
                                     Text(
-                                      appProvider.currentAddress ?? PickUpAddrLbl,
+                                      appProvider.currentAddress ??
+                                          PickUpAddrLbl,
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -135,9 +136,10 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                   children: [
                                     /// Other Location
                                     Text(
-                                      appProvider.destAdd ?? "Enter Destination",
+                                      appProvider.destAdd ??
+                                          "Enter Destination".tr,
                                       style: TextStyle(
-                                        fontSize:h * 12,
+                                        fontSize: h * 12,
                                       ),
                                     ),
                                   ],
@@ -147,22 +149,25 @@ class _DestinationScreenState extends State<DestinationScreen> {
                             ],
                           ),
                           sh(15),
-            Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children:
-                [
-                  // 34 mins,35 sec
-                  // 34:35
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              // 34 mins,35 sec
+                              // 34:35
 
-                        Text(
-                            "Travel Time-${appProvider.directions==null?"":appProvider.directions!.totalDuration}"),
-                        Text("/"),
-                        if (appProvider.destinationType != DestinationType.Multiple)
-                          Text("Distance-${appProvider.directions?.totalDistance}"),
-                        if (appProvider.destinationType == DestinationType.Multiple)
-                          Text("Distance-${appProvider.totalDistance}"),
-                      ],
-            ),
+                              Text(
+                                  "Travel Time-${appProvider.directions == null ? "" : appProvider.directions!.totalDuration}"
+                                      .tr),
+                              Text("/"),
+                              if (appProvider.destinationType !=
+                                  DestinationType.Multiple)
+                                Text(
+                                    "Distance-${appProvider.directions?.totalDistance}"),
+                              if (appProvider.destinationType ==
+                                  DestinationType.Multiple)
+                                Text("Distance-${appProvider.totalDistance}"),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -192,14 +197,15 @@ class _DestinationScreenState extends State<DestinationScreen> {
               ],
             ),
           ),
-        if (appFlowProvider.destinationType == DestinationType.Multiple) destinationWidget(isMap),
+        if (appFlowProvider.destinationType == DestinationType.Multiple)
+          destinationWidget(isMap),
       ],
     );
   }
 
   Widget destinationWidget(
-      bool isMap,
-      ) {
+    bool isMap,
+  ) {
     return Container(
       height: Get.height * .3,
       decoration: BoxDecoration(color: Colors.white),
@@ -234,7 +240,8 @@ class _DestinationScreenState extends State<DestinationScreen> {
                   color: index == 0 ? Colors.red : secondaryColor,
                 ),
                 title: Text(
-                  appFlowProvider.multiDestinationList[index].locationResult?.formattedAddress ??
+                  appFlowProvider.multiDestinationList[index].locationResult
+                          ?.formattedAddress ??
                       "",
                   style: TextStyle(fontSize: 12),
                 ),

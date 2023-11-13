@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/fair_provider.dart';
-import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
-import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
+
 import '../../providers/truck_provider/app_flow_provider.dart';
-import '../../utils/strings.dart';
-import 'home_page.dart';
-import 'navigation_screen.dart';
 import 'searching_widget.dart';
 
 class BookingTime extends StatefulWidget {
@@ -21,7 +16,7 @@ class BookingTime extends StatefulWidget {
 
 class _BookingTimeState extends State<BookingTime> {
   FairTruckProvider fairTruckProvider =
-  Provider.of(Get.context!, listen: false);
+      Provider.of(Get.context!, listen: false);
 
   @override
   void initState() {
@@ -29,14 +24,13 @@ class _BookingTimeState extends State<BookingTime> {
   }
 
   late double h, b;
-  var dropdownValue='1';
+  var dropdownValue = '1';
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     h = SizeConfig.screenHeight / 812;
     b = SizeConfig.screenWidth / 375;
     final appProvider = Provider.of<AppFlowProvider>(context);
-
 
     return Scaffold(
       backgroundColor: greybackColor,
@@ -45,7 +39,7 @@ class _BookingTimeState extends State<BookingTime> {
         centerTitle: true,
         elevation: 0,
         title: Text(
-          "Booking",
+          "Booking".tr,
           style: TextStyle(
               fontSize: 18, fontWeight: FontWeight.bold, color: scaffoldColor),
         ),
@@ -74,7 +68,7 @@ class _BookingTimeState extends State<BookingTime> {
                           vertical: h * 15,
                         ),
                         padding:
-                        EdgeInsets.fromLTRB(b * 17, h * 20, b * 17, h * 20),
+                            EdgeInsets.fromLTRB(b * 17, h * 20, b * 17, h * 20),
                         decoration: BoxDecoration(
                           color: greybackColor,
                           borderRadius: BorderRadius.circular(4),
@@ -87,12 +81,11 @@ class _BookingTimeState extends State<BookingTime> {
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
-
                                       /// loading date
                                       Text(
-                                        "Choose Loading Date and Time-Slot:",
+                                        "Choose Loading Date and Time-Slot:".tr,
                                         style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600,
@@ -104,7 +97,6 @@ class _BookingTimeState extends State<BookingTime> {
                               ],
                             ),
                             sh(30),
-
                             Row(
                               children: [
                                 Column(
@@ -115,25 +107,27 @@ class _BookingTimeState extends State<BookingTime> {
                                       decoration: BoxDecoration(
                                         color: Colors.grey.shade600,
                                         borderRadius: BorderRadius.circular(10),
-
-
                                       ),
-                                      child:DropdownButton<String>(
-                                        value: dropdownValue='1',
+                                      child: DropdownButton<String>(
+                                        value: dropdownValue = '1',
                                         onChanged: (String? newValue) {
                                           setState(() {
                                             dropdownValue = newValue!;
                                           });
                                         },
-                                        items: <String>['One', 'Two', 'Free', 'Four']
-                                            .map<DropdownMenuItem<String>>((String value) {
+                                        items: <String>[
+                                          'One'.tr,
+                                          'Two'.tr,
+                                          'Three'.tr,
+                                          'Four'.tr
+                                        ].map<DropdownMenuItem<String>>(
+                                            (String value) {
                                           return DropdownMenuItem<String>(
                                             value: value,
                                             child: Text(value),
                                           );
                                         }).toList(),
                                       ),
-
                                     ),
                                   ],
                                 ),
@@ -154,10 +148,9 @@ class _BookingTimeState extends State<BookingTime> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: AppButton(
-              label: "Submit",
+              label: "Submit".tr,
               onPressed: () async {
-
-                  Get.to(()=>SearchingWidget());
+                Get.to(() => SearchingWidget());
               },
             ),
           ),
