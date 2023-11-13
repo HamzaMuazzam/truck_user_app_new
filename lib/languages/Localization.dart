@@ -6,13 +6,13 @@ class Localization extends Translations {
         'ar': {
           "Welcome!": "مرحباً",
           "Arabic": "عربيً",
-          "Bid & Buy": "زاود واشتر",
+          "Profile": "زاود واشتر",
           "Password should not be less than 8 digits.":
               "المزادات المباشرة الحالية",
           "Up-coming Live Auctions": "المزادات المباشرة القادمة",
           "Car": "سيارات",
           "Auctions": "المزادات",
-          "Electricity": "كهرباء",
+          "Full Name": "كهرباء",
           "Congratulation you won the auction": "مبروووك فزت في المزاد",
           "Auction has been ended": "انتهى المزاد",
           "All fields are mandatory": "جميع الخانات الزامية",

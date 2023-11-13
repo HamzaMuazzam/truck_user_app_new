@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LanguageController extends GetxController {
-  static LanguageController get to => Get.find();
+  static LanguageController get to => Get.put(LanguageController());
 
   final _locale = ''.obs;
 

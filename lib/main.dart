@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:sultan_cab/languages/ContollerBindings.dart';
+import 'package:sultan_cab/languages/LanguageController.dart';
+import 'package:sultan_cab/languages/Localization.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart' as Auth;
 import 'package:url_launcher/url_launcher.dart';
@@ -54,6 +57,8 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var local = GetStorage().read("locale");
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Auth.AuthProvider()),
@@ -70,6 +75,19 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
         theme: ThemeData.dark(),
+        localizationsDelegates: const <LocalizationsDelegate<dynamic>>[],
+        locale: Locale(local ?? "en"),
+        translations: Localization(),
+        initialBinding: LanguageControllerBinding(),
+        localeResolutionCallback: (locale, supportedLocales) {
+          final languageController = LanguageController.to;
+          for (var supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == languageController.locale) {
+              return supportedLocale;
+            }
+          }
+          return supportedLocales.first;
+        },
         home: LayoutBuilder(builder: (context, constraints) {
           if (GetPlatform.isWeb && constraints.biggest.width <= 650.0) {
             print(constraints.biggest.width);

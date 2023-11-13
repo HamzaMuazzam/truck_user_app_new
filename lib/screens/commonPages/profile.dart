@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
+import 'package:sultan_cab/utils/api_keys.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
@@ -64,16 +65,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Navigator.pop(context);
                   },
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: h * 22,
-                      horizontal: b * 20,
-                    ),
-                    child: Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      size: h * 18,
-                      color: secondaryColor,
-                    ),
-                  ),
+                      padding: EdgeInsets.symmetric(
+                        vertical: h * 22,
+                        horizontal: b * 20,
+                      ),
+                      child: getLocal() == "ar"
+                          ? RotatedBox(
+                              quarterTurns: 2,
+                              child: Icon(
+                                Icons.arrow_forward_ios_sharp,
+                                size: h * 18,
+                                color: secondaryColor,
+                              ),
+                            )
+                          : Icon(
+                              Icons.arrow_back_ios_new_rounded,
+                              size: h * 18,
+                              color: secondaryColor,
+                            )),
                 ),
               ),
               title: Text(
@@ -116,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   AppTextField(
-                                    label: FullName,
+                                    label: FullName.tr,
                                     readOnly: isRead,
                                     controller: authProvider.nameController,
                                     suffix: null,
@@ -134,7 +143,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   sh(20),
                                   AppTextField(
-                                    label: PhoneNoLabel,
+                                    label: PhoneNoLabel.tr,
                                     readOnly: true,
                                     controller: phoneController,
                                     suffix: null,

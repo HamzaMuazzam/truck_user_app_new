@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/profile.dart';
+import 'package:sultan_cab/utils/api_keys.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/utils/strings.dart';
+import 'package:sultan_cab/widgets/changeLanguage.dart';
 import 'package:sultan_cab/widgets/logoutDialog.dart';
 
 import '../../main.dart';
@@ -35,6 +37,19 @@ class _SettingsState extends State<Settings> {
                   fontSize: h * 12,
                 ),
               ),
+              actions: [
+                InkWell(
+                  onTap: () {
+                    showLanguageChangeDialog(context);
+                  },
+                  child: Padding(
+                    padding: getLocal() == "ar"
+                        ? EdgeInsets.only(left: 15.0)
+                        : EdgeInsets.only(right: 15.0),
+                    child: Icon(Icons.language_outlined),
+                  ),
+                )
+              ],
               centerTitle: true,
               backgroundColor: secondaryColor,
             )
@@ -61,7 +76,7 @@ class _SettingsState extends State<Settings> {
                           sh(50),
                           SettingsTile(
                             title: ProfileLabel,
-                            icon: 'profileIcon'.tr,
+                            icon: 'profileIcon',
                             page: ProfileScreen(
                               isBooking: false,
                             ),
@@ -208,7 +223,9 @@ class SettingsTile extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: getLocal() == "ar"
+                  ? EdgeInsets.only(left: 8.0)
+                  : EdgeInsets.only(right: 8.0),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Icon(
