@@ -97,6 +97,7 @@ class _PickupLocationState extends State<PickupLocation> {
                 LatLng? latlng;
                 if (kIsWeb) {
                   await Get.to(MapLocationPicker(
+                    language: 'ar',
                     apiKey: GoogleMapApiKey,
                     onNext: (GeocodingResult? result) async {
                       if (result != null) {
