@@ -49,7 +49,7 @@ class Localization extends Translations {
           "~Must contain special character.": "	~يجب أن يحتوي على حرف خاص.	",
           "Don't have an account?": "	ليس لديك حساب؟	",
           "Register": "	تسجيل	",
-          "Delete Account": "	حذف الحساب	",
+          "Delete account": "	حذف الحساب	",
           "Are you sure you want to delete your account?":
               "	هل انت متأكد انك تريد حذف حسابك؟	",
           "This action will delete all your data and settings.":

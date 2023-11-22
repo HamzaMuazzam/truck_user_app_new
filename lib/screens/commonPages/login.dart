@@ -36,8 +36,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     var h = SizeConfig.screenHeight / 812;
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       // backgroundColor: Colors.black,
       body: SizedBox(

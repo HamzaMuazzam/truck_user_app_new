@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
+import 'package:sultan_cab/screens/commonPages/login.dart';
 import 'package:sultan_cab/utils/api_keys.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
@@ -302,8 +303,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: const EdgeInsets.only(right: 8.0),
               child: ElevatedButton(
                 onPressed: () async {
-                  Navigator.of(context).pop();
                   await authProvider.deleteAccount();
+                  Get.offAll(LoginScreen());
                 },
                 child: Text('Delete Account'.tr),
               ),

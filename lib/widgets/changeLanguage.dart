@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 
 import '../../languages/LanguageController.dart';
@@ -32,7 +33,8 @@ class LanguageChangeDialog extends StatelessWidget {
               groupValue: languageController.locale,
               onChanged: (value) {
                 languageController.changeLocale("ar");
-                Get.back();
+                Phoenix.rebirth(context);
+                // Get.offAll(AuthWidget());
               },
             ),
           ),
