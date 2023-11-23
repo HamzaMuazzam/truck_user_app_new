@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 
 const Color secondaryColor = Color(0xFF4ED19A);
 const Color textColor = Colors.white;
@@ -18,7 +17,6 @@ const Color greybackColor = Color(0xff303031);
 const Color textYellowColor = Color(0xFFffC700);
 const Color phoneBoxBackground = Color(0xFF4B4C4F);
 
-
 const Gradient buttonGradient = LinearGradient(
   colors: [primaryColor, primaryColor],
 );
@@ -31,12 +29,11 @@ var boxShadow2 = [
   )
 ];
 var constBoxDecoration = BoxDecoration(
-  // color: Colors.white,
-    color:greybackColor
-);
+    // color: Colors.white,
+    color: greybackColor);
 var allBoxDecoration = BoxDecoration(
   // color: Colors.white,
-    color:greybackColor,
+  color: greybackColor,
 
   borderRadius: BorderRadius.circular(4),
   boxShadow: [
@@ -48,8 +45,6 @@ var allBoxDecoration = BoxDecoration(
     ),
   ],
 );
-
-
 
 Map<int, Color> swatch = {
   50: primaryColor.withOpacity(0.1),
@@ -67,15 +62,15 @@ MaterialColor colorSwatch = MaterialColor(0xffffffff, swatch);
 // MaterialColor colorSwatch = MaterialColor(0xffDAE238, swatch);
 
 String timeFormat(TimeOfDay _selectedTime) {
-  DateTime tempDate = DateFormat("hh:mm")
-      .parse(_selectedTime.hour.toString() + ":" + _selectedTime.minute.toString());
+  DateTime tempDate = DateFormat("hh:mm").parse(
+      _selectedTime.hour.toString() + ":" + _selectedTime.minute.toString());
   var dateFormat = DateFormat("h:mm a");
   return dateFormat.format(tempDate);
 }
 
 String timeFormatDate(DateTime _selectedTime) {
-  DateTime tempDate = DateFormat("hh:mm")
-      .parse(_selectedTime.hour.toString() + ":" + _selectedTime.minute.toString());
+  DateTime tempDate = DateFormat("hh:mm").parse(
+      _selectedTime.hour.toString() + ":" + _selectedTime.minute.toString());
   var dateFormat = DateFormat("h:mm a");
   return dateFormat.format(tempDate);
 }
@@ -105,7 +100,7 @@ DropdownMenuItem<int> hubItem() {
         borderRadius: BorderRadius.circular(4),
       ),
       child: Text(
-        HubLabel,
+        "HubLabel",
         style: TextStyle(
           color: Colors.white,
           fontSize: b * 12,

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/utils/strings.dart';
@@ -92,7 +93,7 @@ class _StartBookingState extends State<StartBooking> {
                                                   null)
                                                 Marker(
                                                   markerId:
-                                                      MarkerId(PickupLabel),
+                                                      MarkerId("LoadUp".tr),
                                                   icon: BitmapDescriptor
                                                       .defaultMarkerWithHue(
                                                     BitmapDescriptor.hueRed,
@@ -115,8 +116,8 @@ class _StartBookingState extends State<StartBooking> {
                                                     BitmapDescriptor.hueBlue,
                                                   ),
                                                   infoWindow: InfoWindow(
-                                                      title:
-                                                          DestinationPointLabel),
+                                                      title: "Destination Point"
+                                                          .tr),
                                                   position: LatLng(
                                                     appProvider
                                                         .destLoc!.latitude,

@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 
 import '../../providers/truck_provider/app_flow_provider.dart';
@@ -49,7 +48,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
             ),
           ),
           title: Text(
-            DestinationLabel,
+            "Destination".tr,
             style: TextStyle(
               fontSize: h * 18,
               fontWeight: FontWeight.w700,
@@ -104,7 +103,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                     /// 1st Location
                                     Text(
                                       appProvider.currentAddress ??
-                                          PickUpAddrLbl,
+                                          "Pick up address".tr,
                                       style: TextStyle(
                                         fontSize: h * 12,
                                       ),
@@ -182,7 +181,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                       horizontal: b * 30,
                     ),
                     child: AppButton(
-                      label: isMap ? ConfirmLocationLabel : LocateOnMapLabel,
+                      label: isMap ? "CONFIRM LOCATION".tr : "LOCATE ON MAP".tr,
                       onPressed: () {
                         if (isMap) {
                           appProvider.changeBookingStage(BookingStage.Vehicle);

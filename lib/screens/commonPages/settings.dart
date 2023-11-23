@@ -7,11 +7,10 @@ import 'package:sultan_cab/screens/commonPages/profile.dart';
 import 'package:sultan_cab/utils/api_keys.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/changeLanguage.dart';
 import 'package:sultan_cab/widgets/logoutDialog.dart';
 
-import '../../main.dart';
+import '../../auth_widget.dart';
 import '../TruckBooking/navigation_screen.dart';
 
 class Settings extends StatefulWidget {
@@ -75,7 +74,7 @@ class _SettingsState extends State<Settings> {
                         children: [
                           sh(50),
                           SettingsTile(
-                            title: ProfileLabel,
+                            title: "Profile".tr.tr,
                             icon: 'profileIcon',
                             page: ProfileScreen(
                               isBooking: false,
@@ -104,12 +103,7 @@ class _SettingsState extends State<Settings> {
                                       .logout();
 
                                   if (status) {
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                        builder: (context) => MyApp(),
-                                      ),
-                                      (route) => false,
-                                    );
+                                    Get.offAll(AuthWidget());
                                   }
                                 }
                               },
@@ -126,7 +120,7 @@ class _SettingsState extends State<Settings> {
                                         size: h * 16, color: secondaryColor),
                                     sw(5),
                                     Text(
-                                      LogOutLabel,
+                                      "Log Out".tr,
                                       style: TextStyle(
                                           fontSize: h * 12,
                                           fontWeight: FontWeight.w700,
@@ -186,7 +180,7 @@ class SettingsTile extends StatelessWidget {
               builder: (context) {
                 return dialogBox!;
               });
-        } else if (title != RateAppLabel) {
+        } else if (title != "Rate the app".tr) {
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (_) => NavigationScreen(),

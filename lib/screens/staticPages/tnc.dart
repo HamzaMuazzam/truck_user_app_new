@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sultan_cab/utils/app_texts.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 
 class TnCScreen extends StatelessWidget {
   @override
@@ -18,7 +18,7 @@ class TnCScreen extends StatelessWidget {
           child: Column(
             children: [
               AppBarText(
-                txt: TnCLabel,
+                txt: "Terms & Conditions".tr,
                 icon: 'assets/icons/tnc_icon.svg',
                 actionIcon: null,
                 isBackButton: true,
@@ -35,7 +35,7 @@ class TnCScreen extends StatelessWidget {
                       children: [
                         sh(42),
                         Text(
-                          LastUpdate + ": 28th Nov 2021",
+                          "Last Updated".tr + ": 28th Nov 2021",
                           style: TextStyle(
                             fontSize: b * 12,
                             fontWeight: FontWeight.w500,
@@ -44,7 +44,7 @@ class TnCScreen extends StatelessWidget {
                         ),
                         sh(25),
                         Text(
-                          AcceptingTheTerm,
+                          "Accepting the Terms".tr,
                           style: TextStyle(
                             fontSize: b * 12,
                             fontWeight: FontWeight.w500,
@@ -53,7 +53,7 @@ class TnCScreen extends StatelessWidget {
                         ),
                         sh(21),
                         Text(
-                          DummyTnC,
+                          "DummyTnC".tr,
                           style: TextStyle(
                             fontSize: b * 12,
                             fontWeight: FontWeight.w500,

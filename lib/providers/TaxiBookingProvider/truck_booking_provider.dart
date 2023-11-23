@@ -23,7 +23,7 @@ enum RideStage {
   FinishRide,
 }
 
-TruckBookingProvider taxiBookingProvider =
+TruckBookingProvider truckBookingProvider =
     Provider.of<TruckBookingProvider>(Get.context!, listen: false);
 
 class TruckBookingProvider extends ChangeNotifier {

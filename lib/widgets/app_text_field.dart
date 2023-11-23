@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 
 class AppTextField extends StatelessWidget {
   AppTextField(
       {required this.label,
-        this.controller,
-        required this.suffix,
-        required this.isVisibilty,
-        this.inputType,
-        this.maxLines,
-        this.size,
-        this.spacing,
-        this.minLines,
-        this.vertPad,
-        this.hint,
-        this.validator,
-        this.readOnly,
-        this.maxLength,
-        this.labelSize,
-        this.isBold = false,
-        this.autoValidate = false,
-        this.onTap,
-        this.onChange});
+      this.controller,
+      required this.suffix,
+      required this.isVisibilty,
+      this.inputType,
+      this.maxLines,
+      this.size,
+      this.spacing,
+      this.minLines,
+      this.vertPad,
+      this.hint,
+      this.validator,
+      this.readOnly,
+      this.maxLength,
+      this.labelSize,
+      this.isBold = false,
+      this.autoValidate = false,
+      this.onTap,
+      this.onChange});
   final bool autoValidate;
   final String? label;
   final TextEditingController? controller;
@@ -49,7 +49,6 @@ class AppTextField extends StatelessWidget {
     SizeConfig().init(context);
     var b = SizeConfig.screenWidth / 375;
     var h = SizeConfig.screenHeight / 600;
-
 
     var outlineInputBorder = OutlineInputBorder(
       borderSide: BorderSide(
@@ -77,11 +76,11 @@ class AppTextField extends StatelessWidget {
             key: key,
             readOnly: readOnly ?? false,
             validator: validator ??
-                    (val) {
+                (val) {
                   return null;
                 },
             style: TextStyle(
-              height: h*1.3,
+              height: h * 1.3,
               fontSize: size ?? h * 15,
               fontWeight: FontWeight.w500,
               letterSpacing: spacing ?? 0,
@@ -91,18 +90,17 @@ class AppTextField extends StatelessWidget {
             keyboardType: inputType ?? TextInputType.text,
             maxLines: maxLines ?? 1,
             minLines: minLines ?? 1,
-
             decoration: InputDecoration(
               isDense: true,
               counterText: '',
               prefixIcon: suffix != null
                   ? Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  sw(15),
-                  suffix!,
-                ],
-              )
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        sw(15),
+                        suffix!,
+                      ],
+                    )
                   : null,
               hintText: hint,
               hintStyle: TextStyle(
@@ -144,19 +142,18 @@ class AppTextField extends StatelessWidget {
 
 // ignore: must_be_immutable
 class AppTextFieldPassword extends StatefulWidget {
-  AppTextFieldPassword({
-    @required this.label,
-    @required this.controller,
-    this.inputType,
-    this.size,
-    this.spacing,
-    this.vertPad,
-    this.hint,
-    this.validator,
-    this.error,
-    this.isMisMatch,
-    this.onChanged
-  });
+  AppTextFieldPassword(
+      {@required this.label,
+      @required this.controller,
+      this.inputType,
+      this.size,
+      this.spacing,
+      this.vertPad,
+      this.hint,
+      this.validator,
+      this.error,
+      this.isMisMatch,
+      this.onChanged});
 
   final String? label;
   final TextEditingController? controller;
@@ -210,11 +207,11 @@ class _AppTextFieldPasswordState extends State<AppTextFieldPassword> {
                   cursorColor: secondaryColor,
                   onChanged: widget.onChanged,
                   validator: widget.validator ??
-                          (val) {
+                      (val) {
                         return null;
                       },
                   style: TextStyle(
-                    height: h*1.3,
+                    height: h * 1.3,
                     fontSize: widget.size ?? h * 15,
                     fontWeight: FontWeight.w500,
                     letterSpacing: widget.spacing ?? 0,
@@ -266,22 +263,22 @@ class _AppTextFieldPasswordState extends State<AppTextFieldPassword> {
         sh(5),
         widget.error!
             ? widget.isMisMatch!
-            ? Text(
-          "     " + "* Passwords don't match",
-          style: TextStyle(
-            fontSize: b * 10,
-            fontWeight: FontWeight.w400,
-            color: secondaryColor,
-          ),
-        )
-            : Text(
-          "     " + FieldEmptyError,
-          style: TextStyle(
-            fontSize: b * 10,
-            fontWeight: FontWeight.w400,
-            color: secondaryColor,
-          ),
-        )
+                ? Text(
+                    "     " + "* Passwords don't match",
+                    style: TextStyle(
+                      fontSize: b * 10,
+                      fontWeight: FontWeight.w400,
+                      color: secondaryColor,
+                    ),
+                  )
+                : Text(
+                    "     " + "* Field can't be empty".tr,
+                    style: TextStyle(
+                      fontSize: b * 10,
+                      fontWeight: FontWeight.w400,
+                      color: secondaryColor,
+                    ),
+                  )
             : sh(0),
       ],
     );

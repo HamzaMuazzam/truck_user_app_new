@@ -6,7 +6,6 @@ import 'package:sultan_cab/screens/commonPages/login.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/const.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
 import 'package:sultan_cab/widgets/app_widgets.dart';
@@ -74,7 +73,7 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                     children: [
                       sh(20),
                       Text(
-                        CreateAccountLbl,
+                        "Register Your Account".tr,
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: b * 24,
@@ -94,13 +93,13 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                       ),
                       sh(20),
                       AppTextField(
-                        label: NameLabel,
+                        label: "Full Name".tr,
                         controller: authProvider!.nameController,
                         suffix: null,
                         isVisibilty: null,
                         validator: (val) {
                           if (authProvider!.nameController.text.trim() == "")
-                            return FieldEmptyError;
+                            return "* Field can't be empty".tr;
                           else
                             return null;
                         },
@@ -108,7 +107,7 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                       sh(20),
                       AppTextField(
                         // readOnly: true,
-                        label: PhoneNoLabel,
+                        label: "Phone Number".tr,
                         controller: authProvider!.phoneController,
                         maxLength: 13,
                         suffix: null,
@@ -116,7 +115,7 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                         inputType: TextInputType.number,
                         validator: (val) {
                           if (authProvider!.phoneController.text.trim() == "")
-                            return FieldEmptyError;
+                            return "* Field can't be empty".tr;
                           else if (authProvider!.phoneController.text.length !=
                               13)
                             return "* Enter a valid number".tr;
@@ -126,7 +125,7 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                       ),
                       sh(20),
                       AppButton(
-                        label: RegisterLabel,
+                        label: "Register",
                         onPressed: () async {
                           if (authProvider!.xFile == null) {
                             AppConst.infoSnackBar(
@@ -168,7 +167,7 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                             ),
                           ),
                           Text(
-                            OrLabel.toUpperCase(),
+                            "Login".tr.toUpperCase(),
                             style: TextStyle(
                               fontSize: b * 12,
                               color: Color(0xffe4e4e4),
@@ -188,7 +187,7 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            AlreadyAcountLabel + " ",
+                            "Already have an account?".tr + " ",
                             style: TextStyle(
                               fontSize: b * 14,
                               fontWeight: FontWeight.w700,
@@ -203,7 +202,7 @@ class _RegisterWithPhoneScreenState extends State<RegisterWithPhoneScreen> {
                               );
                             },
                             child: Text(
-                              LoginLabel,
+                              "Login".tr,
                               style: TextStyle(
                                 fontSize: b * 14,
                                 color: secondaryColor,

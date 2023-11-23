@@ -15,9 +15,9 @@ class LanguageController extends GetxController {
     _locale.value = GetStorage().read('locale') ?? 'en';
   }
 
-  void changeLocale(String newLocale) async {
+  Future<void> changeLocale(String newLocale) async {
     await GetStorage().write('locale', newLocale);
     _locale.value = newLocale;
-    Get.updateLocale(Locale(newLocale));
+    await Get.updateLocale(Locale(newLocale));
   }
 }

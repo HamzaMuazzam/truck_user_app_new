@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 
 class LogOutDialog extends StatelessWidget {
@@ -17,13 +16,11 @@ class LogOutDialog extends StatelessWidget {
 
     return Dialog(
       insetPadding: EdgeInsets.symmetric(horizontal: h * 30),
-
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(b * 10),
       ),
       child: Container(
-        width: Get.width<700 ?Get.width/1.3
-        :Get.width/1.7,
+        width: Get.width < 700 ? Get.width / 1.3 : Get.width / 1.7,
         padding: EdgeInsets.symmetric(horizontal: b * 16, vertical: h * 16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -35,12 +32,9 @@ class LogOutDialog extends StatelessWidget {
             ),
             sh(10),
             Text(
-              ConfirmLogoutMsg,
+              "Are you sure, you want to logout of the Truck King?".tr,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: h * 14,
-                color: textColor
-              ),
+              style: TextStyle(fontSize: h * 14, color: textColor),
             ),
             sh(25),
             Row(
@@ -58,12 +52,11 @@ class LogOutDialog extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: h * 16),
                       decoration: BoxDecoration(
                         color: greyColor,
-
                         border: Border.all(color: greyColor),
                         borderRadius: BorderRadius.circular(h * 4),
                       ),
                       child: Text(
-                        NoLabel,
+                        "No".tr,
                         style: TextStyle(
                           letterSpacing: 0.6,
                           fontSize: h * 15,
@@ -79,8 +72,7 @@ class LogOutDialog extends StatelessWidget {
                 Expanded(
                   child: AppButton(
                     onPressed: onConfirm,
-                    label: OkayLabel,
-
+                    label: "OKAY".tr,
                   ),
                 ),
               ],

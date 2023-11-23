@@ -5,7 +5,6 @@ import 'package:sultan_cab/providers/Truck%20_provider/fair_provider.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/const.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 
 import 'booking_summary.dart';
@@ -238,7 +237,7 @@ class _ChooseCarState extends State<ChooseCar> {
                   }),
             ),
             AppButton(
-              label: BookingContinue.toUpperCase(),
+              label: "Continue".tr.toUpperCase(),
               onPressed: () async {
                 bool where = fairTruckProvider.getTruckFareResponse!
                     .where((element) => element.quantity > 0)

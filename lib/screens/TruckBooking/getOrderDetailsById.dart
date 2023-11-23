@@ -18,7 +18,6 @@ import 'package:sultan_cab/utils/timer.dart';
 import '../../models/Truck_models/getAllOrdersResponse.dart';
 import '../../models/payment/TabPaymentDetails.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
-import '../../utils/strings.dart';
 import '../commonPages/web_view_screen.dart';
 
 class OrderDetailById extends StatefulWidget {
@@ -118,7 +117,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                         Text(
                                           fairTruckProvider.order!.orderDetails!
                                                   .pickUpAddress ??
-                                              PickUpAddrLbl,
+                                              "Pick up address".tr,
                                           style: TextStyle(
                                               fontSize: h * 12,
                                               color: textYellowColor),
@@ -356,7 +355,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   sw(7),
                                   Expanded(
                                     child: Text(
-                                      'Drop off Lng',
+                                      'Drop off Lng'.tr,
                                       style: TextStyle(
                                           fontSize: h * 12,
                                           color: textYellowColor),
@@ -457,7 +456,7 @@ class _OrderDetailByIdState extends State<OrderDetailById> {
                                   sw(7),
                                   Expanded(
                                     child: Text(
-                                      'NotificationSent',
+                                      'NotificationSent'.tr,
                                       style: TextStyle(
                                           fontSize: h * 12,
                                           color: textYellowColor),

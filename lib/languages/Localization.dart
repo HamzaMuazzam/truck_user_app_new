@@ -50,6 +50,7 @@ class Localization extends Translations {
           "Don't have an account?": "	ليس لديك حساب؟	",
           "Register": "	تسجيل	",
           "Delete account": "	حذف الحساب	",
+          "Delete Account": "	حذف الحساب	",
           "Are you sure you want to delete your account?":
               "	هل انت متأكد انك تريد حذف حسابك؟	",
           "This action will delete all your data and settings.":
@@ -123,7 +124,7 @@ class Localization extends Translations {
           " KM": "	كيلو متر 	",
           "Amount": "	القيمة	",
           "SAR": "	ريال سعودي	",
-          "Created Date'": "	تاريخ الإنشاء'	",
+          "Created Date": "	تاريخ الإنشاء'	",
           "Loaded": "	تم الشحن	",
           "null": "	غير صالح	",
           "Accepted": "	مقبول	",
@@ -273,6 +274,7 @@ class Localization extends Translations {
           "Log Out": "	تسجيل خروج	",
           "and": "	و	",
           "Okay": "	حسناً	",
+          "OKAY": "	حسناً	",
           "Are you sure, you want to logout of the Truck King?":
               "	هل أنت متأكد أنك تريد تسجيل الخروج من Truck King؟	",
           "Pick up address": "	عنوان الاستلام	",

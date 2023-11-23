@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:sultan_cab/utils/app_texts.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
   @override
@@ -18,7 +18,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           child: Column(
             children: [
               AppBarText(
-                txt: PrivacyPolicyLabel,
+                txt: "Privacy Policy".tr,
                 icon: 'assets/icons/privacy_icon.svg',
                 actionIcon: null,
                 isBackButton: true,
@@ -34,7 +34,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                       children: [
                         sh(42),
                         Text(
-                          LastUpdate + ": 28th Nov 2021",
+                          "Last Updated".tr + ": 28th Nov 2021",
                           style: TextStyle(
                             fontSize: b * 12,
                             fontWeight: FontWeight.w500,
@@ -43,7 +43,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                         ),
                         sh(25),
                         Text(
-                          CompanyPrivacy,
+                          "Company’s Privacy Policies".tr,
                           style: TextStyle(
                             fontSize: b * 12,
                             fontWeight: FontWeight.w500,
@@ -52,7 +52,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                         ),
                         sh(21),
                         Text(
-                          DummyTnC,
+                          "DummyTnC".tr,
                           style: TextStyle(
                             fontSize: b * 12,
                             fontWeight: FontWeight.w500,

@@ -288,8 +288,10 @@ class AuthProvider extends ChangeNotifier {
 
   Future<bool> userLogin() async {
     AppConst.startProgress();
-    String body = json.encode(
-        {"email": emailController.text, "password": passwordController.text});
+    String body = json.encode({
+      "email": emailController.text,
+      "Password".tr: passwordController.text
+    });
 
     String request =
         await ApiServices.postMethodTruck(feedUrl: ApiUrls.LOGIN, body: body);

@@ -7,7 +7,6 @@ import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/register.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
 
@@ -148,7 +147,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                               children: isLogin
                                   ? [
                                       AppTextField(
-                                        label: EmailLabel,
+                                        label: "Email".tr,
                                         controller:
                                             authProvider.emailController,
                                         suffix: null,
@@ -159,10 +158,11 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                           RegExp regex = new RegExp(
                                               emailPattern.toString());
                                           if (value!.isEmpty) {
-                                            return FieldEmptyError;
+                                            return "* Field can't be empty".tr;
                                           } else if ((!regex
                                               .hasMatch(value.trim()))) {
-                                            return ValidEmailLabel;
+                                            return "* Please enter a valid email id"
+                                                .tr;
                                           } else
                                             return null;
                                         },
@@ -204,7 +204,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
                                       sh(20),
                                       Center(
                                         child: AppButton(
-                                          label: LoginLabel,
+                                          label: "Login".tr,
                                           onPressed: () async {
                                             authProvider.loginFormValidation();
                                           },
@@ -267,7 +267,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
     return [
       sh(20),
       Text(
-        CreateAccountLbl,
+        "Register Your Account".tr,
         style: TextStyle(
           fontWeight: FontWeight.w900,
           fontSize: h * 20,
@@ -276,7 +276,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
       ),
       sh(30),
       Text(
-        PersonalDetailsLabel,
+        "Register Your Account".tr,
         style: TextStyle(
           fontWeight: FontWeight.w900,
           fontSize: h * 15,
@@ -312,20 +312,20 @@ class _GetStartedWebState extends State<GetStartedWeb> {
       ),
       sh(0),
       AppTextField(
-        label: NameLabel,
+        label: "Full Name".tr,
         controller: authProvider.nameController,
         suffix: null,
         isVisibilty: null,
         validator: (val) {
           if (authProvider.nameController.text.trim() == "")
-            return FieldEmptyError;
+            return "* Field can't be empty".tr;
           else
             return null;
         },
       ),
       sh(20),
       AppTextField(
-        label: EmailLabel,
+        label: "Email".tr,
         controller: authProvider.emailController,
         suffix: null,
         isVisibilty: null,
@@ -334,16 +334,16 @@ class _GetStartedWebState extends State<GetStartedWeb> {
               r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
           RegExp regex = new RegExp(emailPattern.toString());
           if (value!.isEmpty) {
-            return FieldEmptyError;
+            return "* Field can't be empty".tr;
           } else if ((!regex.hasMatch(value.trim()))) {
-            return ValidEmailLabel;
+            return "* Please enter a valid email id".tr;
           } else
             return null;
         },
       ),
       sh(20),
       AppTextFieldPassword(
-        label: PasswordLabel,
+        label: "Password".tr,
         controller: authProvider.passwordController,
         isMisMatch: isMisMatch,
         error: isError,
@@ -393,7 +393,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
           : Container(),
       sh(20),
       AppTextFieldPassword(
-        label: CnfmPasswordLabel,
+        label: "Confirm Password".tr,
         isMisMatch: isMisMatch,
         controller: authProvider.password2Controller,
         error: isError1,
@@ -443,7 +443,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
           : Container(),
       sh(20),
       AppTextField(
-        label: CompanyCR,
+        label: "Company CR".tr,
         inputType: TextInputType.number,
         controller: authProvider.companyCR,
         suffix: null,
@@ -455,7 +455,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
         },
         // validator: (val) {
         //   if (authProvider.companyCR.text.trim() == "")
-        //     return FieldEmptyError;
+        //     return "* Field can't be empty".tr;
         //   else if (authProvider.companyCR.text.length<10){
         //     return "CR can't be less then 10 digits";
         //   }
@@ -490,7 +490,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
         isVisibilty: null,
         validator: (val) {
           if (authProvider.companyContact.text.trim() == "")
-            return FieldEmptyError;
+            return "* Field can't be empty".tr;
           else
             return null;
         },
@@ -498,7 +498,7 @@ class _GetStartedWebState extends State<GetStartedWeb> {
       sh(30),
       Center(
         child: AppButton(
-          label: RegisterLabel,
+          label: "Register".tr,
           onPressed: () async {
             if (checks.isNotEmpty || checks2.isNotEmpty) return;
             await authProvider.registrationFormValidation();

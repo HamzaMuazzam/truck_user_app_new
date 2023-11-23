@@ -12,7 +12,6 @@ import 'package:sultan_cab/providers/GoogleMapProvider/location_and_map_provider
 import '/utils/api_keys.dart';
 import '/utils/colors.dart';
 import '/utils/sizeConfig.dart';
-import '/utils/strings.dart';
 import '../../models/directions_model.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
@@ -97,7 +96,7 @@ class _PickupLocationState extends State<PickupLocation> {
                 LatLng? latlng;
                 if (kIsWeb) {
                   await Get.to(MapLocationPicker(
-                    language: 'ar',
+                    // language: 'ar',
                     apiKey: GoogleMapApiKey,
                     onNext: (GeocodingResult? result) async {
                       if (result != null) {
@@ -128,7 +127,8 @@ class _PickupLocationState extends State<PickupLocation> {
                   await appProvider.setPickUpLoc(latlng!, address!);
 
                   if (appProvider.currentAddress == null) {
-                    await AppConst.infoSnackBar(ChooseStartingMsg);
+                    await AppConst.infoSnackBar(
+                        "Please choose starting location of journey".tr);
                     return;
                   } else {
                     fairTruckProvider.loadCity = city!;
@@ -180,7 +180,8 @@ class _PickupLocationState extends State<PickupLocation> {
                       sw(10),
                       Expanded(
                         child: Text(
-                          appProvider.currentAddress ?? ChooseYourLocLabel,
+                          appProvider.currentAddress ??
+                              "Choose Your Location".tr,
                           maxLines: 1,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,

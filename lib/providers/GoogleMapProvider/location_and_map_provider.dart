@@ -50,8 +50,8 @@ class LocationAndMapProvider extends ChangeNotifier {
           "assets/images/driver_location.png", 100)),
       markerId: MarkerId("driverLocMarker"),
       position: LatLng(
-          double.parse(taxiBookingProvider.onDriverLocationChange!.lat),
-          double.parse(taxiBookingProvider.onDriverLocationChange!.lng)),
+          double.parse(truckBookingProvider.onDriverLocationChange!.lat),
+          double.parse(truckBookingProvider.onDriverLocationChange!.lng)),
     );
     addMarkers();
   }
@@ -119,10 +119,10 @@ class LocationAndMapProvider extends ChangeNotifier {
   void addMarkers() async {
     if (currentPosition != null)
       locMarkers = <Marker>{
-        if (taxiBookingProvider.stage != RideStage.Started) currentLocMarker!,
-        if (taxiBookingProvider.stage == RideStage.DriverToRider)
+        if (truckBookingProvider.stage != RideStage.Started) currentLocMarker!,
+        if (truckBookingProvider.stage == RideStage.DriverToRider)
           driverLocMarker!,
-        if (taxiBookingProvider.stage == RideStage.Started) desLocMarker!,
+        if (truckBookingProvider.stage == RideStage.Started) desLocMarker!,
       };
     notifyListeners();
   }

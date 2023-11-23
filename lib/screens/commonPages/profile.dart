@@ -9,7 +9,6 @@ import 'package:sultan_cab/screens/commonPages/login.dart';
 import 'package:sultan_cab/utils/api_keys.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
 
@@ -87,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               title: Text(
-                ProfileLabel,
+                "Profile".tr.tr,
                 style: TextStyle(
                     fontSize: h * 18,
                     fontWeight: FontWeight.w700,
@@ -126,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   AppTextField(
-                                    label: FullName.tr,
+                                    label: "Full Name".tr.tr,
                                     readOnly: isRead,
                                     controller: authProvider.nameController,
                                     suffix: null,
@@ -137,14 +136,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       if (authProvider.nameController.text
                                               .trim() ==
                                           "")
-                                        return FieldEmptyError;
+                                        return "* Field can't be empty".tr;
                                       else
                                         return null;
                                     },
                                   ),
                                   sh(20),
                                   AppTextField(
-                                    label: PhoneNoLabel.tr,
+                                    label: "Phone Number".tr,
                                     readOnly: true,
                                     controller: phoneController,
                                     suffix: null,
@@ -155,7 +154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       if (authProvider.nameController.text
                                               .trim() ==
                                           "")
-                                        return FieldEmptyError;
+                                        return "* Field can't be empty".tr;
                                       else
                                         return null;
                                     },
@@ -169,8 +168,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       EdgeInsets.symmetric(horizontal: b * 25),
                                   child: AppButton(
                                     label: widget.isBooking!
-                                        ? ContinueLabel
-                                        : SaveLabel,
+                                        ? "Full Name".tr
+                                        : "SAVE".tr,
                                     onPressed: () async {
                                       FocusScope.of(context).unfocus();
                                       bool result =
@@ -188,7 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   const EdgeInsets.symmetric(horizontal: 25),
                               child: InkWell(
                                 onTap: () {
-                                  showDeleteConfirmationDialog(context);
+                                  showDeleteConfirmationDialog();
                                 },
                                 child: Container(
                                   height: 56,
@@ -264,54 +263,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  void showDeleteConfirmationDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Delete Account'.tr),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Are you sure you want to delete your account?'.tr,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
-              Text('This action will delete all your data and settings.'.tr),
-              SizedBox(height: 10),
-              Text(
-                  'You will need to create a new account if you wish to come back.'
-                      .tr),
-              SizedBox(height: 10),
-              Text(
-                'Please note that this will perform a hard delete from our database, and no information will remain stored in our system.'
-                    .tr,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
+  void showDeleteConfirmationDialog() {
+    Get.dialog(AlertDialog(
+      title: Text('Delete Account'.tr),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Are you sure you want to delete your account?'.tr,
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: Text('Cancel'.tr),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: ElevatedButton(
-                onPressed: () async {
-                  await authProvider.deleteAccount();
-                  Get.offAll(LoginScreen());
-                },
-                child: Text('Delete Account'.tr),
-              ),
-            ),
-          ],
-        );
-      },
-    );
+          SizedBox(height: 10),
+          Text('This action will delete all your data and settings.'.tr),
+          SizedBox(height: 10),
+          Text('You will need to create a new account if you wish to come back.'
+              .tr),
+          SizedBox(height: 10),
+          Text(
+            'Please note that this will perform a hard delete from our database, and no information will remain stored in our system.'
+                .tr,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(); // Close the dialog
+          },
+          child: Text('Cancel'.tr),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: ElevatedButton(
+            onPressed: () async {
+              await authProvider.deleteAccount();
+              Get.offAll(LoginScreen());
+            },
+            child: Text("Delete Account".tr),
+          ),
+        ),
+      ],
+    ));
   }
 }

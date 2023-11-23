@@ -14,7 +14,6 @@ import '../../services/directions_services.dart';
 import '../../utils/api_keys.dart';
 import '../../utils/commons.dart';
 import '../../utils/const.dart';
-import '../../utils/strings.dart';
 import '../../widgets/app_snackBar.dart';
 
 class OrderLocationPickScreenWeb extends StatefulWidget {
@@ -133,7 +132,8 @@ class _OrderLocationPickScreenWebState
                       await appProvider.setPickUpLoc(latlng!, pickaddress!);
 
                       if (appProvider.currentAddress == null) {
-                        await AppConst.infoSnackBar(ChooseStartingMsg);
+                        await AppConst.infoSnackBar(
+                            "Please choose starting location of journey".tr);
                         return;
                       } else {
                         fairTruckProvider.loadCity = city!;
@@ -219,10 +219,13 @@ class _OrderLocationPickScreenWebState
 
                         if (dir != null) await appProvider.setDirections(dir);
                         if (appProvider.destAdd == null) {
-                          await AppConst.infoSnackBar(ChooseDestinationMsg);
+                          await AppConst.infoSnackBar(
+                              "Please choose destination location of journey"
+                                  .tr);
                           return;
                         } else if (appProvider.destAdd == null) {
-                          await AppConst.infoSnackBar(ChooseStartingMsg);
+                          await AppConst.infoSnackBar(
+                              "Please choose starting location of journey".tr);
                           return;
                         } else {
                           if (await fairTruckProvider.getAllTruckFairs())
@@ -236,7 +239,7 @@ class _OrderLocationPickScreenWebState
                     } else {
                       appSnackBar(
                           context: context,
-                          msg: ChooseStartingMsg,
+                          msg: "Please choose starting location of journey".tr,
                           isError: true);
                     }
                   },

@@ -9,7 +9,6 @@ import 'package:sultan_cab/models/directions_model.dart';
 import 'package:sultan_cab/providers/TaxiBookingProvider/truck_booking_provider.dart';
 import 'package:sultan_cab/services/directions_services.dart';
 import 'package:sultan_cab/utils/commons.dart';
-import 'package:sultan_cab/utils/strings.dart';
 
 import '../../screens/TruckBooking/GetAllOrdersScreen.dart';
 import '../../screens/TruckBooking/OrderLocationPickScreenWeb.dart';
@@ -116,7 +115,7 @@ class AppFlowProvider extends ChangeNotifier {
       });
     }
 
-    taxiBookingProvider.multipleRideFields = body;
+    truckBookingProvider.multipleRideFields = body;
     notifyListeners();
     logger.i(body);
   }
@@ -124,7 +123,7 @@ class AppFlowProvider extends ChangeNotifier {
   addMarker(LatLng latLng) {
     if (currentLoc != null) {
       Marker currentMarker = Marker(
-        markerId: MarkerId(PickupLabel),
+        markerId: MarkerId("LoadUp".tr),
         icon: BitmapDescriptor.defaultMarkerWithHue(
           BitmapDescriptor.hueRed,
         ),
@@ -153,7 +152,7 @@ class AppFlowProvider extends ChangeNotifier {
   addPolyLines(LatLng latLng) {
     if (currentLoc != null) {
       Polyline currentLoc = Polyline(
-        polylineId: PolylineId(PickupLabel),
+        polylineId: PolylineId("LoadUp".tr),
         points: directions!.polylinePoints!.map(
           (e) {
             return LatLng(e!.latitude, e.longitude);

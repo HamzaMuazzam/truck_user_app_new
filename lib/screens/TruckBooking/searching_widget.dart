@@ -14,7 +14,6 @@ import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../utils/commons.dart';
-import '../../utils/strings.dart';
 import 'navigation_screen.dart';
 
 class SearchingWidget extends StatefulWidget {
@@ -83,7 +82,7 @@ class _SearchingWidgetState extends State<SearchingWidget>
                           : {
                               if (appProvider.currentLoc != null)
                                 Marker(
-                                  markerId: MarkerId(PickupLabel),
+                                  markerId: MarkerId("LoadUp".tr),
                                   icon: BitmapDescriptor.defaultMarkerWithHue(
                                     BitmapDescriptor.hueRed,
                                   ),
@@ -96,12 +95,12 @@ class _SearchingWidgetState extends State<SearchingWidget>
                                 ),
                               if (appProvider.destLoc != null)
                                 Marker(
-                                  markerId: MarkerId(DestinationLabel),
+                                  markerId: MarkerId("Destination".tr),
                                   icon: BitmapDescriptor.defaultMarkerWithHue(
                                     BitmapDescriptor.hueBlue,
                                   ),
                                   infoWindow:
-                                      InfoWindow(title: DestinationPointLabel),
+                                      InfoWindow(title: "Destination Point".tr),
                                   position: LatLng(
                                     appProvider.destLoc!.latitude,
                                     appProvider.destLoc!.longitude,

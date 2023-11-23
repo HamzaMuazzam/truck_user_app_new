@@ -41,6 +41,7 @@ dependencies:
   get_storage: ^2.0.3
   webview_flutter: ^4.2.4
   flutter_phoenix: ^1.1.1
+  restart_app: ^1.2.1
 
 
 

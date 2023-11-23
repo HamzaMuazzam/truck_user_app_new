@@ -57,7 +57,7 @@ class _DialogBoxRatingState extends State<DialogBoxRating> {
                         color: Colors.amber,
                       ),
                       onRatingUpdate: (rating) {
-                        taxiBookingProvider.setRating(rating);
+                        truckBookingProvider.setRating(rating);
                       },
                     ),
                     sh(34),

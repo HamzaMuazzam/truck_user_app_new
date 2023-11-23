@@ -11,7 +11,6 @@ import 'package:sultan_cab/services/directions_services.dart';
 import 'package:sultan_cab/utils/api_keys.dart';
 import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 
 import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
@@ -149,7 +148,7 @@ class _DropOffLocationState extends State<DropOffLocation> {
                             child: Text(
                               appProvider.destAdd == null ||
                                       appProvider.destAdd == ''
-                                  ? SearchDestLabel
+                                  ? "Search for destination location".tr
                                   : appProvider.destAdd!,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,

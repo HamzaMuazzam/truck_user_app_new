@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 
 import '../../languages/LanguageController.dart';
+import '../languages/RestartWidget.dart';
 
 class LanguageChangeDialog extends StatelessWidget {
-  const LanguageChangeDialog({super.key});
-
+  LanguageChangeDialog({super.key});
+  final languageController = LanguageController.to;
   @override
   Widget build(BuildContext context) {
-    final languageController = LanguageController.to;
     return AlertDialog(
       title: Text('Change Language'.tr),
       content: Column(
@@ -18,25 +17,16 @@ class LanguageChangeDialog extends StatelessWidget {
           ListTile(
             title: Text('English'.tr),
             leading: Radio(
-              value: 'en',
-              groupValue: languageController.locale,
-              onChanged: (value) {
-                languageController.changeLocale("en");
-                Get.back();
-              },
-            ),
+                value: 'en',
+                groupValue: languageController.locale,
+                onChanged: onChange),
           ),
           ListTile(
             title: Text('Arabic'.tr),
             leading: Radio(
-              value: 'ar',
-              groupValue: languageController.locale,
-              onChanged: (value) {
-                languageController.changeLocale("ar");
-                Phoenix.rebirth(context);
-                // Get.offAll(AuthWidget());
-              },
-            ),
+                value: 'ar',
+                groupValue: languageController.locale,
+                onChanged: onChange),
           ),
         ],
       ),
@@ -49,6 +39,12 @@ class LanguageChangeDialog extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  onChange(value) async {
+    await languageController.changeLocale(value);
+    RestartWidget.restartApp(Get.context!);
+    Get.back();
   }
 }
 

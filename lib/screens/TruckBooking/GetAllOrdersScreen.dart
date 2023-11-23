@@ -9,7 +9,6 @@ import 'package:sultan_cab/utils/sizeConfig.dart';
 
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../services/apiServices/StorageServices/get_storage.dart';
-import '../../utils/strings.dart';
 import 'getOrderDetailsById.dart';
 
 class GetAllOrdersScreen extends StatefulWidget {
@@ -111,7 +110,8 @@ class _GetAllOrdersScreenState extends State<GetAllOrdersScreen> {
                                                               .orderDetails!
                                                               .pickUpAddress
                                                               .toString()
-                                                          : PickUpAddrLbl,
+                                                          : "Pick up address"
+                                                              .tr,
                                                       style: TextStyle(
                                                           fontSize: h * 12,
                                                           color:

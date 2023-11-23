@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/register.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
-import 'package:sultan_cab/utils/strings.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
 
 import '../../widgets/app_text_field.dart';
@@ -85,7 +84,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                   ),
                                   sh(30),
                                   AppTextField(
-                                    label: EmailLabel,
+                                    label: "Email",
                                     controller: authProvider.emailController,
                                     suffix: null,
                                     isVisibilty: null,
@@ -95,10 +94,11 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       RegExp regex =
                                           new RegExp(emailPattern.toString());
                                       if (value!.isEmpty) {
-                                        return FieldEmptyError;
+                                        return "* Field can't be empty".tr;
                                       } else if ((!regex
                                           .hasMatch(value.trim()))) {
-                                        return ValidEmailLabel;
+                                        return "* Please enter a valid email id"
+                                            .tr;
                                       } else
                                         return null;
                                     },
@@ -239,7 +239,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                   sh(20),
                                   Center(
                                     child: AppButton(
-                                      label: LoginLabel,
+                                      label: "Login".tr,
                                       onPressed: () async {
                                         if (checks.isNotEmpty) {
                                           return;

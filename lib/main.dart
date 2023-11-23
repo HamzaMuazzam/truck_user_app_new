@@ -4,13 +4,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/languages/ContollerBindings.dart';
 import 'package:sultan_cab/languages/LanguageController.dart';
 import 'package:sultan_cab/languages/Localization.dart';
+import 'package:sultan_cab/languages/RestartWidget.dart';
 import 'package:sultan_cab/providers/Truck%20_provider/payment_provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart' as Auth;
 import 'package:url_launcher/url_launcher.dart';
@@ -49,11 +49,9 @@ void main() async {
     await Firebase.initializeApp();
   }
   runApp(
-    Phoenix(child: MyApp()),
+    RestartWidget(child: MyApp()),
   );
 }
-
-GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   @override
@@ -74,7 +72,6 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         title: 'Truc-king',
         debugShowCheckedModeBanner: false,
-        navigatorKey: navigatorKey,
         theme: ThemeData.dark(),
         localizationsDelegates: const <LocalizationsDelegate<dynamic>>[],
         locale: Locale(local ?? "en"),

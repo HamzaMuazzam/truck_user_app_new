@@ -9,7 +9,6 @@ import 'package:sultan_cab/widgets/app_button.dart';
 
 import '../../providers/GoogleMapProvider/location_and_map_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
-import '../../utils/strings.dart';
 import 'searching_widget.dart';
 
 class BookingSummary extends StatefulWidget {
@@ -97,7 +96,7 @@ class _BookingSummaryState extends State<BookingSummary> {
                                       /// 1st Location
                                       Text(
                                         appProvider.currentAddress ??
-                                            PickUpAddrLbl,
+                                            "Pick up address".tr,
                                         style: TextStyle(
                                             fontSize: h * 12,
                                             color: textYellowColor),

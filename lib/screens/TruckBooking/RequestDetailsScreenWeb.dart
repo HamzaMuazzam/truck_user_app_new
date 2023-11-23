@@ -7,7 +7,6 @@ import '../../providers/Truck _provider/fair_provider.dart';
 import '../../providers/truck_provider/app_flow_provider.dart';
 import '../../services/apiServices/StorageServices/get_storage.dart';
 import '../../utils/colors.dart';
-import '../../utils/strings.dart';
 import 'booking_summary.dart';
 
 class RequestDetailsScreenWeb extends StatefulWidget {
@@ -66,7 +65,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                                 color: Colors.orangeAccent,
                               ),
                               Text(
-                                " ${appProvider.currentAddress ?? PickUpAddrLbl}",
+                                " ${appProvider.currentAddress ?? "Pick up address".tr}",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -137,7 +136,7 @@ class _RequestDetailsScreenWebState extends State<RequestDetailsScreenWeb> {
                                 color: Colors.blueAccent,
                               ),
                               Text(
-                                " ${appProvider.destAdd ?? PickUpAddrLbl}",
+                                " ${appProvider.destAdd ?? "Pick up address".tr}",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
