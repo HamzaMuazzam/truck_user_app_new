@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/phone_verify.dart';
+import 'package:sultan_cab/utils/api_keys.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/widgets/app_text_field.dart';
 
@@ -68,10 +69,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     shape: BoxShape.circle,
                     color: Color(0xffc4c4c4).withOpacity(0.4),
                   ),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    size: h * 16,
-                    color: Colors.black,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(right: getLocal() == "ar" ? 13 : 0),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: h * 16,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
@@ -149,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       sh(0),
       AppTextField(
-        label: "Full Name",
+        label: "Full Name".tr,
         controller: authProvider.nameController,
         suffix: null,
         isVisibilty: null,
@@ -162,7 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       sh(20),
       AppTextField(
-        label: "Email",
+        label: "Email".tr,
         controller: authProvider.emailController,
         suffix: null,
         isVisibilty: null,

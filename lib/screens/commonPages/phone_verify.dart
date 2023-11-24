@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:sultan_cab/providers/auth_provider.dart';
 import 'package:sultan_cab/screens/commonPages/register.dart';
+import 'package:sultan_cab/utils/colors.dart';
 import 'package:sultan_cab/utils/sizeConfig.dart';
 import 'package:sultan_cab/widgets/app_button.dart';
+import 'package:sultan_cab/widgets/changeLanguage.dart';
 
 import '../../widgets/app_text_field.dart';
 
@@ -84,7 +86,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                   ),
                                   sh(30),
                                   AppTextField(
-                                    label: "Email",
+                                    label: "Email".tr,
                                     controller: authProvider.emailController,
                                     suffix: null,
                                     isVisibilty: null,
@@ -269,6 +271,16 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       ),
                                     ],
                                   ),
+                                  sh(22),
+                                  InkWell(
+                                      onTap: () {
+                                        showLanguageChangeDialog(context);
+                                      },
+                                      child: Text(
+                                        "Change Language".tr,
+                                        style: TextStyle(color: secondaryColor),
+                                      ))
+
                                   // Center(child: Text('OR', style: TextStyle(color:
                                   // primaryColor),)),
                                   // sh(22),

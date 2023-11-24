@@ -86,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               title: Text(
-                "Profile".tr.tr,
+                "Profile".tr,
                 style: TextStyle(
                     fontSize: h * 18,
                     fontWeight: FontWeight.w700,
@@ -125,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   AppTextField(
-                                    label: "Full Name".tr.tr,
+                                    label: "Full Name".tr,
                                     readOnly: isRead,
                                     controller: authProvider.nameController,
                                     suffix: null,

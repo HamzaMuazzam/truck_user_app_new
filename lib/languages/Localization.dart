@@ -44,7 +44,7 @@ class Localization extends Translations {
           "~Password must be greater than 8.":
               "	~يجب أن تكون كلمة المرور أكبر من 8.	",
           "~Must contain capital letter": "	~يجب أن يحتوي على حرف كبير	",
-          "Must contain number": "	يجب أن يحتوي على رقم	",
+          "~Must contain number": "	يجب أن يحتوي على رقم	",
           "~Must contain lower case letter": "	~يجب أن يحتوي على حرف صغير	",
           "~Must contain special character.": "	~يجب أن يحتوي على حرف خاص.	",
           "Don't have an account?": "	ليس لديك حساب؟	",
@@ -293,8 +293,9 @@ class Localization extends Translations {
           "Please choose starting location of journey":
               "	الرجاء اختيار مكان انطلاق الرحلة	",
           "	Search for destination location": "	بحث عن موقع الوجهة	",
+          "Change Language": "تغيير اللغة",
         },
       };
 }
-// Change Language
+//
 // arabic

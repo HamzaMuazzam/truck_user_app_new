@@ -36,19 +36,6 @@ class _SettingsState extends State<Settings> {
                   fontSize: h * 12,
                 ),
               ),
-              actions: [
-                InkWell(
-                  onTap: () {
-                    showLanguageChangeDialog(context);
-                  },
-                  child: Padding(
-                    padding: getLocal() == "ar"
-                        ? EdgeInsets.only(left: 15.0)
-                        : EdgeInsets.only(right: 15.0),
-                    child: Icon(Icons.language_outlined),
-                  ),
-                )
-              ],
               centerTitle: true,
               backgroundColor: secondaryColor,
             )
@@ -78,6 +65,64 @@ class _SettingsState extends State<Settings> {
                             icon: 'profileIcon',
                             page: ProfileScreen(
                               isBooking: false,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 25,
+                          ),
+                          MaterialButton(
+                            elevation: 0,
+                            splashColor: primaryColor,
+                            padding: EdgeInsets.zero,
+                            highlightColor: scaffoldColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(h * 4),
+                            ),
+                            onPressed: () {
+                              showLanguageChangeDialog(context);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(vertical: h * 18),
+                              decoration: BoxDecoration(
+                                color: phoneBoxBackground,
+                                borderRadius: BorderRadius.circular(h * 4),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      sw(h * 10),
+                                      SvgPicture.asset(
+                                        'assets/icons/lang.svg',
+                                        color: scaffoldColor,
+                                        height: h * 16,
+                                      ),
+                                      sw(22),
+                                      Text(
+                                        "Change Language".tr,
+                                        style: TextStyle(
+                                            fontSize: h * 14,
+                                            fontWeight: FontWeight.w700,
+                                            color: textColor),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: getLocal() == "ar"
+                                        ? EdgeInsets.only(left: 8.0)
+                                        : EdgeInsets.only(right: 8.0),
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 15,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
