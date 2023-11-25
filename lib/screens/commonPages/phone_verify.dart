@@ -267,7 +267,10 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                             child: Align(
                                                 alignment:
                                                     Alignment.centerRight,
-                                                child: Text('Register'.tr))),
+                                                child: Text('Register'.tr,
+                                                    style: TextStyle(
+                                                        color:
+                                                            secondaryColor)))),
                                       ),
                                     ],
                                   ),
@@ -276,9 +279,21 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       onTap: () {
                                         showLanguageChangeDialog(context);
                                       },
-                                      child: Text(
-                                        "Change Language".tr,
-                                        style: TextStyle(color: secondaryColor),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            "Change Language".tr,
+                                            style: TextStyle(
+                                                color: secondaryColor),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Image.asset(
+                                              "assets/flags/sa.png",
+                                              width: 30,
+                                            ),
+                                          )
+                                        ],
                                       ))
 
                                   // Center(child: Text('OR', style: TextStyle(color:

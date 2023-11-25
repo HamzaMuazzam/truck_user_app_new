@@ -23,6 +23,13 @@ class LanguageChangeDialog extends StatelessWidget {
           ),
           ListTile(
             title: Text('Arabic'.tr),
+            trailing: Container(
+              height: 30,
+              width: 30,
+              child: Image.asset(
+                "assets/flags/sa.png",
+              ),
+            ),
             leading: Radio(
                 value: 'ar',
                 groupValue: languageController.locale,
