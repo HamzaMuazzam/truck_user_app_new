@@ -5,23 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="314ee98e-3bc8-4e7d-bd27-1d4956ac301b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/migrations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../assets/.idea/assets.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lib/screens/TruckBooking/getOrderDetailsById.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/TruckBooking/getOrderDetailsById.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Podfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/customized_plugins/lib/src/autocomplete_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/customized_plugins/lib/src/autocomplete_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linux/flutter/ephemeral/.plugin_symlinks/file_selector_linux" beforeDir="false" afterPath="$PROJECT_DIR$/../linux/flutter/ephemeral/.plugin_symlinks/file_selector_linux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linux/flutter/ephemeral/.plugin_symlinks/flutter_keyboard_visibility_linux" beforeDir="false" afterPath="$PROJECT_DIR$/../linux/flutter/ephemeral/.plugin_symlinks/flutter_keyboard_visibility_linux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linux/flutter/ephemeral/.plugin_symlinks/image_picker_linux" beforeDir="false" afterPath="$PROJECT_DIR$/../linux/flutter/ephemeral/.plugin_symlinks/image_picker_linux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux" beforeDir="false" afterPath="$PROJECT_DIR$/../linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux" beforeDir="false" afterPath="$PROJECT_DIR$/../linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../macos/Flutter/ephemeral/Flutter-Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../macos/Flutter/ephemeral/Flutter-Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../macos/Flutter/ephemeral/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../macos/Flutter/ephemeral/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/hamzamuazzam/.android/avd/Medium_Phone_API_UpsideDownCakePrivacySandbox.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -32,6 +46,9 @@
     <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../lib/trucking" />
     <option name="KEY_ALIAS" value="trucking" />
     <option name="REMEMBER_PASSWORDS" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -44,13 +61,16 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "BundleExportedModule": "android.app",
-    "ExportBundle.BundlePathForandroid.app": "/home/hamzamuazzam/AndroidStudioProjects/truck_user_app_new/android/app",
+    "ExportBundle.BundlePathForandroid.app": "/Users/hamzamuazzam/Desktop",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "/home/hamzamuazzam/AndroidStudioProjects/truck_user_app_new/lib/trucking",
+    "git-widget-placeholder": "master__copy",
+    "last_opened_file_path": "/Users/hamzamuazzam/StudioProjects/truck_user_app_new/android",
     "show.migrate.to.gradle.popup": "false"
   },
   "keyToStringList": {
@@ -70,6 +90,7 @@
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="CLEAR_LOGCAT" value="false" />

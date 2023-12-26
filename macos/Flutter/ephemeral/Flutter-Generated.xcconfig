@@ -1,10 +1,10 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/home/hamzamuazzam/snap/flutter/common/flutter
-FLUTTER_APPLICATION_PATH=/home/hamzamuazzam/AndroidStudioProjects/truck_user_app_new
+FLUTTER_ROOT=/Users/hamzamuazzam/Desktop/flutter_sdk/3.16.5
+FLUTTER_APPLICATION_PATH=/Users/hamzamuazzam/StudioProjects/truck_user_app_new
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_BUILD_DIR=build
-FLUTTER_BUILD_NAME=1.1.2
-FLUTTER_BUILD_NUMBER=12
+FLUTTER_BUILD_NAME=1.1.5
+FLUTTER_BUILD_NUMBER=15
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
